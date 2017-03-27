@@ -15,14 +15,35 @@ Page({
     })
   },
   onLoad: function () {
+    var that = this
     // 取出緩存登錄信息
     wx.getStorage({
       key: 'logindata',
         success: function(res) {
-            console.log(res.data)
+        //  console.log(res.data)
+          wx.request({
+                      url: 'http://115.28.163.211:7080/shianlife-backend-1.0-SNAPSHOT/user/info/get', 
+                      method:"POST",
+                      data: "{\"content\":{}}",
+                      header: {
+                        "Content-Type":"application/x-www-form-urlencodeed",
+                        "Cookie":"sid="+res.data.content.sessionId
+                      },
+                      success: function(res) {
+                        if(res.data.code == 1000){
+                          var role=res.data.content.roles
+                          console.log(role)
+                          that.setData({
+                            role:role
+                          })
+                        }  
+                      }
+          })
         }
       })
-    var that = this
+
+
+
   	//调用应用实例的方法获取全局数据
     app.getUserInfo(function(userInfo){
       //更新数据
