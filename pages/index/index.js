@@ -36,6 +36,7 @@ Page({
                           console.log(role)
                           that.setData({
                             service:res.data.content.serviceSuccessSum,
+                            
                             grade:res.data.content.avgSatis,
                             role:role
                           })
