@@ -1,25 +1,35 @@
 /**login.wxss**/
-.wrap{
-  padding: 20rpx;
+.weui-cells{
+  background-color: transparent
 }
-.userinfo image{
+.weui-cells::after,
+.weui-cells::before{
+  border: none
+}
+.weui-cells{
+  margin-bottom: 30px
+}
+/*.weui-cell:first-child::before{
   display: block;
-  margin: 50rpx auto;
-  width: 200rpx;
-  height: 200rpx;
-   border-radius: 50%;
+}*/
+.weui-cell::before{
+  display: block!important;
+  top: 44px;
+  border-top:1rpx solid #D9D9D9;
 }
-.userinfo text{
-  display: block;
-  text-align: center;
-  margin-bottom: 150rpx;
-  }
-.section{
-  padding: 20rpx 20rpx;
-  box-sizing: border-box;
+.weui-cells {
+  margin-bottom:15px;
 }
-input{
-   padding: 20rpx 20rpx;
-  border:1px solid #999;
-  border-radius: 10rpx;
+
+
+.weui-flex{
+  margin-bottom: 30px;
 }
+.weui-flex .weui-flex__item{
+  padding: 0 15px
+}
+
+.weui-flex .weui-flex__item:first-of-type{
+  text-align: right
+}
+
