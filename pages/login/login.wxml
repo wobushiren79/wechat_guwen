@@ -4,7 +4,7 @@
         <view class="page__desc"></view>
     </view>
     <view class="page__bd">
-        <form bindsubmit="formSubmit" bindreset="formReset">
+        <form bindsubmit="formSubmit">
             <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
 
             <view class="weui-cells weui-cells_after-title">
@@ -13,7 +13,7 @@
                         <view class="weui-label">账号</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <input class="weui-input" placeholder="请输入账号"/>
+                        <input class="weui-input" placeholder="请输入账号" name="username"/>
                     </view>
                 </view>
                 <view class="weui-cell weui-cell_input">
@@ -21,28 +21,28 @@
                         <view class="weui-label">密码</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <input class="weui-input" placeholder="请输入密码"/>
+                        <input class="weui-input" type="password" placeholder="请输入密码" name="password"/>
                     </view>
                 </view>
             </view>  
 
-            <radio-group class="radio-group" bindchange="radioChange">
+            <radio-group class="radio-group" bindchange="systemType">
             <view class="weui-flex">
                 <view class="weui-flex__item">
                     <view class="placeholder">
-                        <radio name="12" value="1"/>{{value1}}
+                        <radio name="systemType" value="2"/>{{value1}}
                     </view>
                 </view>
                 <view class="weui-flex__item">
                     <view class="placeholder">
-                        <radio name="122"  value="2"/>{{value2}}
+                        <radio name="systemType"  value="3"/>{{value2}}
                     </view>
                 </view>
             </view>
             </radio-group>
 
             <view class="weui-btn-area">
-                <button class="weui-btn" type="primary" bindtap="showTopTips" >确定</button>
+                <button class="weui-btn" type="primary" bindtap="showTopTips" formType="submit">确定</button>
             </view>
         </form>
     </view>

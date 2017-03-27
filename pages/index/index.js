@@ -15,7 +15,13 @@ Page({
     })
   },
   onLoad: function () {
-    console.log('onLoad')
+    // 取出緩存登錄信息
+    wx.getStorage({
+      key: 'logindata',
+        success: function(res) {
+            console.log(res.data)
+        }
+      })
     var that = this
   	//调用应用实例的方法获取全局数据
     app.getUserInfo(function(userInfo){
