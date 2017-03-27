@@ -26,6 +26,7 @@ Page({
                       url: 'http://115.28.163.211:7080/shianlife-backend-1.0-SNAPSHOT/user/info/get', 
                       method:"POST",
                       data: "{\"content\":{}}",
+                      
                       header: {
                         "Content-Type":"application/x-www-form-urlencodeed",
                         "Cookie":"sid="+res.data.content.sessionId
@@ -36,7 +37,6 @@ Page({
                           console.log(role)
                           that.setData({
                             service:res.data.content.serviceSuccessSum,
-                            
                             grade:res.data.content.avgSatis,
                             role:role
                           })
