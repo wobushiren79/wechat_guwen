@@ -6,7 +6,8 @@ Page({
     grade: '7',
     service: "5",
     grade_icon:"../../images/grade.png",
-    service_icon:"../../images/service.png"
+    service_icon:"../../images/service.png",
+    role:''
   },
   //事件处理函数
   bindViewTap: function() {
@@ -34,6 +35,8 @@ Page({
                           var role=res.data.content.roles
                           console.log(role)
                           that.setData({
+                            service:res.data.content.serviceSuccessSum,
+                            grade:res.data.content.avgSatis,
                             role:role
                           })
                         }  
