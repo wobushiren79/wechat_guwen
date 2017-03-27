@@ -28,14 +28,14 @@
         </view>
         
         <view class="weui-btn-area">
-            <navigator url="" class="" hover-class="">
+            <navigator url="../new/new" class="" hover-class="">
                 <button class="weui-btn" type="primary" bindtap="showTopTips">新建工单</button>
             </navigator>
         </view>
 
         <view class="weui-btn-area">
             <navigator url="" class="" hover-class="">
-                <button class="weui-btn" type="primary" bindtap="showTopTips">新建洽谈</button>
+                <button class="weui-btn" type="primary" bindtap="showTopTips">新建订单</button>
             </navigator>
         </view>
 

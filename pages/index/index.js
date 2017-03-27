@@ -34,7 +34,7 @@ Page({
                       success: function(res) {
                         if(res.data.code == 1000){
                           var role=res.data.content.roles
-                          console.log(role)
+                         // console.log(role)
                           that.setData({
                             service:res.data.content.serviceSuccessSum,
                             grade:res.data.content.avgSatis,

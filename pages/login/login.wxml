@@ -13,7 +13,7 @@
                         <view class="weui-label">账号</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <input class="weui-input" placeholder="请输入账号" name="username"/>
+                        <input class="weui-input" placeholder="请输入账号" name="username" value="{{value3}}"/>
                     </view>
                 </view>
                 <view class="weui-cell weui-cell_input">
@@ -21,7 +21,7 @@
                         <view class="weui-label">密码</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <input class="weui-input" type="password" placeholder="请输入密码" name="password"/>
+                        <input class="weui-input" type="password" placeholder="请输入密码" name="password" value="{{value4}}"/>
                     </view>
                 </view>
             </view>  

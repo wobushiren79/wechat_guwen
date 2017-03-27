@@ -6,6 +6,8 @@ Page({
     value1: '殡仪服務',
     value2: "公墓服務",
     systemType:2,
+        value3:'ZY',
+        value4:'123456'
   },
     systemType:function(e){
     this.setData({systemType:e.detail.value})
@@ -16,9 +18,11 @@ Page({
      // console.log(Contentdata)
       if(Contentdata){
           var forData={content:Contentdata}
+          //console.log(forData)
           var that=this
           wx.request({
-            url: 'http://115.28.163.211:7080/shianlife-backend-1.0-SNAPSHOT/doLogin', 
+           url: 'http://115.28.163.211:7080/shianlife-backend-1.0-SNAPSHOT/doLogin', 
+           // url: 'http://192.168.0.146:8088/adviser/doLogin', 
             method:"POST",
             data: forData,
             header: {

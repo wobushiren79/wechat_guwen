@@ -2,44 +2,44 @@
 
 
     <view class="page__bd">
-        <form bindsubmit="formSubmit" bindreset="formReset">
+        <form bindsubmit="formSubmit">
             <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
 
             <view class="weui-cells__title"></view>
             <view class="weui-cells weui-cells_after-title">
                 <view class="weui-cell weui-cell_input">
                     <view class="weui-cell__hd">
-                        <view class="weui-label">客户姓名</view>
+                        <view class="weui-label">客户姓名:</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <input class="weui-input" placeholder="姓名"/>
+                        <input class="weui-input" placeholder="姓名" name="customerName"/>
                     </view>
                 </view>
                 <view class="weui-cell weui-cell_input">
                     <view class="weui-cell__hd">
-                        <view class="weui-label">联系电话</view>
+                        <view class="weui-label">联系电话:</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <input class="weui-input" placeholder="电话"/>
-                    </view>
-                </view>
-
-                <view class="weui-cell weui-cell_input">
-                    <view class="weui-cell__hd">
-                        <view class="weui-label">客户当前地址</view>
-                    </view>
-                    <view class="weui-cell__bd">
-                        <input class="weui-input" placeholder="地址"/>
+                        <input class="weui-input" placeholder="电话" name="customerMobile"/>
                     </view>
                 </view>
 
                 <view class="weui-cell weui-cell_input">
                     <view class="weui-cell__hd">
-                        <view class="weui-label">业务类型</view>
+                        <view class="weui-label">客户地址:</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-                            <view class="picker">{{array[index]}}</view>
+                        <input class="weui-input" placeholder="地址" name="customerAddressNew"/>
+                    </view>
+                </view>
+
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">业务类型:</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <picker bindchange="bindPickerChange" value="{{businessType}}" range="{{array}}">
+                            <view class="picker">{{array[businessType]}}</view>
                         </picker>
                     </view>
                 </view>
@@ -47,21 +47,21 @@
 
                 <view class="weui-cell weui-cell_input">
                     <view class="weui-cell__hd">
-                        <view class="weui-label">备注</view>
+                        <view class="weui-label">备注:</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <input class="weui-input"/>
+                        <input class="weui-input" name="description"/>
                     </view>
                 </view>
 
             </view>  
 
             <view class="weui-btn-area">
-                <button class="weui-btn" type="primary" bindtap="showTopTips">创建订单</button>
+                <button class="weui-btn" type="primary" bindtap="showTopTips" formType="submit">创建订单</button>
             </view>
         
             <view class="weui-btn-area">
-                <button class="weui-btn" type="primary" bindtap="showTopTips" plain="true">进入洽谈</button>
+                <button class="weui-btn" type="primary" bindtap="showTopTips" plain="true" formType="submit">进入洽谈</button>
             </view>    
 
         </form>
