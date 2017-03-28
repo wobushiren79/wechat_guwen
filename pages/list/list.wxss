@@ -1,0 +1,16 @@
+/**login.wxss**/
+.picker,
+text,
+.weui-cell__bd{
+height:2.58823529em;
+min-height:2.58823529em;
+line-height:2.58823529em;
+}
+.weui-btn{
+    margin-top: 0
+}
+
+
+
+
+

@@ -1,0 +1,103 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__bd">
+        <form bindsubmit="formSubmit" bindreset="formReset">
+            <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+            <view class="weui-cells__title"></view>
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">客户姓名</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" value="{{name}}" disabled="disabled"/>
+                    </view>
+                </view>
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">洽谈时间</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <!--<text>{{time}}</text>-->
+                        <input class="weui-input" value="{{time}}" disabled="disabled"/>
+                    </view>
+                </view>
+
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">客户当前地址</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" value="{{address}}" disabled="disabled"/>
+                    </view>
+                </view>
+
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">备注</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" value="{{note}}" disabled="disabled"/>
+                    </view>
+                </view>
+
+                <view class="weui-cell ">
+                    
+                    <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">洽谈成功</button>
+                    <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">洽谈失败</button>       
+                </view>
+
+            </view> 
+        </form>
+
+        <form bindsubmit="formSubmit" bindreset="formReset">
+            <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+
+            <view class="weui-cells__title"></view>
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">客户姓名</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" value="{{name}}" disabled="disabled"/>
+                    </view>
+                </view>
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">洽谈时间</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <!--<text>{{time}}</text>-->
+                        <input class="weui-input" value="{{time}}" disabled="disabled"/>
+                    </view>
+                </view>
+
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">客户当前地址</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" value="{{address}}" disabled="disabled"/>
+                    </view>
+                </view>
+
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">备注</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" value="{{note}}" disabled="disabled"/>
+                    </view>
+                </view>
+
+                <view class="weui-cell ">
+                    
+                    <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">洽谈成功</button>
+                    <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">洽谈失败</button>       
+                </view>
+
+            </view> 
+        </form>
+    </view>
+
+</view>
