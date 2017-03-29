@@ -26,7 +26,14 @@
                 <view class="weui-cell__ft">{{service}}</view>
             </view>
         </view>
-        
+
+        <view class="weui-btn-area">
+            <navigator url="../list/list" class="" hover-class="">
+                <button class="weui-btn" type="primary" bindtap="showTopTips">查询洽谈</button>
+            </navigator>
+        </view>
+
+
         <view class="weui-btn-area">
             <navigator url="../new/new" class="" hover-class="">
                 <button class="weui-btn" type="primary" bindtap="showTopTips">新建工单</button>

@@ -2,7 +2,9 @@
 
 
     <view class="page__bd">
+    <form bindsubmit="formData">
         <form bindsubmit="formSubmit">
+        
             <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
 
             <view class="weui-cells__title"></view>
@@ -59,7 +61,7 @@
             <view class="weui-btn-area">
                 <button class="weui-btn" type="primary" bindtap="showTopTips" formType="submit">创建订单</button>
             </view>
-        
+    </form>
             <view class="weui-btn-area">
                 <button class="weui-btn" type="primary" bindtap="showTopTips" plain="true" formType="submit">进入洽谈</button>
             </view>    
