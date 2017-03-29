@@ -10,7 +10,27 @@ line-height:2.58823529em;
     margin-top: 0
 }
 
-
-
+.name{
+    position: relative;
+    padding-right: 60px;
+}
+.name text{
+    position: absolute;
+    right: 0;
+    top: 3px;
+    color: #e64340;
+    font-size: 0.9em
+}
+navigator{
+    text-align: center
+}
+navigator button{
+    padding: 0 0.7em!important;
+    font-size: 13px;
+}
+/*.weui-flex__item navigator button.money{
+    background-color: #ffda76;
+    border-color: #ffda76;
+}*/
 
 

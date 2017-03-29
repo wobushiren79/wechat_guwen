@@ -9,8 +9,9 @@
                     <view class="weui-cell__hd">
                         <view class="weui-label">客户姓名:</view>
                     </view>
-                    <view class="weui-cell__bd">
+                    <view class="weui-cell__bd name">
                         <input class="weui-input" value="{{customerName}}" disabled="disabled"/>
+                        <text>{{orderStatus}}</text>
                     </view>
                 </view>
                 <view class="weui-cell weui-cell_input">
@@ -51,12 +52,218 @@
                     </view>
                 </view>
 
-                <view class="weui-cell ">
-                    
-                    <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">洽谈成功</button>
-                    <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">洽谈失败</button>       
+                <view class="weui-cell weui-flex">
+            
+                        <!--洽谈成功-->
+                        <view class="weui-flex__item">
+                            <view class="placeholder">
+                                <navigator url="../list/list" class="" hover-class="">
+                                    <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">洽谈成功</button>
+                                </navigator>
+                            </view>
+                        </view>
+
+                        <!--洽谈失败-->
+                        <view class="weui-flex__item">
+                            <view class="placeholder">
+                                <navigator url="../list/list" class="" hover-class="">
+                                    <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">洽谈失败</button>
+                                </navigator>
+                            </view>
+                        </view>
+
+                        <!--编辑订单-->
+                        <view class="weui-flex__item">
+                            <view class="placeholder">
+                                <navigator url="../list/list" class="" hover-class="">
+                                    <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">编辑订单</button>
+                                </navigator>
+                            </view>
+                        </view>
+
+
+                        <!--支付定金-->
+                        <view class="weui-flex__item">
+                            <view class="placeholder">
+                                <navigator url="../list/list" class="" hover-class="">
+                                    <button class="weui-btn mini-btn money" type="primary" size="mini" form-type="submit">支付定金</button>
+                                </navigator>
+                            </view>
+                        </view>
+
+
+
+                        <!--定金已付-->
+                        <view class="weui-flex__item">
+                            <view class="placeholder">
+                                <navigator url="../list/list" class="" hover-class="false">
+                                    <button class="weui-btn mini-btn money" type="primary" size="mini" form-type="submit" disabled="true">定金已付</button>
+                                </navigator>
+                            </view>
+                        </view>
+
+                       <!--结束洽谈-->
+                        <view class="weui-flex__item">
+                            <view class="placeholder">
+                                <navigator url="../list/list" class="" hover-class="">
+                                    <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">结束洽谈</button>
+                                </navigator>
+                            </view>
+                        </view>
+
+                        <!--订单详情-->
+                        <view class="weui-flex__item">
+                            <view class="placeholder">
+                                <navigator url="../list/list" class="" hover-class="">
+                                    <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">订单详情</button>
+                                </navigator>
+                            </view>
+                        </view>
+
+                        <!--及时服务-->
+                        <view class="weui-flex__item">
+                            <view class="placeholder">
+                                <navigator url="../list/list" class="" hover-class="">
+                                    <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">及时服务</button>
+                                </navigator>
+                            </view>
+                        </view>
+
+                </view>
+            </view> 
+        </form>
+    </template>
+
+    <template name="list_2">
+        <form bindsubmit="formSubmit">
+            <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+            <view class="weui-cells__title"></view>
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">订单编号</view>
+                    </view>
+                    <view class="weui-cell__bd name">
+                        <input class="weui-input" value="{{orderNum}}" disabled="disabled"/>
+                        <text>{{orderStatus}}</text>
+                    </view>
+                </view>
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">经办人</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <!--<text>{{time}}</text>-->
+                        <input class="weui-input" value="{{agentmanName}}" disabled="disabled"/>
+                    </view>
                 </view>
 
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">客户地址</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" value="{{customerAddress}}" disabled="disabled"/>
+                    </view>
+                </view>
+
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">客户电话</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" value="{{customerMobile}}" disabled="disabled"/>
+                    </view>
+                </view>
+
+
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">备注</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" value="{{note}}" disabled="disabled"/>
+                    </view>
+                </view>
+
+                <view class="weui-cell weui-flex">
+            
+                        <!--洽谈成功-->
+                        <view class="weui-flex__item">
+                            <view class="placeholder">
+                                <navigator url="../list/list" class="" hover-class="">
+                                    <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">洽谈成功</button>
+                                </navigator>
+                            </view>
+                        </view>
+
+                        <!--洽谈失败-->
+                        <view class="weui-flex__item">
+                            <view class="placeholder">
+                                <navigator url="../list/list" class="" hover-class="">
+                                    <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">洽谈失败</button>
+                                </navigator>
+                            </view>
+                        </view>
+
+                        <!--编辑订单-->
+                        <view class="weui-flex__item">
+                            <view class="placeholder">
+                                <navigator url="../list/list" class="" hover-class="">
+                                    <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">编辑订单</button>
+                                </navigator>
+                            </view>
+                        </view>
+
+
+                        <!--支付定金-->
+                        <view class="weui-flex__item">
+                            <view class="placeholder">
+                                <navigator url="../list/list" class="" hover-class="">
+                                    <button class="weui-btn mini-btn money" type="primary" size="mini" form-type="submit">支付定金</button>
+                                </navigator>
+                            </view>
+                        </view>
+
+
+
+                        <!--定金已付-->
+                        <view class="weui-flex__item">
+                            <view class="placeholder">
+                                <navigator url="../list/list" class="" hover-class="false">
+                                    <button class="weui-btn mini-btn money" type="primary" size="mini" form-type="submit" disabled="true">定金已付</button>
+                                </navigator>
+                            </view>
+                        </view>
+
+                       <!--结束洽谈-->
+                        <view class="weui-flex__item">
+                            <view class="placeholder">
+                                <navigator url="../list/list" class="" hover-class="">
+                                    <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">结束洽谈</button>
+                                </navigator>
+                            </view>
+                        </view>
+
+                        <!--订单详情-->
+                        <view class="weui-flex__item">
+                            <view class="placeholder">
+                                <navigator url="../list/list" class="" hover-class="">
+                                    <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">订单详情</button>
+                                </navigator>
+                            </view>
+                        </view>
+
+                        <!--及时服务-->
+                        <view class="weui-flex__item">
+                            <view class="placeholder">
+                                <navigator url="../list/list" class="" hover-class="">
+                                    <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">及时服务</button>
+                                </navigator>
+                            </view>
+                        </view>
+
+                </view>
             </view> 
         </form>
     </template>
