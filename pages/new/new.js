@@ -10,7 +10,6 @@ Page({
     },
      formSubmit:function(e){
          var ContentData=e.detail.value
-
          if(this.data.businessType == 0){
             ContentData.businessType = 1
          }else if(this.data.businessType == 1){
