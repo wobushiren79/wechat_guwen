@@ -36,13 +36,13 @@
 
         <view class="weui-btn-area">
             <navigator url="../new/new" class="" hover-class="">
-                <button class="weui-btn" type="primary" bindtap="showTopTips">新建工单</button>
+                <button class="weui-btn" type="primary" bindtap="showTopTips">新建殯儀工单</button>
             </navigator>
         </view>
 
         <view class="weui-btn-area">
-            <navigator url="" class="" hover-class="">
-                <button class="weui-btn" type="primary" bindtap="showTopTips">新建订单</button>
+            <navigator url="../demo_new/demo_new" class="" hover-class="">
+                <button class="weui-btn" type="primary" bindtap="showTopTips">新建公墓工单</button>
             </navigator>
         </view>
 

@@ -47,7 +47,7 @@ Page({
                             
                             if(res.data.code == 1000){ 
                             var TalkData=res.data.content.items 
-                            console.log(TalkData)
+                            //console.log(TalkData)
                                 that.setData({
                                     array:TalkData
                                 })

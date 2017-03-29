@@ -105,7 +105,7 @@
 
 
                         <!--定金已付-->
-                        <view class="weui-flex__item" wx:if="{{orderId && !hasPrepay}}">
+                        <view class="weui-flex__item" wx:if="{{orderId && hasPrepay}}">
                             <view class="placeholder">
                                 <navigator url="../list/list" class="" hover-class="false">
                                     <button class="weui-btn mini-btn money" type="primary" size="mini" form-type="submit" disabled="true">定金已付</button>
@@ -113,7 +113,7 @@
                             </view>
                         </view>
                        <!--结束洽谈-->
-                        <view class="weui-flex__item" wx:if="{{showFinishTalk}}">
+                        <view class="weui-flex__item" wx:if="{{showFinishTalk && hasPrepay && orderId}}">
                             <view class="placeholder">
                                 <navigator url="../list/list" class="" hover-class="">
                                     <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">结束洽谈</button>
@@ -130,7 +130,7 @@
                             </view>
                         </view>
                         <!--及时服务-->
-                        <view class="weui-flex__item" wx:if="{{showSwitch2waitService}}">
+                        <view class="weui-flex__item" wx:if="{{hasPrepay && showSwitch2waitService}}">
                             <view class="placeholder">
                                 <navigator url="../list/list" class="" hover-class="">
                                     <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">及时服务</button>
@@ -259,7 +259,7 @@
                             </view>
                         </view>
                        <!--结束洽谈-->
-                        <view class="weui-flex__item" wx:if="{{showFinishTalk}}">
+                        <view class="weui-flex__item" wx:if="{{showFinishTalk && hasPrepay && orderId}}">
                             <view class="placeholder">
                                 <navigator url="../list/list" class="" hover-class="">
                                     <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">结束洽谈</button>
@@ -276,7 +276,7 @@
                             </view>
                         </view>
                         <!--及时服务-->
-                        <view class="weui-flex__item" wx:if="{{showSwitch2waitService}}">
+                        <view class="weui-flex__item" wx:if="{{ hasPrepay && showSwitch2waitService}}">
                             <view class="placeholder">
                                 <navigator url="../list/list" class="" hover-class="">
                                     <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">及时服务</button>

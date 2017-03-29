@@ -20,26 +20,26 @@
         </view>
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__hd">
-              <view class="weui-label">列表一1:</view>
+              <view class="weui-label">列表1{{list1}}:</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="姓名" name="customerName" />
+              <text>{{name1}}</text>
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__hd">
-              <view class="weui-label">列表一2:</view>
+              <view class="weui-label">列表2{{list1}}:</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="电话" name="customerMobile" />
+             <text>{{name2}}</text>
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__hd">
-              <view class="weui-label">列表一3:</view>
+              <view class="weui-label">列表3{{list1}}:</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="地址" name="customerAddressNew" />
+              <text>{{name3}}</text>
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
