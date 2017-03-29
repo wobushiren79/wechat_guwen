@@ -27,7 +27,7 @@ Page({
     },
     onLoad: function () {
         var that = this
-        var  PageNums={content:{ "pageNum": 0,"pageSize": 2}}
+        var  PageNums={content:{ "pageNum": 0,"pageSize": 20}}
         var PageNum=JSON.stringify(PageNums)
         // 取出緩存登錄信息
         wx.getStorage({
@@ -44,9 +44,10 @@ Page({
                             "Cookie":"sid="+res.data.content.sessionId
                         },
                         success: function(res) {
-                            console.log(res.data)
+                            
                             if(res.data.code == 1000){ 
-                            var TalkData=res.data.content.items
+                            var TalkData=res.data.content.items 
+                            console.log(TalkData)
                                 that.setData({
                                     array:TalkData
                                 })

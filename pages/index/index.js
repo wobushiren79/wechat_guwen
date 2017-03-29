@@ -3,8 +3,8 @@
 var app = getApp()
 Page({
   data: {
-    grade: '7',
-    service: "5",
+    grade: '',
+    service: "",
     grade_icon:"../../images/grade.png",
     service_icon:"../../images/service.png",
     role:''

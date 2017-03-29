@@ -35,10 +35,9 @@ Page({
             success: function(res) {
               //console.log(res.data)
               if(res.data.code == 1000 &&res.data.message == '操作成功'){
-                  console.log('創建訂單')
-                // that.globalData.indexdata=res.data
-                //登錄信息緩存
-                // wx.setStorageSync('logindata',res.data)
+                  //console.log(res.data.content.consultId)
+                //操作成功返回consultId進行緩存
+                wx.setStorageSync('consultId',res.data.content.consultId)
                 //頁面跳轉
                 // wx.navigateTo({
                 //      url: '',
@@ -84,9 +83,9 @@ Page({
                 //登錄信息緩存
                 // wx.setStorageSync('logindata',res.data)
                 //頁面跳轉
-                // wx.navigateTo({
-                //      url: '',
-                //  })
+                wx.navigateTo({
+                     url: '../list/list',
+                 })
                   // console.log(res.data)
               }else{
                 console.log(res.data.message)
