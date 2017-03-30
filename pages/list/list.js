@@ -24,10 +24,77 @@ Page({
                 "showFinishTalk":false,//是否显示[结束洽谈]
                 "showSwitch2waitService":false //是否显示[及時服务]
            }],
+         pageNum:0,
+         pageSize:2,
+         Length:0
+        // hidden:false
     },
+
+    //上拉添加记录条数
+    onReachBottom(){
+    　　//console.log('--------下拉刷新-------')
+    　　wx.showNavigationBarLoading() //在标题栏中显示加载
+        wx.setNavigationBarTitle({
+          title: '加载中......'
+        })
+                  
+            this.setData({
+                    pageSize:this.data.pageSize+1,
+                    hidden:true
+                 })
+        var unm=this.data.pageNum
+        var size=this.data.pageSize
+        var  PageNums={content:{ "pageNum": unm,"pageSize": size}}
+        var PageNum=JSON.stringify(PageNums)    
+        var that = this 
+        // 取出緩存登錄信息
+        wx.getStorage({
+        key: 'logindata',
+            success: function(res) {
+            //  console.log(res.data)
+            //console.log(PageNum)
+            wx.request({
+                        url: 'http://115.28.163.211:7080/shianlife-adviser-1.0-SNAPSHOT/order/list/talk', 
+                        method:"POST",
+                        data: PageNum,
+                        header: {
+                            "Content-Type":"application/x-www-form-urlencodeed",
+                            "Cookie":"sid="+res.data.content.sessionId
+                        },
+                        success: function(res) {
+                            
+                            if(res.data.code == 1000){ 
+                            var TalkData=res.data.content.items 
+                            var Length=TalkData.length
+                           // console.log(Length)
+
+                                that.setData({
+                                    array:TalkData,
+                                    Length:Length,
+                                    
+                                })
+                            }  
+                        },
+                        complete: function() {
+                                that.setData({
+                                    hidden:false    
+                                })
+                            wx.setNavigationBarTitle({
+                            title: '订单列表'
+                            })
+                          wx.hideNavigationBarLoading() //完成停止加载
+                          wx.stopPullDownRefresh() //停止下拉刷新
+                        }
+            })
+            }
+        })  
+    },
+
     onLoad: function () {
         var that = this
-        var  PageNums={content:{ "pageNum": 0,"pageSize": 20}}
+        var unm=that.data.pageNum
+        var size=that.data.pageSize
+        var  PageNums={content:{ "pageNum": unm,"pageSize": size}}
         var PageNum=JSON.stringify(PageNums)
         // 取出緩存登錄信息
         wx.getStorage({
@@ -48,8 +115,10 @@ Page({
                             if(res.data.code == 1000){ 
                             var TalkData=res.data.content.items 
                             //console.log(TalkData)
+                            var Length=TalkData.length
                                 that.setData({
-                                    array:TalkData
+                                    array:TalkData,
+                                    Length:Length
                                 })
                             }  
                         }
