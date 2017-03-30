@@ -6,7 +6,7 @@ Page({
     value1: '殡仪服務',
     value2: "公墓服務",
     systemType:2,
-        value3:'ZY',
+        value3:'BSGW',
         value4:'123456'
   },
     systemType:function(e){

@@ -66,7 +66,7 @@ Page({
                             if(res.data.code == 1000){ 
                             var TalkData=res.data.content.items 
                             var Length=TalkData.length
-                           // console.log(Length)
+                           console.log(TalkData)
 
                                 that.setData({
                                     array:TalkData,

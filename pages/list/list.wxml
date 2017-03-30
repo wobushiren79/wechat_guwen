@@ -2,7 +2,7 @@
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
     <view class="page__bd">
     <template name="list_a">
-     <view wx:if="{{!orderId}}">
+     <view wx:if="{{orderStatus != 2 || orderStatus !=3 || orderStatus !=4}}">
         <form bindsubmit="formSubmit">
             <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
             <view class="weui-cells__title"></view>
@@ -13,21 +13,28 @@
                     </view>
                     <view class="weui-cell__bd name">
                         <input class="weui-input" value="{{customerName}}" disabled="disabled"/>
-                         <view wx:if="{{consultStatus==1}}">
-                         <text>未接单</text>
+                         <view wx:if="{{orderStatus == 1}}">
+                         <text>未处理</text>
                          </view>
-                         <view wx:elif="{{consultStatus==2}}">
+                         <view wx:elif="{{orderStatus==2}}">
+                         <text>待服务</text>
+                         </view>
+                         <view wx:elif="{{orderStatus==3}}">
+                         <text>已接受</text>
+                         </view>
+                         <view wx:elif="{{orderStatus==4}}">
+                         <text>服务派单中</text>
+                         </view>
+                         <view wx:elif="{{orderStatus==5}}">
+                         <text>结束派单</text>
+                         </view>
+                         <view wx:elif="{{orderStatus==6}}">
+                         <text>已确认</text>
+                         </view>
+                         <view wx:elif="{{orderStatus==7}}">
                          <text>已接单</text>
                          </view>
-                         <view wx:elif="{{consultStatus==3}}">
-                         <text>已下单</text>
-                         </view>
-                         <view wx:elif="{{consultStatus==4}}">
-                         <text>洽谈失败</text>
-                         </view>
-                         <view wx:elif="{{consultStatus==5}}">
-                         <text>洽谈成功</text>
-                         </view>
+
                     </view>
                 </view>
                 <view class="weui-cell weui-cell_input">
@@ -106,7 +113,7 @@
 
 
                         <!--定金已付-->
-                        <view class="weui-flex__item" wx:if="{{orderId && hasPrepay}}">
+                        <view class="weui-flex__item" wx:if="{{orderId && hasPrepay && showFinishTalk}}">
                             <view class="placeholder">
                                 <navigator url="../list/list" class="" hover-class="false">
                                     <button class="weui-btn mini-btn money" type="primary" size="mini" form-type="submit" disabled="true">定金已付</button>
@@ -131,7 +138,7 @@
                             </view>
                         </view>
                         <!--及时服务-->
-                        <view class="weui-flex__item" wx:if="{{hasPrepay && showSwitch2waitService}}">
+                        <view class="weui-flex__item" wx:if="{{hasPrepay && showSwitch2waitService && orderStatus != 2}}">
                             <view class="placeholder">
                                 <navigator url="../list/list" class="" hover-class="">
                                     <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">及时服务</button>
@@ -142,7 +149,7 @@
             </view> 
         </form>
         </view>
-        <view wx:if="{{orderId}}">
+        <view wx:elif="{{orderStatus == 2 || orderStatus ==3 || orderStatus ==4}}">
  <form bindsubmit="formSubmit">
             <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
             <view class="weui-cells__title"></view>
@@ -153,7 +160,7 @@
                     </view>
                     <view class="weui-cell__bd name">
                         <input class="weui-input" value="{{orderNum}}" disabled="disabled"/>
-                         <view wx:if="{{orderStatus==1}}">
+                         <view wx:if="{{orderStatus == 1}}">
                          <text>未处理</text>
                          </view>
                          <view wx:elif="{{orderStatus==2}}">
@@ -186,31 +193,31 @@
                     </view>
                 </view>
 
-                <view class="weui-cell weui-cell_input">
+                <!--<view class="weui-cell weui-cell_input">
                     <view class="weui-cell__hd">
                         <view class="weui-label">客户地址</view>
                     </view>
                     <view class="weui-cell__bd">
                         <input class="weui-input" value="{{customerAddress}}" disabled="disabled"/>
                     </view>
-                </view>
+                </view>-->
 
                 <view class="weui-cell weui-cell_input">
                     <view class="weui-cell__hd">
-                        <view class="weui-label">客户电话</view>
+                        <view class="weui-label">客户姓名</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <input class="weui-input" value="{{customerMobile}}" disabled="disabled"/>
+                        <input class="weui-input" value="{{customerName}}" disabled="disabled"/>
                     </view>
                 </view>
 
 
                 <view class="weui-cell weui-cell_input">
                     <view class="weui-cell__hd">
-                        <view class="weui-label">备注</view>
+                        <view class="weui-label">治丧指导</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <input class="weui-input" value="{{note}}" disabled="disabled"/>
+                        <input class="weui-input" value="{{performerName}}" disabled="disabled"/>
                     </view>
                 </view>
 
@@ -252,7 +259,7 @@
 
 
                         <!--定金已付-->
-                        <view class="weui-flex__item" wx:if="{{orderId && hasPrepay}}">
+                        <view class="weui-flex__item" wx:if="{{orderId && hasPrepay && showFinishTalk}}">
                             <view class="placeholder">
                                 <navigator url="../list/list" class="" hover-class="false">
                                     <button class="weui-btn mini-btn money" type="primary" size="mini" form-type="submit" disabled="true">定金已付</button>
@@ -277,7 +284,7 @@
                             </view>
                         </view>
                         <!--及时服务-->
-                        <view class="weui-flex__item" wx:if="{{ hasPrepay && showSwitch2waitService}}">
+                        <view class="weui-flex__item" wx:if="{{ hasPrepay && showSwitch2waitService  && orderStatus != 2}}">
                             <view class="placeholder">
                                 <navigator url="../list/list" class="" hover-class="">
                                     <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">及时服务</button>
