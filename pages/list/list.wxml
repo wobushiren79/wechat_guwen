@@ -95,7 +95,7 @@
                         <!--编辑订单-->
                         <view class="weui-flex__item" wx:if="{{showEditOrder}}">
                             <view class="placeholder">
-                                <navigator url="../list/list" class="" hover-class="">
+                                <navigator url="../order/order?consultId={{consultId}}" class="" hover-class="">
                                     <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">编辑订单</button>
                                 </navigator>
                             </view>
@@ -241,7 +241,7 @@
                         <!--编辑订单-->
                         <view class="weui-flex__item" wx:if="{{showEditOrder}}">
                             <view class="placeholder">
-                                <navigator url="../list/list" class="" hover-class="">
+                                <navigator url="../order/order?consultId={{consultId}}" class="" hover-class="">
                                     <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">编辑订单</button>
                                 </navigator>
                             </view>

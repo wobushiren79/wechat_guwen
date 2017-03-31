@@ -65,6 +65,7 @@ Page({
                             
                             if(res.data.code == 1000){ 
                             var TalkData=res.data.content.items 
+                            //console.log(TalkData)
                             var Length=TalkData.length
                            console.log(TalkData)
 
