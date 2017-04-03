@@ -26,9 +26,9 @@
     
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell">
-            <view class="weui-cell__bd picker">{{name}}</view>
+            <view class="weui-cell__bd picker">{{productItemsName}}</view>
             <view class="num_wrap">
-              <text>{{count}}</text>
+              <text>{{unit}}</text>
             </view>
             <view class="weui-cell__ft">
               ￥:
@@ -49,26 +49,43 @@
         <!--套餐名称  小分类分类-->
         <view class="weui-cells__title ">
           {{nameTitle_c}}
-          <picker class="add" bindchange="bindPickerChange_c" value="{{businessType_c}}" range="{{array_c}}">
+          <picker class="add" bindchange="bindPickerChange_c" value="{{businessType_c}}" range="{{FuneralData}}">
             <text>></text>
           </picker>
         </view>
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell">
-            <view class="weui-cell__bd picker">{{array_c[businessType_c]}}</view>
+            <view class="weui-cell__bd picker">{{FuneralData[businessType_c]}}</view>
           </view>
         </view>
-
+<template name="list_b">
+<!--<view wx:for="{{FuneralData_a_a}}" wx:for-index="i">-->
         <!--寿衣全套  小分类分类-->
-        <view class="weui-cells__title ">
-          {{nameTitle_d}}
-          <picker class="add" bindchange="bindPickerChange_d" value="{{businessType_d}}" range="{{array_d}}">
+         <view class="weui-cells__title ">
+          <!--{{index}}: -->
+         {{name}}
+         
+          
+          <picker class="add" bindchange="bindPickerChange_c_c" value="{{businessType_c_c}}"  range="{{productItems}}">
             <text>></text>
           </picker>
         </view>
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell">
-            <view class="weui-cell__bd picker">{{array_d[businessType_d]}}</view>
+            <view class="weui-cell__bd picker">{{FuneralData[businessType_c_c]}}</view>
+          </view>
+        </view>
+        
+        <!--</view>-->
+        <!--<view class="weui-cells__title ">
+          {{FuneralData_a_a}}
+          <picker class="add" bindchange="bindPickerChange_d" value="{{businessType_d}}" range="{{FuneralData_a_a}}">
+            <text>></text>
+          </picker>
+        </view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell">
+            <view class="weui-cell__bd picker">{{FuneralData_a_a[businessType_d]}}</view>
             <view class="num_wrap">
               <text>{{num}}</text>
             </view>
@@ -77,6 +94,10 @@
               <text>{{money}}</text>
             </view>
           </view>
+        </view>-->
+</template>
+        <view wx:for="{{FuneralData_a_b_c}}">
+                <template is="list_b" data="{{...item}}"/>
         </view>
       </view>
 
