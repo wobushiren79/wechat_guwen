@@ -28,7 +28,7 @@
           <view class="weui-cell">
             <view class="weui-cell__bd picker">{{productItemsName}}</view>
             <view class="num_wrap">
-              <text>{{unit}}</text>
+              <text>x1{{unit}}</text>
             </view>
             <view class="weui-cell__ft">
               ￥:
@@ -66,13 +66,13 @@
          {{name}}
          
           
-          <picker class="add" bindchange="bindPickerChange_c_c" value="{{businessType_c_c}}"  range="{{productItems}}">
+          <picker class="add" bindchange="bindPickerChange_c_c" value="{{businessType_c_c}}"  range="{{productItems}}" data-name="{{productItems}}">
             <text>></text>
           </picker>
         </view>
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell">
-            <view class="weui-cell__bd picker">{{FuneralData[businessType_c_c]}}</view>
+            <view class="weui-cell__bd picker">{{DataName}}</view>
           </view>
         </view>
         

@@ -31,6 +31,7 @@ Page({
 
     FuneralData_a_b: ['寿衣1', '寿衣2'],
     businessType_c_c: 0,
+    
 
 
     array_e: ['花圈', '告别仪式'],
@@ -41,7 +42,6 @@ Page({
 
   },
   bindPickerChange_a: function (e) {
-    // console.log(e.detail.value)
     var Mains = this.data.Mains
     var id = e.detail.value
     var MainData_b = []
@@ -62,7 +62,6 @@ Page({
         MainData_c[i].categoryId = MainData_b[i].productItems[j].categoryId
       }
     }
-    //console.log(MainData_c)
     this.setData({
       businessType_a: e.detail.value,
       nameTitle_b: MainData_c
@@ -81,51 +80,46 @@ Page({
       var cur = FuneralData_a[i]
       FuneralData_a_a.push(cur);
     }
-    console.log(FuneralData_a_a)
-    // var FuneralData_a_b=[]
-    // for(var i in FuneralData_a_a){
-    //   FuneralData_a_b[i]=FuneralData_a_a[i].productItems
-    //     //  for(var j in FuneralData_a_a[i].productItems){
-    //     //        //FuneralData_a_b[i]=FuneralData_a_a[i]
-    //     //           FuneralData_a_b[i]=FuneralData_a_a[i].productItems[j];
-    //     //  }
-    // }
-
+//重新组装对象以满足页面输出格式
     var FuneralData_a_b_c=[]
     for(var i in FuneralData_a_a){
           FuneralData_a_b_c[i]=FuneralData_a_a[i]
 
           for(var j in FuneralData_a_a[i].productItems){
-          FuneralData_a_b_c[i].productItems.push (FuneralData_a_a[i].productItems[j].name)
+          FuneralData_a_b_c[i].productItems[j]=FuneralData_a_a[i].productItems[j].name
           }
     }
 
-    // for(var i in FuneralData_a_b){
-    //     // FuneralData_a_b_c.push(FuneralData_a_b[i].name)
-    //     for(var j in FuneralData_a_b[i]){
-    //       FuneralData_a_b_c.push(FuneralData_a_b[i][j])
-    //     }
-    // }
-    console.log(FuneralData_a_b_c)
-    // console.log(FuneralData_a_b_c)
     this.setData({
       businessType_c: e.detail.value,
-      FuneralData_a_b_c: FuneralData_a_b_c,
-      //FuneralData_a_b:FuneralData_a_b
+      FuneralData_a_b_c: FuneralData_a_b_c
     })
   },
 
   bindPickerChange_c_c:function(e){
-    var businessType_c_c=e.detail.value
-    var FuneralData_c_c = []
-    for (var i in Funeral) {
-      FuneralData_c_c = Funeral[businessType_c_c].productItems;
-      break;
-      //productItems
+    var n=e.detail.value
+    var name=e.target.dataset.name
+    var Funeral=this.data.Funeral
+    var FuneralData_a_b_c=this.data.FuneralData_a_b_c
+    for(var i in name){
+      var  DataName=name[n]
     }
-    console.log(FuneralData_c_c)
+    console.log(Funeral)
+    var Tmp=[]
+    if(DataName){
+       for(var i in Funeral){
+         for(var j in Funeral[i].ctgItems){
+           for(var k in Funeral[i].ctgItems[j].productItems){
+             if(Funeral[i].ctgItems[j].productItems[k].name == DataName){
+                  Tmp=Funeral[i].ctgItems[j].productItems[k]
+             }
+           }
+         }
+       }
+    }
+    console.log(Tmp)
     this.setData({
-      businessType_d: e.detail.value
+      businessType_c_c: e.detail.value,
     })
   },
   bindPickerChange_d: function (e) {
