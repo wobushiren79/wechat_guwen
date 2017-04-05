@@ -39,6 +39,7 @@ App({
     }
   },
   globalData:{
-    userInfo:null
+    userInfo:null,
+    RouteUrl:"http://115.28.163.211:7080/shianlife-adviser-1.0-SNAPSHOT/"
   }
 })

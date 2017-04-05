@@ -31,14 +31,17 @@ Page({
 
     FuneralData_a_b: ['寿衣1', '寿衣2'],
     businessType_c_c: 0,
-    
+    DataName_a: '',
 
 
-    array_e: ['花圈', '告别仪式'],
+
+    CategoryName: ['花圈', '告别仪式'],
     businessType_e: 0,
     nameTitle_e: "增值服务名称",
+    category: '',
     Mains: '',
     MainData_b: '',
+    DataCategory: ''
 
   },
   bindPickerChange_a: function (e) {
@@ -80,69 +83,177 @@ Page({
       var cur = FuneralData_a[i]
       FuneralData_a_a.push(cur);
     }
-//重新组装对象以满足页面输出格式
-    var FuneralData_a_b_c=[]
-    for(var i in FuneralData_a_a){
-          FuneralData_a_b_c[i]=FuneralData_a_a[i]
+    //重新组装对象以满足页面输出格式
+    var FuneralData_a_b_c = []
+    for (var i in FuneralData_a_a) {
+      FuneralData_a_b_c[i] = FuneralData_a_a[i]
 
-          for(var j in FuneralData_a_a[i].productItems){
-          FuneralData_a_b_c[i].productItems[j]=FuneralData_a_a[i].productItems[j].name
-          }
+      for (var j in FuneralData_a_a[i].productItems) {
+        FuneralData_a_b_c[i].productItems[j] = FuneralData_a_a[i].productItems[j].name
+      }
     }
-
+    console.log(FuneralData_a)
     this.setData({
       businessType_c: e.detail.value,
       FuneralData_a_b_c: FuneralData_a_b_c
     })
   },
 
-  bindPickerChange_c_c:function(e){
-    var n=e.detail.value
-    var name=e.target.dataset.name
-    var Funeral=this.data.Funeral
-    var FuneralData_a_b_c=this.data.FuneralData_a_b_c
-    for(var i in name){
-      var  DataName=name[n]
+  bindPickerChange_c_c: function (e) {
+    var n = e.detail.value
+    var name = e.target.dataset.name
+    var Funeral = this.data.Funeral
+    var FuneralData_a_b_c = this.data.FuneralData_a_b_c
+    var DataName_b = []
+    var dataname = this.data.DataName_a
+    if (dataname) {
+      DataName_b = dataname
     }
-    console.log(Funeral)
-    var Tmp=[]
-    if(DataName){
-       for(var i in Funeral){
-         for(var j in Funeral[i].ctgItems){
-           for(var k in Funeral[i].ctgItems[j].productItems){
-             if(Funeral[i].ctgItems[j].productItems[k].name == DataName){
-                  Tmp=Funeral[i].ctgItems[j].productItems[k]
-             }
-           }
-         }
-       }
-    }
-    console.log(Tmp)
-    this.setData({
-      businessType_c_c: e.detail.value,
-    })
-  },
-  bindPickerChange_d: function (e) {
 
+    for (var i in name) {
+      var DataName = name[n]
+    }
+
+    // console.log(Funeral)
+    var Tmp = []
+    if (DataName) {
+      for (var i in Funeral) {
+        for (var j in Funeral[i].ctgItems) {
+          for (var k in Funeral[i].ctgItems[j].productItems) {
+            if (Funeral[i].ctgItems[j].productItems[k].name == DataName) {
+              Tmp = Funeral[i].ctgItems[j].productItems[k];
+              // break;
+
+            }
+          }
+        }
+      }
+    }
+    if (Tmp) {
+      DataName_b.push(Tmp)
+    }
+    // console.log(tmp)
+    // console.log(Tmp)
+    // console.log(DataName)
+
+    // console.log(DataName_b)
     this.setData({
-      businessType_d: e.detail.value
+      //businessType_c_c: e.detail.value,
+      DataName_a: DataName_b
     })
   },
   bindPickerChange_e: function (e) {
-    //console.log(e.detail.value)
-    this.setData({
-      businessType_e: e.detail.value
-    })
+    var that = this;
+    //接口地址前缀
+    var RouteUrl = getApp().globalData.RouteUrl;
+    var category = this.data.category;
+    var cat = e.detail.value;
+    var DataCategory_b = [];
+    //console.log(DataCategory_b)
+    if (that.data.DataCategory) {
+      // console.log(DataCategory_a)
+      DataCategory_b = that.data.DataCategory
+    }
+    // console.log(DataCategory_b)
+    var CatId = [];
+    for (var i in category.ctgItems) {
+      CatId = category.ctgItems[cat].id;
+    };
+    if (CatId) {
+      // 取出緩存登錄信息
+      //console.log(CatId)
+      var forData = { content: { ctgId: CatId } };
+      //转换字符串
+      var ForData = JSON.stringify(forData);
+      //console.log(ForData)
+      wx.getStorage({
+        key: 'logindata',
+        success: function (msg) {
+          //请求增值服务项目详情
+          wx.request({
+            url: RouteUrl + 'sku/product/get',
+            method: "POST",
+            data: ForData,
+            header: {
+              "Content-Type": "application/x-www-form-urlencodeed",
+              "Cookie": "sid=" + msg.data.content.sessionId
+            },
+            success: function (res) {
+              if (res.data.code == 1000 && res.data.message == '操作成功') {
+                var category = res.data.content.productItems;
+                var categorydata = [];
+                if (category) {
+                  for (var i in category) {
+                    DataCategory_b.push(category[i])
+                  };
+                  that.setData({
+                    //businessType_e: e.detail.value,
+                    DataCategory: DataCategory_b
+                  });
+
+                };
+              };
+            }
+          });
+        }
+      });
+    };
+  },
+  Botton:function(e){
+    var id= e.target.dataset.id
+    var Cdata=this.data.DataCategory
+   // var DataCategory=[]
+    for(var i in Cdata){
+        if(Cdata[i].id == id){
+          if(Cdata[i].count !=0){
+             Cdata[i].count = Cdata[i].count-1
+             Cdata[i].price = Cdata[i].price - Cdata[i].price
+             Cdata[i].specification = Cdata[i].specification
+             Cdata[i].unit = Cdata[i].unit
+             Cdata[i].id = Cdata[i].id
+             Cdata[i].name = Cdata[i].name
+          }else{
+             Cdata[i].count = Cdata[i].count
+             Cdata[i].price = Cdata[i].price
+             Cdata[i].specification = Cdata[i].specification
+             Cdata[i].unit = Cdata[i].unit
+             Cdata[i].id = Cdata[i].id
+             Cdata[i].name = Cdata[i].name
+          }
+        }
+    }
+      this.setData({
+         DataCategory:Cdata
+      })
+  },
+  Top:function(e){
+    var id = e.target.dataset.id
+    var Cdata=this.data.DataCategory
+   // var DataCategory=[]
+    for(var i in Cdata){
+        if(Cdata[i].id == id){
+             Cdata[i].count = Cdata[i].count + 1
+             Cdata[i].price = Cdata[i].price + Cdata[i].price
+             Cdata[i].specification = Cdata[i].specification
+             Cdata[i].unit = Cdata[i].unit
+             Cdata[i].id = Cdata[i].id
+             Cdata[i].name = Cdata[i].name
+        }
+    }
+      this.setData({
+         DataCategory:Cdata
+      })
   },
   onLoad: function (options) {
     var that = this
+    var RouteUrl = getApp().globalData.RouteUrl
     // 取出緩存登錄信息
     wx.getStorage({
       key: 'logindata',
       success: function (msg) {
         //  请求主套餐数据
         wx.request({
-          url: 'http://115.28.163.211:7080/shianlife-adviser-1.0-SNAPSHOT/setmeal/main/get',
+          url: RouteUrl + 'setmeal/main/get',
           method: "POST",
           data: "{\"content\":{}}",
           header: {
@@ -193,7 +304,7 @@ Page({
         })
         //请求殡仪配套数据
         wx.request({
-          url: 'http://115.28.163.211:7080/shianlife-adviser-1.0-SNAPSHOT/setmeal/funeral/get',
+          url: RouteUrl + 'setmeal/funeral/get',
           method: "POST",
           data: "{\"content\":{}}",
           header: {
@@ -238,6 +349,34 @@ Page({
               that.setData({
                 FuneralData: FuneralData,
                 Funeral: Funeral,
+                // nameTitle_b: MainData_c
+              })
+            }
+          }
+        })
+        //请求增值服务项目列表
+        wx.request({
+          url: RouteUrl + 'sku/category/get',
+          method: "POST",
+          data: "{\"content\":{\"projectId\":4}}",
+          header: {
+            "Content-Type": "application/x-www-form-urlencodeed",
+            "Cookie": "sid=" + msg.data.content.sessionId
+          },
+          success: function (res) {
+            if (res.data.code == 1000 && res.data.message == '操作成功') {
+              var category = res.data.content
+              if (category) {
+                var CategoryName = []
+                for (var i in category.ctgItems) {
+                  CategoryName.push(category.ctgItems[i].name)
+                }
+              }
+              // console.log(category)
+              // console.log(CategoryName)
+              that.setData({
+                category: category,
+                CategoryName: CategoryName,
                 // nameTitle_b: MainData_c
               })
             }

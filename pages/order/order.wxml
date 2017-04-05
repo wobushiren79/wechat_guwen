@@ -70,11 +70,11 @@
             <text>></text>
           </picker>
         </view>
-        <view class="weui-cells weui-cells_after-title">
+        <!--<view class="weui-cells weui-cells_after-title">
           <view class="weui-cell">
             <view class="weui-cell__bd picker">{{DataName}}</view>
           </view>
-        </view>
+        </view>-->
         
         <!--</view>-->
         <!--<view class="weui-cells__title ">
@@ -96,33 +96,50 @@
           </view>
         </view>-->
 </template>
+
         <view wx:for="{{FuneralData_a_b_c}}">
                 <template is="list_b" data="{{...item}}"/>
         </view>
+   <!--治丧配套产品列表-->
+        <view class="weui-cells weui-cells_after-title" wx:if="{{DataName_a}}" wx:for="{{DataName_a}}">
+          <view class="weui-cell">
+            <view class="weui-cell__bd picker">{{item.name}}</view>
+            <view class="num_wrap">
+              <text>x1{{item.num}}</text>
+            </view>
+            <view class="weui-cell__ft">
+              ￥:
+              <text>{{item.price}}</text>
+            </view>
+          </view>
+        </view>  
       </view>
 
-      <!--治丧配套商品-->
+      <!--增值服务项目-->
       <view class="section">
         <view class="page__title">增值服务项目</view>
 
         <!--寿衣全套  小分类分类-->
         <view class="weui-cells__title ">
           {{nameTitle_e}}
-          <picker class="add" bindchange="bindPickerChange_e" value="{{businessType_e}}" range="{{array_e}}">
+          <picker class="add" bindchange="bindPickerChange_e" value="{{businessType_e}}" range="{{CategoryName}}">
             <text>></text>
           </picker>
         </view>
-        <view class="weui-cells weui-cells_after-title">
+
+
+        <!--详情显示-->
+        <view class="weui-cells weui-cells_after-title" wx:if="{{DataCategory}}" wx:for="{{DataCategory}}">
           <view class="weui-cell">
-            <view class="weui-cell__bd picker">{{array_e[businessType_e]}}</view>
+            <view class="weui-cell__bd picker">{{item.name}}</view>
             <view class="num_wrap">
-              <text>-</text>
-              <text>{{num}}</text>
-              <text>+</text>
+              <text bindtap="Botton" data-id="{{item.id}}">-</text>
+              <text>{{item.count}}{{item.unit}}</text>
+              <text bindtap="Top" data-id="{{item.id}}">+</text>
             </view>
             <view class="weui-cell__ft">
               ￥:
-              <text>{{money}}</text>
+              <text>{{item.price}}</text>
             </view>
           </view>
         </view>
