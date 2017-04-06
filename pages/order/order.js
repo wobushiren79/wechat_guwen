@@ -6,6 +6,7 @@ Page({
 
     MainData: ['套餐一', '套餐二'],
     businessType_a: 0,
+    TotalPrice:0,
 
 
     nameTitle_b: [{
@@ -46,6 +47,7 @@ Page({
   },
   bindPickerChange_a: function (e) {
     var Mains = this.data.Mains
+    var TotalPrice=0
     var id = e.detail.value
     var MainData_b = []
     for (var i in Mains) {
@@ -65,9 +67,19 @@ Page({
         MainData_c[i].categoryId = MainData_b[i].productItems[j].categoryId
       }
     }
+    var Total_Price=[]
+    for(var i in MainData_c){
+        Total_Price.push(MainData_c[i].price)
+    }
+    //console.log(Total_Price)
+    for(var i in Total_Price){
+     TotalPrice+=Total_Price[i]
+    }
+    //console.log(TotalPrice)
     this.setData({
       businessType_a: e.detail.value,
-      nameTitle_b: MainData_c
+      nameTitle_b: MainData_c,
+      TotalPrice:TotalPrice
     })
   },
   bindPickerChange_c: function (e) {
@@ -92,7 +104,7 @@ Page({
         FuneralData_a_b_c[i].productItems[j] = FuneralData_a_a[i].productItems[j].name
       }
     }
-    console.log(FuneralData_a)
+   // console.log(FuneralData_a)
     this.setData({
       businessType_c: e.detail.value,
       FuneralData_a_b_c: FuneralData_a_b_c
@@ -101,6 +113,7 @@ Page({
 
   bindPickerChange_c_c: function (e) {
     var n = e.detail.value
+    var TotalPrice=parseFloat(this.data.TotalPrice)
     var name = e.target.dataset.name
     var Funeral = this.data.Funeral
     var FuneralData_a_b_c = this.data.FuneralData_a_b_c
@@ -132,6 +145,13 @@ Page({
     if (Tmp) {
       DataName_b.push(Tmp)
     }
+    var Total_Price=[]
+    for(var i in DataName_b){
+        Total_Price.push=DataName_b[i].price
+      }
+    for(var i in Total_Price){
+        TotalPrice+=Total_Price[i]
+    }
     // console.log(tmp)
     // console.log(Tmp)
     // console.log(DataName)
@@ -139,11 +159,46 @@ Page({
     // console.log(DataName_b)
     this.setData({
       //businessType_c_c: e.detail.value,
-      DataName_a: DataName_b
+      DataName_a: DataName_b,
+      TotalPrice:TotalPrice
+    })
+  },
+  DataName_aDel:function(e){
+    var that = this
+    var TotalPrice=parseFloat(that.data.TotalPrice)
+    var DataName_a=that.data.DataName_a
+    var id=e.target.dataset.id
+    var DataName_A=[]
+    var Total_Price=''
+    wx.showModal({
+      title: '提示',
+      content: '是否删除',
+      success: function(res) {
+        if (res.confirm) {
+          for(var i in DataName_a){
+            if(id != DataName_a[i].id){
+                DataName_A.push(DataName_a[i])
+            }else if(id == DataName_a[i].id){
+               Total_Price=DataName_a[i].price
+            }
+          }
+          TotalPrice=TotalPrice-Total_Price
+          that.setData({
+            DataName_a:DataName_A,
+            TotalPrice:TotalPrice
+          })
+        } else if (res.cancel) {
+          that.setData({
+            DataName_a:DataName_a
+          })
+      }
+      }
     })
   },
   bindPickerChange_e: function (e) {
     var that = this;
+    var TotalPrice=parseFloat(that.data.TotalPrice)
+    var Total_Price=''
     //接口地址前缀
     var RouteUrl = getApp().globalData.RouteUrl;
     var category = this.data.category;
@@ -193,9 +248,14 @@ Page({
                     
                     
                   };
+                  for(var i in DataCategory_b){
+                    Total_Price=DataCategory_b[i].price
+                  }
+                  TotalPrice+=Total_Price
                   that.setData({
                     //businessType_e: e.detail.value,
-                    DataCategory: DataCategory_b
+                    DataCategory: DataCategory_b,
+                    TotalPrice:TotalPrice
                   });
 
                 };
@@ -209,6 +269,8 @@ Page({
   Botton:function(e){
     var id= e.target.dataset.id
     var Cdata=this.data.DataCategory
+    var TotalPrice=parseFloat(this.data.TotalPrice)
+    var Total_Price=''
     //console.log(Cdata)
    // var DataCategory=[]
     for(var i in Cdata){
@@ -230,13 +292,23 @@ Page({
           }
         }
     }
+    for(var i in Cdata){
+      if(Cdata[i].id == id){
+       Total_Price=Cdata[i].price
+      }
+    }
+    //console.log(Total_Price)
+    TotalPrice-=Total_Price
       this.setData({
-         DataCategory:Cdata
+         DataCategory:Cdata,
+         TotalPrice:TotalPrice
       })
   },
   Top:function(e){
     var id = e.target.dataset.id
     var Cdata=this.data.DataCategory
+    var TotalPrice=parseFloat(this.data.TotalPrice)
+    var Total_Price=''
    // var DataCategory=[]
     for(var i in Cdata){
         if(Cdata[i].id == id){
@@ -248,16 +320,63 @@ Page({
              Cdata[i].name = Cdata[i].name
         }
     }
+    for(var i in Cdata){
+      if(Cdata[i].id == id){
+        Total_Price=Cdata[i].price
+      }
+      
+    }
+    //console.log(Total_Price)
+    TotalPrice+=Total_Price
       this.setData({
-         DataCategory:Cdata
+         DataCategory:Cdata,
+         TotalPrice:TotalPrice
+         
       })
   },
   del:function(e){
-    console.log(e.target.dataset.id)
+    var that = this
+    var id=e.target.dataset.k
+    var TotalPrice=parseFloat(this.data.TotalPrice)
+    var Total_Price=''
+    var Cdata=that.data.DataCategory
+    var cdata=[]
+    wx.showModal({
+      title: '提示',
+      content: '是否删除',
+      success: function(res) {
+        if (res.confirm) {
+          for(var i in Cdata){
+              if(id !=Cdata[i].id){
+                cdata.push(Cdata[i])
+              }
+          }
+          for(var i in Cdata){
+            if(id == Cdata[i].id){
+             Total_Price=Cdata[i].price*Cdata[i].count
+            }
+
+          }
+         // console.log(Total_Price)
+          TotalPrice-=Total_Price
+            that.setData({
+              DataCategory:cdata,
+              TotalPrice:TotalPrice
+            })
+        } else if (res.cancel) {
+          that.setData({
+            DataCategory:Cdata
+             })
+        }
+      }
+    })
   },
   onLoad: function (options) {
     var that = this
     var RouteUrl = getApp().globalData.RouteUrl
+    //总价格
+    var TotalPrice=parseFloat(that.data.TotalPrice)
+    var Total_Price=[]
     // 取出緩存登錄信息
     wx.getStorage({
       key: 'logindata',
@@ -305,10 +424,19 @@ Page({
                   MainData_c[i].categoryId = MainData_b[i].productItems[j].categoryId
                 }
               }
+              //取出所以显示在页面的价格
+              for(var i in MainData_c){
+                  Total_Price.push(MainData_c[i].price)
+              }
+              for(var i in Total_Price){
+                  TotalPrice+=parseFloat(Total_Price[i]);
+              }
+              //console.log(Total_Price)
               that.setData({
                 MainData: MainsData,
                 Mains: Mains,
-                nameTitle_b: MainData_c
+                nameTitle_b: MainData_c,
+                TotalPrice:TotalPrice
               })
             }
           }
@@ -398,45 +526,24 @@ Page({
 
   },
   formSubmit: function (e) {
-    var ContentData = e.detail.value;
-  //   if (this.data.businessType == 0) {
-  //     ContentData.businessType = 1
-  //   } else if (this.data.businessType == 1) {
-  //     ContentData.businessType = 2
-  //   }
-  //   // 取出緩存登錄信息
-  //   wx.getStorage({
-  //     key: 'logindata',
-  //     success: function (msg) {
-  //       // console.log(ContentData)
-  //       var forData = { content: ContentData };
-  //       //转换字符串
-  //       var ForData = JSON.stringify(forData);
-  //       wx.request({
-  //         url: 'http://115.28.163.211:7080/shianlife-adviser-1.0-SNAPSHOT/setmeal/main/get',
-  //         method: "POST",
-  //         data: ForData,
-  //         header: {
-  //           "Content-Type": "application/x-www-form-urlencodeed",
-  //           "Cookie": "sid=" + msg.data.content.sessionId
-  //         },
-  //         success: function (res) {
-  //           //console.log(res.data)
-  //           if (res.data.code == 1000 && res.data.message == '操作成功') {
-  //             //console.log(res.data.content.consultId)
-  //             //操作成功返回consultId進行緩存
-  //             wx.setStorageSync('consultId', res.data.content.consultId);
-  //             //頁面跳轉
-  //             // wx.navigateTo({
-  //             //      url: '',
-  //             //  })
-  //             // console.log(res.data)
-  //           } else {
-  //             console.log(res.data.message)
-  //           }
-  //         }
-  //       })
-  //     }
-  //   })
+   var that = this
+   var TotalPrice=that.data.TotalPrice   // 订单总价格
+   var nameTitle_b=that.data.nameTitle_b  // 主套餐数据
+   var DataName_a=that.data.DataName_a  // 套餐产品数据
+   var DataCategory=that.data.DataCategory  //增值产品
+   var ContentData={}
+   
+  //  if(nameTitle_b){
+        ContentData.TotalPrice=TotalPrice;
+        ContentData.nameTitle_b=nameTitle_b;
+        ContentData.DataName_a=DataName_a;
+        ContentData.DataCategory=DataCategory;
+        console.log(ContentData)
+  //  }else{
+  //     wx.showToast({
+  //       title: '',
+  //       duration: 2000
+  //     })
+  //  }
   }
 });
