@@ -79,7 +79,7 @@
                         <!--洽谈成功-->
                         <view class="weui-flex__item" wx:if="{{!orderId}}">
                             <view class="placeholder">
-                                <navigator url="../list/list" class="" hover-class="">
+                                <navigator url="../order/order?consultId={{consultId}}" class="" hover-class="">
                                     <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">洽谈成功</button>
                                 </navigator>
                             </view>
@@ -123,7 +123,7 @@
                        <!--结束洽谈-->
                         <view class="weui-flex__item" wx:if="{{showFinishTalk && hasPrepay && orderId}}">
                             <view class="placeholder">
-                                <navigator url="../deadman_info/deadman_info?orderId={{orderId}}" class="" hover-class="">
+                                <navigator url="../deadman_info/deadman_info?consultId={{consultId}}" class="" hover-class="">
                                     <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">结束洽谈</button>
                                 </navigator>
                             </view>

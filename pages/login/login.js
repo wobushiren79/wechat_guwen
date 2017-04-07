@@ -13,6 +13,7 @@ Page({
     this.setData({systemType:e.detail.value})
   },
   formSubmit:function(e){
+    var RouteUrl=getApp().globalData.RouteUrl
       var Contentdata = e.detail.value
       Contentdata.systemType=this.data.systemType
      // console.log(Contentdata)
@@ -21,7 +22,7 @@ Page({
           //console.log(forData)
           var that=this
           wx.request({
-           url: 'http://115.28.163.211:7080/shianlife-backend-1.0-SNAPSHOT/doLogin', 
+           url: RouteUrl+'doLogin', 
            // url: 'http://192.168.0.146:8088/adviser/doLogin', 
             method:"POST",
             data: forData,

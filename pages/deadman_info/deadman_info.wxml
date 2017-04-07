@@ -1,6 +1,5 @@
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
   <view class="page__bd">
-    <form bindsubmit="formData">
       <form bindsubmit="formSubmit">
         <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
 
@@ -11,7 +10,7 @@
               <view class="weui-label">*姓名</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="姓名" name="" />
+              <input class="weui-input" placeholder="姓名" name="name" />
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -19,7 +18,7 @@
               <view class="weui-label">*身份证</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="身份证" name="" />
+              <input class="weui-input" placeholder="身份证" name="cardId" />
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -27,7 +26,7 @@
               <view class="weui-label">*年龄</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="年龄" name="" />
+              <input class="weui-input" placeholder="年龄" name="age" />
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -45,7 +44,7 @@
               <view class="weui-label">*鞋码</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="鞋码" name="" />
+              <input class="weui-input" placeholder="鞋码" name="shoeSize" />
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -73,7 +72,7 @@
               <view class="weui-label">所在地</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="所在地" name="" />
+              <input class="weui-input" placeholder="所在地" name="location" />
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -103,7 +102,7 @@
               <view class="weui-label">备注:</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" name="" />
+              <input class="weui-input" name="note" />
             </view>
           </view>
         </view>
@@ -111,7 +110,5 @@
           <button class="weui-btn" type="primary" bindtap="showTopTips" formType="submit">继续填写经办人信息</button>
         </view>
       </form>
-
-    </form>
   </view>
 </view>

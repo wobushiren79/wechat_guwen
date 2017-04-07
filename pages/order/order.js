@@ -3,10 +3,11 @@ Page({
     num: "5",
     money: "98520",
     nameTitle_a: "套餐名称",
-
+    consultId:0,
     MainData: ['套餐一', '套餐二'],
     businessType_a: 0,
     TotalPrice:0,
+    Funeralss:{},
 
 
     nameTitle_b: [{
@@ -115,34 +116,34 @@ Page({
     var n = e.detail.value
     var TotalPrice=parseFloat(this.data.TotalPrice)
     var name = e.target.dataset.name
-    var Funeral = this.data.Funeral
+    var Funeralss = this.data.Funeralss
     var FuneralData_a_b_c = this.data.FuneralData_a_b_c
     var DataName_b = []
     var dataname = this.data.DataName_a
+    console.log(Funeralss)
     if (dataname) {
       DataName_b = dataname
     }
-
     for (var i in name) {
       var DataName = name[n]
     }
-
-    // console.log(Funeral)
+    console.log(DataName)
     var Tmp = []
     if (DataName) {
-      for (var i in Funeral) {
-        for (var j in Funeral[i].ctgItems) {
-          for (var k in Funeral[i].ctgItems[j].productItems) {
-            if (Funeral[i].ctgItems[j].productItems[k].name == DataName) {
-              Tmp = Funeral[i].ctgItems[j].productItems[k];
-              // break;
-
+      for (var i in Funeralss) {
+        for (var j in Funeralss[i].ctgItems) {
+          for (var k in Funeralss[i].ctgItems[j].productItems) {
+            if (Funeralss[i].ctgItems[j].productItems[k].name == DataName) {
+              Tmp = Funeralss[i].ctgItems[j].productItems[k];
+              break;
             }
           }
         }
       }
     }
-    if (Tmp) {
+
+    console.log(Tmp)
+    if (Tmp != null) {
       DataName_b.push(Tmp)
     }
     var Total_Price=[]
@@ -244,9 +245,7 @@ Page({
                         DataCategory_b.push(category[i])
                     }else{
                         DataCategory_b.push(category[i])
-                    }
-                    
-                    
+                    }     
                   };
                   for(var i in DataCategory_b){
                     Total_Price=DataCategory_b[i].price
@@ -257,7 +256,6 @@ Page({
                     DataCategory: DataCategory_b,
                     TotalPrice:TotalPrice
                   });
-
                 };
               };
             }
@@ -372,7 +370,11 @@ Page({
     })
   },
   onLoad: function (options) {
+
     var that = this
+    //获取前页面传递的consultId
+    var consultId=options.consultId
+    //获取全局变量   接口通用前缀
     var RouteUrl = getApp().globalData.RouteUrl
     //总价格
     var TotalPrice=parseFloat(that.data.TotalPrice)
@@ -436,7 +438,8 @@ Page({
                 MainData: MainsData,
                 Mains: Mains,
                 nameTitle_b: MainData_c,
-                TotalPrice:TotalPrice
+                TotalPrice:TotalPrice,
+                consultId:consultId
               })
             }
           }
@@ -454,7 +457,8 @@ Page({
             // console.log(res.data)
             if (res.data.code == 1000 && res.data.message == '操作成功') {
               var Funeral = res.data.content.funerals
-              // console.log(Funeral)
+              var Funeralss=res.data.content.funerals
+              //console.log(Funeral)
               //取出主套餐列表
               var FuneralData = [];
               for (var i in Funeral) {
@@ -462,33 +466,10 @@ Page({
                 var obj = { name: cur.name, id: cur.id }
                 FuneralData.push(cur.name);
               }
-              // console.log(FuneralData)
-              //var Mains = this.data.Mains
-              //初始化主套餐0
-              // var id = 0
-              // var MainData_b = []
-              // for (var i in Mains) {
-              //   MainData_b=Mains[id].ctgItems;
-              //   break;
-              // }
-              //取出主套餐详情
-              // var MainData_c=[]
-              // for(var i in MainData_b){
-              //     for(var j in MainData_b[i].productItems){
-              //           MainData_c[i]=MainData_b[i]
-              //           MainData_c[i].count=MainData_b[i].productItems[j].count
-              //           MainData_c[i].productItemsId=MainData_b[i].productItems[j].id
-              //           MainData_c[i].productItemsName=MainData_b[i].productItems[j].name
-              //           MainData_c[i].price=MainData_b[i].productItems[j].price
-              //           MainData_c[i].specification=MainData_b[i].productItems[j].specification
-              //           MainData_c[i].unit=MainData_b[i].productItems[j].unit
-              //           MainData_c[i].categoryId=MainData_b[i].productItems[j].categoryId
-              //     }
-              // }
               that.setData({
                 FuneralData: FuneralData,
                 Funeral: Funeral,
-                // nameTitle_b: MainData_c
+                Funeralss:Funeralss
               })
             }
           }
@@ -511,12 +492,9 @@ Page({
                   CategoryName.push(category.ctgItems[i].name)
                 }
               }
-              // console.log(category)
-              // console.log(CategoryName)
               that.setData({
                 category: category,
                 CategoryName: CategoryName,
-                // nameTitle_b: MainData_c
               })
             }
           }
@@ -529,16 +507,23 @@ Page({
    var that = this
    var TotalPrice=that.data.TotalPrice   // 订单总价格
    var nameTitle_b=that.data.nameTitle_b  // 主套餐数据
+   var FuneralData_a_b_c=that.data.FuneralData_a_b_c
    var DataName_a=that.data.DataName_a  // 套餐产品数据
    var DataCategory=that.data.DataCategory  //增值产品
-   var ContentData={}
-   
-  //  if(nameTitle_b){
-        ContentData.TotalPrice=TotalPrice;
-        ContentData.nameTitle_b=nameTitle_b;
-        ContentData.DataName_a=DataName_a;
-        ContentData.DataCategory=DataCategory;
+   var consultId=that.data.consultId   //获取前页面传递的查询ID
+   var ContentData={"content":{}}
+        ContentData.content.consultId=consultId;  //装入查询ID
+        for(var i in nameTitle_b){
+           ContentData.content.setmealCemetery= nameTitle_b[0].categoryId  //装入主套餐ID
+        }
+        for(var i in FuneralData_a_b_c){
+
+        }
+        console.log(FuneralData_a_b_c)
+        console.log(DataName_a)
+        console.log(DataCategory)
         console.log(ContentData)
+
   //  }else{
   //     wx.showToast({
   //       title: '',

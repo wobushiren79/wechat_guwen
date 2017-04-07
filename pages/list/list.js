@@ -44,6 +44,7 @@ Page({
                  })
         var unm=this.data.pageNum
         var size=this.data.pageSize
+        var RouteUrl=getApp().globalData.RouteUrl
         var  PageNums={content:{ "pageNum": unm,"pageSize": size}}
         var PageNum=JSON.stringify(PageNums)    
         var that = this 
@@ -54,7 +55,7 @@ Page({
             //  console.log(res.data)
             //console.log(PageNum)
             wx.request({
-                        url: 'http://115.28.163.211:7080/shianlife-adviser-1.0-SNAPSHOT/order/list/talk', 
+                        url: RouteUrl+'order/list/talk', 
                         method:"POST",
                         data: PageNum,
                         header: {
@@ -92,6 +93,7 @@ Page({
     },
 
     onLoad: function () {
+        var RouteUrl=getApp().globalData.RouteUrl
         var that = this
         var unm=that.data.pageNum
         var size=that.data.pageSize
@@ -104,7 +106,7 @@ Page({
             //  console.log(res.data)
             //console.log(PageNum)
             wx.request({
-                        url: 'http://115.28.163.211:7080/shianlife-adviser-1.0-SNAPSHOT/order/list/talk', 
+                        url: RouteUrl+'order/list/talk', 
                         method:"POST",
                         data: PageNum,
                         header: {
