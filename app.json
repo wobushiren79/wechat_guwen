@@ -1,15 +1,13 @@
 {
   "pages": [
-     "pages/login/login",
+     "pages/login/login", 
      "pages/index/index",
-     "pages/new/new",
-     "pages/list/list",
-     "pages/demo_new/demo_new",
+     "pages/list/list", 
      "pages/order/order",
-
-    
-
-
+     "pages/agentman_info/agentman_info",
+     "pages/compact/compact", 
+     "pages/deadman_info/deadman_info", 
+ 
 
     "example/index",
     "example/button/button",
