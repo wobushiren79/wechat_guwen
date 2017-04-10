@@ -10,7 +10,7 @@
               <view class="weui-label">*姓名</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="姓名" name="name" />
+              <input class="weui-input" placeholder="姓名" name="name" value="{{name}}"/>
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -18,7 +18,7 @@
               <view class="weui-label">*身份证</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="身份证" name="cardId" />
+              <input class="weui-input" placeholder="身份证" name="cardId" value="{{cardId}}"/>
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -26,7 +26,7 @@
               <view class="weui-label">*年龄</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="年龄" name="age" />
+              <input class="weui-input" placeholder="年龄" name="age" value="{{age}}"/>
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -44,7 +44,7 @@
               <view class="weui-label">*鞋码</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="鞋码" name="shoeSize" />
+              <input class="weui-input" placeholder="鞋码" name="shoeSize" value="{{shoeSize}}"/>
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -72,7 +72,7 @@
               <view class="weui-label">所在地</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="所在地" name="location" />
+              <input class="weui-input" placeholder="所在地" name="location" value="{{location}}"/>
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -102,7 +102,7 @@
               <view class="weui-label">备注:</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" name="note" />
+              <input class="weui-input" name="note" value="{{note}}"/>
             </view>
           </view>
         </view>

@@ -11,7 +11,7 @@
               <view class="weui-label">*姓名</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="姓名" name="" />
+              <input class="weui-input" placeholder="姓名" name="name" />
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -19,7 +19,7 @@
               <view class="weui-label">*电话</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="电话" name="" />
+              <input class="weui-input" placeholder="电话" name="linkInfo" />
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -37,7 +37,7 @@
               <view class="weui-label">*地址</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="地址" name="" />
+              <input class="weui-input" placeholder="地址" name="location" />
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -45,7 +45,7 @@
               <view class="weui-label">*治丧地址</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="治丧地址" name="" />
+              <input class="weui-input" placeholder="治丧地址" name="zsLocation" />
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -53,7 +53,7 @@
               <view class="weui-label">*身份证号</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="身份证号" name="" />
+              <input class="weui-input" placeholder="身份证号" name="cardId" />
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -61,7 +61,7 @@
               <view class="weui-label">*邮箱</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="邮箱" name="" />
+              <input class="weui-input" placeholder="邮箱" name="email" />
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -69,12 +69,12 @@
               <view class="weui-label">备注:</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" name="" />
+              <input class="weui-input" name="remark" />
             </view>
           </view>
         </view>
         <view class="weui-btn-area">
-          <button class="weui-btn" type="primary" bindtap="showTopTips" formType="submit">继续修改合同</button>
+          <button class="weui-btn" type="primary" bindtap="showTopTips" formType="submit">查看合同信息</button>
         </view>
       </form>
       <view class="weui-btn-area">

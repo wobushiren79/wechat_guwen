@@ -36,7 +36,7 @@ Page({
                 //登錄信息緩存
                 wx.setStorageSync('logindata',res.data)
                 //頁面跳轉
-                wx.navigateTo({
+                wx.redirectTo({
                      url: '../index/index',
                  })
                   // console.log(res.data)
