@@ -5,7 +5,7 @@
       <!--甲方乙方-->
       <view class="party">
         <view class="weui-article__h1">甲方(委托方):
-          <text>{{partyA}}</text>
+          <text>{{agentmanName}}</text>
         </view>
         <view class="weui-article__h1">乙方(服务单位):
           <text>{{partyB}}</text>
@@ -48,31 +48,31 @@
               <view class="tr bg-g">
                 <view class="td">往生者姓名</view>
                 <view class="td">
-                  <text>{{deadName}}</text>
+                  <text>{{deadmanName}}</text>
                 </view>
                 <view class="td">性别</view>
                 <view class="td">
-                  <text>{{deadSex}}</text>
+                  <text>{{deadmanSex}}</text>
                 </view>
               </view>
               <view class="tr">
                 <view class="td">身份证号</view>
                 <view class="td">
-                  <text>{{deadId}}</text>
+                  <text>{{deadmanCardId}}</text>
                 </view>
                 <view class="td">年龄</view>
                 <view class="td">
-                  <text>{{deadAge}}</text>
+                  <text>{{deadmanAge}}</text>
                 </view>
               </view>
               <view class="tr bg-g">
                 <view class="td">状态</view>
                 <view class="td">
-                  <text>{{deadStatus}}</text>
+                  <text>{{deadmanState}}</text>
                 </view>
                 <view class="td">寿鞋鞋码</view>
                 <view class="td">
-                  <text>{{deadNum}}</text>
+                  <text>{{deadmanShoes}}</text>
                 </view>
               </view>
             </view>
@@ -97,21 +97,21 @@
               <view class="tr">
                 <view class="td">身份证号</view>
                 <view class="td">
-                  <text>{{agentmanId}}</text>
+                  <text>{{agentmanCardId}}</text>
                 </view>
                 <view class="td">地址</view>
                 <view class="td">
-                  <text>{{agentmanAddress}}</text>
+                  <text>{{agentmanLocation}}</text>
                 </view>
               </view>
               <view class="tr bg-g">
                 <view class="td">邮箱</view>
                 <view class="td">
-                  <text>{{agentmanEamil}}</text>
+                  <text>{{agentmanEmail}}</text>
                 </view>
                 <view class="td">是往生者的</view>
                 <view class="td">
-                  <text>{{agentmanLink}}</text>
+                  <text>{{agentmanRelation}}</text>
                 </view>
               </view>
             </view>
@@ -136,7 +136,7 @@
 
         <!--第二点-->
         <view class="weui-article__title">2、治丧地址：
-          <text>{{address}}</text>。</view>
+          <text>{{zsLocation}}</text>。</view>
       </view>
 
       <!--第四条-->
@@ -145,30 +145,52 @@
         <view class="weui-article__section">
           <view class="weui-article__p">
             <view class="plan_info">
-              <view>方案名称：
-                <text>{{plan1}}</text>
+            <block wx:if="{{ztcdata}}">
+            主套餐:
+            </block>
+              <view wx:for="{{ztcdata}}">{{item.name}}：
+   <text wx:for="{{item.productItems}}" wx:for-item="items">{{items.name}}
+                
+                 </text>
               </view>
-              <view>治丧标准用品：
-                <text>{{plan2}}</text>
+              
+            </view>
+
+            <view class="plan_info">
+            <block wx:if="{{tccp}}">
+            套餐产品:
+            </block>
+              <view wx:for="{{tccp}}">{{item.name}}：
+   <text wx:for="{{item.productItems}}" wx:for-item="items">{{items.name}}
+                
+                 </text>
               </view>
-              <view>方案定价：
-                <text>{{plan3}}</text>
+              
+            </view>
+                
+            <view class="plan_info">
+            <block wx:if="{{zjfw}}">
+            增值服务:
+            </block>
+              <view wx:for="{{zjfw}}">{{item.name}}：
+   <text wx:for="{{item.productItems}}" wx:for-item="items">{{items.name}}
+                
+                 </text>
               </view>
-              <view>代办火化手续：
-                <text>{{plan4}}</text>
+              
+            </view>
+
+
+            <view class="plan_info">
+            <block wx:if="{{gongmu}}">
+            公墓服务:
+            </block>
+              <view wx:for="{{gongmu}}">{{item.name}}：
+   <text wx:for="{{item.productItems}}" wx:for-item="items">{{items.name}}
+                
+                 </text>
               </view>
-              <view>灵堂祭坛设置：
-                <text>{{plan5}}</text>
-              </view>
-              <view>灵堂鲜花装饰：
-                <text>{{plan6}}</text>
-              </view>
-              <view>遗像灵位套装：
-                <text>{{plan7}}</text>
-              </view>
-              <view>花圈：
-                <text>{{plan8}}</text>
-              </view>
+              
             </view>
             殡葬服务的实施：本合同签订后，殡葬服务按照经甲方签字确认的策划方案组织实施。
           </view>
@@ -192,11 +214,11 @@
 
         <!--第一点-->
         <view class="weui-article__title">1、依据乙方提供的治丧方案及价格明细表计算，各项殡葬服务费用合计为：
-          <text>{{money1}}</text>元</view>
+          <text>{{totalAmount}}</text>元</view>
 
         <!--第二点-->
         <view class="weui-article__title">2、本合同签订后当日，甲方应向乙方支付预付款
-          <text>{{money2}}</text>元。定金和预付款可充抵殡葬服务费用。</view>
+          <text>{{prepayAmount}}</text>元。定金和预付款可充抵殡葬服务费用。</view>
 
         <!--第三点-->
         <view class="weui-article__title">3、在签订本合同时，甲乙双方确定各项殡葬服务费用总额。本合同签订后甲乙双方约定新增加或取消服务项目的，相应费用应计入服务费用总额或从服务费用总额中扣除。 [治丧方案+增值服务]
@@ -204,7 +226,7 @@
 
         <!--第四点-->
         <view class="weui-article__title">4、甲方应在乙方结束各项服务后提供服务清单与付费凭证时，将剩余的服务费用款项
-          <text>{{money4}}</text>元一次性向乙方支付完毕。
+          <text>{{receivableAmount}}</text>元一次性向乙方支付完毕。
         </view>
 
         <!--第五点-->
@@ -397,7 +419,7 @@
         </view>-->
 
         <!--提交合同-->
-        <view class="weui-flex__item">
+        <view class="weui-flex__item" wx:if="{{isAgree}}">
           <view class="placeholder">
             <navigator url="../list/list" class="" hover-class="">
               <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">提交合同</button>

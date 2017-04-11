@@ -11,7 +11,7 @@
               <view class="weui-label">*姓名</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="姓名" name="name" />
+              <input class="weui-input" placeholder="姓名" name="name" value="{{name}}"/>
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -19,7 +19,7 @@
               <view class="weui-label">*电话</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="电话" name="linkInfo" />
+              <input class="weui-input" placeholder="电话" name="linkInfo" value="{{linkInfo}}"/>
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -37,7 +37,7 @@
               <view class="weui-label">*地址</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="地址" name="location" />
+              <input class="weui-input" placeholder="地址" name="location" value="{{location}}"/>
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -45,7 +45,7 @@
               <view class="weui-label">*治丧地址</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="治丧地址" name="zsLocation" />
+              <input class="weui-input" placeholder="治丧地址" name="zsLocation" value="{{zsLocation}}"/>
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -53,7 +53,7 @@
               <view class="weui-label">*身份证号</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="身份证号" name="cardId" />
+              <input class="weui-input" placeholder="身份证号" name="cardId" value="{{cardId}}"/>
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -61,7 +61,7 @@
               <view class="weui-label">*邮箱</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="邮箱" name="email" />
+              <input class="weui-input" placeholder="邮箱" name="email" value="{{email}}"/>
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -69,7 +69,7 @@
               <view class="weui-label">备注:</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" name="remark" />
+              <input class="weui-input" name="remark" value="{{remark}}"/>
             </view>
           </view>
         </view>
