@@ -3,44 +3,14 @@
      "pages/login/login", 
      "pages/index/index",
      "pages/list/list", 
+     "pages/new/new", 
+     "pages/demo_new/demo_new", 
      "pages/order/order",
      "pages/agentman_info/agentman_info",
      "pages/compact/compact", 
      "pages/deadman_info/deadman_info", 
      "pages/pay_a/pay_a",
- 
-
-    "example/index",
-    "example/button/button",
-    "example/list/list",
-    "example/input/input",
-    "example/slider/slider",
-    "example/uploader/uploader",
-
-    "example/article/article",
-    "example/badge/badge",
-    "example/flex/flex",
-    "example/footer/footer",
-    "example/gallery/gallery",
-    "example/grid/grid",
-    "example/icons/icons",
-    "example/loadmore/loadmore",
-    "example/panel/panel",
-    "example/preview/preview",
-    "example/progress/progress",
-
-    "example/actionsheet/actionsheet",
-    "example/dialog/dialog",
-    "example/msg/msg",
-    "example/msg/msg_success",
-    "example/msg/msg_fail",
-    "example/picker/picker",
-    "example/toast/toast",
-
-    "example/navbar/navbar",
-    "example/tabbar/tabbar",
-
-    "example/searchbar/searchbar"
+     "pages/order_info/order_info"
   ],
   "window": {
     "navigationBarTextStyle": "black",

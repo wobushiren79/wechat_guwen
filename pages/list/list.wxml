@@ -87,7 +87,7 @@
                         <!--洽谈失败-->
                         <view class="weui-flex__item" wx:if="{{!orderId}}">
                             <view class="placeholder">
-                                <navigator url="../list/list" class="" hover-class="" open-type="redirect">
+                                <navigator url="../order_info/order_info?consultId={{consultId}}" class="" hover-class="" open-type="redirect">
                                     <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">洽谈失败</button>
                                 </navigator>
                             </view>
@@ -105,7 +105,7 @@
                         <!--支付定金-->
                         <view class="weui-flex__item" wx:if="{{orderId && !hasPrepay}}" >
                             <view class="placeholder">
-                                <navigator url="../list/list" class="" hover-class="" open-type="redirect">
+                                <navigator url="../pay_a/pay_a?consultId={{consultId}}&orderId={{orderId}}" class="" hover-class="" open-type="redirect">
                                     <button class="weui-btn mini-btn money" type="primary" size="mini" form-type="submit">支付定金</button>
                                 </navigator>
                             </view>
@@ -233,7 +233,7 @@
                         <!--洽谈失败-->
                         <view class="weui-flex__item" wx:if="{{!orderId}}">
                             <view class="placeholder">
-                                <navigator url="../list/list" class="" hover-class="" open-type="redirect">
+                                <navigator url="../order_info/order_info?consultId={{consultId}}" class="" hover-class="" open-type="redirect">
                                     <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">洽谈失败</button>
                                 </navigator>
                             </view>
@@ -251,7 +251,7 @@
                         <!--支付定金-->
                         <view class="weui-flex__item" wx:if="{{orderId && !hasPrepay}}">
                             <view class="placeholder">
-                                <navigator url="../list/list" class="" hover-class="" open-type="redirect">
+                                <navigator url="../pay_a/pay_a?consultId={{consultId}}&orderId={{orderId}}" class="" hover-class="" open-type="redirect">
                                     <button class="weui-btn mini-btn money" type="primary" size="mini" form-type="submit">支付定金</button>
                                 </navigator>
                             </view>

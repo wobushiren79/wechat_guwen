@@ -1,4 +1,5 @@
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+<form bindsubmit="formSubmit">
   <view class="page__bd">
     <view class="weui-article">
 
@@ -403,8 +404,8 @@
         <!--返回修改信息-->
         <view class="weui-flex__item">
           <view class="placeholder">
-            <navigator url="../list/list" class="" hover-class="">
-              <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">返回修改</button>
+            <navigator url="../agentman_info/agentman_info?consultId={{consultId}}&orderId={{orderId}}" hover-class="" open-type="redirect">
+              <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" >返回经办人</button>
             </navigator>
           </view>
         </view>
@@ -417,15 +418,16 @@
             </navigator>
           </view>
         </view>-->
-
+        
         <!--提交合同-->
         <view class="weui-flex__item" wx:if="{{isAgree}}">
           <view class="placeholder">
-            <navigator url="../list/list" class="" hover-class="">
+            <!--<navigator  class="" hover-class="">-->
               <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">提交合同</button>
-            </navigator>
+            <!--</navigator>-->
           </view>
         </view>
       </view>
   </view>
+  </form>
 </view>

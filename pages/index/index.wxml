@@ -36,7 +36,7 @@
 
         <view class="weui-btn-area">
             <navigator url="../new/new" class="" hover-class="">
-                <button class="weui-btn" type="primary" bindtap="showTopTips">新建殯儀工单</button>
+                <button class="weui-btn" type="primary" bindtap="showTopTips">新建殡仪工单</button>
             </navigator>
         </view>
 

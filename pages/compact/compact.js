@@ -24,20 +24,21 @@ Page({
     tccp: {},
     zjfw: {},
     gongmu: {},
-    totalAmount:0,
-    prepayAmount:0,
-    receivableAmount:0,
-    isAgree:false
+    totalAmount: 0,
+    prepayAmount: 0,
+    receivableAmount: 0,
+    isAgree: false,
+    consultId: 0
   },
   bindAgreeChange: function (e) {
-    var isAgree =this.data.isAgree
-    if(e.detail.value.length>0){
-        isAgree=true
-    }else{
+    var isAgree = this.data.isAgree
+    if (e.detail.value.length > 0) {
+      isAgree = true
+    } else {
       isAgree = false
     }
     this.setData({
-      isAgree:isAgree
+      isAgree: isAgree
     });
   },
   onLoad: function (options) {
@@ -111,6 +112,7 @@ Page({
               zsLocation = OrderData.zsLocation
               that.setData({
                 orderId: orderId,
+                consultId: consultId,
                 adviserName: adviserName,
                 agentmanCardId: agentmanCardId,
                 agentmanEmail: agentmanEmail,
@@ -127,7 +129,10 @@ Page({
                 zsLocation: zsLocation,
               })
             } else {
-              console.log(res.data.message)
+              wx.showToast({
+                title: res.data.message,
+                duration: 3000
+              })
             }
           }
         })
@@ -156,7 +161,10 @@ Page({
                 orderData: orderData
               })
             } else {
-              console.log(res.data.message)
+              wx.showToast({
+                title: res.data.message,
+                duration: 3000
+              })
             }
           }
         })
@@ -180,11 +188,11 @@ Page({
           success: function (res) {
             var OData = res.data.content.projectItems
             var totalAmount = res.data.content.payInfo.totalAmount
-            var OoData=res.data.content
-            var prepayAmount=res.data.content.payInfo.prepayAmount
-            var receivableAmount=res.data.content.payInfo.receivableAmount
+            var OoData = res.data.content
+            var prepayAmount = res.data.content.payInfo.prepayAmount
+            var receivableAmount = res.data.content.payInfo.receivableAmount
             //console.log(totalAmount)
-            console.log(OoData)
+            // console.log(OoData)
             //console.log(orderData)
             if (res.data.code == 1000 && res.data.message == '操作成功') {
               var ztcdata = {}
@@ -204,19 +212,22 @@ Page({
                 }
               }
 
-              console.log(ztcdata)
+              // console.log(ztcdata)
               that.setData({
                 ztcdata: ztcdata,
                 tccp: tccp,
                 zjfw: zjfw,
                 gongmu: gongmu,
-                totalAmount:totalAmount,
-                prepayAmount:prepayAmount,
-                receivableAmount:receivableAmount
+                totalAmount: totalAmount,
+                prepayAmount: prepayAmount,
+                receivableAmount: receivableAmount
                 //orderData:orderData
               })
             } else {
-              console.log(res.data.message)
+              wx.showToast({
+                title: res.data.message,
+                duration: 3000
+              })
             }
           }
         })
@@ -224,6 +235,50 @@ Page({
     })
     that.setData({
 
+    })
+  },
+  formSubmit: function (e) {
+    var that = this
+    var orderId = that.data.orderId
+    var consultId = that.data.consultId
+    var RouteUrl = getApp().globalData.RouteUrl
+    var contractAmount = that.data.totalAmount
+    var ContentData = {}
+    ContentData.orderId = orderId
+    ContentData.consultId = consultId
+    ContentData.contractAmount = contractAmount
+    console.log(ContentData)
+    wx.getStorage({
+      key: 'logindata',
+      success: function (msg) {
+        // console.log(ContentData)
+        var forData = { content: ContentData }
+        //转换字符串
+        var ForData = JSON.stringify(forData)
+        wx.request({
+          url: RouteUrl + 'customer/talk/contract/save',
+          method: "POST",
+          data: ForData,
+          header: {
+            "Content-Type": "application/x-www-form-urlencodeed",
+            "Cookie": "sid=" + msg.data.content.sessionId
+          },
+          success: function (res) {
+            //console.log(res.data)
+            if (res.data.code == 1000 && res.data.message == '操作成功') {
+              //頁面跳轉
+              wx.redirectTo({
+                url: '../list/list'
+              })
+            } else {
+              wx.showToast({
+                title: res.data.message,
+                duration: 3000
+              })
+            }
+          }
+        })
+      }
     })
   }
 

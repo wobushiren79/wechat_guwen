@@ -17,17 +17,17 @@ Page({
         name: "",
         note: "",
         shoeSize: "",
-        orderId:''
+        orderId: ''
     },
     onLoad: function (options) {
         var RouteUrl = getApp().globalData.RouteUrl
         var that = this
         var consultId = options.consultId
-        var orderId=options.orderId
+        var orderId = options.orderId
         var ContentData = {}
         ContentData.consultId = consultId
         var age = '1'
-        var birthday =[]
+        var birthday = []
         var clothesData = ''
         var curAddress = ''
         var location = ''
@@ -41,7 +41,7 @@ Page({
         var businessType_a = 0;
         var businessType_d = 0
         var businessType_b = 0
-        var cardId=''
+        var cardId = ''
         //获取已经有的使用者信息
         wx.getStorage({
             key: 'logindata',
@@ -75,10 +75,10 @@ Page({
                                 sex = UsageData.sex
                                 shoeSize = UsageData.shoeSize
                                 state = UsageData.state
-                                cardId=UsageData.cardId
+                                cardId = UsageData.cardId
                                 that.setData({
                                     consultId: consultId,
-                                   date: birthday,
+                                    date: birthday,
                                     name: name,
                                     age: age,
                                     businessType_c: businessType_c,
@@ -89,8 +89,8 @@ Page({
                                     curAddress: curAddress,
                                     note: note,
                                     shoeSize: shoeSize,
-                                    cardId:cardId,
-                                    orderId:orderId
+                                    cardId: cardId,
+                                    orderId: orderId
 
                                 })
                             }
@@ -129,7 +129,10 @@ Page({
                                 businessType_c = 4;
                             }
                         } else {
-                            console.log(res.data.message)
+                            wx.showToast({
+                                title: res.data.message,
+                                duration: 3000
+                            })
                         }
                     }
                 })
@@ -137,7 +140,7 @@ Page({
         })
         that.setData({
             consultId: consultId,
-            orderId:orderId
+            orderId: orderId
         })
     },
     bindPickerChange_a: function (e) {
@@ -169,7 +172,7 @@ Page({
         var RouteUrl = getApp().globalData.RouteUrl
         var content = e.detail.value
         var consultId = this.data.consultId
-        var orderId=this.data.orderId
+        var orderId = this.data.orderId
         var clothesData = this.data.businessType_c   //寿衣
         var otherHealth = this.data.businessType_d   //另一半健康状态
         var state = this.data.businessType_b   //使用者健康状态
@@ -269,7 +272,7 @@ Page({
                                 //console.log(res.data)
                                 //頁面跳轉
                                 wx.redirectTo({
-                                    url: '../agentman_info/agentman_info?consultId=' + consultId+'&orderId='+orderId,
+                                    url: '../agentman_info/agentman_info?consultId=' + consultId + '&orderId=' + orderId,
                                 })
                             } else {
                                 wx.showToast({

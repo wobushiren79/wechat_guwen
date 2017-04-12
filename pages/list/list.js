@@ -68,12 +68,15 @@ Page({
                             var TalkData=res.data.content.items 
                             //console.log(TalkData)
                             var Length=TalkData.length
-                           console.log(TalkData)
-
                                 that.setData({
                                     array:TalkData,
                                     Length:Length,
                                     
+                                })
+                            }else{
+                                wx.showToast({
+                                    title: res.data.message,
+                                    duration: 3000
                                 })
                             }  
                         },
@@ -122,6 +125,11 @@ Page({
                                 that.setData({
                                     array:TalkData,
                                     Length:Length
+                                })
+                            }else{
+                                wx.showToast({
+                                    title: res.data.message,
+                                    duration: 3000
                                 })
                             }  
                         }
