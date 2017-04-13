@@ -140,7 +140,7 @@
                         <!--及时服务-->
                         <view class="weui-flex__item" wx:if="{{showSwitch2waitService && orderStatus != 2}}">
                             <view class="placeholder">
-                                <navigator url="../list/list" class="" hover-class="" open-type="redirect">
+                                <navigator url="../jsfu/jsfu?consultId={{consultId}}&orderId={{orderId}}" class="" hover-class="" open-type="redirect">
                                     <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">及时服务</button>
                                 </navigator>
                             </view>
@@ -286,7 +286,7 @@
                         <!--及时服务-->
                         <view class="weui-flex__item" wx:if="{{showSwitch2waitService  && orderStatus != 2}}">
                             <view class="placeholder">
-                                <navigator url="../list/list" class="" hover-class="" open-type="redirect">
+                                <navigator url="../jsfu/jsfu?consultId={{consultId}}&orderId={{orderId}}" class="" hover-class="" open-type="redirect">
                                     <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">及时服务</button>
                                 </navigator>
                             </view>

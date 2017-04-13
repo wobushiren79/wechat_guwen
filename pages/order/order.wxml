@@ -130,7 +130,7 @@
 
         <!--详情显示-->
         <view class="weui-cells weui-cells_after-title" wx:if="{{DataCategory}}" wx:for="{{DataCategory}}">
-          <view class="weui-cell">
+          <view class="weui-cell" wx:if="{{!item.totalPrice}}">
             <view class="weui-cell__bd picker" bindlongtap="del" data-k="{{item.id}}">{{item.name}}</view>
             <view class="num_wrap">
               <text bindtap="Botton" data-id="{{item.id}}">-</text>
@@ -142,6 +142,22 @@
               <text>{{item.price * item.count}}</text>
             </view>
           </view>
+
+
+          <view class="weui-cell" wx:if="{{item.totalPrice}}">
+            <view class="weui-cell__bd picker" bindlongtap="del" data-k="{{item.id}}">{{item.name}}</view>
+            <view class="num_wrap">
+              <text bindtap="Botton" data-id="{{item.id}}">-</text>
+              <text>{{item.number}}{{item.unit}}</text>
+              <text bindtap="Top" data-id="{{item.id}}">+</text>
+            </view>
+            <view class="weui-cell__ft">
+              ￥:
+              <text>{{item.price * item.number}}</text>
+            </view>
+          </view>
+
+
         </view>
       </view>
       

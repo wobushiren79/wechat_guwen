@@ -10,7 +10,8 @@
      "pages/compact/compact", 
      "pages/deadman_info/deadman_info", 
      "pages/pay_a/pay_a",
-     "pages/order_info/order_info"
+     "pages/order_info/order_info",
+     "pages/jsfu/jsfu"
   ],
   "window": {
     "navigationBarTextStyle": "black",

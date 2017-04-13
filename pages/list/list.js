@@ -39,7 +39,7 @@ Page({
         })
                   
             this.setData({
-                    pageSize:this.data.pageSize+1,
+                    pageSize:this.data.pageSize+2,
                     hidden:true
                  })
         var unm=this.data.pageNum
