@@ -687,10 +687,15 @@ Page({
     var consultId = that.data.consultId   //获取前页面传递的查询ID
     var ContentData = { "content": {} }
     ContentData.content.consultId = consultId;  //装入查询ID
-    ContentData.content.nameTitle_b = nameTitle_b; 
-    ContentData.content.DataName_a = DataName_a; 
-    ContentData.content.DataCategory = DataCategory; 
-    console.log(ContentData)
+    for(var i in nameTitle_b){
+
+    }
+    ContentData.content.setmealMain //主套餐id
+
+    // ContentData.content.nameTitle_b = nameTitle_b; 
+    // ContentData.content.DataName_a = DataName_a; 
+    // ContentData.content.DataCategory = DataCategory; 
+    console.log(nameTitle_b)
 
 
     //  }else{

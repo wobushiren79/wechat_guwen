@@ -11,7 +11,8 @@
      "pages/deadman_info/deadman_info", 
      "pages/pay_a/pay_a",
      "pages/order_info/order_info",
-     "pages/jsfu/jsfu"
+     "pages/jsfu/jsfu",
+     "pages/pay_b/pay_b"
   ],
   "window": {
     "navigationBarTextStyle": "black",

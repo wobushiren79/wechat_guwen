@@ -1,7 +1,7 @@
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
    
     <view class="page__bd">
-        <form>
+        <form bindsubmit="formSubmit">
          <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
 
         <view class="weui-cells__title">支付金额</view>

@@ -1,0 +1,10 @@
+/* example/input/input.wxss */
+.weui-cell__ft{
+    color: #09bb07;
+}
+.pay .weui-cell,
+.pay image{
+    display: block;
+    text-align: center!important;
+    padding: 10px 0;
+}
