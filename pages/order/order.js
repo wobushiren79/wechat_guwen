@@ -8,6 +8,7 @@ Page({
     businessType_a: 0,
     TotalPrice: 0,
     Funeralss: {},
+    orderId: 0,
 
 
     nameTitle_b: [{
@@ -21,6 +22,7 @@ Page({
       "specification": "尺寸",
       "unit": "单位"
     }],
+    MainData_b: [],
     FuneralData: ['套餐一', '套餐二'],
     Funeral: '',
     businessType_c: 0,
@@ -86,7 +88,7 @@ Page({
   bindPickerChange_c: function (e) {
     var Funeral = this.data.Funeral
     var id = e.detail.value
-    console.log(id)
+    // console.log(id)
     var FuneralData_a = []
     for (var i in Funeral) {
       FuneralData_a = Funeral[id].ctgItems;
@@ -144,7 +146,7 @@ Page({
     if (Tmp != null) {
       DataName_b.push(Tmp)
     }
-   // console.log(DataName_b)
+    // console.log(DataName_b)
     var Total_Price = []
     for (var i in DataName_b) {
       Total_Price.push = DataName_b[i].price
@@ -236,6 +238,7 @@ Page({
             success: function (res) {
               if (res.data.code == 1000 && res.data.message == '操作成功') {
                 var category = res.data.content.productItems;
+                // console.log(category)
                 var categorydata = [];
                 if (category) {
                   for (var i in category) {
@@ -250,7 +253,7 @@ Page({
                     Total_Price = DataCategory_b[i].price
                   }
                   TotalPrice += Total_Price
-                  console.log(DataCategory_b)
+                  // console.log(DataCategory_b)
                   that.setData({
                     //businessType_e: e.detail.value,
                     DataCategory: DataCategory_b,
@@ -276,56 +279,56 @@ Page({
     var Total_Price = ''
     //console.log(Cdata)
     // var DataCategory=[]
-    var jian=''
+    var jian = ''
     for (var i in Cdata) {
       if (Cdata[i].id == id) {
-        if(Cdata[i].number){
-           jian=Cdata[i].number
+        if (Cdata[i].number) {
+          jian = Cdata[i].number
           if (Cdata[i].number != 0 && Cdata[i].number != 1) {
-                    Cdata[i].number = Cdata[i].number - 1
-                    Cdata[i].price = Cdata[i].price
-                    Cdata[i].specification = Cdata[i].specification
-                    Cdata[i].unit = Cdata[i].unit
-                    Cdata[i].id = Cdata[i].id
-                    Cdata[i].name = Cdata[i].name
-                    // jian=Cdata[i].number
-                  } else {
-                    Cdata[i].number = Cdata[i].number
-                    Cdata[i].price = Cdata[i].price
-                    Cdata[i].specification = Cdata[i].specification
-                    Cdata[i].unit = Cdata[i].unit
-                    Cdata[i].id = Cdata[i].id
-                    Cdata[i].name = Cdata[i].name
-                    // jian=Cdata[i].number
-                  }
-        }else{
-          jian=Cdata[i].count
-                if (Cdata[i].count != 0 && Cdata[i].count != 1) {
-                  Cdata[i].count = Cdata[i].count - 1
-                  Cdata[i].price = Cdata[i].price
-                  Cdata[i].specification = Cdata[i].specification
-                  Cdata[i].unit = Cdata[i].unit
-                  Cdata[i].id = Cdata[i].id
-                  Cdata[i].name = Cdata[i].name
-                } else {
-                  Cdata[i].count = Cdata[i].count
-                  Cdata[i].price = Cdata[i].price
-                  Cdata[i].specification = Cdata[i].specification
-                  Cdata[i].unit = Cdata[i].unit
-                  Cdata[i].id = Cdata[i].id
-                  Cdata[i].name = Cdata[i].name
-                }
+            Cdata[i].number = Cdata[i].number - 1
+            Cdata[i].price = Cdata[i].price
+            Cdata[i].specification = Cdata[i].specification
+            Cdata[i].unit = Cdata[i].unit
+            Cdata[i].id = Cdata[i].id
+            Cdata[i].name = Cdata[i].name
+            // jian=Cdata[i].number
+          } else {
+            Cdata[i].number = Cdata[i].number
+            Cdata[i].price = Cdata[i].price
+            Cdata[i].specification = Cdata[i].specification
+            Cdata[i].unit = Cdata[i].unit
+            Cdata[i].id = Cdata[i].id
+            Cdata[i].name = Cdata[i].name
+            // jian=Cdata[i].number
+          }
+        } else {
+          jian = Cdata[i].count
+          if (Cdata[i].count != 0 && Cdata[i].count != 1) {
+            Cdata[i].count = Cdata[i].count - 1
+            Cdata[i].price = Cdata[i].price
+            Cdata[i].specification = Cdata[i].specification
+            Cdata[i].unit = Cdata[i].unit
+            Cdata[i].id = Cdata[i].id
+            Cdata[i].name = Cdata[i].name
+          } else {
+            Cdata[i].count = Cdata[i].count
+            Cdata[i].price = Cdata[i].price
+            Cdata[i].specification = Cdata[i].specification
+            Cdata[i].unit = Cdata[i].unit
+            Cdata[i].id = Cdata[i].id
+            Cdata[i].name = Cdata[i].name
+          }
         }
       }
     }
     for (var i in Cdata) {
       if (Cdata[i].id == id) {
-          Total_Price = Cdata[i].price
+        Total_Price = Cdata[i].price
       }
     }
 
     // console.log(jian)
-    if(jian != 1 ){
+    if (jian != 1) {
       TotalPrice -= Total_Price
     }
     this.setData({
@@ -341,20 +344,21 @@ Page({
     // var DataCategory=[]
     for (var i in Cdata) {
       if (Cdata[i].id == id) {
-        if(Cdata[i].number){
+        if (Cdata[i].number) {
           Cdata[i].number = Cdata[i].number + 1
           Cdata[i].price = Cdata[i].price
           Cdata[i].specification = Cdata[i].specification
           Cdata[i].unit = Cdata[i].unit
           Cdata[i].id = Cdata[i].id
           Cdata[i].name = Cdata[i].name
-        }else{
+        } else {
           Cdata[i].count = Cdata[i].count + 1
           Cdata[i].price = Cdata[i].price
           Cdata[i].specification = Cdata[i].specification
           Cdata[i].unit = Cdata[i].unit
           Cdata[i].id = Cdata[i].id
           Cdata[i].name = Cdata[i].name
+
         }
 
       }
@@ -389,11 +393,11 @@ Page({
           }
           for (var i in Cdata) {
             if (id == Cdata[i].id) {
-              if(Cdata[i].number){
-                 Total_Price = Cdata[i].price * Cdata[i].number
-              }else{
-                 Total_Price = Cdata[i].price * Cdata[i].count
-              } 
+              if (Cdata[i].number) {
+                Total_Price = Cdata[i].price * Cdata[i].number
+              } else {
+                Total_Price = Cdata[i].price * Cdata[i].count
+              }
             }
           }
           // console.log(Total_Price)
@@ -417,7 +421,7 @@ Page({
     var consultId = options.consultId
     //获取前页面传递的orderId
     var orderId = options.orderId
-    //console.log(orderId)
+    console.log(orderId)
     //console.log(consultId)
     //获取全局变量   接口通用前缀
     var RouteUrl = getApp().globalData.RouteUrl
@@ -425,8 +429,8 @@ Page({
     var TotalPrice = parseFloat(that.data.TotalPrice)
     var Total_Price = []
     var ztcId = 0
-    var ByIdData=[]
-    var ZzIdData=[]
+    var ByIdData = []
+    var ZzIdData = []
     // 取出緩存登錄信息
     wx.getStorage({
       key: 'logindata',
@@ -471,27 +475,28 @@ Page({
                 }
               }
 
-              if(ById){
-                for(var i in ById){
-                    for(var j in ById[i].productItems){
-                       ByIdData.push(ById[i].productItems[j])
-                    }
+              if (ById) {
+                for (var i in ById) {
+                  for (var j in ById[i].productItems) {
+                    ByIdData.push(ById[i].productItems[j])
+                  }
                 }
-              //取出所以显示在页面的价格
-              for (var i in ByIdData) {
-                Total_Price.push(ByIdData[i].price)
-              }
+                //取出所以显示在页面的价格
+                for (var i in ByIdData) {
+                  Total_Price.push(ByIdData[i].price)
+                }
                 that.setData({
-                  DataName_a:ByIdData,
+                  DataName_a: ByIdData,
+                  //orderId:orderId
                 })
               }
-              if(ZzId){
-                 for(var i in ZzId){
-                     for(var j in ZzId[i].productItems){
-                         ZzIdData.push(ZzId[i].productItems[j])
-                     }
-                 }
-                 var ZzIdData_a={}
+              if (ZzId) {
+                for (var i in ZzId) {
+                  for (var j in ZzId[i].productItems) {
+                    ZzIdData.push(ZzId[i].productItems[j])
+                  }
+                }
+                var ZzIdData_a = {}
                 //  for(var i in ZzIdData){
                 //   ZzIdData_a[i].count =ZzIdData[i].number
                 //   ZzIdData_a[i].price =ZzIdData[i].price
@@ -501,13 +506,13 @@ Page({
                 //   ZzIdData_a[i].unit =ZzIdData[i].unit
                 //  }
                 // console.log(ZzIdData)
-              //取出所以显示在页面的价格
-              for (var i in ZzIdData) {
-                Total_Price.push(ZzIdData[i].price)
-              }
-              that.setData({
-                DataCategory:ZzIdData
-              })
+                //取出所以显示在页面的价格
+                for (var i in ZzIdData) {
+                  Total_Price.push(ZzIdData[i].price)
+                }
+                that.setData({
+                  DataCategory: ZzIdData
+                })
               }
 
 
@@ -558,13 +563,16 @@ Page({
                 }
               }
               // }
-              if(MainData_B){
-                 MainData_B=MainData_B
-                 that.setData({
-                   businessType_a:MainData_B
-                 })
-              }else{
+              if (MainData_B) {
+                MainData_B = MainData_B
+                that.setData({
+                  businessType_a: MainData_B
+                })
+              } else {
                 MainData_B = 0
+                that.setData({
+                  businessType_a: MainData_B
+                })
               }
               //var id = 0
               for (var i in Mains) {
@@ -598,7 +606,8 @@ Page({
                 Mains: Mains,
                 nameTitle_b: MainData_c,
                 TotalPrice: TotalPrice,
-                consultId: consultId
+                consultId: consultId,
+                MainData_b: MainData_b
               })
             } else {
               wx.showToast({
@@ -675,34 +684,125 @@ Page({
         })
       }
     });
-
+    that.setData({
+      orderId: orderId
+    })
   },
   formSubmit: function (e) {
     var that = this
+    //获取全局变量   接口通用前缀
+    var RouteUrl = getApp().globalData.RouteUrl
+    var orderId = that.data.orderId   //获取订单ID
+    var Mains = that.data.Mains    //主套餐
+    var businessType_a = that.data.businessType_a  // 选择的主套餐K值
     var TotalPrice = that.data.TotalPrice   // 订单总价格
     var nameTitle_b = that.data.nameTitle_b  // 主套餐数据
     var FuneralData_a_b_c = that.data.FuneralData_a_b_c
-    var DataName_a = that.data.DataName_a  // 套餐产品数据
+    var DataName_a = that.data.DataName_a  // 殡仪馆商品
+    var businessType_c = that.data.businessType_c   //选择殡仪馆商品K值
     var DataCategory = that.data.DataCategory  //增值产品
     var consultId = that.data.consultId   //获取前页面传递的查询ID
-    var ContentData = { "content": {} }
+    var ContentData = { "content": {} }    //定义接口传递参数
+    var setmealMain = 0                 //主套餐id
+    var setmealFuneral = 0        //殡仪馆商品ID
+    var items = []                //选择的所有商品
     ContentData.content.consultId = consultId;  //装入查询ID
-    for(var i in nameTitle_b){
+    console.log(orderId)
+    if (orderId == 0) {   //判断此订单是否是第一次编辑订单
+      for (var i in Mains) {
+        setmealMain = Mains[businessType_a].id
+      }
+      ContentData.content.setmealMain = setmealMain   //加入主套餐id
+      for (var i in Mains) {
+        setmealFuneral = Mains[businessType_c].id
+      }
+      ContentData.content.setmealFuneral = setmealFuneral   //加入殡仪馆商品id
+      //ContentData.content.items ={}
+      var ztcData = []
+      for (var i in nameTitle_b) {
+        for (var k in nameTitle_b[i].productItems) {
+          var obj = {}
+          obj.skuId = nameTitle_b[i].productItems[k].id
+          obj.number = nameTitle_b[i].productItems[k].count
+          obj.price = nameTitle_b[i].productItems[k].price
+          obj.categoryId = nameTitle_b[i].productItems[k].categoryId
+          obj.totalPrice = nameTitle_b[i].productItems[k].price * nameTitle_b[i].productItems[k].count
+          obj.statusFlag = 1
+          obj.projectId = 1
+          ztcData.push(obj)
+        }
+
+      }
+      for (var i in ztcData) {
+        items.push(ztcData[i])
+      }
+      var byData = []
+      if (DataName_a) {
+        for (var i in DataName_a) {
+          var obj = {}
+          obj.skuId = DataName_a[i].id
+          obj.number = DataName_a[i].count
+          obj.price = DataName_a[i].price
+          obj.categoryId = DataName_a[i].categoryId
+          obj.totalPrice = DataName_a[i].price * DataName_a[i].count
+          obj.statusFlag = 1
+          obj.projectId = 1
+          byData.push(obj)
+        }
+        for (var i in byData) {
+          items.push(byData[i])
+        }
+      }
+      var zzData = []
+      if (DataCategory) {
+        for (var i in DataCategory) {
+          var obj = {}
+          obj.skuId = DataCategory[i].id
+          obj.number = DataCategory[i].count
+          obj.price = DataCategory[i].price
+          obj.totalPrice = DataCategory[i].price * DataCategory[i].count
+          obj.statusFlag = 1
+          obj.projectId = 1
+          zzData.push(obj)
+        }
+        for (var i in zzData) {
+          items.push(zzData[i])
+        }
+      }
+      ContentData.content.items = items
+      wx.getStorage({
+        key: 'logindata',
+        success: function (msg) {
+          var ForData = JSON.stringify(ContentData)
+          //初始化二次修改
+          wx.request({
+            url: RouteUrl + 'order/create',
+            method: "POST",
+            data: ForData,
+            header: {
+              "Content-Type": "application/x-www-form-urlencodeed",
+              "Cookie": "sid=" + msg.data.content.sessionId
+            },
+            success: function (res) {
+              //console.log(res.data)
+              if (res.data.code == 1000 && res.data.message == '操作成功') {
+                //頁面跳轉
+                wx.redirectTo({
+                  url: '../list/list'
+                })
+              } else {   //加入保持编辑订单接口
+                wx.showToast({
+                  title: res.data.message,
+                  duration: 3000
+                })
+              }
+
+            }
+          })
+        }
+      })
+    }else{    //判断此订单是否是第二次编辑订单
 
     }
-    ContentData.content.setmealMain //主套餐id
-
-    // ContentData.content.nameTitle_b = nameTitle_b; 
-    // ContentData.content.DataName_a = DataName_a; 
-    // ContentData.content.DataCategory = DataCategory; 
-    console.log(nameTitle_b)
-
-
-    //  }else{
-    //     wx.showToast({
-    //       title: '',
-    //       duration: 2000
-    //     })
-    //  }
   }
 });
