@@ -418,10 +418,14 @@ Page({
 
     var that = this
     //获取前页面传递的consultId
-    var consultId = options.consultId
+    var consultId = Number(options.consultId)
     //获取前页面传递的orderId
-    var orderId = options.orderId
-    console.log(orderId)
+    var orderId = Number(options.orderId)
+    if(orderId){
+     that.setData({
+       orderId:orderId
+     })
+    }
     //console.log(consultId)
     //获取全局变量   接口通用前缀
     var RouteUrl = getApp().globalData.RouteUrl
@@ -436,12 +440,13 @@ Page({
       key: 'logindata',
       success: function (msg) {
         var ContentData = {}
-        ContentData.consultId = consultId
-        ContentData.orderId = orderId
+        ContentData.orderId=orderId
+       // ContentData.consultId=consultId
         var forData = { content: ContentData }
         //转换字符串
         var ForData = JSON.stringify(forData)
         //初始化二次修改
+        if(orderId){
         wx.request({
           url: RouteUrl + 'order/view',
           method: "POST",
@@ -451,6 +456,10 @@ Page({
             "Cookie": "sid=" + msg.data.content.sessionId
           },
           success: function (res) {
+            console.log(RouteUrl+'order/view')
+            // console.log(res)
+            // console.log(ForData)
+            // console.log(orderId)
             if (res.data.code == 1000 && res.data.message == '操作成功') {
               console.log(res.data.content.projectItems)
               var onLoadData = res.data.content.projectItems
@@ -517,13 +526,14 @@ Page({
 
 
             } else {
-              // wx.showToast({
-              //   title: res.data.message,
-              //   duration: 3000
-              // })
+              wx.showToast({
+                title: res.data.message,
+                duration: 3000
+              })
             }
           }
         })
+        }
 
         //  请求主套餐数据
         wx.request({
@@ -684,9 +694,6 @@ Page({
         })
       }
     });
-    that.setData({
-      orderId: orderId
-    })
   },
   formSubmit: function (e) {
     var that = this
@@ -744,7 +751,7 @@ Page({
           obj.number = DataName_a[i].count
           obj.price = DataName_a[i].price
           obj.categoryId = DataName_a[i].categoryId
-          obj.totalPrice = DataName_a[i].price * DataName_a[i].count
+          obj.totalPrice = DataName_a[i].price
           obj.statusFlag = 1
           obj.projectId = 1
           byData.push(obj)
@@ -774,31 +781,32 @@ Page({
         key: 'logindata',
         success: function (msg) {
           var ForData = JSON.stringify(ContentData)
+          console.log(ForData)
           //初始化二次修改
-          wx.request({
-            url: RouteUrl + 'order/create',
-            method: "POST",
-            data: ForData,
-            header: {
-              "Content-Type": "application/x-www-form-urlencodeed",
-              "Cookie": "sid=" + msg.data.content.sessionId
-            },
-            success: function (res) {
-              //console.log(res.data)
-              if (res.data.code == 1000 && res.data.message == '操作成功') {
-                //頁面跳轉
-                wx.redirectTo({
-                  url: '../list/list'
-                })
-              } else {   //加入保持编辑订单接口
-                wx.showToast({
-                  title: res.data.message,
-                  duration: 3000
-                })
-              }
+          // wx.request({
+          //   url: RouteUrl + 'order/create',
+          //   method: "POST",
+          //   data: ForData,
+          //   header: {
+          //     "Content-Type": "application/x-www-form-urlencodeed",
+          //     "Cookie": "sid=" + msg.data.content.sessionId
+          //   },
+          //   success: function (res) {
+          //     //console.log(res.data)
+          //     if (res.data.code == 1000 && res.data.message == '操作成功') {
+          //       //頁面跳轉
+          //       wx.redirectTo({
+          //         url: '../list/list'
+          //       })
+          //     } else {   //加入保持编辑订单接口
+          //       wx.showToast({
+          //         title: res.data.message,
+          //         duration: 3000
+          //       })
+          //     }
 
-            }
-          })
+          //   }
+          // })
         }
       })
     }else{    //判断此订单是否是第二次编辑订单
