@@ -102,7 +102,7 @@
         </view>
    <!--治丧配套产品列表-->
         <view class="weui-cells weui-cells_after-title" wx:if="{{DataName_a}}" wx:for="{{DataName_a}}">
-          <view class="weui-cell" wx:if="{{!item.totalPrice}}">
+          <view class="weui-cell" wx:if="{{!item.skuId}}">
             <view class="weui-cell__bd picker" bindlongtap="DataName_aDel" data-id="{{item.id}}" >{{item.name}}</view>
             <view class="num_wrap">
               <text>x{{item.count}}{{item.num}}</text>
@@ -113,7 +113,7 @@
             </view>
           </view>
 
-          <view class="weui-cell" wx:if="{{item.totalPrice}}">
+          <view class="weui-cell" wx:if="{{item.skuId}}">
             <view class="weui-cell__bd picker" bindlongtap="DataName_aDel" data-id="{{item.id}}" >{{item.name}}</view>
             <view class="num_wrap">
               <text>x{{item.number}}{{item.num}}</text>

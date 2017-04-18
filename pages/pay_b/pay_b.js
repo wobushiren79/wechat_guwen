@@ -37,17 +37,7 @@ Page({
                         //console.log(res.data)
                         if (res.data.code == 1000 && res.data.message == '操作成功') {
                             var codeUrl = res.data.content.codeUrl
-                            wx.requestPayment({
-                                'timeStamp': '',
-                                'nonceStr': '',
-                                'package': '',
-                                'signType': 'MD5',
-                                'paySign': '',
-                                'success': function (res) {
-                                },
-                                'fail': function (res) {
-                                }
-                            })
+                            console.log(codeUrl)
                             that.setData({
                                 codeUrl: codeUrl
                             })

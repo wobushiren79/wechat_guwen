@@ -121,6 +121,7 @@ Page({
     var TotalPrice = parseFloat(this.data.TotalPrice)
     var name = e.target.dataset.name
     var Funeralss = this.data.Funeralss
+    //console.log(Funeralss)
     var FuneralData_a_b_c = this.data.FuneralData_a_b_c
     var DataName_b = []
     var dataname = this.data.DataName_a
@@ -146,10 +147,14 @@ Page({
     if (Tmp != null) {
       DataName_b.push(Tmp)
     }
-    // console.log(DataName_b)
+    //console.log(DataName_b)
     var Total_Price = []
     for (var i in DataName_b) {
-      Total_Price.push = DataName_b[i].price
+      if (DataName_b[i].number) {
+        Total_Price.push = DataName_b[i].price * DataName_b[i].number
+      } else {
+        Total_Price.push = DataName_b[i].price * DataName_b[i].count
+      }
     }
     for (var i in Total_Price) {
       TotalPrice += Total_Price[i]
@@ -181,7 +186,12 @@ Page({
             if (id != DataName_a[i].id) {
               DataName_A.push(DataName_a[i])
             } else if (id == DataName_a[i].id) {
-              Total_Price = DataName_a[i].price
+              if (DataName_a[i].number) {
+                Total_Price = DataName_a[i].price * DataName_a[i].number
+              } else {
+                Total_Price = DataName_a[i].price * DataName_a[i].count
+              }
+
             }
           }
           TotalPrice = TotalPrice - Total_Price
@@ -216,6 +226,8 @@ Page({
     for (var i in category.ctgItems) {
       CatId = category.ctgItems[cat].id;
     };
+    // var CatIds=[]
+    // CatIds.push(CatId)
     if (CatId) {
       // 取出緩存登錄信息
       //console.log(CatId)
@@ -244,6 +256,7 @@ Page({
                   for (var i in category) {
                     if (category[i].count == 0) {
                       category[i].count = 1
+                      category[i].categoryId = CatId
                       DataCategory_b.push(category[i])
                     } else {
                       DataCategory_b.push(category[i])
@@ -253,7 +266,7 @@ Page({
                     Total_Price = DataCategory_b[i].price
                   }
                   TotalPrice += Total_Price
-                  // console.log(DataCategory_b)
+                  //console.log(DataCategory_b)
                   that.setData({
                     //businessType_e: e.detail.value,
                     DataCategory: DataCategory_b,
@@ -291,6 +304,7 @@ Page({
             Cdata[i].unit = Cdata[i].unit
             Cdata[i].id = Cdata[i].id
             Cdata[i].name = Cdata[i].name
+            Cdata[i].categoryId = Cdata[i].categoryId
             // jian=Cdata[i].number
           } else {
             Cdata[i].number = Cdata[i].number
@@ -299,6 +313,7 @@ Page({
             Cdata[i].unit = Cdata[i].unit
             Cdata[i].id = Cdata[i].id
             Cdata[i].name = Cdata[i].name
+            Cdata[i].categoryId = Cdata[i].categoryId
             // jian=Cdata[i].number
           }
         } else {
@@ -310,6 +325,7 @@ Page({
             Cdata[i].unit = Cdata[i].unit
             Cdata[i].id = Cdata[i].id
             Cdata[i].name = Cdata[i].name
+            Cdata[i].categoryId = Cdata[i].categoryId
           } else {
             Cdata[i].count = Cdata[i].count
             Cdata[i].price = Cdata[i].price
@@ -317,6 +333,7 @@ Page({
             Cdata[i].unit = Cdata[i].unit
             Cdata[i].id = Cdata[i].id
             Cdata[i].name = Cdata[i].name
+            Cdata[i].categoryId = Cdata[i].categoryId
           }
         }
       }
@@ -351,6 +368,7 @@ Page({
           Cdata[i].unit = Cdata[i].unit
           Cdata[i].id = Cdata[i].id
           Cdata[i].name = Cdata[i].name
+          Cdata[i].categoryId = Cdata[i].categoryId
         } else {
           Cdata[i].count = Cdata[i].count + 1
           Cdata[i].price = Cdata[i].price
@@ -358,6 +376,7 @@ Page({
           Cdata[i].unit = Cdata[i].unit
           Cdata[i].id = Cdata[i].id
           Cdata[i].name = Cdata[i].name
+          Cdata[i].categoryId = Cdata[i].categoryId
 
         }
 
@@ -421,10 +440,10 @@ Page({
     var consultId = Number(options.consultId)
     //获取前页面传递的orderId
     var orderId = Number(options.orderId)
-    if(orderId){
-     that.setData({
-       orderId:orderId
-     })
+    if (orderId) {
+      that.setData({
+        orderId: orderId
+      })
     }
     //console.log(consultId)
     //获取全局变量   接口通用前缀
@@ -440,99 +459,94 @@ Page({
       key: 'logindata',
       success: function (msg) {
         var ContentData = {}
-        ContentData.orderId=orderId
-       // ContentData.consultId=consultId
+        ContentData.orderId = orderId
+        // ContentData.consultId=consultId
         var forData = { content: ContentData }
         //转换字符串
         var ForData = JSON.stringify(forData)
         //初始化二次修改
-        if(orderId){
-        wx.request({
-          url: RouteUrl + 'order/view',
-          method: "POST",
-          data: ForData,
-          header: {
-            "Content-Type": "application/x-www-form-urlencodeed",
-            "Cookie": "sid=" + msg.data.content.sessionId
-          },
-          success: function (res) {
-            console.log(RouteUrl+'order/view')
-            // console.log(res)
-            // console.log(ForData)
-            // console.log(orderId)
-            if (res.data.code == 1000 && res.data.message == '操作成功') {
-              console.log(res.data.content.projectItems)
-              var onLoadData = res.data.content.projectItems
-              for (var i in onLoadData) {
-                if (onLoadData[i].name == '主套餐') {
-                  var ZtcId = onLoadData[i].ctgItems
+        if (orderId) {
+          wx.request({
+            url: RouteUrl + 'order/view',
+            method: "POST",
+            data: ForData,
+            header: {
+              "Content-Type": "application/x-www-form-urlencodeed",
+              "Cookie": "sid=" + msg.data.content.sessionId
+            },
+            success: function (res) {
+              console.log(RouteUrl + 'order/view')
+              // console.log(res)
+              // console.log(ForData)
+              // console.log(orderId)
+              if (res.data.code == 1000 && res.data.message == '操作成功') {
+                // console.log(res.data.content.projectItems)
+                var onLoadData = res.data.content.projectItems
+                for (var i in onLoadData) {
+                  if (onLoadData[i].name == '主套餐') {
+                    var ZtcId = onLoadData[i].ctgItems
+                  }
+                  if (onLoadData[i].name == "增值项目") {
+                    var ZzId = onLoadData[i].ctgItems
+                  }
+                  // console.log()
+                  if (onLoadData[i].name == "殡仪馆") {
+                    var ById = onLoadData[i].ctgItems
+                  }
+                  // console.log(ById)
                 }
-                if (onLoadData[i].name == "增值项目") {
-                  var ZzId = onLoadData[i].ctgItems
-                }
-                if (onLoadData[i].name == "殡仪馆") {
-                  var ById = onLoadData[i].ctgItems
-                }
-              }
-              if (ZtcId) {
-                for (var i in ZtcId) {
-                  if (ZtcId[i].name == "方案定价") {
-                    for (var j in ZtcId[i].productItems) {
-                      ztcId = ZtcId[i].productItems[j].name
+                if (ZtcId) {
+                  for (var i in ZtcId) {
+                    if (ZtcId[i].name == "方案定价") {
+                      for (var j in ZtcId[i].productItems) {
+                        ztcId = ZtcId[i].productItems[j].name
+                      }
                     }
                   }
                 }
-              }
 
-              if (ById) {
-                for (var i in ById) {
-                  for (var j in ById[i].productItems) {
-                    ByIdData.push(ById[i].productItems[j])
+                if (ById) {
+                  for (var i in ById) {
+                    for (var j in ById[i].productItems) {
+                      ByIdData.push(ById[i].productItems[j])
+                    }
                   }
+                  //console.log(ByIdData)
+                  //取出所以显示在页面的价格
+                  for (var i in ByIdData) {
+                    Total_Price.push(ByIdData[i].totalPrice)
+                  }
+                  that.setData({
+                    DataName_a: ByIdData,
+                    //orderId:orderId
+                  })
                 }
-                //取出所以显示在页面的价格
-                for (var i in ByIdData) {
-                  Total_Price.push(ByIdData[i].price)
+                if (ZzId) {
+                  for (var i in ZzId) {
+                    for (var j in ZzId[i].productItems) {
+                      ZzIdData.push(ZzId[i].productItems[j])
+                    }
+                  }
+                  //console.log(ZzIdData)
+                  //取出所以显示在页面的价格
+                  for (var i in ZzIdData) {
+                    Total_Price.push(ZzIdData[i].totalPrice)
+                  }
+                  // TotalPrice+=Total_Price
+                  that.setData({
+                    DataCategory: ZzIdData
+                  })
                 }
-                that.setData({
-                  DataName_a: ByIdData,
-                  //orderId:orderId
+
+
+              } else {
+                wx.showToast({
+                  title: res.data.message,
+                  duration: 3000
                 })
               }
-              if (ZzId) {
-                for (var i in ZzId) {
-                  for (var j in ZzId[i].productItems) {
-                    ZzIdData.push(ZzId[i].productItems[j])
-                  }
-                }
-                var ZzIdData_a = {}
-                //  for(var i in ZzIdData){
-                //   ZzIdData_a[i].count =ZzIdData[i].number
-                //   ZzIdData_a[i].price =ZzIdData[i].price
-                //   ZzIdData_a[i].name =ZzIdData[i].name
-                //   ZzIdData_a[i].id =ZzIdData[i].id
-                //   ZzIdData_a[i].specification =ZzIdData[i].specification
-                //   ZzIdData_a[i].unit =ZzIdData[i].unit
-                //  }
-                // console.log(ZzIdData)
-                //取出所以显示在页面的价格
-                for (var i in ZzIdData) {
-                  Total_Price.push(ZzIdData[i].price)
-                }
-                that.setData({
-                  DataCategory: ZzIdData
-                })
-              }
-
-
-            } else {
-              wx.showToast({
-                title: res.data.message,
-                duration: 3000
-              })
             }
-          }
-        })
+          })
         }
 
         //  请求主套餐数据
@@ -673,6 +687,7 @@ Page({
           },
           success: function (res) {
             if (res.data.code == 1000 && res.data.message == '操作成功') {
+              // console.log(res.data.content)
               var category = res.data.content
               if (category) {
                 var CategoryName = []
@@ -704,6 +719,7 @@ Page({
     var businessType_a = that.data.businessType_a  // 选择的主套餐K值
     var TotalPrice = that.data.TotalPrice   // 订单总价格
     var nameTitle_b = that.data.nameTitle_b  // 主套餐数据
+    var Funeralss = that.data.Funeralss    //殡仪套餐数据
     var FuneralData_a_b_c = that.data.FuneralData_a_b_c
     var DataName_a = that.data.DataName_a  // 殡仪馆商品
     var businessType_c = that.data.businessType_c   //选择殡仪馆商品K值
@@ -714,16 +730,18 @@ Page({
     var setmealFuneral = 0        //殡仪馆商品ID
     var items = []                //选择的所有商品
     ContentData.content.consultId = consultId;  //装入查询ID
-    console.log(orderId)
+    ContentData.content.orderId = orderId;  //装入查询ID
+    // console.log(orderId)
     if (orderId == 0) {   //判断此订单是否是第一次编辑订单
       for (var i in Mains) {
         setmealMain = Mains[businessType_a].id
       }
       ContentData.content.setmealMain = setmealMain   //加入主套餐id
-      for (var i in Mains) {
-        setmealFuneral = Mains[businessType_c].id
+      for (var i in Funeralss) {
+        setmealFuneral = Funeralss[businessType_c].id
       }
       ContentData.content.setmealFuneral = setmealFuneral   //加入殡仪馆商品id
+      ContentData.content.setmealCemetery = 0
       //ContentData.content.items ={}
       var ztcData = []
       for (var i in nameTitle_b) {
@@ -751,9 +769,9 @@ Page({
           obj.number = DataName_a[i].count
           obj.price = DataName_a[i].price
           obj.categoryId = DataName_a[i].categoryId
-          obj.totalPrice = DataName_a[i].price
+          obj.totalPrice = DataName_a[i].price * DataName_a[i].count
           obj.statusFlag = 1
-          obj.projectId = 1
+          obj.projectId = 2
           byData.push(obj)
         }
         for (var i in byData) {
@@ -761,6 +779,7 @@ Page({
         }
       }
       var zzData = []
+      // console.log(DataCategory)
       if (DataCategory) {
         for (var i in DataCategory) {
           var obj = {}
@@ -768,8 +787,9 @@ Page({
           obj.number = DataCategory[i].count
           obj.price = DataCategory[i].price
           obj.totalPrice = DataCategory[i].price * DataCategory[i].count
+          obj.categoryId = DataCategory[i].categoryId
           obj.statusFlag = 1
-          obj.projectId = 1
+          obj.projectId = 4
           zzData.push(obj)
         }
         for (var i in zzData) {
@@ -781,36 +801,274 @@ Page({
         key: 'logindata',
         success: function (msg) {
           var ForData = JSON.stringify(ContentData)
-          console.log(ForData)
-          //初始化二次修改
-          // wx.request({
-          //   url: RouteUrl + 'order/create',
-          //   method: "POST",
-          //   data: ForData,
-          //   header: {
-          //     "Content-Type": "application/x-www-form-urlencodeed",
-          //     "Cookie": "sid=" + msg.data.content.sessionId
-          //   },
-          //   success: function (res) {
-          //     //console.log(res.data)
-          //     if (res.data.code == 1000 && res.data.message == '操作成功') {
-          //       //頁面跳轉
-          //       wx.redirectTo({
-          //         url: '../list/list'
-          //       })
-          //     } else {   //加入保持编辑订单接口
-          //       wx.showToast({
-          //         title: res.data.message,
-          //         duration: 3000
-          //       })
-          //     }
-
-          //   }
-          // })
+          //console.log(ForData)
+          // 初次创建订单
+          wx.request({
+            url: RouteUrl + 'order/create',
+            method: "POST",
+            data: ForData,
+            header: {
+              "Content-Type": "application/x-www-form-urlencodeed",
+              "Cookie": "sid=" + msg.data.content.sessionId
+            },
+            success: function (res) {
+              //console.log(res.data)
+              if (res.data.code == 1000 && res.data.message == '操作成功') {
+                //頁面跳轉
+                wx.redirectTo({
+                  url: '../list/list'
+                })
+              } else {   //加入保持编辑订单接口
+                wx.showToast({
+                  title: res.data.message,
+                  duration: 3000
+                })
+              }
+            }
+          })
         }
       })
-    }else{    //判断此订单是否是第二次编辑订单
-     console.log(1111)
+    } else {    //判断此订单是否是第二次编辑订单
+      //console.log(ContentData)
+      wx.getStorage({
+        key: 'logindata',
+        success: function (msg) {
+          var ForData = JSON.stringify(ContentData)
+          //console.log(ForData)
+          // 初始化二次修改
+          wx.request({
+            url: RouteUrl + 'order/view',
+            method: "POST",
+            data: ForData,
+            header: {
+              "Content-Type": "application/x-www-form-urlencodeed",
+              "Cookie": "sid=" + msg.data.content.sessionId
+            },
+            success: function (res) {
+              //console.log(res.data)
+              if (res.data.code == 1000 && res.data.message == '操作成功') {
+                var orderData = res.data.content.projectItems
+                console.log(res.data.content.projectItems)
+                for (var i in orderData) {
+                  if (orderData[i].id == 1) {
+                    var orderZTC = orderData[i].ctgItems   //已有的主套餐
+                  }
+                }
+                for (var i in orderData) {
+                  if (orderData[i].id == 2) {
+                    var orderBYG = orderData[i].ctgItems   //已有的殡仪馆商品
+                  }
+                }
+                for (var i in orderData) {
+                  if (orderData[i].id == 4) {
+                    var orderZZYF = orderData[i].ctgItems   //已有的增值商品
+                  }
+                }
+                var ztcData = []
+                for (var i in orderZTC) {
+                  for (var k in orderZTC[i].productItems) {
+                    var obj = {}
+                    if (orderZTC[i].productItems[k].canEdit == true) {
+                      //orderZTC[i].productItems[k].statusFlag = 2
+                      obj.statusFlag = 2
+                      obj.categoryId = orderZTC[i].id
+                      obj.id = orderZTC[i].productItems[k].id
+                      obj.name = orderZTC[i].productItems[k].name
+                      obj.number = orderZTC[i].productItems[k].number
+                      obj.price = orderZTC[i].productItems[k].price
+                      obj.skuId = orderZTC[i].productItems[k].skuId
+                      obj.specification = orderZTC[i].productItems[k].specification
+                      obj.totalPrice = orderZTC[i].productItems[k].totalPrice
+                      obj.unit = orderZTC[i].productItems[k].unit
+
+                      //  console.log(obj)
+                    } else {
+                      obj.statusFlag = 1
+                      obj.categoryId = orderZTC[i].id
+                      obj.id = orderZTC[i].productItems[k].id
+                      obj.name = orderZTC[i].productItems[k].name
+                      obj.number = orderZTC[i].productItems[k].number
+                      obj.price = orderZTC[i].productItems[k].price
+                      obj.skuId = orderZTC[i].productItems[k].skuId
+                      obj.specification = orderZTC[i].productItems[k].specification
+                      obj.totalPrice = orderZTC[i].productItems[k].totalPrice
+                      obj.unit = orderZTC[i].productItems[k].unit
+                    }
+                    ztcData.push(obj)
+                  }
+                }
+                var byData = []
+                for (var i in orderBYG) {
+                  for (var k in orderBYG[i].productItems) {
+                    if (orderBYG[i].productItems[k].canEdit == true) {
+                      orderBYG[i].productItems[k].statusFlag = 2
+                      orderBYG[i].productItems[k].categoryId=orderBYG[i].id
+                      byData.push(orderBYG[i].productItems[k])
+                    } else {
+                      orderBYG[i].productItems[k].statusFlag = 1
+                      orderBYG[i].productItems[k].categoryId=orderBYG[i].id
+                      byData.push(orderBYG[i].productItems[k])
+                    }
+                  }
+                }
+                var zzData = []
+                for (var i in orderZZYF) {
+                  for (var k in orderZZYF[i].productItems) {
+                    if (orderZZYF[i].productItems[k].canEdit == true) {
+                      orderZZYF[i].productItems[k].statusFlag = 2
+                      orderZZYF[i].productItems[k].categoryId=orderZZYF[i].id
+                      zzData.push(orderZZYF[i].productItems[k])
+                    } else {
+                      orderZZYF[i].productItems[k].statusFlag = 1
+                       orderZZYF[i].productItems[k].categoryId=orderZZYF[i].id
+                      zzData.push(orderZZYF[i].productItems[k])
+                    }
+                  }
+                }
+                for (var i in ztcData) {
+                  items.push(ztcData[i])
+                }
+                for (var i in byData) {
+                  items.push(byData[i])
+                }
+                for (var i in zzData) {
+                  items.push(zzData[i])
+                }
+                for (var i in Mains) {
+                  setmealMain = Mains[businessType_a].id
+                }
+                ContentData.content.setmealMain = setmealMain   //加入主套餐id
+                for (var i in Funeralss) {
+                  setmealFuneral = Funeralss[businessType_c].id
+                }
+                ContentData.content.setmealFuneral = setmealFuneral   //加入殡仪馆商品id
+                ContentData.content.setmealCemetery = 0
+                //ContentData.content.items ={}
+                var ztcData = []
+                for (var i in nameTitle_b) {
+                  for (var k in nameTitle_b[i].productItems) {
+                    var obj = {}
+                    if(nameTitle_b[i].productItems[k].number){
+                      obj.id = nameTitle_b[i].productItems[k].id
+                      obj.skuId = nameTitle_b[i].productItems[k].skuId
+                      obj.number = nameTitle_b[i].productItems[k].number
+                      obj.price = nameTitle_b[i].productItems[k].price
+                      obj.totalPrice = nameTitle_b[i].productItems[k].price *nameTitle_b[i].productItems[k].number
+                    }else{
+                      obj.skuId = nameTitle_b[i].productItems[k].id
+                      obj.number = nameTitle_b[i].productItems[k].count
+                      obj.price = nameTitle_b[i].productItems[k].price
+                      obj.totalPrice = nameTitle_b[i].productItems[k].price * nameTitle_b[i].productItems[k].count
+                    }
+                    obj.categoryId = nameTitle_b[i].productItems[k].categoryId
+                    obj.statusFlag = 1
+                    obj.projectId = 1
+                    ztcData.push(obj)
+                  }
+
+                }
+                for (var i in ztcData) {
+                  items.push(ztcData[i])
+                }
+                var byData = []
+                if (DataName_a) {
+                  for (var i in DataName_a) {
+                    var obj = {}
+                    if(DataName_a[i].number){
+                      obj.id = DataName_a[i].id
+                      obj.skuId = DataName_a[i].skuId
+                      obj.number = DataName_a[i].number
+                      obj.price = DataName_a[i].price
+                      obj.totalPrice = DataName_a[i].price * DataName_a[i].number
+                    }else{
+                      obj.skuId = DataName_a[i].id
+                      obj.number = DataName_a[i].count
+                      obj.price = DataName_a[i].price
+                      obj.totalPrice = DataName_a[i].price * DataName_a[i].count
+                    }
+                    // obj.categoryId = DataName_a[i].categoryId
+                    obj.statusFlag = 1
+                    obj.projectId = 2
+                    byData.push(obj)
+                  }
+                  for (var i in byData) {
+                    for(var k in items){
+                        if(byData[i].skuId != items[k].skuId){
+                          byData[i].categoryId=items[k].categoryId
+                        }
+                    }
+                    items.push(byData[i])
+                  }
+                }
+                var zzData = []
+                if (DataCategory) {
+                  for (var i in DataCategory) {
+                    var obj = {}
+                    if(DataCategory[i].number){
+                      obj.id = DataCategory[i].id
+                      obj.skuId = DataCategory[i].skuId
+                      obj.number = DataCategory[i].number
+                      obj.price = DataCategory[i].price
+                      obj.totalPrice = DataCategory[i].price * DataCategory[i].number
+                    }else{
+                      obj.skuId = DataCategory[i].id
+                      obj.number = DataCategory[i].count
+                      obj.price = DataCategory[i].price
+                      obj.totalPrice = DataCategory[i].price * DataCategory[i].count
+                    }
+                    // obj.categoryId = DataCategory[i].categoryId
+                    obj.statusFlag = 1
+                    obj.projectId = 4
+                    zzData.push(obj)
+                  }
+                  for (var i in zzData) {
+                    for(var k in items){
+                        if(zzData[i].skuId == items[k].skuId){
+                          zzData[i].categoryId=items[k].categoryId
+                        //  items.push(zzData[i])
+                        }
+                    }
+                   items.push(zzData[i])
+                  }
+                }
+                ContentData.content.items = items
+                var ForData = JSON.stringify(ContentData)
+                // console.log(ContentData)
+                // console.log(DataCategory)
+                // 多次编辑创建订单
+                wx.request({
+                  url: RouteUrl + 'order/edit/save',
+                  method: "POST",
+                  data: ForData,
+                  header: {
+                    "Content-Type": "application/x-www-form-urlencodeed",
+                    "Cookie": "sid=" + msg.data.content.sessionId
+                  },
+                  success: function (res) {
+                    //console.log(res.data)
+                    if (res.data.code == 1000 && res.data.message == '操作成功') {
+                      //頁面跳轉
+                      wx.redirectTo({
+                        url: '../list/list'
+                      })
+                    } else {   
+                      wx.showToast({
+                        title: res.data.message,
+                        duration: 3000
+                      })
+                    }
+                  }
+                })
+              } else {   //加入保持编辑订单接口
+                wx.showToast({
+                  title: res.data.message,
+                  duration: 3000
+                })
+              }
+            }
+          })
+        }
+      })
     }
   }
 });

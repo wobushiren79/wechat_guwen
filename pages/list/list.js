@@ -29,13 +29,72 @@ Page({
          Length:0
         // hidden:false
     },
+    onPullDownRefresh(){
+         var that = this
+        var RouteUrl=getApp().globalData.RouteUrl
+        var unm=that.data.pageNum
+        var size=that.data.pageSize
+        var  PageNums={content:{ "pageNum": unm,"pageSize": size}}
+        var PageNum=JSON.stringify(PageNums)
+    　　wx.showNavigationBarLoading() //在标题栏中显示加载
+        wx.setNavigationBarTitle({
+          title: '刷新中!!!!!'
+        })
+            this.setData({
+                   // pageSize:this.data.pageSize+2,
+                    hidden:true
+                 })
 
+        // 取出緩存登錄信息
+        wx.getStorage({
+        key: 'logindata',
+            success: function(res) {
+            //  console.log(res.data)
+            //console.log(PageNum)
+            wx.request({
+                        url: RouteUrl+'order/list/talk', 
+                        method:"POST",
+                        data: PageNum,
+                        header: {
+                            "Content-Type":"application/x-www-form-urlencodeed",
+                            "Cookie":"sid="+res.data.content.sessionId
+                        },
+                        success: function(res) {
+                            if(res.data.code == 1000){ 
+                            var TalkData=res.data.content.items 
+                            //console.log(TalkData)
+                            var Length=TalkData.length
+                                that.setData({
+                                    array:TalkData,
+                                    Length:Length
+                                })
+                            }else{
+                                wx.showToast({
+                                    title: res.data.message,
+                                    duration: 3000
+                                })
+                            }  
+                        },
+                        complete: function() {
+                                that.setData({
+                                    hidden:false    
+                                })
+                            wx.setNavigationBarTitle({
+                            title: '订单列表'
+                            })
+                          wx.hideNavigationBarLoading() //完成停止加载
+                          wx.stopPullDownRefresh() //停止下拉刷新
+                        }
+            })
+            }
+        })
+    },
     //上拉添加记录条数
     onReachBottom(){
     　　//console.log('--------下拉刷新-------')
     　　wx.showNavigationBarLoading() //在标题栏中显示加载
         wx.setNavigationBarTitle({
-          title: '加载中......'
+          title: '加载中!!!!!'
         })
                   
             this.setData({
