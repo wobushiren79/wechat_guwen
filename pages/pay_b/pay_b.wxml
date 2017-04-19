@@ -21,7 +21,8 @@
             <view class="weui-cell">
                 扫码支付
             </view>
-            <image src="{{codeUrl}}"></image>
+            <!--<image src="{{codeUrl}}"></image>-->
+            <canvas bindtap="previewImg" hidden="{{canvasHidden}}" style="width: 686rpx;height: 686rpx;background:#f1f1f1;" canvas-id="mycanvas"/>
             <!--<canvas canvas-id="myCanvas" style="border: 1px solid;"/>-->
         </view>
 

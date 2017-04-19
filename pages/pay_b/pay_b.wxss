@@ -8,3 +8,6 @@
     text-align: center!important;
     padding: 10px 0;
 }
+canvas{
+    margin: auto;
+}

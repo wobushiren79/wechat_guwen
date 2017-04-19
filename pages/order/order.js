@@ -109,7 +109,7 @@ Page({
         FuneralData_a_b_c[i].productItems[j] = FuneralData_a_a[i].productItems[j].name
       }
     }
-    // console.log(FuneralData_a_b_c)
+    console.log(FuneralData_a_b_c)
     this.setData({
       businessType_c: e.detail.value,
       FuneralData_a_b_c: FuneralData_a_b_c
@@ -504,20 +504,20 @@ Page({
                     }
                   }
                 }
-
                 if (ById) {
                   for (var i in ById) {
                     for (var j in ById[i].productItems) {
                       ByIdData.push(ById[i].productItems[j])
                     }
                   }
-                  //console.log(ByIdData)
+                  console.log(ById)
                   //取出所以显示在页面的价格
                   for (var i in ByIdData) {
                     Total_Price.push(ByIdData[i].totalPrice)
                   }
                   that.setData({
                     DataName_a: ByIdData,
+                    FuneralData_a_b_c:ById
                     //orderId:orderId
                   })
                 }
@@ -986,7 +986,7 @@ Page({
                       obj.price = DataName_a[i].price
                       obj.totalPrice = DataName_a[i].price * DataName_a[i].count
                     }
-                    // obj.categoryId = DataName_a[i].categoryId
+                    obj.categoryId = DataName_a[i].categoryId
                     obj.statusFlag = 1
                     obj.projectId = 2
                     byData.push(obj)
@@ -1016,7 +1016,7 @@ Page({
                       obj.price = DataCategory[i].price
                       obj.totalPrice = DataCategory[i].price * DataCategory[i].count
                     }
-                    // obj.categoryId = DataCategory[i].categoryId
+                    obj.categoryId = DataCategory[i].categoryId
                     obj.statusFlag = 1
                     obj.projectId = 4
                     zzData.push(obj)
