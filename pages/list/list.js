@@ -153,7 +153,16 @@ Page({
             }
         })  
     },
-
+    //点击客户电话拨打客户电话
+    phone:function(e){
+     var tel= e.target.dataset.tel
+        wx.makePhoneCall({
+        phoneNumber: tel, //仅为示例，并非真实的电话号码
+        complete: function (res){
+          console.log(res)
+        },
+        })
+    },
     onLoad: function () {
         var RouteUrl=getApp().globalData.RouteUrl
         var that = this

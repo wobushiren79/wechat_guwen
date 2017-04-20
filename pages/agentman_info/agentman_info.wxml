@@ -32,21 +32,27 @@
               </picker>
             </view>
           </view>
-          <view class="weui-cell weui-cell_input">
+          <view class="weui-cell weui-cell_input weui-cell_input_icon">
             <view class="weui-cell__hd">
               <view class="weui-label">*地址</view>
             </view>
             <view class="weui-cell__bd">
               <input class="weui-input" placeholder="地址" name="location" value="{{location}}"/>
             </view>
+            <view class="icon">
+                        <image src="../../images/address.png"></image>
+                    </view>
           </view>
-          <view class="weui-cell weui-cell_input">
+          <view class="weui-cell weui-cell_input  weui-cell_input_icon">
             <view class="weui-cell__hd">
               <view class="weui-label">*治丧地址</view>
             </view>
             <view class="weui-cell__bd">
               <input class="weui-input" placeholder="治丧地址" name="zsLocation" value="{{zsLocation}}"/>
             </view>
+            <view class="icon">
+                        <image src="../../images/address.png"></image>
+                    </view>
           </view>
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__hd">

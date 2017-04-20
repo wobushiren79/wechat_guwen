@@ -53,15 +53,18 @@
                     </view>
                     <view class="weui-cell__bd">
                         <input class="weui-input" value="{{customerAddress}}" disabled="disabled"/>
-                    </view>
+                    </view>  
                 </view>
 
-                <view class="weui-cell weui-cell_input">
+                <view class="weui-cell weui-cell_input weui-cell_input_icon" >
                     <view class="weui-cell__hd">
-                        <view class="weui-label">客户电话:</view>
+                        <view class="weui-label" >客户电话:</view>
                     </view>
-                    <view class="weui-cell__bd">
+                    <view class="weui-cell__bd" >
                         <input class="weui-input" value="{{customerMobile}}" disabled="disabled"/>
+                    </view>
+                    <view class="icon" bindtap="phone" data-tel="{{customerMobile}}" >
+                        <image src="../../images/phone.png"></image>
                     </view>
                 </view>
 
@@ -121,7 +124,7 @@
                             </view>
                         </view>
                        <!--结束洽谈-->
-                        <view class="weui-flex__item" wx:if="{{showFinishTalk && hasPrepay && orderId}}">
+                        <view class="weui-flex__item" wx:if="{{showFinishTalk  && orderId}}">
                             <view class="placeholder">
                                 <navigator url="../deadman_info/deadman_info?consultId={{consultId}}&orderId={{orderId}}" class="" hover-class="" open-type="redirect"  >
                                     <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">结束洽谈</button>
@@ -267,7 +270,7 @@
                             </view>
                         </view>
                        <!--结束洽谈-->
-                        <view class="weui-flex__item" wx:if="{{showFinishTalk && hasPrepay && orderId}}">
+                        <view class="weui-flex__item" wx:if="{{showFinishTalk&& orderId}}">
                             <view class="placeholder">
                                 <navigator url="../deadman_info/deadman_info?orderId={{orderId}}&consultId={{consultId}}" class="" hover-class="" open-type="redirect" >
                                     <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">结束洽谈</button>

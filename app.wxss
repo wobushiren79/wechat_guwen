@@ -3,7 +3,7 @@
 page{
     background-color: #F8F8F8;
     font-size: 16px;
-    font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+    font-family: "Microsoft Yahei";
 }
 .page__hd {
     padding: 40px;
@@ -32,4 +32,17 @@ page{
     color: #888888;
     text-align: center;
     font-size: 14px;
+}
+.weui-cell_input .icon image{
+    width: 23px;
+    height: 23px;
+    display: block;
+}
+.weui-cell_input .icon{
+    position: absolute;
+    top: 12px;
+    right: 12px
+}
+.weui-cell_input_icon{
+    padding-right: 30px;
 }
