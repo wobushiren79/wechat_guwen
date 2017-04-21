@@ -155,7 +155,8 @@ Page({
     },
     //点击客户电话拨打客户电话
     phone:function(e){
-     var tel= e.target.dataset.tel
+        //console.log(e)
+     var tel= e.currentTarget.dataset.tel
         wx.makePhoneCall({
         phoneNumber: tel, //仅为示例，并非真实的电话号码
         complete: function (res){
