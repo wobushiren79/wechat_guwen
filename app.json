@@ -12,7 +12,8 @@
      "pages/pay_a/pay_a",
      "pages/order_info/order_info",
      "pages/jsfu/jsfu",
-     "pages/pay_b/pay_b"
+     "pages/pay_b/pay_b",
+     "pages/compactinfo/compactinfo"
   ],
   "window": {
     "navigationBarTextStyle": "black",

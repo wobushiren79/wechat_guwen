@@ -18,7 +18,7 @@
               <view class="weui-label">*身份证</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="身份证" name="cardId" value="{{cardId}}"/>
+              <input class="weui-input" placeholder="身份证" name="cardId" value="{{cardId}}" type="idcard"/>
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -26,7 +26,7 @@
               <view class="weui-label">*年龄</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="年龄" name="age" value="{{age}}"/>
+              <input class="weui-input" placeholder="年龄" name="age" value="{{age}}" type="number"/>
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -44,7 +44,7 @@
               <view class="weui-label">*鞋码</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="鞋码" name="shoeSize" value="{{shoeSize}}"/>
+              <input class="weui-input" placeholder="鞋码" name="shoeSize" value="{{shoeSize}}" type="number"/>
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -72,7 +72,7 @@
               <view class="weui-label">所在地</view>
             </view>
             <view class="weui-cell__bd">
-              <input  class="weui-input" placeholder="所在地" name="location" value="{{location}}"/>
+              <textarea  class="weui-input" placeholder="所在地" name="location" value="{{location}}" maxlength="-1"/>
             </view>
             <view class="icon" bindtap="Location">
                         <image src="../../images/address.png"></image>

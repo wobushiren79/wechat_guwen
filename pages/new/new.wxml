@@ -22,7 +22,7 @@
                         <view class="weui-label">联系电话:</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <input class="weui-input" placeholder="电话" name="customerMobile"/>
+                        <input class="weui-input" placeholder="电话" name="customerMobile" type="number"/>
                     </view>
                 </view>
 
@@ -31,7 +31,7 @@
                         <view class="weui-label">客户地址:</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <input class="weui-input" placeholder="地址" name="customerAddressNew" value="{{Address}}"/>
+                        <textarea class="weui-input" placeholder="地址" name="customerAddressNew" value="{{Address}}"/>
                     </view>
                     <view class="icon" bindtap="Location">
                         <image src="../../images/address.png"></image>

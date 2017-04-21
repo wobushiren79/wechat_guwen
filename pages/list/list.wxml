@@ -52,7 +52,7 @@
                         <view class="weui-label">客户地址:</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <input class="weui-input" value="{{customerAddress}}" disabled="disabled"/>
+                        <textarea class="weui-input" value="{{customerAddress}}" disabled="disabled" maxlength="-1"/>
                     </view>  
                 </view>
 
@@ -135,7 +135,7 @@
                         <!--订单详情-->
                         <view class="weui-flex__item" wx:if="{{showOrderDetail}}">
                             <view class="placeholder">
-                                <navigator url="../compact/compact?orderId={{orderId}}" class="" hover-class="" open-type="redirect" >
+                                <navigator url="../compactinfo/compactinfo?orderId={{orderId}}&consultId={{consultId}}" class="" hover-class="" open-type="redirect" >
                                     <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">订单详情</button>
                                 </navigator>
                             </view>
@@ -281,7 +281,7 @@
                         <!--订单详情-->
                         <view class="weui-flex__item" wx:if="{{showOrderDetail}}">
                             <view class="placeholder">
-                                <navigator url="../compact/compact?orderId={{orderId}}" class="" hover-class=""  open-type="redirect">
+                                <navigator url="../compactinfo/compactinfo?orderId={{orderId}}&consultId={{consultId}}" class="" hover-class=""  open-type="redirect">
                                     <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">订单详情</button>
                                 </navigator>
                             </view>

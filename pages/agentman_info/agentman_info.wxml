@@ -19,7 +19,7 @@
               <view class="weui-label">*电话</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="电话" name="linkInfo" value="{{linkInfo}}"/>
+              <input class="weui-input" placeholder="电话" name="linkInfo" value="{{linkInfo}}" type="number"/>
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
@@ -37,7 +37,7 @@
               <view class="weui-label">*地址</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="地址" name="location" value="{{location}}"/>
+              <textarea class="weui-input" placeholder="地址" name="location" value="{{location}}" maxlength="-1"/>
             </view>
             <view class="icon" bindtap="Location">
                         <image src="../../images/address.png"></image>
@@ -48,7 +48,7 @@
               <view class="weui-label">*治丧地址</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="治丧地址" name="zsLocation" value="{{zsLocation}}"/>
+              <textarea class="weui-input" placeholder="治丧地址" name="zsLocation" value="{{zsLocation}}" maxlength="-1"/>
             </view>
             <view class="icon" bindtap="zsLocation">
                         <image src="../../images/address.png"></image>
@@ -59,7 +59,7 @@
               <view class="weui-label">*身份证号</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="身份证号" name="cardId" value="{{cardId}}"/>
+              <input class="weui-input" placeholder="身份证号" name="cardId" value="{{cardId}}" type="idcard"/>
             </view>
           </view>
           <view class="weui-cell weui-cell_input">
