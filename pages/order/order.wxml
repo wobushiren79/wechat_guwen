@@ -59,7 +59,6 @@
           </view>
         </view>
 <template name="list_b">
-<!--<view wx:for="{{FuneralData_a_a}}" wx:for-index="i">-->
         <!--寿衣全套  小分类分类-->
          <view class="weui-cells__title ">
           <!--{{index}}: -->

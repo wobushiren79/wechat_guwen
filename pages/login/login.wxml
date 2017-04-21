@@ -26,7 +26,7 @@
                 </view>
             </view>  
 
-            <radio-group class="radio-group" bindchange="systemType">
+            <!--<radio-group class="radio-group" bindchange="systemType">
             <view class="weui-flex">
                 <view class="weui-flex__item">
                     <view class="placeholder">
@@ -39,7 +39,7 @@
                     </view>
                 </view>
             </view>
-            </radio-group>
+            </radio-group>-->
 
             <view class="weui-btn-area">
                 <button class="weui-btn" type="primary" bindtap="showTopTips" formType="submit">确定</button>

@@ -20,6 +20,30 @@ Page({
       businessType: e.detail.value
     })
   },
+  Location: function () {
+    var that=this
+    wx.chooseLocation({
+      success: function (res) {
+        var Address=res.address
+        that.setData({
+          location:Address
+        })
+      }
+    })
+
+  },
+  zsLocation: function () {
+    var that=this
+    wx.chooseLocation({
+      success: function (res) {
+        var Address=res.address
+        that.setData({
+          zsLocation:Address
+        })
+      }
+    })
+
+  },
   onLoad: function (options) {
     var that = this
     var RouteUrl = getApp().globalData.RouteUrl

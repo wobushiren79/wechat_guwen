@@ -1,7 +1,8 @@
 Page({
   data: {
     array: ['紧急', '不紧急'],
-    businessType: 0
+    businessType: 0,
+    Address: '',
   },
   bindPickerChange: function (e) {
     this.setData({
@@ -50,6 +51,18 @@ Page({
         })
       }
     })
+  },
+  Location: function () {
+    var that=this
+    wx.chooseLocation({
+      success: function (res) {
+        var Address=res.address
+        that.setData({
+          Address:Address
+        })
+      }
+    })
+
   },
   formData: function (e) {
     var ContentData = e.detail.value

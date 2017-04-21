@@ -31,9 +31,9 @@
                         <view class="weui-label">客户地址:</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <input class="weui-input" placeholder="地址" name="customerAddressNew"/>
+                        <input class="weui-input" placeholder="地址" name="customerAddressNew" value="{{Address}}"/>
                     </view>
-                    <view class="icon">
+                    <view class="icon" bindtap="Location">
                         <image src="../../images/address.png"></image>
                     </view>
                 </view>
@@ -60,7 +60,7 @@
                 </view>
 
             </view>  
-
+          <!--<map id="myMap" show-location />-->
             <view class="weui-btn-area">
                 <button class="weui-btn" type="primary" bindtap="showTopTips" formType="submit">创建订单</button>
             </view>

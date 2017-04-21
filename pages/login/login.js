@@ -41,7 +41,10 @@ Page({
                  })
                   // console.log(res.data)
               }else{
-                console.log(res.data.message)
+                                wx.showToast({
+                                    title: res.data.message,
+                                    duration: 3000
+                                })
               }
             }
           })

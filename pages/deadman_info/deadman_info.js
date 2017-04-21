@@ -168,6 +168,18 @@ Page({
             date: e.detail.value
         })
     },
+  Location: function () {
+    var that=this
+    wx.chooseLocation({
+      success: function (res) {
+        var Address=res.address
+        that.setData({
+          location:Address
+        })
+      }
+    })
+
+  },
     formSubmit: function (e) {
         var RouteUrl = getApp().globalData.RouteUrl
         var content = e.detail.value
