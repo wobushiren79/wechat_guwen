@@ -81,7 +81,7 @@ Page({
           success: function (res) {
             var AgentmanData = res.data.content.consultAgentman
             if (res.data.code == 1000 && res.data.message == '操作成功') {
-              console.log(AgentmanData)
+              // console.log(AgentmanData)
               name = AgentmanData.name
               cardId = AgentmanData.cardId
               address = AgentmanData.address
