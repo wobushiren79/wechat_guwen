@@ -40,7 +40,7 @@ App({
   },
   globalData:{
     userInfo:null,
-    RouteUrl:"http://web.shianlife.cn:7080/shianlife-adviser-1.0-SNAPSHOT/"
+    RouteUrl:"https://web.shianlife.cn/shianlife-adviser-1.0-SNAPSHOT/"
     
     // RouteUrl:"http://192.168.0.146:8088/adviser/"
   }
