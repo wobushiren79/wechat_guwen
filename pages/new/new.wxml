@@ -14,7 +14,7 @@
                         <view class="weui-label">客户姓名:</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <input class="weui-input" placeholder="姓名" name="customerName"/>
+                        <input class="weui-input" placeholder="姓名" name="customerName" />
                     </view>
                 </view>
                 <view class="weui-cell weui-cell_input">
@@ -31,7 +31,7 @@
                         <view class="weui-label">客户地址:</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <textarea class="weui-input" placeholder="地址" name="customerAddressNew" value="{{Address}}"/>
+                        <input class="weui-input" placeholder="地址" name="customerAddressNew" value="{{Address}}"/>
                     </view>
                     <view class="icon" bindtap="Location">
                         <image src="../../images/address.png"></image>

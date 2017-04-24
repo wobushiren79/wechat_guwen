@@ -37,7 +37,7 @@
               <view class="weui-label">*地址</view>
             </view>
             <view class="weui-cell__bd">
-              <textarea class="weui-input" placeholder="地址" name="location" value="{{location}}" maxlength="-1"/>
+              <input class="weui-input" placeholder="地址" name="location" value="{{location}}" maxlength="-1"/>
             </view>
             <view class="icon" bindtap="Location">
                         <image src="../../images/address.png"></image>
@@ -48,7 +48,7 @@
               <view class="weui-label">*治丧地址</view>
             </view>
             <view class="weui-cell__bd">
-              <textarea class="weui-input" placeholder="治丧地址" name="zsLocation" value="{{zsLocation}}" maxlength="-1"/>
+              <input class="weui-input" placeholder="治丧地址" name="zsLocation" value="{{zsLocation}}" maxlength="-1"/>
             </view>
             <view class="icon" bindtap="zsLocation">
                         <image src="../../images/address.png"></image>

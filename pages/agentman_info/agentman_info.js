@@ -122,7 +122,7 @@ Page({
             } else {
               wx.showToast({
                 title: res.data.message,
-                duration: 3000
+                duration: 2000
               })
             }
             that.setData({
@@ -182,6 +182,9 @@ Page({
     ContentData.relation = relation
     ContentData.consultId = consultId
     //console.log(ContentData)
+    if(ContentData.name != '' && ContentData.linkInfo != '' && ContentData.location != '' && ContentData.zsLocation != '' && ContentData.cardId != ''){
+
+    
     // 取出緩存登錄信息
     wx.getStorage({
       key: 'logindata',
@@ -211,13 +214,39 @@ Page({
             } else {
               wx.showToast({
                 title: res.data.message,
-                duration: 3000
+                duration: 2000
               })
             }
           }
         })
       }
     })
+    }else if(ContentData.name == ''){
+              wx.showToast({
+                title: '姓名不能为空',
+                duration: 2000
+              })
+    }else if(ContentData.linkInfo == ''){
+              wx.showToast({
+                title: '电话不能为空',
+                duration: 2000
+              })
+    }else if(ContentData.location == ''){
+              wx.showToast({
+                title: '地址不能为空',
+                duration: 2000
+              })
+    }else if(ContentData.zsLocation == ''){
+              wx.showToast({
+                title: '治丧地址不能为空',
+                duration: 2000
+              })
+    }else if(ContentData.cardId == ''){
+              wx.showToast({
+                title: '身份证不能为空',
+                duration: 2000
+              })
+    }
   },
   formData: function (e) {
     var ContentData = e.detail.value
@@ -284,7 +313,7 @@ Page({
             } else {
               wx.showToast({
                 title: res.data.message,
-                duration: 3000
+                duration: 2000
               })
             }
           }

@@ -51,8 +51,9 @@
                     <view class="weui-cell__hd">
                         <view class="weui-label">客户地址:</view>
                     </view>
-                    <view class="weui-cell__bd">
-                        <textarea class="weui-input" value="{{customerAddress}}" disabled="disabled" maxlength="-1"/>
+                    <view class="weui-cell__bd text_address">
+                    <text class="weui-input " >{{customerAddress}}</text>
+                        <!--<text class="weui-input" value="{{customerAddress}}" disabled="disabled" maxlength="-1">-->
                     </view>  
                 </view>
 

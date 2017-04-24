@@ -28,6 +28,12 @@ navigator button{
     padding: 0 0.7em!important;
     font-size: 13px;
 }
+.text_address{
+    line-height: 1.25em
+}
+.weui-cell__bd {
+    height: auto!important;
+}
 /*.weui-flex__item navigator button.money{
     background-color: #ffda76;
     border-color: #ffda76;
