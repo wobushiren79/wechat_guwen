@@ -1,19 +1,19 @@
 {
   "pages": [
-     "pages/login/login", 
      "pages/index/index",
-     "pages/list/list", 
-     "pages/new/new", 
-     "pages/demo_new/demo_new", 
-     "pages/order/order",
-     "pages/agentman_info/agentman_info",
-     "pages/compact/compact", 
-     "pages/deadman_info/deadman_info", 
-     "pages/pay_a/pay_a",
-     "pages/order_info/order_info",
-     "pages/jsfu/jsfu",
-     "pages/pay_b/pay_b",
-     "pages/compactinfo/compactinfo"
+     "pages/login/login",
+		 "pages/list/list", 
+		 "pages/new/new", 
+		 "pages/demo_new/demo_new", 
+		 "pages/order/order",
+		 "pages/agentman_info/agentman_info",
+		 "pages/compact/compact", 
+		 "pages/deadman_info/deadman_info", 
+		 "pages/pay_a/pay_a",
+		 "pages/order_info/order_info",
+		 "pages/jsfu/jsfu",
+		 "pages/pay_b/pay_b",
+		 "pages/compactinfo/compactinfo"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -21,6 +21,33 @@
     "navigationBarBackgroundColor": "#f8f8f8",
     "backgroundColor": "#f8f8f8"
   },
+
+
+  "tabBar": {
+    "color": "#a9a9a9",
+    "backgroundColor":"#ffffff",
+    "selectedColor":"#48cfad",
+    "borderStyle":"white",
+    "position":"bottom",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "images/icon_tabBar_index0.png",
+      "selectedIconPath": "images/icon_tabBar_index1.png"
+    },{
+      "pagePath":  "pages/list/list",
+      "text": "订单",
+      "iconPath": "images/icon_tabBar_list0.png",
+      "selectedIconPath": "images/icon_tabBar_list1.png"
+    },{
+      "pagePath":  "pages/lists/lists",
+      "text": "发现",
+      "iconPath": "images/icon_tabBar_more0.png",
+      "selectedIconPath": "images/icon_tabBar_more1.png"
+    }]
+  },
+
+  
   "networkTimeout": {
     "request": 10000,
     "connectSocket": 10000,

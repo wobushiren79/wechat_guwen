@@ -41,6 +41,7 @@ App({
   globalData:{
     userInfo:null,
     RouteUrl:"https://web.shianlife.cn/shianlife-adviser-1.0-SNAPSHOT/",
+    //RouteUrl: "http://115.28.163.211:7088/shianlife-adviser-1.0-SNAPSHOT/",
     ByUrl: "http://115.28.163.211:7088/shianlife-adviser-1.0-SNAPSHOT/", 
     GmUrl: "http://115.28.163.211:7088/shianlife-advisor-cemetery-1.0-SNAPSHOT/",
     // RouteUrl:"http://192.168.0.146:8088/adviser/"

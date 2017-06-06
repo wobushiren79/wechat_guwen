@@ -3,10 +3,14 @@
 var app = getApp()
 Page({
   data: {
-    grade: '',
-    service: "",
-    grade_icon:"../../images/grade.png",
-    service_icon:"../../images/service.png",
+    num: '20',
+    service: "24",
+    money: "240",
+    service_num: "7.4",
+    icon_service:"../../images/index_icon_service.png",
+    icon_cem:"../../images/index_icon_service.png",
+    icon_plan:"../../images/index_icon_plan.png",
+    icon_right:"../../images/icon_right.png",
     role:''
   },
   //事件处理函数
@@ -17,34 +21,37 @@ Page({
   },
   onLoad: function () {
     var that = this
-    var RouteUrl=getApp().globalData.RouteUrl
     // 取出緩存登錄信息
     wx.getStorage({
       key: 'logindata',
         success: function(res) {
-        //  console.log(res.data)
-          wx.request({
-                      url: RouteUrl+'user/info/get', 
-                      method:"POST",
-                      data: "{\"content\":{}}",
-                      
-                      header: {
-                        "Content-Type":"application/x-www-form-urlencodeed",
-                        "Cookie":"sid="+res.data.content.sessionId
-                      },
-                      success: function(res) {
-                        if(res.data.code == 1000){
-                          var role=res.data.content.roles
-                         // console.log(role)
-                          that.setData({
-                            service:res.data.content.serviceSuccessSum,
-                            grade:res.data.content.avgSatis,
-                            role:role
-                          })
-                        }  
-                      }
-          })
-        }
+            wx.request({
+              url: 'http://115.28.163.211:7080/shianlife-backend-1.0-SNAPSHOT/user/info/get',
+              method: "POST",
+              data: "{\"content\":{}}",
+
+              header: {
+                "Content-Type": "application/x-www-form-urlencodeed",
+                "Cookie": "sid=" + res.data.content.sessionId
+              },
+              success: function (res) {
+                if (res.data.code == 1000) {
+                  var role = res.data.content.roles
+                  that.setData({
+                    service: res.data.content.serviceSuccessSum,
+                    grade: res.data.content.avgSatis,
+                    role: role
+                  })
+                }
+              }
+            })
+          },
+          fail:function(){
+            //如果获取缓存不成功就跳转登录页面
+            wx.redirectTo({
+              url: '../login/login',
+            })
+          }
       })
 
 

@@ -46,3 +46,6 @@ page{
 .weui-cell_input_icon{
     padding-right: 30px;
 }
+.button-hover[type="primary"]{
+    background-color: #3eac90;
+}

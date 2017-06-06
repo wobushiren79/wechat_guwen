@@ -1,0 +1,35 @@
+/**login.wxss**/
+.weui-cells{
+  background-color: transparent
+}
+.weui-cells::after,
+.weui-cells::before{
+  border: none
+}
+.weui-cells{
+  margin-bottom: 30px
+}
+/*.weui-cell:first-child::before{
+  display: block;
+}*/
+.weui-cell::before{
+  display: block!important;
+  top: 44px;
+  border-top:1rpx solid #D9D9D9;
+}
+.weui-cells {
+  margin-bottom:15px;
+}
+
+
+.weui-flex{
+  margin-bottom: 30px;
+}
+.weui-flex .weui-flex__item{
+  padding: 0 15px
+}
+
+.weui-flex .weui-flex__item:first-of-type{
+  text-align: right
+}
+
