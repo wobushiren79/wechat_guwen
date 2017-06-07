@@ -7,7 +7,7 @@ Page({
     value2: "公墓服務",
     logo_src : "../../images/logo.png",
     systemType:2,
-        value3:'ZY',
+        value3:'cgll',
         value4:'123456'
   },
     systemType:function(e){

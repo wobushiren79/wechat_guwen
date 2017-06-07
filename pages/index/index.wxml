@@ -8,13 +8,18 @@
       <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
 
       <!--名字-->
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    <view class="namenum">
 
-      <!--服务评分-->
-
-      <view>
-        评分：{{grade}}
-      </view>
+            <!--名字-->
+            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+            <!--服务评分-->
+            <view class="num">
+              评分：{{grade}}
+            </view>
+          </view>
+          <navigator class="exit" url="../login/login">
+            退出
+          </navigator>
     </view>
 
     <!--服务信息-->
@@ -58,7 +63,7 @@
       </navigator>
 
       <!--选墓服务 -->
-      <navigator url="" class="" hover-class="">
+      <navigator url="../new_/new_" class="" hover-class="" wx:if="{{Gmdata}}">
         <view class="weui-cell">
           <view class="weui-cell__hd">
             <image src="{{icon_cem}}" style=""></image>

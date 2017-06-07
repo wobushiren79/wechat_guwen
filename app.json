@@ -4,6 +4,7 @@
      "pages/login/login",
 		 "pages/list/list", 
 		 "pages/new/new", 
+     "pages/new_/new_",
 		 "pages/demo_new/demo_new", 
 		 "pages/order/order",
 		 "pages/agentman_info/agentman_info",

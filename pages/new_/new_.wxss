@@ -1,0 +1,8 @@
+/**login.wxss**/
+.picker{
+height:2.58823529em;
+min-height:2.58823529em;
+line-height:2.58823529em;
+color: #3baf92;
+}
+

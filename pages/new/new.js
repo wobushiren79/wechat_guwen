@@ -42,6 +42,11 @@ Page({
                 wx.redirectTo({
                   url: '../order/order?consultId=' + consultId
                 })
+              }else{
+                wx.showToast({
+                  title: res.data.message,
+                  duration: 2000
+                })
               }
             }
           })

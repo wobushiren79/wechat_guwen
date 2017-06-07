@@ -8,10 +8,11 @@ Page({
     money: "240",
     service_num: "7.4",
     icon_service:"../../images/index_icon_service.png",
-    icon_cem:"../../images/index_icon_service.png",
+    icon_cem:"../../images/index_icon_cem.png",
     icon_plan:"../../images/index_icon_plan.png",
     icon_right:"../../images/icon_right.png",
-    role:''
+    role:'',
+    Gmdata:false
   },
   //事件处理函数
   bindViewTap: function() {
@@ -21,7 +22,7 @@ Page({
   },
   onLoad: function () {
     var that = this
-    // 取出緩存登錄信息
+    // 取出殡仪登录信息
     wx.getStorage({
       key: 'logindata',
         success: function(res) {
@@ -53,7 +54,15 @@ Page({
             })
           }
       })
-
+      //取出公墓登录权限
+    wx.getStorage({
+      key: 'Gmlogin',
+      success: function (res) {
+        that.setData({
+          Gmdata:true
+        })
+      }
+    })
 
 
   	//调用应用实例的方法获取全局数据

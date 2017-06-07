@@ -68,7 +68,14 @@
   height: 24rpx;
 }
 
-
+.namenum text,
+.namenum .exit{
+  display: inline-block;
+}
+.namenum .exit{
+   color: #48cfad;
+  margin-left: 10rpx;
+}
 .placeholder{
 
     padding: 0 10px;
@@ -83,7 +90,7 @@
   background: #ffffff;
   position: relative;
 }
-.userinfo view{
+.userinfo view.num{
   position: absolute;
   /*background-color: #48cfad;*/
   width: 180rpx;
@@ -96,11 +103,17 @@
   right: 15px;
   background: linear-gradient(to right, #48cfad 0%,#7fffeb 100%);
 }
+.userinfo>.exit{
+  position: fixed;
+  top: 16rpx;
+  right: 15px;
+  color: #48cfad;
+  font-size: 28rpx;
+}
 
 .info{
   background-color: #ffffff;
   text-align: center;
- 
   height: 150rpx;
   padding-top: 20px;
 }
