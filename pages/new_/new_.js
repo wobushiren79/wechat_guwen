@@ -53,13 +53,14 @@ Page({
       var gmList = this.data.gmList
       for (var i in gmList){
         ContentData.planCemeteryId = gmList[businessType_a].id
+        ContentData.planCemeteryLocation = gmList[businessType_a].name
       }
     var zhidian=this.data.zhidian
     for(var i in zhidian){
-      ContentData.trafficWay = zhidian[businessType_b].code
-      ContentData.planCemeteryLocation = zhidian[businessType_b].name
+      ContentData.trafficWay = zhidian[businessType_b].text
+      
     }
-    console.log(ContentData)
+    // console.log(ContentData)
     if (ContentData.customerName != '' && ContentData.promiseTime != '' && ContentData.planCemeteryLocation != '' && ContentData.trafficWay != '' && ContentData.planCemeteryId != '' && ContentData.personNum != '' && ContentData.customerLocation != '' && ContentData.customerMobile !='') {
     // 取出緩存登錄信息
     wx.getStorage({
@@ -67,8 +68,10 @@ Page({
       success: function (msg) {
         // console.log(ContentData)
         var forData = { content: ContentData }
+        // console.log(forData)
         //转换字符串
         var ForData = JSON.stringify(forData)
+        // console.log(ForData)
         wx.request({
           url: GmUrl +'marketing/bespeak/build/save',
           method: "POST",
@@ -79,15 +82,14 @@ Page({
           },
           success: function (res) {
           //  console.log(res)
-            if (res.data.code == 1000 && res.data.message == '操作成功') {
+            if (res.data.code == 1000 ) {
               // //console.log(res.data.content.consultId)
               // //操作成功返回consultId進行緩存
               // wx.setStorageSync('consultId', res.data.content.consultId)
               // //頁面跳轉
-              wx.navigateTo({
-                   url: '',
+              wx.redirectTo({
+                url: '../list_/list_',
                })
-              // // console.log(res.data)
             } else {
               wx.showToast({
                 title: res.data.message,

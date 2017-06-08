@@ -62,3 +62,30 @@ button[type="primary"] {
   color: #fff;
   background-color: #48cfad;
 }
+
+/*tab*/
+.tab{
+    text-align: center;
+    padding: 20rpx 0;
+    border-bottom: 1px solid #3eac90;
+    height: 115rpx;
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+}
+.tab view{
+    display: block;
+    float: left;
+    width: 25%;
+    line-height: 75rpx;
+    font-size: 28rpx;
+    color: #a9a9a9;
+}
+.tab view navigator{
+    display: inline-block;
+
+
+}
+.tab navigator.active{
+    color: #48cfad;
+    border-bottom: 2px solid #48cfad;
+}

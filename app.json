@@ -13,6 +13,9 @@
 		 "pages/pay_a/pay_a",
 		 "pages/order_info/order_info",
 		 "pages/jsfu/jsfu",
+     "pages/list_/list_",
+     "pages/list_s/list_s",
+     "pages/blank/blank",
 		 "pages/pay_b/pay_b",
 		 "pages/compactinfo/compactinfo"
   ],
@@ -36,7 +39,7 @@
       "iconPath": "images/icon_tabBar_index0.png",
       "selectedIconPath": "images/icon_tabBar_index1.png"
     },{
-      "pagePath":  "pages/list/list",
+      "pagePath":  "pages/list_s/list_s",
       "text": "订单",
       "iconPath": "images/icon_tabBar_list0.png",
       "selectedIconPath": "images/icon_tabBar_list1.png"

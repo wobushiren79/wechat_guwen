@@ -1,0 +1,21 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <!--选项卡-->
+    <view class="tab">
+      <view>
+        <navigator class="active" url="../blank/blank" open-type="redirectTo">单项服务</navigator>
+      </view>
+      <view>
+        <navigator  url="../list/list" open-type="redirectTo">殡仪洽谈</navigator>
+      </view>
+      <view>
+        <navigator url="../list_/list_" open-type="redirectTo">选墓洽谈</navigator>
+      </view>
+      <view>
+        <navigator url="../list_s/list_s" open-type="switchTab">成功服务</navigator>
+      </view>
+    </view>
+    <image src="../../images/dog_chang.jpg"></image>
+    <text>惊不惊喜，意不意外</text>
+  </view>
+</view>

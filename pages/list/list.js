@@ -38,7 +38,7 @@ Page({
         var PageNum=JSON.stringify(PageNums)
     　　wx.showNavigationBarLoading() //在标题栏中显示加载
         wx.setNavigationBarTitle({
-          title: '刷新中!!!!!'
+          title: '刷新中!请稍后'
         })
             this.setData({
                    // pageSize:this.data.pageSize+2,
@@ -94,7 +94,7 @@ Page({
     　　//console.log('--------下拉刷新-------')
     　　wx.showNavigationBarLoading() //在标题栏中显示加载
         wx.setNavigationBarTitle({
-          title: '加载中!!!!!'
+          title: '加载中!请稍后'
         })
                   
             this.setData({
@@ -189,12 +189,19 @@ Page({
                             
                             if(res.data.code == 1000){ 
                             var TalkData=res.data.content.items 
-                            console.log(res)
-                            var Length=TalkData.length
+                              if(TalkData !=''){
+                                var Length = TalkData.length
                                 that.setData({
-                                    array:TalkData,
-                                    Length:Length
+                                  array: TalkData,
+                                  Length: Length
                                 })
+                              }else{
+                                wx.showToast({
+                                  title: '您暂时没有殡仪洽谈单',
+                                  duration: 2000
+                                })
+                              }
+
                             }else{
                                 wx.showToast({
                                     title: res.data.message,
