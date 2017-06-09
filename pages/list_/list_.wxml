@@ -257,10 +257,10 @@
             <!--公墓名称-->
             <view class="weui-cell weui-cell_input">
               <view class="weui-cell__hd">
-                <view class="weui-label">公墓名称</view>
+                <view class="weui-label">墓穴位置</view>
               </view>
               <view class="weui-cell__bd">
-                <input class="weui-input" value="{{planCemeteryLocation}}" disabled="disabled" />
+                <input class="weui-input" value="{{detailsLocation}}" disabled="disabled" />
               </view>
             </view>
           </view>

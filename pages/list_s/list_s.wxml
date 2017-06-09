@@ -29,8 +29,8 @@
               </view>
               <view class="weui-cell__bd name">
                 <input class="weui-input" value="{{customerName}}" disabled="disabled" />
-                         <view wx:if="{{bespeakStatus == 7}}">
-                         <text>已下单</text>
+                         <view wx:if="{{bespeakStatus == 8}}">
+                         <text>洽谈成功(购墓)</text>
                          </view>
               </view>
             </view>
@@ -79,17 +79,17 @@
             <view class="weui-cell weui-cell_input">
 
               <view class="weui-cell__hd">
-                <view class="weui-label">公墓名称</view>
+                <view class="weui-label">墓穴位置</view>
               </view>
               <view class="weui-cell__bd">
-                <input class="weui-input" value="{{planCemeteryLocation}}" disabled="disabled" />
+                <input class="weui-input" value="{{detailsLocation}}" disabled="disabled" />
               </view>
             </view>
 <!--按钮-->
             <view class="weui-cell weui-flex">
               <view class="weui-flex__item">
                 <view class="placeholder">
-                  <navigator url="../list/list" class="" hover-class="">
+                  <navigator url="../order_info_/order_info_?bespeakId={{bespeakId}}" class="" hover-class="">
                     <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">订单详情</button>
                   </navigator>
                 </view>

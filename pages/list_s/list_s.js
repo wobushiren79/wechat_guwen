@@ -194,6 +194,7 @@ Page({
               // console.log(res)
               if (res.data.code == 1000) {
                 var gmList = res.data.content.list
+                // console.log(gmList)
                   var Length = gmList.length
                   that.setData({
                     gmList: gmList,

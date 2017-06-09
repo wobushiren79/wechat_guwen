@@ -179,17 +179,18 @@ Page({
         })
         //查询公墓接口
         wx.request({
-          url: GmUrl + 'marketing/cemetery/findByCemeteryList',
+          url: GmUrl + 'marketing/cemetery/structure/list',
           method: "POST",
-          data: "{\"content\":{}}",
+          data: "{\"content\":{\"itemType\":0}}",
 
           header: {
             "Content-Type": "application/x-www-form-urlencodeed",
             "Cookie": "sid=" + res.data.content.sessionId
           },
           success: function (res) {
+            // console.log(res)
             if (res.data.code == 1000) {
-              var gmList=res.data.content.list
+              var gmList=res.data.content.items
               var GmList=[]
               for(var i in gmList){
                 GmList.push(gmList[i].name)

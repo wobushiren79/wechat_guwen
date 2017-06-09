@@ -12,6 +12,8 @@
 		 "pages/deadman_info/deadman_info", 
 		 "pages/pay_a/pay_a",
 		 "pages/order_info/order_info",
+     "pages/order_info_/order_info_",
+     "pages/peopleman_info/peopleman_info",
 		 "pages/jsfu/jsfu",
      "pages/list_/list_",
      "pages/list_s/list_s",

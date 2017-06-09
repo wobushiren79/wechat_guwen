@@ -390,22 +390,22 @@
         
 
         <!--返回修改信息-->
-        <view class="weui-flex__item">
+        <!--<view class="weui-flex__item">
           <view class="placeholder">
             <navigator url="../agentman_info/agentman_info?consultId={{consultId}}&orderId={{orderId}}" hover-class="" open-type="redirect">
               <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" >查看经办人</button>
             </navigator>
           </view>
-        </view>
+        </view>-->
 
-        <!--继续填写资料-->
+        <!--继续填写资料
         <view class="weui-flex__item">
           <view class="placeholder">
             <navigator url="../list/list" class="" hover-class="">
               <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">返回列表</button>
             </navigator>
           </view>
-        </view>
+        </view>-->
       </view>
   </view>
   </form>

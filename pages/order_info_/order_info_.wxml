@@ -1,0 +1,167 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <view>
+        <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+
+        <!--订单详情-->
+        <view class="weui-cells__title">订单详情
+
+          <!--客户详情-->
+          <navigator url="../peopleman_info/peopleman_info?orderId={{orderId}}" class="" hover-class="">
+            <button class="weui-btn mini-btn" type="primary" size="mini" >客户详情</button>
+          </navigator>
+        </view>
+        <view class="weui-cells weui-cells_after-title">
+
+          <!--客户姓名-->
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">订单编号</view>
+            </view>
+            <view class="weui-cell__bd name">
+              <input class="weui-input" value="{{orderNum}}" disabled="disabled" />
+            </view>
+          </view>
+
+          <!--公墓名称-->
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">公墓名称</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" value="{{cemeteryName}}" disabled="disabled" />
+            </view>
+          </view>
+        </view>
+
+        <!--园区名称-->
+        <view class="weui-cells__title">园区名称</view>
+        <view class="weui-cells weui-cells_after-title">
+
+          <!--位置信息-->
+          <view class="num">
+
+            <!--苑-->
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__hd">
+                <view class="weui-label">苑</view>
+              </view>
+              <view class="weui-cell__bd">
+                <input class="weui-input" value="{{tombName}}" disabled="disabled" />
+              </view>
+            </view>
+
+            <!--区-->
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__hd">
+                <view class="weui-label">区</view>
+              </view>
+              <view class="weui-cell__bd">
+                <input class="weui-input" value="{{parkName}}" disabled="disabled" />
+              </view>
+            </view>
+
+            <!--排-->
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__hd">
+                <view class="weui-label">排</view>
+              </view>
+              <view class="weui-cell__bd">
+                <input class="weui-input" value="{{rowNumber}}" disabled="disabled" />
+              </view>
+            </view>
+
+            <!--号-->
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__hd">
+                <view class="weui-label">号</view>
+              </view>
+              <view class="weui-cell__bd">
+                <input class="weui-input" value="{{num}}" disabled="disabled" />
+              </view>
+            </view>
+          </view>
+
+          <!--挂牌价-->
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">挂牌价</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" value="{{planSale}}" disabled="disabled" />
+            </view>
+          </view>
+
+          <!--成交价-->
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">成交价</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" value="{{saleMoney}}" disabled="disabled" />
+            </view>
+          </view>
+
+          <!--商议定金-->
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">商议定金</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" value="{{moneyDeposit}}" disabled="disabled" />
+            </view>
+          </view>
+
+          <!--公墓接待人-->
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">公墓接待人</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" value="{{cemeteryReceive}}" disabled="disabled" />
+            </view>
+          </view>
+
+          <!--公墓业务员-->
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">公墓业务员</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" value="{{cemeterySales}}" disabled="disabled" />
+            </view>
+          </view>
+
+          <!--赠送服务-->
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">赠送服务</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" value="{{freeService}}" disabled="disabled" />
+            </view>
+          </view>
+
+          <!--自选附属服务-->
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">自选附属服务</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" value="{{choiceService}}" disabled="disabled" />
+            </view>
+          </view>
+
+          <!--备注-->
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">备注</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" value="{{payRemarks}}" disabled="disabled" />
+            </view>
+          </view>
+        </view>
+    </view>
+  </view>
+</view>

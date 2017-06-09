@@ -121,7 +121,7 @@
 
 
               <!--支付定金-->
-              <view class="weui-flex__item" wx:if="{{orderId && !hasPrepay}}">
+              <view class="weui-flex__item" wx:if="{{orderId && !hasPrepay && consultStatus==3}}">
                 <view class="placeholder">
                   <navigator url="../pay_a/pay_a?consultId={{consultId}}&orderId={{orderId}}" class="" hover-class="" open-type="redirect">
                     <button class="weui-btn mini-btn money" type="primary" size="mini" form-type="submit">支付定金</button>
@@ -267,7 +267,7 @@
 
 
               <!--支付定金-->
-              <view class="weui-flex__item" wx:if="{{orderId && !hasPrepay}}">
+              <view class="weui-flex__item" wx:if="{{orderId && !hasPrepay && consultStatus==3}}">
                 <view class="placeholder">
                   <navigator url="../pay_a/pay_a?consultId={{consultId}}&orderId={{orderId}}" class="" hover-class="" open-type="redirect">
                     <button class="weui-btn mini-btn money" type="primary" size="mini" form-type="submit">支付定金</button>
