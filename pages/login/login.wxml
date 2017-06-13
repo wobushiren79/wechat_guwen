@@ -38,7 +38,7 @@
         </form>
 
         <!--页脚-->
-        <navigator url="url" class="foot">
+        <navigator url="../zs/zs" class="foot">
             没有账户和密码?
         </navigator>
 

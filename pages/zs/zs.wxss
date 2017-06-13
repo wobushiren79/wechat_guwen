@@ -1,0 +1,9 @@
+/**login.wxss**/
+
+.page__bd image{
+width:100%;
+height:5594rpx;
+
+}
+
+

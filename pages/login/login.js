@@ -7,8 +7,8 @@ Page({
     value2: "公墓服務",
     logo_src : "../../images/logo.png",
     systemType:2,
-        value3:'cgll',
-        value4:'123456'
+        value3:'',
+        value4:''
   },
     systemType:function(e){
     this.setData({systemType:e.detail.value})
@@ -76,6 +76,18 @@ Page({
             }
           }
         })
+      }
+    },
+    onShareAppMessage: function () {
+      return {
+        title: '圆满人生公共殡葬服务平台',
+        path: '/pages/login/login',
+        success: function (res) {
+          // 转发成功
+        },
+        fail: function (res) {
+          // 转发失败
+        }
       }
     },
 })

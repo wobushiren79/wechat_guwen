@@ -12,7 +12,7 @@
         <navigator class="active" url="../list_/list_" open-type="redirectTo">选墓洽谈</navigator>
       </view>
       <view>
-        <navigator  url="../list_s/list_s" open-type="switchTab">成功服务</navigator>
+        <navigator url="../list_s/list_s" open-type="switchTab">成功服务</navigator>
       </view>
     </view>
     <!--模板一-->
@@ -30,25 +30,28 @@
               </view>
               <view class="weui-cell__bd name">
                 <input class="weui-input" value="{{customerName}}" disabled="disabled" />
-                         <view wx:if="{{bespeakStatus == 1}}">
-                         <text>未分配</text>
-                         </view>
-                         <view wx:elif="{{bespeakStatus == 2}}">
-                         <text>未指派</text>
-                         </view>
-                         <view wx:elif="{{bespeakStatus==3}}">
-                         <text>未接单</text>
-                         </view>
+                <view wx:if="{{bespeakStatus == 1}}">
+                  <text>未分配</text>
+                </view>
+                <view wx:elif="{{bespeakStatus == 2}}">
+                  <text>未指派</text>
+                </view>
+                <view wx:elif="{{bespeakStatus==3}}">
+                  <text>未接单</text>
+                </view>
               </view>
             </view>
 
             <!--联系电话-->
-            <view class="weui-cell weui-cell_input">
+            <view class="weui-cell weui-cell_input weui-cell_input_icon">
               <view class="weui-cell__hd">
                 <view class="weui-label">联系电话</view>
               </view>
               <view class="weui-cell__bd">
                 <input class="weui-input" value="{{customerMobile}}" disabled="disabled" />
+              </view>
+              <view class="icon" bindtap="call_phone" data-phone="{{customerMobile}}">
+                <image src="../../images/phone.png"></image>
               </view>
             </view>
 
@@ -124,25 +127,28 @@
               </view>
               <view class="weui-cell__bd name">
                 <input class="weui-input" value="{{customerName}}" disabled="disabled" />
-                         <view wx:if="{{bespeakStatus == 4}}">
-                         <text>已接单</text>
-                         </view>
-                         <view wx:elif="{{bespeakStatus==5}}">
-                         <text>再次洽谈</text>
-                         </view>
-                         <view wx:elif="{{bespeakStatus==6}}">
-                         <text>洽谈失败(未购墓)</text>
-                         </view>
+                <view wx:if="{{bespeakStatus == 4}}">
+                  <text>已接单</text>
+                </view>
+                <view wx:elif="{{bespeakStatus==5}}">
+                  <text>再次洽谈</text>
+                </view>
+                <view wx:elif="{{bespeakStatus==6}}">
+                  <text>洽谈失败(未购墓)</text>
+                </view>
               </view>
             </view>
 
             <!--联系电话-->
-            <view class="weui-cell weui-cell_input">
+            <view class="weui-cell weui-cell_input weui-cell_input_icon">
               <view class="weui-cell__hd">
                 <view class="weui-label">联系电话</view>
               </view>
               <view class="weui-cell__bd">
                 <input class="weui-input" value="{{customerMobile}}" disabled="disabled" />
+              </view>
+               <view class="icon" bindtap="call_phone" data-phone="{{customerMobile}}">
+                <image src="../../images/phone.png"></image>
               </view>
             </view>
 
@@ -208,9 +214,9 @@
               </view>
               <view class="weui-cell__bd name">
                 <input class="weui-input" value="{{customerName}}" disabled="disabled" />
-                         <view wx:if="{{bespeakStatus == 7}}">
-                         <text>已下单</text>
-                         </view>
+                <view wx:if="{{bespeakStatus == 7}}">
+                  <text>已下单</text>
+                </view>
               </view>
             </view>
 
@@ -222,10 +228,13 @@
               <view class="weui-cell__bd">
                 <input class="weui-input" value="{{customerMobile}}" disabled="disabled" />
               </view>
+              <view class="icon" bindtap="call_phone" data-phone="{{customerMobile}}">
+                <image src="../../images/phone.png"></image>
+              </view>
             </view>
 
             <!--客户地址-->
-            <view class="weui-cell weui-cell_input weui-cell_input_icon">
+            <view class="weui-cell weui-cell_input weui-cell_input_icon ">
               <view class="weui-cell__hd">
                 <view class="weui-label">客户地址</view>
               </view>

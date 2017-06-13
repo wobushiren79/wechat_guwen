@@ -14,10 +14,31 @@ Page({
     role:'',
     Gmdata:false
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
+  // //事件处理函数
+  // bindViewTap: function() {
+  //   wx.navigateTo({
+  //     url: '../logs/logs'
+  //   })
+  // },
+  dele:function(){
+    wx.removeStorageSync('logindata');
+    wx.removeStorageSync('Gmlogin');
+    //如果获取缓存不成功就跳转登录页面
+    wx.redirectTo({
+      url: '../login/login',
+    })
+
+  },
+  call_phone:function(e){
+    var phone = e.currentTarget.dataset.phone;
+    wx.makePhoneCall({
+      phoneNumber: phone, //仅为示例，并非真实的电话号码
+      fail:function(res){
+        wx.showToast({
+          title: '拨打电话失败',
+          duration: 3000
+        })
+      }
     })
   },
   onLoad: function () {
@@ -72,5 +93,17 @@ Page({
         userInfo:userInfo
       })
     })
-  }
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '圆满人生公共殡葬服务平台',
+      path: '/pages/login/login',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  },
 })

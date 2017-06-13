@@ -6,10 +6,13 @@
 		 "pages/new/new", 
      "pages/new_/new_",
 		 "pages/demo_new/demo_new", 
+     "pages/zs/zs",
 		 "pages/order/order",
 		 "pages/agentman_info/agentman_info",
 		 "pages/compact/compact", 
 		 "pages/deadman_info/deadman_info", 
+     "pages/Sift/Sift",
+     "pages/Sift_content/Sift_content",
 		 "pages/pay_a/pay_a",
 		 "pages/order_info/order_info",
      "pages/order_info_/order_info_",
@@ -46,7 +49,7 @@
       "iconPath": "images/icon_tabBar_list0.png",
       "selectedIconPath": "images/icon_tabBar_list1.png"
     },{
-      "pagePath":  "pages/lists/lists",
+      "pagePath":  "pages/Sift/Sift",
       "text": "发现",
       "iconPath": "images/icon_tabBar_more0.png",
       "selectedIconPath": "images/icon_tabBar_more1.png"

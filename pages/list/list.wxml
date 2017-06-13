@@ -314,10 +314,12 @@
         </form>
       </view>
     </template>
-    <view wx:for="{{array}}">
+    <view wx:if="{{array}}" wx:for="{{array}}">
       <template is="list_a" data="{{...item}}" />
     </view>
   </view>
+
+  
   <!--<loading hidden="{{hidden}}" wx:if="{{hidden}}" bindchange="loadingChange">
             加载中...
         </loading>-->

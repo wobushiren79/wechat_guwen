@@ -165,13 +165,16 @@
           </view>
 
           <!--电话-->
-          <view class="weui-cell weui-cell_input">
+          <view class="weui-cell weui-cell_input weui-cell_input_icon">
             <view class="weui-cell__hd">
               <view class="weui-label">电话</view>
             </view>
             <view class="weui-cell__bd">
               <input class="weui-input" value="{{agentmanPhone}}" disabled="disabled" />
             </view>
+             <view class="icon" bindtap="call_phone" data-phone="{{agentmanPhone}}">
+                <image src="../../images/phone.png"></image>
+              </view>
           </view>
 
           <!--经办人与逝者关系-->

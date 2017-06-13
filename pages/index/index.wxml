@@ -8,18 +8,22 @@
       <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
 
       <!--名字-->
-    <view class="namenum">
+      <view class="namenum">
 
-            <!--名字-->
-            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-            <!--服务评分-->
-            <view class="num">
-              评分：{{grade}}
-            </view>
-          </view>
-          <navigator class="exit" url="../login/login">
-            退出
-          </navigator>
+        <!--名字-->
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        <!--服务评分-->
+        <view class="num">
+          评分：{{grade}}
+        </view>
+      </view>
+      <view bindtap="call_phone" class="call_phone" data-phone="966188">
+        <image src="../../images/icon_call_phone.png"></image>
+        <text>966188</text>
+      </view>
+      <view class="exit" bindtap="dele">
+        退出
+      </view>
     </view>
 
     <!--服务信息-->
@@ -47,7 +51,7 @@
     <view class="weui-cells weui-cells_after-title">
 
       <!--单项服务 -->
-      <navigator url="" class="" hover-class="">
+      <navigator url="" class="" hover-class="" open-type="navigate">
         <view class="weui-cell">
           <view class="weui-cell__hd">
             <image src="{{icon_service}}" style=""></image>
@@ -63,7 +67,8 @@
       </navigator>
 
       <!--选墓服务 -->
-      <navigator url="../new_/new_" class="" hover-class="" wx:if="{{Gmdata}}">
+      <block wx:if="{{Gmdata}}">
+      <navigator url="../new_/new_" class="" hover-class="" open-type="navigate" >
         <view class="weui-cell">
           <view class="weui-cell__hd">
             <image src="{{icon_cem}}" style=""></image>
@@ -77,9 +82,10 @@
           </view>
         </view>
       </navigator>
+      </block>
 
       <!--治丧服务 -->
-      <navigator url="../new/new" class="" hover-class="">
+      <navigator url="../new/new" class="" hover-class="" open-type="navigate">
         <view class="weui-cell">
           <view class="weui-cell__hd">
             <image src="{{icon_plan}}" style=""></image>

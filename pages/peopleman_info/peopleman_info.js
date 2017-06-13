@@ -39,7 +39,18 @@ Page({
             "showSwitch2waitService": false //是否显示[及時服务]
         }],
     },
-
+    call_phone: function (e) {
+      var phone = e.currentTarget.dataset.phone;
+      wx.makePhoneCall({
+        phoneNumber: phone, //仅为示例，并非真实的电话号码
+        fail: function (res) {
+          wx.showToast({
+            title: '拨打电话失败',
+            duration: 3000
+          })
+        }
+      })
+    },
     onLoad: function (options) {
       var GmUrl = getApp().globalData.GmUrl
       var that = this

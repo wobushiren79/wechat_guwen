@@ -1,15 +1,13 @@
 /**login.wxss**/
 .page__bd{
-    padding: 15px;
+   
     text-align: center;
 }
-.page__bd image{
-width:100%;
-height:800rpx;
 
-}
 .page__bd text{
-    
-    font-size: 60rpx;
+  display: block;
+  text-align: center;
+  padding: 20px;
+    font-size: 30rpx;
 }
 

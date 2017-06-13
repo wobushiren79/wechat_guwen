@@ -36,12 +36,15 @@
             </view>
 
             <!--联系电话-->
-            <view class="weui-cell weui-cell_input">
+            <view class="weui-cell weui-cell_input weui-cell_input_icon">
               <view class="weui-cell__hd">
                 <view class="weui-label">联系电话</view>
               </view>
               <view class="weui-cell__bd">
                 <input class="weui-input" value="{{customerMobile}}" disabled="disabled" />
+              </view>
+               <view class="icon" bindtap="call_phone" data-phone="{{customerMobile}}">
+                <image src="../../images/phone.png"></image>
               </view>
             </view>
 
