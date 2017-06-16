@@ -14,6 +14,9 @@ Page({
     this.setData({systemType:e.detail.value})
   },
     formSubmit: function (e) {
+      wx.showLoading({
+        title: '登录中!请稍后',
+      })
       var RouteUrl = getApp().globalData.RouteUrl
       var GmUrl = getApp().globalData.GmUrl  //公墓接口地址前缀
       var ByUrl = getApp().globalData.ByUrl  //殡仪接口地址前缀
@@ -22,12 +25,13 @@ Page({
       //  console.log(Contentdata)
       if (Contentdata) {
         var forData = { content: Contentdata }
-        // console.log(GuUrl)
+        var ForData = JSON.stringify(forData)
+        console.log(ForData)
         var that = this
         wx.request({
           url: ByUrl + 'doLogin',
           method: "POST",
-          data: forData,
+          data: ForData,
           header: {
             "Content-Type": "application/x-www-form-urlencodeed"
           },
@@ -51,17 +55,30 @@ Page({
                     "Content-Type": "application/x-www-form-urlencodeed"
                   },
                   success: function (res) {
+                    if (res.data.code == 1000){
                     //  console.log(res)
                     //公墓登录信息缓存
                     wx.setStorageSync('Gmlogin', res.data)
                     //  console.log(111111)
+                    setTimeout(function () {
+                      wx.hideLoading()
+                    }, 2000)
                     // 頁面跳轉
                     wx.switchTab({
                       url: '../index/index',
                     })
+                  }else{
+                      wx.showToast({
+                        title: res.data.message,
+                        duration: 3000
+                      })
+                  }
                   }
                 })
               } else {
+                setTimeout(function () {
+                  wx.hideLoading()
+                }, 2000)
                 //頁面跳轉
                 wx.switchTab({
                   url: '../index/index',

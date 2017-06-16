@@ -43,12 +43,13 @@ Page({
   },
   onLoad: function () {
     var that = this
+    var RouteUrl = getApp().globalData.RouteUrl
     // 取出殡仪登录信息
     wx.getStorage({
       key: 'logindata',
         success: function(res) {
             wx.request({
-              url: 'http://115.28.163.211:7080/shianlife-backend-1.0-SNAPSHOT/user/info/get',
+              url: RouteUrl + 'user/info/get',
               method: "POST",
               data: "{\"content\":{}}",
 
