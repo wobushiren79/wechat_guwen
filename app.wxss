@@ -88,3 +88,11 @@ button[type="primary"] {
     color: #48cfad;
     border-bottom: 2px solid #48cfad;
 }
+.wxParse-img{
+    /*background-color: #efefef;*/
+    overflow: hidden;
+
+    /*dqr_20170617*/
+    margin-left:-2em;
+
+}
