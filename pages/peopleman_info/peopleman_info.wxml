@@ -3,9 +3,9 @@
     <view>
       <form bindsubmit="formSubmit">
         <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
-
+<block wx:for="{{list}}">
         <!--使用者2-->
-        <view class="weui-cells__title">使用者1</view>
+        <view class="weui-cells__title">使用者信息</view>
         <view class="weui-cells weui-cells_after-title">
 
           <!--简介-->
@@ -17,7 +17,7 @@
                 <view class="weui-label">姓名</view>
               </view>
               <view class="weui-cell__bd">
-                <input class="weui-input" value="{{deadmanOneName}}" disabled="disabled" />
+                <input class="weui-input" value="{{item.name}}" disabled="disabled" />
               </view>
             </view>
 
@@ -27,7 +27,7 @@
                 <view class="weui-label">年龄</view>
               </view>
               <view class="weui-cell__bd">
-                <input class="weui-input" value="{{deadmanOneAge}}" disabled="disabled" />
+                <input class="weui-input" value="{{item.age}}" disabled="disabled" />
               </view>
             </view>
 
@@ -37,7 +37,7 @@
                 <view class="weui-label">性别</view>
               </view>
               <view class="weui-cell__bd">
-                <input class="weui-input" value="{{deadmanOneSex}}" disabled="disabled" />
+                <input class="weui-input" value="{{item.sex}}" disabled="disabled" />
               </view>
             </view>
 
@@ -47,7 +47,7 @@
                 <view class="weui-label">状态</view>
               </view>
               <view class="weui-cell__bd">
-                <input class="weui-input" value="{{deadmanOneState}}" disabled="disabled" />
+                <input class="weui-input" value="{{item.status}}" disabled="disabled" />
               </view>
             </view>
           </view>
@@ -58,7 +58,7 @@
               <view class="weui-label">身份证</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" value="{{deadmanOneCardId}}" disabled="disabled" />
+              <input class="weui-input" value="{{item.idCardNo}}" disabled="disabled" />
             </view>
           </view>
 
@@ -68,74 +68,7 @@
               <view class="weui-label">去世日期</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" value="{{deadmanOneDeadTime}}" disabled="disabled" />
-            </view>
-          </view>
-        </view>
-        <view class="weui-cells__title">使用者2</view>
-        <view class="weui-cells weui-cells_after-title">
-
-          <!--简介-->
-          <view class="num">
-
-            <!--姓名-->
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__hd">
-                <view class="weui-label">姓名</view>
-              </view>
-              <view class="weui-cell__bd">
-                <input class="weui-input" value="{{deadmanTwoName}}" disabled="disabled" />
-              </view>
-            </view>
-
-            <!--年龄-->
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__hd">
-                <view class="weui-label">年龄</view>
-              </view>
-              <view class="weui-cell__bd">
-                <input class="weui-input" value="{{deadmanTwoAge}}" disabled="disabled" />
-              </view>
-            </view>
-
-            <!--性别-->
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__hd">
-                <view class="weui-label">性别</view>
-              </view>
-              <view class="weui-cell__bd">
-                <input class="weui-input" value="{{deadmanTwoSex}}" disabled="disabled" />
-              </view>
-            </view>
-
-            <!--状态-->
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__hd">
-                <view class="weui-label">状态</view>
-              </view>
-              <view class="weui-cell__bd">
-                <input class="weui-input" value="{{deadmanTwoState}}" disabled="disabled" />
-              </view>
-            </view>
-          </view>
-
-          <!--身份证-->
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__hd">
-              <view class="weui-label">身份证</view>
-            </view>
-            <view class="weui-cell__bd">
-              <input class="weui-input" value="{{deadmanTwoCardId}}" disabled="disabled" />
-            </view>
-          </view>
-
-          <!--去世日期-->
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__hd">
-              <view class="weui-label">去世日期</view>
-            </view>
-            <view class="weui-cell__bd">
-              <input class="weui-input" value="{{deadmanTwoDeadTime}}" disabled="disabled" />
+              <input class="weui-input" value="{{item.deathTime}}" disabled="disabled" />
             </view>
           </view>
 
@@ -145,10 +78,13 @@
               <view class="weui-label">备注</view>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" value="{{remarks}}" disabled="disabled" />
+              <input class="weui-input" value="{{item.remark}}" disabled="disabled" />
             </view>
           </view>
+
+
         </view>
+</block>
 
         <!--经办人信息-->
         <view class="weui-cells__title">经办人信息</view>

@@ -23,7 +23,7 @@ Page({
             if (res.data.code == 1000) {
               var siftdata = res.data.content.items
               var Length = siftdata.length
-              console.log(res)
+              // console.log(res)
                 that.setData({
                   siftdata: siftdata,
                   Length: Length

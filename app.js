@@ -43,8 +43,10 @@ App({
     RouteUrl:"https://web.shianlife.cn/shianlife-adviser-1.0-SNAPSHOT/",
     //RouteUrl: "http://115.28.163.211:7088/shianlife-adviser-1.0-SNAPSHOT/",
     ByUrl: "https://t-cemetery-api.shianlife.cn/shianlife-adviser-1.0-SNAPSHOT/", 
+    // testUrl:"http://192.168.0.35:8089/adviser/",
     // ByUrl: "http://115.28.163.211:7088/shianlife-adviser-1.0-SNAPSHOT/",
     GmUrl: "https://t-cemetery-api.shianlife.cn/shianlife-advisor-cemetery-1.0-SNAPSHOT/",
+    // GmUrl:"http://192.168.0.35:8099/advisor/",
     AppUrl:"https://app.e-funeral.cn/",
     // RouteUrl:"http://192.168.0.146:8088/adviser/"
   }

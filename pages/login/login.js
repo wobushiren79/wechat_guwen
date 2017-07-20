@@ -26,7 +26,7 @@ Page({
       if (Contentdata) {
         var forData = { content: Contentdata }
         var ForData = JSON.stringify(forData)
-        console.log(ForData)
+        // console.log(ForData)
         var that = this
         wx.request({
           url: ByUrl + 'doLogin',
@@ -34,6 +34,12 @@ Page({
           data: ForData,
           header: {
             "Content-Type": "application/x-www-form-urlencodeed"
+          },
+          fail:function(){
+           console.log(1111111111111)
+           setTimeout(function () {
+             wx.hideLoading()
+           }, 1000)
           },
           success: function (res) {
             // console.log(res)

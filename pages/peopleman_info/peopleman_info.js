@@ -63,7 +63,7 @@ Page({
         success: function (res) {
           //使用者接口
           wx.request({
-            url: GmUrl + 'marketing/order/deadinfo/get',
+            url: GmUrl + 'marketing/order/dead/get',
             method: "POST",
             data: DataContent,
             header: {
@@ -73,24 +73,8 @@ Page({
             success: function (res) {
               // console.log(res.data.content)
               if (res.data.code == 1000) {
-                // console.log(res)
-                // for (var i in res.data.content){
-                //   var orderNum = res.data.content[i].orderNum
-                // }
                 that.setData({
-                  deadmanOneName: res.data.content.deadmanOneName,
-                  deadmanOneAge: res.data.content.deadmanOneAge,
-                  deadmanOneSex: res.data.content.deadmanOneSex,
-                  deadmanOneState: res.data.content.deadmanOneState,
-                  deadmanOneCardId: res.data.content.deadmanOneCardId,
-                  deadmanOneDeadTime: res.data.content.deadmanOneDeadTime,
-                  deadmanTwoName: res.data.content.deadmanTwoName,
-                  deadmanTwoAge: res.data.content.deadmanTwoAge,
-                  deadmanTwoSex: res.data.content.deadmanTwoSex,
-                  deadmanTwoState: res.data.content.deadmanTwoState,
-                  deadmanTwoCardId: res.data.content.deadmanTwoCardId,
-                  deadmanTwoDeadTime: res.data.content.deadmanTwoDeadTime,
-                  remarks: res.data.content.remark,
+                  list: res.data.content.list
                 })
               } else {
                 wx.showToast({
