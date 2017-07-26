@@ -40,6 +40,7 @@ App({
   },
   globalData:{
     userInfo:null,
+    LocalUrl:"http://192.168.0.46/shian_goods/Api/",
     RouteUrl:"https://web.shianlife.cn/shianlife-adviser-1.0-SNAPSHOT/",
     //RouteUrl: "http://115.28.163.211:7088/shianlife-adviser-1.0-SNAPSHOT/",
     ByUrl: "https://t-cemetery-api.shianlife.cn/shianlife-adviser-1.0-SNAPSHOT/", 

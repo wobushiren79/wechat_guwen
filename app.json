@@ -22,7 +22,8 @@
      "pages/list_s/list_s",
      "pages/blank/blank",
 		 "pages/pay_b/pay_b",
-		 "pages/compactinfo/compactinfo"
+		 "pages/compactinfo/compactinfo",
+     "pages/service/service"
   ],
   "window": {
     "navigationBarTextStyle": "black",

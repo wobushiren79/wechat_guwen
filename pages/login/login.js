@@ -36,7 +36,7 @@ Page({
             "Content-Type": "application/x-www-form-urlencodeed"
           },
           fail:function(){
-           console.log(1111111111111)
+          //  console.log(1111111111111)
            setTimeout(function () {
              wx.hideLoading()
            }, 1000)

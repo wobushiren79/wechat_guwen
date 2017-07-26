@@ -1,0 +1,86 @@
+/**login.wxss**/
+page{
+  height: 100%
+}
+.page{
+ height: 100%;
+}
+.page__bd {
+height: 100%;
+padding-bottom: 0;
+}
+
+/*一级分类*/
+.tab_title{
+height: 100%;
+  background-color: #ffffff;
+  float: left;
+  width: 180rpx;
+  overflow: auto;
+}
+.tab_title .ul .li{
+  line-height: 100rpx;
+  height: 100rpx;
+  border-bottom: 1px solid #f8f8f8;
+  text-align: center;
+  font-size: 30rpx;
+  color: #353535
+}
+.tab_title .ul .active{
+  background-color: #f8f8f8;
+   color: #48cfad;
+   /*background-color: #ececec*/
+}
+/*二级分类*/
+.tab_content{
+  height: 100%;
+   overflow: auto;
+  float: left;
+  width: 570rpx;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+.tab_content .title{
+  height: 84rpx;
+  line-height: 84rpx;
+  font-size: 30rpx;
+}
+.tab_content .ul .li{
+  float: left;
+  width: 33.333333%;
+  /*height: 208rpx;*/
+  border-right: 1px solid #f8f8f8;
+  border-bottom: 1px solid #f8f8f8;
+  text-align: center;
+  font-size: 30rpx;
+  color: #353535;
+  box-sizing: border-box;
+  /*background-color: #ffffff;*/
+  padding: 30rpx 0;
+}
+.tab_content .ul{
+  background-color: #ffffff;
+}
+.tab_content .ul .li image{
+  display: block;
+  width: 120rpx;
+  height: 120rpx;
+  margin: auto
+}
+.tab_content .ul .li text{
+margin-top: 30rpx;
+display:block;
+text-align:center;
+color:#353535;
+font-size:24rpx;
+white-space:nowrap;
+text-overflow:ellipsis;
+overflow:hidden;
+}
+.weui-grid_active{
+  background-color: #f8f8f8!important;
+}
+
+
+
+

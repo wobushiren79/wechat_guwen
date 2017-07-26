@@ -76,6 +76,39 @@ Page({
             })
           }
       })
+    var LocalUrl = getApp().globalData.LocalUrl + 'Channel/channel'
+    //查询渠道接口
+    wx.request({
+      url: LocalUrl,
+      method: "POST",
+      data: '',
+      header: {
+        "Content-Type": "application/x-www-form-urlencodeed",
+        // "Cookie": "sid=" + res.data.content.sessionId
+      },
+      success: function (res) {
+        if (res.data.code == 1000) {
+          var channel=res.data.list
+          for(var i in channel){
+            if (channel[i].name == '单项'){
+              //缓存渠道信息
+              wx.setStorageSync('channel', channel[i])
+               }
+          }
+          // console.log(res)
+          // that.setData({
+          //   siftdata: siftdata,
+          //   Length: Length
+          // })
+        } else {
+          // wx.showToast({
+          //   title: res.data.message,
+          //   duration: 2000
+          // })
+        }
+      }
+    })
+
       //取出公墓登录权限
     wx.getStorage({
       key: 'Gmlogin',

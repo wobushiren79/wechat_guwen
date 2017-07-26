@@ -1,0 +1,29 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd clearfix">
+    <!--一级分类-->
+    <view class="tab_title">
+      <view class="ul">
+      <black wx:for="{{list}}">
+        <view class="li active" wx:if="{{index == active}}">{{item.name}}</view>
+        <view class="li" wx:if="{{index != active}}" bindtap="goodsclass" data-index="{{index}}" data-name="{{item.name}}" data-id="{{item.id}}">{{item.name}}</view>
+      </black>
+      </view>
+    </view>
+
+    <!--二级分类-->
+    <view class="tab_content">
+      <view class="title">{{name}}</view>
+      <view class="content">
+        <view class="ul clearfix">
+        <black wx:for="{{attrlist}}">
+          <navigator url="#" class="li" hover-class="weui-grid_active">
+            <image src="http://192.168.0.46/shian_goods/Public/Uploads/{{item.title_img}}"></image>
+            <text>{{item.name}}</text>
+          </navigator>
+        </black>
+        </view>
+
+      </view>
+    </view>
+  </view>
+</view>

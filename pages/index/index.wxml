@@ -51,7 +51,7 @@
     <view class="weui-cells weui-cells_after-title">
 
       <!--单项服务 -->
-      <navigator url="" class="" hover-class="" open-type="navigate">
+      <navigator url="../service/service" class="" hover-class="" open-type="navigate">
         <view class="weui-cell">
           <view class="weui-cell__hd">
             <image src="{{icon_service}}" style=""></image>
