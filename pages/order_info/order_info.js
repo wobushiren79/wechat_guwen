@@ -103,9 +103,10 @@ Page({
             success: function (msg) {
                 // console.log(ContentData)
                 var forData = { content: ContentData }
+                
                 //转换字符串
                 var ForData = JSON.stringify(forData)
-                //console.log(ForData)
+                // console.log(ForData)
                 wx.request({
                     url: RouteUrl+'customer/talkfail/save',
                     method: "POST",
@@ -115,7 +116,7 @@ Page({
                         "Cookie": "sid=" + msg.data.content.sessionId
                     },
                     success: function (res) {
-                        console.log(res.data)
+                        // console.log(res.data)
                         if (res.data.code == 1000 && res.data.message == '操作成功') {
                             //頁面跳轉
                             wx.redirectTo({

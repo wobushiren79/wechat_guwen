@@ -16,8 +16,8 @@
       <view class="content">
         <view class="ul clearfix">
         <black wx:for="{{attrlist}}">
-          <navigator url="#" class="li" hover-class="weui-grid_active">
-            <image src="http://192.168.0.46/shian_goods/Public/Uploads/{{item.title_img}}"></image>
+          <navigator url="../service_list/service_list?id={{item.id}}" class="li" hover-class="weui-grid_active">
+            <image src="http://wechat.e-funeral.cn/Public/Uploads/{{item.title_img}}"></image>
             <text>{{item.name}}</text>
           </navigator>
         </black>

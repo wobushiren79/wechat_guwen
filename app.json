@@ -23,7 +23,12 @@
      "pages/blank/blank",
 		 "pages/pay_b/pay_b",
 		 "pages/compactinfo/compactinfo",
-     "pages/service/service"
+     "pages/service/service",
+     "pages/service_list/service_list",
+     "pages/service_content/service_content",
+     "pages/service_buy/service_buy",
+     "pages/service_money/service_money",
+     "pages/service_goods_address/service_goods_address"
   ],
   "window": {
     "navigationBarTextStyle": "black",
