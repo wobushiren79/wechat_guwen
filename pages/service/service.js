@@ -67,6 +67,7 @@ onLoad:function(){
         },
         success: function (res) {
           if (res.data.code == 1000) {
+            // console.log(channel)
             var list =res.data.list
                 var formdata = {}
                 formdata.id = list[0].id
@@ -100,7 +101,7 @@ onLoad:function(){
               name: list[0].name,
               channeldata: channel,
             })
-            // wx.hideLoading()
+            wx.hideLoading()
           } else {
             wx.showToast({
               title: res.data.message,

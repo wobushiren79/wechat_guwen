@@ -159,19 +159,24 @@
     <!-- 固定底部 star -->
     <view class="footerfix clearfix">
       <!-- 客服 -->
-      <view class="server">
+      <!--<button class="server" open-type="contact" session-from="wechat" bindtap="contact">
         <image src="../../images/icon_server.png"></image>
         <text>客服</text>
-      </view>
+      </button>-->
+<contact-button 
+  size="20"
+  session-from="WeChat"
+>
+</contact-button>
       <!-- 购物车 -->
       <view class="shop" bindtap="cartlist">
         <image src="../../images/icon_shop.png"></image>
-        <text>购物车</text>
+        <text>服务车</text>
       </view>
       <black wx:if="{{chatxian}}">
       <!-- 加入购物车 -->
       <view class="shopping" bindtap="cart">
-        加入购物车
+        加入服务车
       </view>
       <!-- 直接购买 -->
       <view class="buy" bindtap="purchase">
@@ -189,7 +194,7 @@
       <!-- 弹窗 star -->
       <view class="popup" bindtap="popupdata">
         <view class="dl">
-          <view class="dt">结算价格</view>
+          <view class="dt">圆满价格</view>
           <black wx:for="{{list.specprice}}">
             <view class="dd">
               <view class="name">

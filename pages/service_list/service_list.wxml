@@ -51,7 +51,7 @@
               <text> {{item.goods_slogan}}</text>
             </view>
             <view class="money">
-              ￥<text>{{item.total}}</text>
+              ￥<text>{{item.price}}</text>
             </view>
             <view class="num">
               销售量<text>{{item.sale_amount}}</text>

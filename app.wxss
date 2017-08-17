@@ -65,8 +65,8 @@ button[type="primary"] {
 /*tab*/
 .tab{
     text-align: center;
-    padding: 20rpx 0;
-    border-bottom: 1px solid #3eac90;
+    /* padding: 20rpx 0; */
+    /* border-bottom: 1px solid #3eac90; */
     height: 115rpx;
     background-color: #FFFFFF;
     box-sizing: border-box;
@@ -75,7 +75,7 @@ button[type="primary"] {
     display: block;
     float: left;
     width: 25%;
-    line-height: 75rpx;
+    line-height: 111rpx;
     font-size: 28rpx;
     color: #a9a9a9;
 }
@@ -133,6 +133,10 @@ input{
     z-index: 8;
 }
 
+/* 置底页脚 */
+.footerfix button{
+  border-radius: 0;
+}
 
 
 /* 省市区下拉 star */
@@ -192,7 +196,113 @@ input{
   padding: 20rpx;
 }
 /* 省市区下拉 end */
-/* 置底页脚 */
-.footerfix button{
-  border-radius: 0;
+
+/* 单项服务订单列表 star */
+.page_service_order .tab view{
+    width: 20%;
 }
+.page_service_order .icon {
+  width: 14rpx;
+  height: 24rpx;
+  position: absolute;
+  top: 50%;
+  right: 16rpx;
+  transform: translateY(-50%);
+  opacity: 0.5;
+  transition: all 0.3s;
+}
+
+.page_service_order .list .ul {
+  padding: 0 16rpx;
+}
+
+.page_service_order .list .ul .li {
+  margin-top: 15rpx;
+  background: #fff;
+  font-size: 28rpx;
+  position: relative;
+  z-index: 1;
+  border-radius: 5rpx;
+}
+
+.page_service_order .list .ul .li .li_header,
+.page_service_order .list .ul .li .li_footer{
+  display: flex;
+  padding: 0 16rpx;
+  line-height: 80rpx;
+  border-bottom: 1px solid #efefef;
+  color: #48cfad;
+  height: 80rpx;
+  
+}
+.page_service_order .list .ul .li .li_footer{
+  border: none;
+}
+.page_service_order .list .ul .li .li_header .header,
+.page_service_order .list .ul .li .li_footer .header  {
+  flex-basis: 180rpx;
+}
+
+
+.page_service_order .list .ul .li .li_header .footer,
+.page_service_order .list .ul .li .li_footer .footer {
+  flex: 1;
+  text-align: right;
+}
+.page_service_order .list .ul .li .li_footer .footer {
+  position: relative;
+  z-index: 99;
+}
+.page_service_order .list .ul .li .li_footer image{
+  display: inline-block;
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 8rpx;
+  position: relative;
+  top: 15rpx;
+}
+.page_service_order .list .ul .li .li_footer .footer .btn{
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  margin-left: 16rpx;
+  width: 132rpx;
+  height: 50rpx;
+  text-align: center;
+  border: 1px solid #48cfad;
+  border-radius: 5rpx;
+  color: #ffffff;
+  box-sizing: border-box;
+  background: #48cfad;
+  outline: none;
+  line-height: 46rpx;
+  font-size: 28rpx;
+  top: 15rpx;
+}
+.page_service_order .list .ul .li .li_footer .footer .btn.btn_1{
+  background: transparent;
+  color: #48cfad;
+}
+.page_service_order .list .ul .li .li_footer .footer .btn::after{
+  display: none;
+}
+.page_service_order .list .ul .li .li_footer .footer .btn:active,
+.page_service_order .list .ul .li .li_footer .header:active{
+  opacity: 0.7;
+}
+.page_service_order .list .ul .li .li_body{
+  border-bottom: 1px solid #efefef;
+  padding: 16rpx;
+  box-sizing: border-box;
+  position: relative;
+}
+.page_service_order .list .ul .li .li_body>view{
+  display: flex;
+} 
+.page_service_order .list .ul .li .li_body>view .header{
+  flex-basis: 150rpx;
+}
+.page_service_order .list .ul .li .li_body>view .body{
+  flex: 1;
+}
+/* 单项服务订单列表 end */

@@ -1,0 +1,38 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd clearfix">
+
+    <view class="content">
+      <view class="ul clearfix">
+        <!-- 公墓服务 -->
+        <view class="li">
+          <navigator url="../list_s/list_s" hover-class="active">
+            <image src="../../images/icon_order_cem.png"></image>
+            <text>公墓服务</text>
+          </navigator>
+        </view>
+
+        <!-- 殡仪服务 -->
+        <view class="li">
+          <navigator url="../list/list" hover-class="active">
+            <image src="../../images/icon_order_plan.png"></image>
+            <text>殡仪服务</text>
+          </navigator>
+        </view>
+
+        <!-- 单项服务 -->
+        <view class="li">
+          <navigator url="../service_order_list_submit/service_order_list_submit" hover-class="active">
+            <image src="../../images/icon_order_server.png"></image>
+            <text>单项服务</text>
+          </navigator>
+        </view>
+
+
+
+
+
+      </view>
+    </view>
+
+  </view>
+</view>

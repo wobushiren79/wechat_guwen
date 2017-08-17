@@ -27,9 +27,10 @@
                     </view>
                 </view>
             </view>  
-
+<button bindtap="urlA">请求A</button>
            
-
+<button bindtap="urlB">系统登录</button>
+<button bindtap="urlC">请求B</button>
             <view class="weui-btn-area">
                 <button class="weui-btn" type="primary" bindtap="showTopTips" formType="submit">确定</button>
             </view>

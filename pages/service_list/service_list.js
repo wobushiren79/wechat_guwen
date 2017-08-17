@@ -111,6 +111,14 @@ onLoad: function (e) {
       title: '加载中',
       mask: true,
     })
+    // wx.getStorage({
+    //   key: 'JSESSIONID',
+    //   success: function(res) {
+    //     that.setData({
+    //       JSESSIONID: JSESSIONID
+    //     })
+    //   },
+    // })
     // 取出渠道信息
     wx.getStorage({
       key: 'channel',

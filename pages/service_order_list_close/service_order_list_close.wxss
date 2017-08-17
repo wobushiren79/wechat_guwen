@@ -1,0 +1,18 @@
+.list .ul .li {
+  opacity: 0.6;
+}
+
+.list .ul .li .li_header,
+.list .ul .li .li_footer{
+  border-bottom: 1px solid #cccccc;
+}
+
+.list .ul .li .li_body{
+  border-bottom: 1px solid #cccccc;
+
+}
+
+.page_service_order .list .ul .li .li_footer .footer .btn:active,
+.page_service_order .list .ul .li .li_footer .header:active{
+  opacity: 1;
+}

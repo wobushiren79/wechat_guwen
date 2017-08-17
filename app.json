@@ -28,7 +28,20 @@
      "pages/service_content/service_content",
      "pages/service_buy/service_buy",
      "pages/service_money/service_money",
-     "pages/service_goods_address/service_goods_address"
+     "pages/service_goods_address/service_goods_address",
+     "pages/service_invoice_address/service_invoice_address",
+     "pages/service_goods_order/service_goods_order",
+     "pages/service_goods_pay/service_goods_pay",
+     "pages/service_goods_pay_error/service_goods_pay_error",
+     "pages/service_goods_pay_succeed/service_goods_pay_succeed",
+     "pages/order_index/order_index",
+     "pages/service_order_list_close/service_order_list_close",
+     "pages/service_order_list_pay/service_order_list_pay",
+     "pages/service_order_list_serviceing/service_order_list_serviceing",
+     "pages/service_order_list_succeed/service_order_list_succeed",
+     "pages/service_order_list_submit/service_order_list_submit",
+     "pages/service_order_content/service_order_content",
+     "pages/service_forward/service_forward"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -50,7 +63,7 @@
       "iconPath": "images/icon_tabBar_index0.png",
       "selectedIconPath": "images/icon_tabBar_index1.png"
     },{
-      "pagePath":  "pages/list_s/list_s",
+      "pagePath": "pages/order_index/order_index",
       "text": "订单",
       "iconPath": "images/icon_tabBar_list0.png",
       "selectedIconPath": "images/icon_tabBar_list1.png"

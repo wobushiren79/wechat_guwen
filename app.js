@@ -40,8 +40,8 @@ App({
   },
   globalData:{
     userInfo:null,
-    LocalUrl:"http://192.168.0.46/shian_goods/Api/",
-    // LocalUrl: "http://wechat.e-funeral.cn/Api/",
+    // LocalUrl:"http://192.168.0.46/shian_goods/Api/",
+    LocalUrl: "http://wechat.e-funeral.cn/Api/",
     RouteUrl:"https://web.shianlife.cn/shianlife-adviser-1.0-SNAPSHOT/",
     //RouteUrl: "http://115.28.163.211:7088/shianlife-adviser-1.0-SNAPSHOT/",
     ByUrl: "https://t-cemetery-api.shianlife.cn/shianlife-adviser-1.0-SNAPSHOT/", 
@@ -50,7 +50,9 @@ App({
     GmUrl: "https://t-cemetery-api.shianlife.cn/shianlife-advisor-cemetery-1.0-SNAPSHOT/",
     // GmUrl:"http://192.168.0.35:8099/advisor/",
     AppUrl:"https://app.e-funeral.cn/",
-    javaApi:"http://192.168.0.49:8080/"
+    // javaApi:"http://192.168.0.199:8299/goods/"   权哥
+    //小慌
+    javaApi:"http://192.168.0.49:8088/"
     // RouteUrl:"http://192.168.0.146:8088/adviser/"
   }
 })

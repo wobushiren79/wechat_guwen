@@ -49,7 +49,7 @@
 
     <!--列表-->
     <view class="weui-cells weui-cells_after-title">
-
+<black wx:if="{{Individual}}">
       <!--单项服务 -->
       <navigator url="../service/service" class="" hover-class="" open-type="navigate">
         <view class="weui-cell">
@@ -65,7 +65,7 @@
           </view>
         </view>
       </navigator>
-
+</black>
       <!--选墓服务 -->
       <block wx:if="{{Gmdata}}">
       <navigator url="../new_/new_" class="" hover-class="" open-type="navigate" >
@@ -83,7 +83,7 @@
         </view>
       </navigator>
       </block>
-
+<black wx:if="{{Bylogin}}">
       <!--治丧服务 -->
       <navigator url="../new/new" class="" hover-class="" open-type="navigate">
         <view class="weui-cell">
@@ -99,6 +99,7 @@
           </view>
         </view>
       </navigator>
+   </black>
     </view>
   </view>
 </view>

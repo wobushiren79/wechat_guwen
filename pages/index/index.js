@@ -23,6 +23,7 @@ Page({
   dele:function(){
     wx.removeStorageSync('logindata');
     wx.removeStorageSync('Gmlogin');
+    wx.removeStorageSync('Individual');
     //如果获取缓存不成功就跳转登录页面
     wx.redirectTo({
       url: '../login/login',
@@ -63,7 +64,8 @@ Page({
                   that.setData({
                     service: res.data.content.serviceSuccessSum,
                     grade: res.data.content.avgSatis,
-                    role: role
+                    role: role,
+                    Bylogin:true
                   })
                 }
               }
@@ -71,9 +73,9 @@ Page({
           },
           fail:function(){
             //如果获取缓存不成功就跳转登录页面
-            wx.redirectTo({
-              url: '../login/login',
-            })
+            // wx.redirectTo({
+            //   url: '../login/login',
+            // })
           }
       })
     var LocalUrl = getApp().globalData.LocalUrl + 'Channel/channel'
@@ -118,8 +120,98 @@ Page({
         })
       }
     })
+    //取出单项登录权限
+    wx.getStorage({
+      key: 'resourceCodes',
+      success: function (res) {
+      for(var i in res.data){
+        if (res.data[i] == "goods.executor"){
+              wx.getStorage({
+                key: 'Individual',
+                success: function(opt) {
+                  that.setData({
+                    Individual: true
+                  })
+                  var str = opt.data
+                  wx.request({
+                    // url: ByUrl + 'doLogin',
+                    url: 'http://192.168.0.49:8088/login_sys_api?KI4SO_SERVER_EC=' + str,
+                    method: "POST",
+                    data: '',
+                    crossDomain: true,
+                    header: {
+                      // 'Cookie': ,
+                      'client-Type': 'wechatapp',
+                      // "Content-Type": "application/x-www-form-urlencodeed"
+                      'content-type': 'application/json'
+                    },
+                    success: function (res) {
+                      console.log(res)
+                      var cookies = res.header['Set-Cookie']
+                      if (cookies) {
+                        var end = cookies.indexOf('Path') - 2
+                        var start = cookies.indexOf('JSESSIONID')
+                        if (start => 0) {
+                          var str = cookies.substring(0, end)
+                          //缓存单项登录essionid
+                          wx.setStorageSync('JSESSIONID', str)
+                          wx.request({
+                            // url: ByUrl + 'doLogin',
+                            url: 'http://192.168.0.49:8088/demo/A',
+                            method: "POST",
+                            data: '',
+                            crossDomain: true,
+                            header: {
+                              'Cookie': str,
+                              'client-Type': 'wechatapp',
+                              // "Content-Type": "application/x-www-form-urlencodeed"
+                              'content-type': 'application/json'
+                            },
+                            success: function (res) {
+                              var cookies = res.header['Set-Cookie']
+                              // if (cookies) {
+                              //   var end = cookies.indexOf('Path') - 2
+                              //   var start = cookies.indexOf('JSESSIONID')
+                              //   if (start > 0) {
+                              //     var str = cookies.substring(11, end)
+                              //     console.log(end)
+                              //     console.log(cookies)
+                              //     console.log(str)
 
+                              //     that.setData({
+                              //       str: str
+                              //     })
+                              //   }
 
+                              // }
+                              console.log(res)
+                            }
+                          })
+                        }
+
+                      }
+                    }
+                  })
+                },
+              })
+        }
+      }
+      },
+      fail:function(){
+        //取出殡仪登录权限
+        wx.getStorage({
+          key: 'Gmlogin',
+          success: function (res) {
+          },
+          fail(){
+            //如果获取缓存不成功就跳转登录页面
+            wx.redirectTo({
+              url: '../login/login',
+            })
+          }
+        })
+      }
+    })
   	//调用应用实例的方法获取全局数据
     app.getUserInfo(function(userInfo){
       //更新数据
@@ -127,6 +219,12 @@ Page({
         userInfo:userInfo
       })
     })
+    // if (!that.data.Individual && !that.data.Gmdata && !that.data.Bylogin){
+    //         //如果获取缓存不成功就跳转登录页面
+    //         wx.redirectTo({
+    //           url: '../login/login',
+    //         })
+    // }
   },
   onShareAppMessage: function () {
     return {

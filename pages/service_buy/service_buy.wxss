@@ -9,21 +9,21 @@ checkbox-group {
   margin-bottom: 15px;
 }
 
-
-
-checkbox-group .group_item{
+checkbox-group .group_item {
   padding: 8rpx 0;
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
-checkbox-group .group_item>view{
+
+checkbox-group .group_item>view {
   box-sizing: border-box;
   float: left;
 }
 
-checkbox-group .checkbox_wrap{
+checkbox-group .checkbox_wrap {
   width: 10.6666%;
   float: left;
 }
+
 checkbox-group checkbox {
   margin-right: 28rpx;
   border-radius: 50%;
@@ -39,117 +39,132 @@ checkbox-group .group_title {
   padding-bottom: 22rpx;
   border-bottom: 1px solid #efefef;
 }
-checkbox-group .group_title .name{
+
+checkbox-group .group_title .name {
   float: left;
-      width: 70%;
-      line-height: 48rpx;
+  width: 70%;
+  line-height: 48rpx;
 }
 
-checkbox-group .group_item .checkbox_wrap{
+checkbox-group .group_item .checkbox_wrap {
   margin-top: 70rpx;
 }
-checkbox-group .group_title .edit,
-checkbox-group .group_title .over {
+
+checkbox-group .group_title .edit, checkbox-group .group_title .over {
   text-align: right;
   float: right;
   padding-right: 16rpx;
   line-height: 55rpx;
 }
-checkbox-group .group_item .img_wrap{
+
+checkbox-group .group_item .img_wrap {
   /* padding: 8rpx 0; */
-    float: left;
-    width: 26%;
+  float: left;
+  width: 26%;
 }
-checkbox-group .group_item image{
+
+checkbox-group .group_item image {
   width: 100%;
   height: 195rpx;
-   display: block; 
-
+  display: block;
 }
-checkbox-group .group_item  .info{
+
+checkbox-group .group_item  .info {
   padding: 0 16rpx;
   position: relative;
   height: 195rpx;
-    float: left;
-    width: 63.333333%;
-    box-sizing: border-box;
+  float: left;
+  width: 63.333333%;
+  box-sizing: border-box;
 }
+
 checkbox-group .group_item  .info .name {
   font-size: 30rpx;
   color: #353535;
   line-height: 1.2;
   height: 90rpx;
 }
-checkbox-group .group_item  .info .size,
-checkbox-group .group_item .edit .size{
+
+checkbox-group .group_item  .info .size, checkbox-group .group_item .edit .size {
   font-size: 24rpx;
   color: #767676;
   height: 55rpx;
   line-height: 55rpx;
 }
 
-checkbox-group .group_item  .info .money,
-checkbox-group .group_item  .info .num{
+checkbox-group .group_item  .info .money, checkbox-group .group_item  .info .num {
   font-size: 30rpx;
   position: absolute;
   bottom: 0prx;
 }
-checkbox-group .group_item  .info .money{
+
+checkbox-group .group_item  .info .money {
   color: #fc8383;
   left: 16rpx;
 }
-checkbox-group .group_item  .info .num{
+
+checkbox-group .group_item  .info .num {
   color: #767676;
   right: 16rpx;
 }
-checkbox-group .group_item .edit{
+
+checkbox-group .group_item .edit {
   height: 195rpx;
-  padding:0 16rpx;
+  padding: 0 16rpx;
   position: relative;
   width: 49.33333%;
-    float: left;
-      box-sizing: border-box;
+  float: left;
+  box-sizing: border-box;
 }
-checkbox-group .group_item .edit .num{
+
+checkbox-group .group_item .edit .num {
   margin-bottom: 50rpx;
 }
 
-checkbox-group .group_item .edit button{
+checkbox-group .group_item .edit button {
   display: inline-block;
   padding: 0;
   margin: 0;
   line-height: 92rpx;
   height: 92rpx;
+  width: 60rpx;
   outline: none;
-  border: 1px solid #ffffff;
-  background: #ffffff;
+  border: 1px solid #fff;
+  background: #fff;
   overflow: inherit;
   color: #898989;
   font-size: 50rpx;
+
 }
-checkbox-group .group_item .edit button:first-of-type{
+
+checkbox-group .group_item .edit button:first-of-type {
   color: #989898;
 }
-checkbox-group .group_item .edit button::after{
+
+checkbox-group .group_item .edit button::after {
   display: none;
   border: none;
 }
-button::after{
-  display: none!important;
+
+button::after {
+  display: none !important;
 }
-checkbox-group .group_item .edit .num text{
-   display: inline-block;
-    line-height: 92rpx;
-  height: 92rpx;
-  width: 270rpx;
+
+checkbox-group .group_item .edit .num input {
+  display: inline-block;
+  /*line-height:92rpx;*/
+  height: 60rpx;
+  width: 215rpx;
   text-align: center;
   font-size: 36rpx;
-  
+  position: relative;
+  top: 15rpx;
 }
-checkbox-group .group_item .delete{
+
+checkbox-group .group_item .delete {
   background: #fc8383;
-  color: #ffffff;
-  height:195rpx;
+  color: #fff;
+  height: 195rpx;
   line-height: 195rpx;
   text-align: center;
   float: right;
@@ -158,10 +173,7 @@ checkbox-group .group_item .delete{
   /* margin: -8rpx 0; */
   position: relative;
   z-index: 8;
-
-} 
-
-
+}
 
 .footerfix {
   position: fixed;
@@ -170,33 +182,39 @@ checkbox-group .group_item .delete{
   width: 100%;
   height: 100rpx;
   text-align: center;
-  background: #ffffff;
+  background: #fff;
   border-top: 1px solid #efefef;
 }
 
-.footerfix .all, .footerfix .count,.footerfix .buy {
+.footerfix .all, .footerfix .count, .footerfix .buy {
   float: left;
   height: 100rpx;
-   line-height: 100rpx;
+  line-height: 100rpx;
 }
-.footerfix .all checkbox{
+
+.footerfix .all checkbox {
   padding: 0 16rpx;
 }
-.footerfix .all text{
+
+.footerfix .all text {
   font-size: 28rpx;
   color: #353535;
 }
- .footerfix .count{
-   margin-left: 50rpx;
- }
-  .footerfix .count{
-   color: #353535;
-    font-size: 24rpx;
-  }
-    .footerfix .count text{
-   color: #fc8383;
-    font-size: 28rpx;
-  }
+
+.footerfix .count {
+  margin-left: 50rpx;
+}
+
+.footerfix .count {
+  color: #353535;
+  font-size: 24rpx;
+}
+
+.footerfix .count text {
+  color: #fc8383;
+  font-size: 28rpx;
+}
+
 .footerfix .buy {
   width: 250rpx;
   color: #fff;
@@ -204,7 +222,6 @@ checkbox-group .group_item .delete{
   line-height: 100rpx;
   float: right;
 }
-
 
 .footerfix .buy {
   /* background: #29ae8c; */
