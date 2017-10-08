@@ -1,6 +1,9 @@
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
   <view class="page__bd">
-
+    <!--国庆节  -->
+    <navigator url='../gq/gq' class='gq'>
+      <image src='../../images/gq.png'></image>
+    </navigator>
     <!--个人信息 -->
     <view bindtap="bindViewTap" class="userinfo">
 
@@ -11,11 +14,25 @@
       <view class="namenum">
 
         <!--名字-->
-        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        <!-- <text class="userinfo-nickname">{{userInfo.nickName}}</text> -->
+        <text class="userinfo-nickname">{{UserName}}</text>
         <!--服务评分-->
         <view class="num">
-          评分：{{grade}}
+          <!-- {{grade}} -->
+          评分：10
         </view>
+        <block wx:if="{{canCheckin}}">
+          <view class="num sign" bindtap='sign'>
+            <!-- {{grade}} -->
+            点击签到
+          </view>
+        </block>
+        <block wx:else>
+          <navigator class="num sign" url='../signin/signin'>
+            <!-- {{grade}} -->
+            今日已签到
+          </navigator>
+        </block>
       </view>
       <view bindtap="call_phone" class="call_phone" data-phone="966188">
         <image src="../../images/icon_call_phone.png"></image>
@@ -31,75 +48,134 @@
       <view class="weui-flex">
         <view class="weui-flex__item">
           <view>积分</view>
-          <text>{{num}}</text>
+          <!-- <text>{{num}}</text> -->
+          <text>{{!usableCredit?0:usableCredit ==''?0:usableCredit}}</text>
         </view>
         <view class="weui-flex__item">
-          <view>完成服务单</view>
-          <text>{{service}}</text>
+          <view>优惠券</view>
+          <!-- <text>{{service}}</text> -->
+          <text>0</text>
         </view>
         <view class="weui-flex__item">
           <view>钱包</view>
-          <text>￥{{money}}</text>
+          <!-- <text>￥{{money}}</text> -->
+          <text>￥0.00</text>
         </view>
       </view>
     </view>
 
+    <!-- 搜索 -->
+    <navigator url="../search/search" class="page__bd_spacing search">
+      <image src="../../images/index_search.png" style=""></image>
+    </navigator>
+
+    <!--服务菜单-->
+    <view class=" page__bd_spacing server">
+      <view class="weui-flex">
+        <block wx:if="{{Individual}}">
+          <navigator url="../service/service" class="weui-flex__item">
+            <view>
+              <image src="{{icon_service}}" style=""></image>
+            </view>
+            <text>圆满商城</text>
+          </navigator>
+        </block>
+        <block wx:else>
+          <navigator url="" class="weui-flex__item">
+            <view>
+              <image src="{{icon_service}}" style=""></image>
+            </view>
+            <text>圆满商城</text>
+          </navigator>
+        </block>
+
+        <block wx:if="{{Gmlogin == 1}}">
+          <navigator url="../new_/new_" class="weui-flex__item">
+            <view>
+              <image src="{{icon_cem}}" style=""></image>
+            </view>
+            <text>圆满公墓</text>
+          </navigator>
+        </block>
+        <block wx:else>
+          <navigator url="../cem/cem" class="weui-flex__item">
+            <view>
+              <image src="{{icon_cem}}" style=""></image>
+            </view>
+            <text>圆满公墓</text>
+          </navigator>
+        </block>
+        <block wx:if="{{Bylogin}}">
+          <navigator url="../funeral_img/funeral_img" class="weui-flex__item">
+            <view>
+              <image src="{{icon_plan}}" style=""></image>
+            </view>
+            <text>圆满白事</text>
+          </navigator>
+        </block>
+        <block wx:else>
+          <navigator url="../funeral_img/funeral_img" class="weui-flex__item">
+            <view>
+              <image src="{{icon_plan}}" style=""></image>
+            </view>
+            <text>圆满白事</text>
+          </navigator>
+        </block>
+      </view>
+    </view>
+    <block wx:if="{{labellist}}">
+      <view class="tab_index">
+        <!--服务菜单-->
+        <view class=" page__bd_spacing tab_title">
+          <view class="weui-flex">
+
+            <block wx:for="{{labellist}}">
+              <view class="weui-flex__item {{label_id == item.id?'active':''}}" bindtap="label" data-label_id="{{item.id}}">
+                <text>{{item.label_name}}</text>
+              </view>
+            </block>
+          </view>
+        </view>
+        <!-- 列表 -->
+        <view class="tab_content">
+          <view class="ul">
+            <block wx:for="{{label_data}}">
+              <navigator url="../service_content/service_content?goods_id={{item.id}}" class="li">
+                <image class="li_img" src="https://goodsmgr.e-funeral.cn/Public/Uploads/{{item.title_img}}"></image>
+                <view class="li_content">
+                  <view class="title aui-ellipsis-2">
+                    <text>{{item.name}}</text>
+                    <text> {{item.goods_slogan}}</text>
+                  </view>
+                  <view class="money">
+                    <text class="s">圆满价：</text>
+                    <text class="b"></text>
+                    <text class="b">{{item.adviser_price}}</text>
+                  </view>
+                  <view class="num">
+                    推荐价：
+                    <text>{{item.price}}</text>
+                  </view>
+                  <block wx:if="{{label_id==labellist[0].id}}">
+                    <view class="btn btn2">
+                      立即抢购
+                    </view>
+                  </block>
+                  <block wx:else>
+                    <view class="btn btn1">
+                      购买
+                    </view>
+                  </block>
+                </view>
+              </navigator>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
 
 
 
     <!--列表-->
-    <view class="weui-cells weui-cells_after-title">
-<black wx:if="{{Individual}}">
-      <!--单项服务 -->
-      <navigator url="../service/service" class="" hover-class="" open-type="navigate">
-        <view class="weui-cell">
-          <view class="weui-cell__hd">
-            <image src="{{icon_service}}" style=""></image>
-          </view>
-          <view class="weui-cell__bd">
-            <view class="title">单项服务</view>
-            <view class="text">为客户选择单项产品</view>
-          </view>
-          <view class="weui-cell__ft">
-            <image src="{{icon_right}}" style=""></image>
-          </view>
-        </view>
-      </navigator>
-</black>
-      <!--选墓服务 -->
-      <block wx:if="{{Gmdata}}">
-      <navigator url="../new_/new_" class="" hover-class="" open-type="navigate" >
-        <view class="weui-cell">
-          <view class="weui-cell__hd">
-            <image src="{{icon_cem}}" style=""></image>
-          </view>
-          <view class="weui-cell__bd">
-            <view class="title">选墓服务</view>
-            <view class="text">为客户选择墓地|专车接送</view>
-          </view>
-          <view class="weui-cell__ft">
-            <image src="{{icon_right}}" style=""></image>
-          </view>
-        </view>
-      </navigator>
-      </block>
-<black wx:if="{{Bylogin}}">
-      <!--治丧服务 -->
-      <navigator url="../new/new" class="" hover-class="" open-type="navigate">
-        <view class="weui-cell">
-          <view class="weui-cell__hd">
-            <image src="{{icon_plan}}" style=""></image>
-          </view>
-          <view class="weui-cell__bd">
-            <view class="title">治丧服务</view>
-            <view class="text">为客户选择治丧方案|生前契约</view>
-          </view>
-          <view class="weui-cell__ft">
-            <image src="{{icon_right}}" style=""></image>
-          </view>
-        </view>
-      </navigator>
-   </black>
-    </view>
   </view>
 </view>

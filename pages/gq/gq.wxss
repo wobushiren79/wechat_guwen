@@ -1,0 +1,75 @@
+/* pages/C_img/C_img.wxss */
+image{
+  display: block;
+  width: 100%;
+}
+.img{
+position: relative
+}
+navigator{
+  display: block;
+  position: absolute;
+  z-index: 6;
+
+}
+
+
+.img1 navigator{
+  bottom: 0;
+  width:684rpx;
+height:312rpx;
+  left: 50%;
+  transform: translate(-50%,0);
+}
+
+.img_1_1{
+  width: 325rpx;
+  height: 355rpx;
+}
+.img_2_1{
+width:684rpx;
+height:348rpx;
+  left: 50%;
+  transform: translate(-50%,0);
+
+}
+.img2 .left{
+  bottom: 0;
+  left: 4.629%;
+}
+.img2 .right{
+  bottom: 0;
+  right: 4.629%;
+}
+
+
+.img3 .t{
+  bottom: 745rpx
+}
+.img3 .m{
+  bottom: 373rpx
+}
+.img3 .b{
+  bottom: 0;
+}
+
+.img5 .l_t{
+  left: 34rpx;
+  bottom: 389rpx;
+}
+.img5 .r_t{
+  right: 34rpx;
+  bottom: 389rpx;
+}
+.img5 .l_b{
+  left: 34rpx;
+  bottom: 0;
+}
+.img5 .r_b{
+  right: 34rpx;
+  bottom: 0;
+}
+
+.img7 .t{
+  bottom: 386rpx;
+}

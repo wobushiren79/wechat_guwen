@@ -71,6 +71,7 @@ Page({
                             }else{
                                 wx.showToast({
                                     title: res.data.message,
+                                    image: '../../images/icon_info.png',
                                     duration: 3000
                                 })
                             }  
@@ -135,6 +136,7 @@ Page({
                             }else{
                                 wx.showToast({
                                     title: res.data.message,
+                                    image: '../../images/icon_info.png',
                                     duration: 3000
                                 })
                             }  
@@ -198,6 +200,7 @@ Page({
                               }else{
                                 wx.showToast({
                                   title: '您暂时没有殡仪洽谈单',
+                                  image: '../../images/icon_info.png',
                                   duration: 2000
                                 })
                               }
@@ -205,6 +208,7 @@ Page({
                             }else{
                                 wx.showToast({
                                     title: res.data.message,
+                                    image: '../../images/icon_info.png',
                                     duration: 3000
                                 })
                             }  

@@ -3,21 +3,21 @@
     <!--选项卡-->
     <view class="tab">
       <view>
-        <navigator url="../blank/blank" open-type="redirectTo">单项服务</navigator>
+        <navigator url="../list_/list_" open-type="redirectTo">待看墓</navigator>
       </view>
       <view>
-        <navigator url="../list/list" open-type="redirectTo">殡仪洽谈</navigator>
+        <navigator  url="../list_a/list_a" open-type="redirect">看墓中</navigator>
       </view>
       <view>
-        <navigator url="../list_/list_" open-type="redirectTo">选墓洽谈</navigator>
+        <navigator  url="../list_a/list_b" open-type="redirect">未定墓</navigator>
       </view>
       <view>
-        <navigator class="active" url="../list_s/list_s" open-type="redirect">成功服务</navigator>
+        <navigator class="active" url="../list_s/list_s" open-type="redirect">已定墓</navigator>
       </view>
     </view>
     <!--模板三-->
     <template name="list_c">
-      <view wx:if="{{bespeakStatus == 8}}">
+      <view wx:if="{{ bespeakStatus == 7 || bespeakStatus == 8 || bespeakStatus == 9}}">
           <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
           <view class="weui-cells__title"></view>
           <view class="weui-cells weui-cells_after-title">
@@ -29,8 +29,8 @@
               </view>
               <view class="weui-cell__bd name">
                 <input class="weui-input" value="{{customerName}}" disabled="disabled" />
-                         <view wx:if="{{bespeakStatus == 8}}">
-                         <text>洽谈成功(购墓)</text>
+                         <view wx:if="{{bespeakStatus == 9}}">
+                          <text>已安葬</text> 
                          </view>
               </view>
             </view>

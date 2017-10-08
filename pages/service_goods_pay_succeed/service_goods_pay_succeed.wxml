@@ -15,8 +15,8 @@
 
       <view class="footerfix clearfix">
         <!-- 保存 -->
-        <navigator url="../service_order_list_pay/service_order_list_pay" open-type="reLaunch">
-            <button class="keep">查看订单详情</button>
+        <navigator url="../index/index" open-type="reLaunch">
+            <button class="keep">返回首页</button>
         </navigator>
         
       </view>

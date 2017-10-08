@@ -12,30 +12,47 @@
 }
 
 /*按钮*/
-.weui-btn-area{
+
+.weui-btn-area {
   margin-top: 60rpx;
 }
-.weui-btn-area button{
+
+.weui-btn-area button {
   background-color: #48cfad;
-  color: #ffffff;
+  color: #fff;
   border: none;
   outline: none;
 }
 
 /*下划线*/
-.weui-cell::before{
+
+.weui-cell::before {
   right: 15px;
 }
 
 /*页脚*/
-.foot{
+
+.foot {
   display: block;
+  width: 100%;
   text-align: center;
   color: #48cfad;
   position: fixed;
   bottom: 80rpx;
   left: 50%;
-  transform: translate(-50%,0);
+  transform: translate(-50%, 0);
+}
+
+.foot navigator {
+  display: inline-block;
+  padding: 0 10px;
+  border-left: 1px solid #48cfad;
+  font-size: 17px;
+  line-height: 17px;
+}
+
+.foot navigator:first-of-type {
+  border-left: none;
 }
 
 .weui-cells {

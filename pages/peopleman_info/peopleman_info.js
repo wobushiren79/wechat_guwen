@@ -46,6 +46,7 @@ Page({
         fail: function (res) {
           wx.showToast({
             title: '拨打电话失败',
+            image: '../../images/icon_info.png',
             duration: 3000
           })
         }
@@ -79,6 +80,7 @@ Page({
               } else {
                 wx.showToast({
                   title: res.data.message,
+                  image: '../../images/icon_info.png',
                   duration: 3000
                 })
               }
@@ -112,6 +114,7 @@ Page({
               } else {
                 wx.showToast({
                   title: res.data.message,
+                  image: '../../images/icon_info.png',
                   duration: 3000
                 })
               }

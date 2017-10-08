@@ -3,13 +3,14 @@
 .search {
   padding: 15px 15px;
   position: relative;
+  background: #ffffff;
 }
 
 .search image {
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
-  right: 60rpx;
+  left: 60rpx;
   width: 40rpx;
   height: 40rpx;
   z-index: 2;
@@ -17,7 +18,9 @@
 
 input {
   display: block;
-  background-color: #fff;
+  float: left;
+  width: 87%;
+  background-color: #f8f8f8;
   border-radius: 15px;
   height: 60rpx;
   box-sizing: border-box;
@@ -25,12 +28,39 @@ input {
   color: #979797;
   padding: 0 20rpx;
   text-align: center;
+  padding-left: 80rpx;
 }
-
+.search text{
+  color: #48cfad;
+    display: block;
+  float: left;
+  width: 13%;
+  text-align: center;
+  line-height: 60rpx;
+}
 .weui-grid_active {
   background-color: #f8f8f8 !important;
 }
 
+/* 搜索 */
+.search_content{
+  padding: 100rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+.search_content .title{
+  padding-top: 20rpx;
+}
+.search_content .weui-flex {
+  padding: 20rpx 0;
+}
+.search_content .weui-flex .weui-flex__item{
+  border-left: 1px solid #cfcfcf;
+  color: #48cfad;
+}
+.search_content .weui-flex .weui-flex__item:first-of-type{
+  border-left: none;
+}
 .tab_title {
   background-color: #fff;
   text-align: center;
@@ -43,6 +73,7 @@ input {
   float: left;
   width: 33.33333%;
   position: relative;
+  font-size: 32rpx;
 }
 
 .tab_title>view image {
@@ -74,6 +105,7 @@ input {
   position: relative;
   border-top: 1px solid #fafafa;
   background-color: #fff;
+  padding: 8rpx 0;
 }
 
 .tab_content .ul .li .li_img {
@@ -84,15 +116,17 @@ input {
 
 .tab_content .ul .li .li_content {
   flex: 1;
+  padding-left: 16rpx;
+  
 }
 
 .tab_content .ul .li .li_content .title {
-  font-size: 34rpx;
+  font-size: 30rpx;
   color: #353535;
 }
 
 .tab_content .ul .li .li_content .money {
-  font-size: 42rpx;
+  font-size: 38rpx;
   color: #48cfad;
   margin-top: 10rpx;
 }
@@ -112,6 +146,6 @@ input {
   position: absolute;
   width: 14rpx;
   height: 24rpx;
-  bottom: 5px;
+  bottom: 10px;
   right: 15px;
 }

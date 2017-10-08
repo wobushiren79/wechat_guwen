@@ -4,12 +4,12 @@ var tcity = require("../../utils/citys.js");
 var app = getApp()
 Page({
   data: {
-  
+
   },
-  bind_moda:function(){
+  bind_moda: function () {
     var content = {}
-    var that=this
-    var orderId={}
+    var that = this
+    var orderId = {}
     orderId.orderId = that.data.orderId
     orderId.actualPayment = that.data.totalPrice
     content.content = orderId
@@ -21,10 +21,10 @@ Page({
         if (res.confirm) {
           wx.showLoading({
             title: '请稍后',
-            mask: true,
+            // mask: true,
           })
           var JSESSIONID = that.data.JSESSIONID
-          if (JSESSIONID){
+          if (JSESSIONID) {
             wx.request({
               url: javaApi + 'api/goods/order/offlinePayment',
               method: "POST",
@@ -38,7 +38,7 @@ Page({
               success: function (res) {
                 // console.log(res)
                 if (res.data.code == 1000) {
-                  wx.navigateTo({
+                  wx.redirectTo({
                     url: '../service_goods_pay_succeed/service_goods_pay_succeed'
                   })
                 } else {
@@ -55,8 +55,8 @@ Page({
       }
     })
   },
-  wechat:function(){
-    var that=this
+  wechat: function () {
+    var that = this
     var LocalUrl = getApp().globalData.LocalUrl
     var orderId = that.data.orderId
     var totalPrice = that.data.totalPrice
@@ -64,7 +64,7 @@ Page({
     var orderNumber = that.data.orderNumber
     var javaApi = getApp().globalData.javaApi
     var JSESSIONID = that.data.JSESSIONID
-    var content={}
+    var content = {}
     content.orderId = orderId
     content.total_fee = totalPrice
     wx.login({
@@ -81,62 +81,63 @@ Page({
           },
           success: function (res) {
             if (res.data.code == 1000) {
-              wx.requestPayment({
-                'timeStamp': '' + res.data.list.timeStamp + '',
-                'nonceStr': res.data.list.nonceStr,
-                'package': res.data.list.package,
-                'signType': res.data.list.signType,
-                'paySign': res.data.list.paySign,
-                'success': function (res) {
-                  console.log(res)
-                  if (res.errMsg == 'requestPayment:ok'){
-                    var setData={}
-                    var sett={}
-                    sett.orderId = orderId
-                    sett.actualPayment = totalPrice
-                    setData.content = sett
-                    wx.request({
-                      url: javaApi + 'api/goods/order/wechatPayment',
-                      method: "POST",
-                      data: setData,
-                      header: {
-                        // "Content-Type": "application/x-www-form-urlencodeed",
-                        'content-type': 'application/json',
-                        "Cookie": JSESSIONID
-                      },
-
-                      success: function (res) {
-                        // console.log(res)
-                        if (res.data.code == 1000) {
-                          wx.navigateTo({
+              // var orderId = that.data.orderId
+              var out_trade_no = res.data.out_trade_no;
+              var setData = {}
+              var sett = {}
+              sett.orderId = orderId
+              sett.outTradeNo = out_trade_no
+              setData.content = sett
+              wx.request({
+                url: javaApi + 'api/goods/order/updateOutTradeNo',
+                method: "POST",
+                data: setData,
+                header: {
+                  // "Content-Type": "application/x-www-form-urlencodeed",
+                  'content-type': 'application/json',
+                  "Cookie": JSESSIONID
+                },
+                success: function (da) {
+                  // console.log(res)
+                  if (da.data.code == 1000) {
+                    wx.requestPayment({
+                      'timeStamp': '' + res.data.list.timeStamp + '',
+                      'nonceStr': res.data.list.nonceStr,
+                      'package': res.data.list.package,
+                      'signType': res.data.list.signType,
+                      'paySign': res.data.list.paySign,
+                      'success': function (res) {
+                        if (res.errMsg == 'requestPayment:ok') {
+                          wx.redirectTo({
                             url: '../service_goods_pay_succeed/service_goods_pay_succeed'
                           })
-                        } else {
+                        }else{
                           wx.showToast({
-                            title: '通知平台失败,请通知平台客户',
+                            // title: '系统繁忙,请稍后再试',
+                            title: '系统繁忙,请稍后再试',
+                            image: '../../images/icon_info.png',
                             duration: 3000
+                          })
+                        }
+                      },
+                      'fail': function (res) {
+                        if (res.errMsg == 'requestPayment:fail') {
+                          wx.navigateTo({
+                            url: '../service_goods_pay_error/service_goods_pay_error'
                           })
                         }
                       }
                     })
-                  }
-                },
-                'fail': function (res) {
-                    console.log(res)
-                    if (res.errMsg == 'requestPayment:fail') {
-                      wx.navigateTo({
-                        url: '../service_goods_pay_error/service_goods_pay_error'
-                      })
+                  } else {
+                    wx.showToast({
+                      title: '系统繁忙,请稍后再试',
+                      image: '../../images/icon_info.png',
+                      duration: 3000
+                    })
                   }
                 }
               })
             }
-            //   else {
-            //    wx.showToast({
-            //      title: res.data.message,
-            //      duration: 2000
-            //    })
-            //  }
           }
         })
       }
@@ -147,45 +148,45 @@ Page({
     var JSESSIONID = ''
     wx.getStorage({
       key: 'JSESSIONID',
-      success: function(res) {
+      success: function (res) {
         JSESSIONID = res.data
         that.setData({
           JSESSIONID: JSESSIONID
         })
-    var orderId = evet.orderId
-    var content = {}
-    var javaApi = getApp().globalData.javaApi
-    content.content = { 'orderId': parseInt(orderId) }
-    // console.log(content)
-    wx.request({
-      url: javaApi + 'api/goods/order/findById',
-      method: "POST",
-      data: content,
-      header: {
-        // "Content-Type": "application/x-www-form-urlencodeed",
-        'content-type': 'application/json',
-        "Cookie": JSESSIONID
-      },
+        var orderId = evet.orderId
+        var content = {}
+        var javaApi = getApp().globalData.javaApi
+        content.content = { 'orderId': parseInt(orderId) }
+        // console.log(content)
+        wx.request({
+          url: javaApi + 'api/goods/order/findById',
+          method: "POST",
+          data: content,
+          header: {
+            // "Content-Type": "application/x-www-form-urlencodeed",
+            'content-type': 'application/json',
+            "Cookie": JSESSIONID
+          },
 
-      success: function (res) {
-
-        console.log(res)
-        if (res.data.code == 1000) {
-          // var orderNumber = res.data.content.orderNumber
-          that.setData({
-            showTotalPrice: res.data.content.showTotalPrice,
-            totalPrice: res.data.content.totalPrice,
-            orderNumber: res.data.content.orderNumber,
-            orderId: orderId
-          })
-        } else {
-          wx.showToast({
-            title: res.data.message,
-            duration: 2000
-          })
-        }
-      }
-    })
+          success: function (res) {
+            console.log(res)
+            if (res.data.code == 1000) {
+              // var orderNumber = res.data.content.orderNumber
+              that.setData({
+                showTotalPrice: res.data.content.showTotalPrice,
+                totalPrice: res.data.content.totalPrice,
+                orderNumber: res.data.content.orderNumber,
+                orderId: orderId
+              })
+            } else {
+              wx.showToast({
+                title: res.data.message,
+                image: '../../images/icon_info.png',
+                duration: 2000
+              })
+            }
+          }
+        })
       },
     })
   }

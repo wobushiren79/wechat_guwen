@@ -11,11 +11,15 @@
             订单编号：<text>{{orderNumber}}</text>
           </view>
           <view class="pay">
-            支付金额
+            顾问支付圆满金额
           </view>
           <view class="money">
             ￥<text>{{totalPrice/100*1.00}}</text>
           </view>
+        </view>
+        
+        <view class='index'>
+          <navigator url='../index/index' open-type='reLaunch' >返回首页</navigator>
         </view>
       </view>
 

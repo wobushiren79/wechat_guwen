@@ -3,7 +3,6 @@ Page({
   
   data:{
     edit: true,
-    // pageSize:5,
     totla_price:0,
   },
   bind_edit: function () {
@@ -40,29 +39,23 @@ Page({
       success: function (res) {
         var channel_id=res.data.id
         var content={}
-        // content.channelId=channel_id
         content.pageSize = 1000
         content.pageNumber=0
         var contents={}
         contents.channelId = channel_id
         content.content = contents
         var ForData = { content: content}
-        console.log(ForData)
         wx.request({
           url: javaApi + 'api/goods/shopping/list',
           method: "POST",
           data: ForData,
-          // dataType: json,
           header: {
-            // "Content-Type": "application/x-www-form-urlencoded",
             'content-type': 'application/json',
             "Cookie": JSESSIONID
           },
           success: function (res) {
-            // console.log(res)
             if (res.data.code == 1000) {
               var list=res.data.content.content
-              console.log(list)
               var goodsId=''
               var channelId=''
               var goodsSpecId = ''
@@ -81,34 +74,26 @@ Page({
                 str.channelId = channelId
                 str.goodsSpecId = goodsSpecId
               }
-              // console.log(str)
               wx.request({
                 url: LocalUrl + 'Getgoods/getattrgoods',
                 method: "POST",
                 data: str,
                 header: {
                   "Content-Type": "application/x-www-form-urlencoded",
-                  // 'content-type': 'application/json',
-                  // "Cookie": "sid=" + res.data.content.sessionId
                 },
                 success: function (res) {
-                  console.log(res)
                   if (res.data.code == 1000){
                        var listt=res.data.list
                        var class_name = res.data.class_name
                        var totla_price = that.data.totla_price
                          var getdata=[]
+                         for (var j in listt) {
                          for(var i in list){
-                            for(var j in listt){
-                              if (list[i].goodsId == listt[j].goods_id && list[i].goodsSpecId == listt[j].spec_id && list[i].channelId == listt[j].channel_id ){
-                                // var totla_price = 0;
-                                listt[i].id = list[i].id
-                                listt[i].specNum = list[i].specNum
+                           if (list[i].goodsId == parseInt(listt[j].goods_id) && list[i].goodsSpecId == parseInt(listt[j].spec_id) && list[i].channelId == parseInt(listt[j].channel_id)){
+                                listt[j].id = list[i].id
+                                listt[j].specNum = list[i].specNum
                                 totla_price += parseInt(list[i].specNum) * parseFloat(listt[j].spec_price)
-                                // console.log(totla_price)
-                                // console.log(parseInt(list[i].specNum))
-                                // console.log(parseFloat(list[i].spec_price))
-                                getdata.push(listt[i])
+                                getdata.push(listt[j])
                                  }
                             }
                          }
@@ -117,7 +102,7 @@ Page({
                          var formData = getdata
                          //分类名称
                          wx.setStorageSync('class_name', class_name)
-                         console.log(totla_price)
+                        //  console.log(totla_price)
                        that.setData({
                          getdata: getdata,
                          class_name: class_name,
@@ -131,6 +116,7 @@ Page({
                   }else{
                     wx.showToast({
                       title: res.data.message,
+                      image: '../../images/icon_info.png',
                       duration: 2000
                     })
                   }
@@ -158,7 +144,6 @@ Page({
     var JSESSIONID = that.data.JSESSIONID
     wx.showLoading({
       title: '请稍后',
-      mask: true,
     })
     var javaApi = getApp().globalData.javaApi
     var id = e.target.dataset.id
@@ -169,21 +154,18 @@ Page({
     var content = {}
     var getcontent = {}
     if (formData[index].id == id) {
-      if (parseFloat(formData[index].specNum) != 1){
+      if (parseFloat(formData[index].specNum) > 1){
         content.specNum = parseFloat(formData[index].specNum) - 1
         formData[index].specNum = parseFloat(formData[index].specNum) - 1
         getdata[index].specNum = parseFloat(getdata[index].specNum) - 1
         totla_price -= parseFloat(formData[index].spec_price)
         content.id = id
         getcontent.content = content
-        console.log(getcontent)
         wx.request({
           url: javaApi + 'api/goods/shopping/updateShopingNum',
           method: "POST",
           data: getcontent,
-          // dataType: json,
           header: {
-            // "Content-Type": "application/x-www-form-urlencoded",
             'content-type': 'application/json',
             "Cookie": JSESSIONID
           },
@@ -198,10 +180,17 @@ Page({
             } else {
               wx.showToast({
                 title: res.data.message,
+                image: '../../images/icon_info.png',
                 duration: 2000
               })
             }
           }
+        })
+      }else{
+        wx.showToast({
+          title: '商品数量不能小于一',
+          image: '../../images/icon_info.png',
+          duration: 2000
         })
       }
 
@@ -214,7 +203,6 @@ Page({
     var JSESSIONID = that.data.JSESSIONID
     wx.showLoading({
       title: '请稍后',
-      mask: true,
     })
     var javaApi = getApp().globalData.javaApi
     var id = e.target.dataset.id
@@ -231,14 +219,11 @@ Page({
         totla_price +=parseFloat(formData[index].spec_price)
         content.id = id
         getcontent.content = content
-        console.log(getcontent)
         wx.request({
           url: javaApi + 'api/goods/shopping/updateShopingNum',
           method: "POST",
           data: getcontent,
-          // dataType: json,
           header: {
-            // "Content-Type": "application/x-www-form-urlencoded",
             'content-type': 'application/json',
             "Cookie": JSESSIONID
           },
@@ -253,6 +238,7 @@ Page({
             } else {
               wx.showToast({
                 title: res.data.message,
+                image: '../../images/icon_info.png',
                 duration: 2000
               })
             }
@@ -265,7 +251,6 @@ Page({
     var JSESSIONID = that.data.JSESSIONID
     wx.showLoading({
       title: '请稍后',
-      mask: true,
     })
     var javaApi = getApp().globalData.javaApi
     var index=e.target.dataset.index
@@ -277,7 +262,7 @@ Page({
     var content = {}
     var getcontent = {}
     if (formData[index].id == id) {
-      if (specNum != '' && specNum != 0){
+      if (specNum != '' && specNum > 0){
         totla_price -= parseFloat(formData[index].specNum) * parseFloat(formData[index].spec_price)
         formData[index].specNum = parseFloat(specNum)
         getdata[index].specNum = parseFloat(specNum)
@@ -297,7 +282,6 @@ Page({
             "Cookie": JSESSIONID
           },
           success: function (res) {
-            console.log(res)
             if (res.data.code == 1000) {
               that.setData({
                 totla_price: totla_price,
@@ -308,10 +292,17 @@ Page({
             } else {
               wx.showToast({
                 title: res.data.message,
+                image: '../../images/icon_info.png',
                 duration: 2000
               })
             }
           }
+        })
+      }else{
+        wx.showToast({
+          title: '数量请大于0',
+          image: '../../images/icon_info.png',
+          duration: 2000
         })
       }
     }
@@ -325,7 +316,6 @@ Page({
     var that=this
     var JSESSIONID = that.data.JSESSIONID
    var  formData =[]
-   
    var dataa= that.data.formData
    var totla_price = that.data.totla_price
    for (var i in dataa){
@@ -333,7 +323,6 @@ Page({
       datab=dataa[i]
       formData.push(datab)
    }
-   console.log(formData)
    //结算购物车数据
    wx.setStorageSync('formData', formData)
    //总价格
@@ -341,25 +330,25 @@ Page({
    if (formData.length <= 0){
      wx.showToast({
        title: '你未选择结算商品',
+       image: '../../images/icon_info.png',
        duration: 2000
      })
    }else{
-     wx.navigateTo({
+     wx.redirectTo({
        url: '../service_money/service_money'
      })
    }
-
-    // console.log(formData)
   },
   check:function(e){
-    // console.log(e)
+    wx.showLoading({
+      title: '请稍后',
+    })
     var that=this
     var id = e.target.dataset.id
     var index = e.target.dataset.index
     var totla_price = that.data.totla_price
     var getdata = that.data.getdata
     var formData = that.data.formData
-    // console.log(formData)
     var isCon=''
     for (var i in formData){
       if (formData[index] ||formData[i].id == id) {
@@ -379,24 +368,20 @@ Page({
                 totla_price += parseFloat(getdata[index].specNum) * parseFloat(getdata[index].spec_price)
       }
     }
-    // console.log(isCon)
     that.setData({
       formData: formData,
       totla_price: totla_price
     })
-    // console.log(formData)
-    // console.log(totla_price)
+    wx.hideLoading()
   },
   del:function(e){
     var that = this
     var JSESSIONID = that.data.JSESSIONID
     wx.showLoading({
       title: '请稍后',
-      mask: true,
     })
     var javaApi = getApp().globalData.javaApi
     var id = e.target.dataset.id
-    console.log(id)
     var index = e.target.dataset.index
     var totla_price = that.data.totla_price
     var getdata = that.data.getdata
@@ -413,14 +398,11 @@ Page({
       url: javaApi + 'api/goods/shopping/remove',
       method: "POST",
       data: ForData,
-      // dataType: json,
       header: {
-        // "Content-Type": "application/x-www-form-urlencoded",
         'content-type': 'application/json',
         "Cookie": JSESSIONID
       },
       success: function (res) {
-           console.log(res)
            if (res.data.code == 1000){
              that.setData({
                formData: formData,

@@ -51,6 +51,7 @@ Page({
         } else {
           wx.showToast({
             title: res.data.message,
+            image: '../../images/icon_info.png',
             duration: 2000
           })
         }
@@ -112,7 +113,7 @@ Page({
               pageSize: pageSize + 2
             })
             wx.showToast({
-              title: '该状态已经加载全部',
+              title: '已经加载全部',
               duration: 2000
             })
           }
@@ -120,6 +121,7 @@ Page({
         } else {
           wx.showToast({
             title: res.data.message,
+            image: '../../images/icon_info.png',
             duration: 2000
           })
         }

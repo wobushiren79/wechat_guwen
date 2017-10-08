@@ -12,18 +12,27 @@
 
     <!--二级分类-->
     <view class="tab_content">
+     <image src="http://otbf0sqcs.bkt.clouddn.com/wechat_app/service_banner.png"></image>
       <view class="title">{{name}}</view>
       <view class="content">
         <view class="ul clearfix">
         <black wx:for="{{attrlist}}">
           <navigator url="../service_list/service_list?id={{item.id}}" class="li" hover-class="weui-grid_active">
-            <image src="http://wechat.e-funeral.cn/Public/Uploads/{{item.title_img}}"></image>
+            <image src="https://goodsmgr.e-funeral.cn/Public/Uploads/{{item.title_img}}"></image>
             <text>{{item.name}}</text>
           </navigator>
         </black>
         </view>
 
       </view>
+
+
     </view>
+
+
+    <!-- 购物车 -->
+    <navigator url="../service_buy/service_buy" class="shoppgo" open-type='switchTab'>
+      <image src="../../images/icon_shopgo.png"></image>
+    </navigator>
   </view>
 </view>

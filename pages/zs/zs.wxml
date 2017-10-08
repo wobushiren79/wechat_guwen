@@ -1,5 +1,5 @@
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
-  <view class="page__bd">
-      <image src="../../images/zs.png"></image>
-  </view>
+ <image src="http://ovjs2f1iz.bkt.clouddn.com/index1.png"></image>
+  <image src="http://ovjs2f1iz.bkt.clouddn.com/index2.png"></image>
+   <image src="http://ovjs2f1iz.bkt.clouddn.com/index3.jpg"></image>
 </view>

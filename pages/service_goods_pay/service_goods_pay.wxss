@@ -25,13 +25,24 @@
 }
 
 .content .text .pay {
-  margin: 15rpx 0 30rpx 0;
+  margin: 20rpx 0 30rpx 0;
   color: #48cfad
 }
 
 .content .text .money {
+  font-size: 48rpx;
   font-weight: 600;
+  color: #696969;
 }
+.content .index{
+  text-align: center
+}
+.content .index navigator{
+  display: inline-block;
+  color: #48cfad;
+  font-size: 30rpx;
+}
+
 
 .footerfix {
   position: fixed;

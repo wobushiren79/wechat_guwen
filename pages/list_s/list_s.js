@@ -49,6 +49,7 @@ Page({
         fail: function (res) {
           wx.showToast({
             title: '拨打电话失败',
+            image: '../../images/icon_info.png',
             duration: 3000
           })
         }
@@ -78,7 +79,8 @@ Page({
           //  console.log(res.data)
           //console.log(PageNum)
           wx.request({
-            url: GmUrl + 'marketing/bespeak/build/list',
+            // url: GmUrl + 'marketing/bespeak/build/list',
+            url: GmUrl + "marketing/bespeak/build/list/has",
             method: "POST",
             data: PageNum,
             header: {
@@ -97,6 +99,7 @@ Page({
               } else {
                 wx.showToast({
                   title: res.data.message,
+                  image: '../../images/icon_info.png',
                   duration: 3000
                 })
               }
@@ -106,7 +109,7 @@ Page({
                 hidden: false
               })
               wx.setNavigationBarTitle({
-                title: '订单列表'
+                title: '圆满公墓'
               })
               wx.hideNavigationBarLoading() //完成停止加载
               wx.stopPullDownRefresh() //停止下拉刷新
@@ -140,7 +143,8 @@ Page({
           //  console.log(res.data)
           //console.log(PageNum)
           wx.request({
-            url: GmUrl + 'marketing/bespeak/build/list',
+            // url: GmUrl + 'marketing/bespeak/build/list',
+            url: GmUrl + "marketing/bespeak/build/list/has",
             method: "POST",
             data: PageNum,
             header: {
@@ -161,6 +165,7 @@ Page({
               } else {
                 wx.showToast({
                   title: res.data.message,
+                  image: '../../images/icon_info.png',
                   duration: 3000
                 })
               }
@@ -170,7 +175,7 @@ Page({
                 hidden: false
               })
               wx.setNavigationBarTitle({
-                title: '订单列表'
+                title: '圆满公墓'
               })
               wx.hideNavigationBarLoading() //完成停止加载
               wx.stopPullDownRefresh() //停止下拉刷新
@@ -194,7 +199,8 @@ Page({
         success: function (res) {
           //查询公墓接口
           wx.request({
-            url: GmUrl + 'marketing/bespeak/build/list',
+            // url: GmUrl + 'marketing/bespeak/build/list',
+            url: GmUrl + "marketing/bespeak/build/list/has",
             method: "POST",
             data: PageNum,
 
@@ -206,7 +212,7 @@ Page({
               // console.log(res)
               if (res.data.code == 1000) {
                 var gmList = res.data.content.list
-                // console.log(gmList)
+                console.log(gmList)
                   var Length = gmList.length
                   that.setData({
                     gmList: gmList,

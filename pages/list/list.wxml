@@ -2,18 +2,18 @@
   <view class="page__bd">
     <!--选项卡-->
     <view class="tab">
-      <view>
+      <!-- <view>
         <navigator url="../blank/blank" open-type="redirectTo">单项服务</navigator>
-      </view>
+      </view> -->
       <view>
         <navigator class="active" url="../list/list" open-type="redirectTo" >殡仪洽谈</navigator>
       </view>
-      <view>
+      <!-- <view>
         <navigator url="../list_/list_" open-type="redirectTo">选墓洽谈</navigator>
       </view>
       <view>
         <navigator url="../list_s/list_s" open-type="switchTab">成功服务</navigator>
-      </view>
+      </view> -->
     </view>
     <template name="list_a">
       <view wx:if="{{orderStatus != 2 || orderStatus !=3 || orderStatus !=4}}">

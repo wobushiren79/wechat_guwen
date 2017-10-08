@@ -1,4 +1,4 @@
-// gages/service_goods_order/service_goods_order.js
+// pages/C_img/C_img.js
 Page({
 
   /**
@@ -7,7 +7,28 @@ Page({
   data: {
   
   },
-
+  onShareAppMessage: function () {
+    return {
+      title: '圆满人生公共殡葬服务平台国庆活动',
+      path: '/pages/gq/gq',
+      success: function (res) {
+        wx.showToast({
+          title: '分享成功',
+          duration: 2000,
+          // mask: true,
+        })
+      },
+      fail: function (res) {
+        // 转发失败
+        wx.showToast({
+          title: '分享成功',
+          duration: 2000,
+          image: '../../images/icon_info.png',
+          // mask: true,
+        })
+      }
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */

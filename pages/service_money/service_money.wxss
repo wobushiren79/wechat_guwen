@@ -214,7 +214,7 @@
   font-size: 30rpx;
   color: #353535;
   line-height: 1.2;
-  height: 90rpx;
+  height: 70rpx;
 }
 
 .group .group_item  .info .size, .group .group_item .edit .size {
@@ -314,12 +314,38 @@ button::after {
   line-height: 100rpx;
 }
 
-.footerfix .count {
-  width: 500rpx;
-  text-align: right;
-  box-sizing: border-box;
-  padding-right: 30rpx;
+.footerfix .home,
+ .footerfix .count,
+  .footerfix .buy {
   float: left;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+.footerfix .home {
+  padding: 0 16rpx;
+}
+.footerfix .home image{
+  width: 14rpx;
+  height: 24rpx;
+  display: inline-block;
+  transform: rotate(180deg);
+  margin: 4rpx;
+  position: relative;
+  top: 7rpx;
+}
+.footerfix .home navigator{
+  display: inline-block;
+  color:#353535;
+font-size:24rpx;
+
+}
+
+.footerfix .count {
+  color: #353535;
+  font-size: 24rpx;
+  width: 370rpx;
+  text-align: right;
 }
 
 .footerfix .count{

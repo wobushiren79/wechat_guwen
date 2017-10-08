@@ -12,10 +12,10 @@
         <navigator url="../service_order_list_serviceing/service_order_list_serviceing" open-type="redirect" class="active" >服务中</navigator>
       </view>
       <view>
-        <navigator url="../service_order_list_succeed/service_order_list_succeed" open-type="redirect">服务完成</navigator>
+        <navigator url="../service_order_list_succeed/service_order_list_succeed" open-type="redirect">已服务</navigator>
       </view>
       <view>
-        <navigator url="../service_order_list_close/service_order_list_close" open-type="redirect">交易关闭</navigator>
+        <navigator url="../service_order_list_close/service_order_list_close" open-type="redirect">已关闭</navigator>
       </view>
     </view>
 
@@ -28,10 +28,10 @@
         <view class="li">
           <view class="li_header">
           <black wx:if="{{item.order_status == 1}}">
-            <view class="header">待服务</view>
+            <view class="header">已确认</view>
           </black>
           <black wx:if="{{item.order_status == 2}}">
-            <view class="header">服务中</view>
+            <view class="header">正在服务</view>
           </black>
             <view class="footer">￥<text>{{item.total_price/100}}</text></view>
           </view>

@@ -65,7 +65,7 @@ Page({
       return;
     }
     if (val[2] != t[2]) {
-      console.log('county no');
+      // console.log('county no');
       that.setData({
         county: this.data.countys[val[2]],
         values: val
@@ -102,7 +102,7 @@ Page({
   bind_head: function (e) {
     var that = this
     var head_val = e.target.dataset.head
-    console.log(head_val)
+    // console.log(head_val)
     if (head_val == 1) {
       this.setData({
         head: true

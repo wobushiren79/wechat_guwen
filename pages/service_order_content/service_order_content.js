@@ -12,10 +12,23 @@ Page({
   call_phone: function (e) {
     var phone = e.currentTarget.dataset.phone;
     wx.makePhoneCall({
-      phoneNumber: phone, //仅为示例，并非真实的电话号码
+      phoneNumber: phone, 
       fail: function (res) {
         wx.showToast({
           title: '拨打电话失败',
+          image: '../../images/icon_info.png',
+          duration: 3000
+        })
+      }
+    })
+  },
+  kehuphone:function(){
+    wx.makePhoneCall({
+      phoneNumber: '966188', 
+      fail: function (res) {
+        wx.showToast({
+          title: '拨打电话失败',
+          image: '../../images/icon_info.png',
           duration: 3000
         })
       }
@@ -75,6 +88,7 @@ Page({
         } else {
           wx.showToast({
             title: res.data.message,
+            image: '../../images/icon_info.png',
             duration: 2000
           })
         }
@@ -116,6 +130,7 @@ Page({
         } else {
           wx.showToast({
             title: res.data.message,
+            image: '../../images/icon_info.png',
             duration: 2000
           })
         }

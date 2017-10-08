@@ -1,48 +1,48 @@
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
-    <view class="page__hd">
-        <view class="page__title">
-            <image src="{{logo_src}}"></image>
+  <view class="page__hd">
+    <view class="page__title">
+      <image src="{{logo_src}}"></image>
+    </view>
+
+  </view>
+  <view class="page__bd">
+    <form bindsubmit="formSubmit">
+      <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">账号</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="请输入账号" name="username" value="{{value3}}" />
+          </view>
         </view>
-        
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">密码</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" type="password" placeholder="请输入密码" name="password" value="{{value4}}" />
+          </view>
+        </view>
+      </view>
+      <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" bindtap="showTopTips" formType="submit">确定</button>
+      </view>
+    </form>
+
+    <!--页脚-->
+    <view class="foot">
+      <navigator url='../password_reset/password_reset'>
+        忘记密码
+      </navigator>
+      <navigator url="../zs/zs">
+        没有账户和密码?
+      </navigator>
     </view>
-    <view class="page__bd">
-        <form bindsubmit="formSubmit">
-            <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
 
-            <view class="weui-cells weui-cells_after-title">
-                <view class="weui-cell weui-cell_input">
-                    <view class="weui-cell__hd">
-                        <view class="weui-label">账号</view>
-                    </view>
-                    <view class="weui-cell__bd">
-                        <input class="weui-input" placeholder="请输入账号" name="username" value="{{value3}}"/>
-                    </view>
-                </view>
-                <view class="weui-cell weui-cell_input">
-                    <view class="weui-cell__hd">
-                        <view class="weui-label">密码</view>
-                    </view>
-                    <view class="weui-cell__bd">
-                        <input class="weui-input" type="password" placeholder="请输入密码" name="password" value="{{value4}}"/>
-                    </view>
-                </view>
-            </view>  
-<button bindtap="urlA">请求A</button>
-           
-<button bindtap="urlB">系统登录</button>
-<button bindtap="urlC">请求B</button>
-            <view class="weui-btn-area">
-                <button class="weui-btn" type="primary" bindtap="showTopTips" formType="submit">确定</button>
-            </view>
 
-            
-        </form>
+  </view>
 
-        <!--页脚-->
-        <navigator url="../zs/zs" class="foot">
-            没有账户和密码?
-        </navigator>
-
-    </view>
-  
 </view>

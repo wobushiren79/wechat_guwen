@@ -1,14 +1,15 @@
 Page({
     data: {
-
+      goods_name:''
     },
   jiage1:function(){
     wx.showLoading({
       title: '加载中',
-      mask: true,
+      // mask: true,
     })
     var LocalUrl = getApp().globalData.LocalUrl
     var listdata = this.data.channel
+    listdata.goods_name=this.data.goods_name
    var that=this
    wx.request({
      url: LocalUrl + 'Goods/jiage1',
@@ -30,6 +31,7 @@ Page({
        } else {
          wx.showToast({
            title: res.data.message,
+           image: '../../images/icon_info.png',
            duration: 2000
          })
        }
@@ -43,6 +45,7 @@ Page({
     })
     var LocalUrl = getApp().globalData.LocalUrl
     var listdata = this.data.channel
+    listdata.goods_name=this.data.goods_name
     var that = this
     wx.request({
       url: LocalUrl + 'Goods/jiage2',
@@ -64,6 +67,7 @@ Page({
         } else {
           wx.showToast({
             title: res.data.message,
+            image: '../../images/icon_info.png',
             duration: 2000
           })
         }
@@ -78,6 +82,7 @@ Page({
     var LocalUrl = getApp().globalData.LocalUrl
     var listdata = this.data.channel
     var that = this
+    listdata.goods_name = that.data.goods_name
     wx.request({
       url: LocalUrl + 'Goods/goods',
       method: "POST",
@@ -98,11 +103,64 @@ Page({
         } else {
           wx.showToast({
             title: res.data.message,
+            image: '../../images/icon_info.png',
             duration: 2000
           })
         }
       }
     })
+  },
+  //搜索
+  bindKeyInput:function(e){
+    var goods_name=e.detail.value;
+    var that=this
+    that.setData({
+      goods_name: goods_name
+    })
+    var xiaoliang = that.data.xiaoliang
+    var jiage=that.data.xiaoliang
+    var channel=that.data.channel
+    channel.goods_name = goods_name
+    if (xiaoliang){
+      var LocalUrl = getApp().globalData.LocalUrl
+      wx.showLoading({
+        title: '加载中',
+        mask: true,
+      })
+      // 取出渠道信息
+      wx.getStorage({
+        key: 'channel',
+        success: function (res) {
+          //查询分类接口
+          wx.request({
+            url: LocalUrl + 'Goods/goods',
+            method: "POST",
+            data: channel,
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              // "Cookie": "sid=" + res.data.content.sessionId
+            },
+            success: function (res) {
+              if (res.data.code == 1000) {
+                var list = res.data.list
+                that.setData({
+                  list: list,
+                  xiaoliang: true,
+                  channel: channel
+                })
+                wx.hideLoading()
+              } else {
+                wx.showToast({
+                  title: res.data.message,
+                  image: '../../images/icon_info.png',
+                  duration: 2000
+                })
+              }
+            }
+          })
+        }
+      })
+    }
   },
 onLoad: function (e) {
     var that = this
@@ -111,14 +169,6 @@ onLoad: function (e) {
       title: '加载中',
       mask: true,
     })
-    // wx.getStorage({
-    //   key: 'JSESSIONID',
-    //   success: function(res) {
-    //     that.setData({
-    //       JSESSIONID: JSESSIONID
-    //     })
-    //   },
-    // })
     // 取出渠道信息
     wx.getStorage({
       key: 'channel',
@@ -147,6 +197,7 @@ onLoad: function (e) {
             } else {
               wx.showToast({
                 title: res.data.message,
+                image: '../../images/icon_info.png',
                 duration: 2000
               })
             }

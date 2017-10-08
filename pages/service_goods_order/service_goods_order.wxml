@@ -20,10 +20,11 @@
           <navigator url="">
             <view class="dd">
               <view class="header ">
-                圆满价
+                圆满金额
               </view>
               <view class="body ">
-                ￥<text>{{totalPrice/100*1.00}}</text>
+                ￥
+                <text>{{totalPrice/100*1.00}}</text>
               </view>
               <!--<view class="footer ">
                 结算明细
@@ -38,7 +39,8 @@
                 优惠券
               </view>
               <view class="body ">
-                -￥<text>0.00</text>
+                -￥
+                <text>0.00</text>
               </view>
               <view class="footer ">
                 使用优惠券
@@ -52,7 +54,8 @@
               运费
             </view>
             <view class="body ">
-              ￥<text>0.00</text>
+              ￥
+              <text>0.00</text>
             </view>
           </view>
           <view class="dd">
@@ -65,10 +68,11 @@
           </view>
           <view class="dd list_footer">
             <view class="header ">
-              应付金额
+              应付圆满金额
             </view>
             <view class="footer money">
-              ￥<text>{{totalPrice/100*1.00}}</text>
+              ￥
+              <text>{{totalPrice/100*1.00}}</text>
             </view>
           </view>
 
@@ -76,6 +80,9 @@
         </view>
       </view>
 
+      <view class='index'>
+        <navigator url='../index/index' open-type='reLaunch'>返回首页</navigator>
+      </view>
 
 
 
@@ -84,8 +91,8 @@
       <view class="footerfix clearfix">
 
         <!-- 保存 -->
-        <button class="keep" bindtap="fukuang" data-orderid="{{orderId}}">确认订单</button>
-        
+        <button class="keep" bindtap="fukuang" data-orderid="{{orderId}}">提交订单</button>
+
       </view>
 
       <!-- 固定底部 end -->

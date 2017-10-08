@@ -40,6 +40,10 @@ height: 100%;
   padding: 0 15px;
   box-sizing: border-box;
 }
+.tab_content>image{
+  width: 100%;
+  height: 130rpx;
+}
 .tab_content .title{
   height: 84rpx;
   line-height: 84rpx;
@@ -81,6 +85,19 @@ overflow:hidden;
   background-color: #f8f8f8!important;
 }
 
+.shoppgo{
+  display: block;
+  width: 130rpx;
+  height: 130rpx;
+  position: fixed;
+  bottom: 130rpx;
+  right: 50rpx;
+}
+.shoppgo image{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 
 
 

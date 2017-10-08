@@ -75,6 +75,7 @@ input {
   position: relative;
   border-top: 1px solid #fafafa;
   background-color: #fff;
+    height: 224rpx;
   padding: 8rpx 0;
 }
 
@@ -93,12 +94,14 @@ input {
 .tab_content .ul .li .li_content .title {
   font-size: 30rpx;
   color: #353535;
+  height: 100rpx;
 }
 
 .tab_content .ul .li .li_content .money {
   font-size: 38rpx;
   color: #48cfad;
-  margin-top: 10rpx;
+  position: absolute;
+  bottom: 70rpx;
 }
 
 .tab_content .ul .li .li_content .num {
@@ -109,13 +112,27 @@ input {
   height: 24rpx;
   line-height: 24rpx;
   text-align: center;
-  margin-top: 40rpx;
   border-radius: 5rpx;
+    position: absolute;
+  bottom: 30rpx;
 }
 .tab_content .ul .li .li_content image{
   position: absolute;
   width: 14rpx;
   height: 24rpx;
-  bottom: 5px;
+  bottom: 30rpx;
   right: 15px;
+}
+.shoppgo{
+  display: block;
+  width: 130rpx;
+  height: 130rpx;
+  position: fixed;
+  bottom: 130rpx;
+  right: 50rpx;
+}
+.shoppgo image{
+  display: block;
+  width: 100%;
+  height: 100%;
 }

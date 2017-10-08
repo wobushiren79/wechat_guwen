@@ -276,6 +276,7 @@ Page({
               } else {
                 wx.showToast({
                   title: res.data.message,
+                  image: '../../images/icon_info.png',
                   duration: 3000
                 })
               };
@@ -546,6 +547,7 @@ Page({
               } else {
                 wx.showToast({
                   title: res.data.message,
+                  image: '../../images/icon_info.png',
                   duration: 3000
                 })
               }
@@ -640,6 +642,7 @@ Page({
             } else {
               wx.showToast({
                 title: res.data.message,
+                image: '../../images/icon_info.png',
                 duration: 3000
               })
             }
@@ -675,6 +678,7 @@ Page({
             } else {
               wx.showToast({
                 title: res.data.message,
+                image: '../../images/icon_info.png',
                 duration: 3000
               })
             }
@@ -706,6 +710,7 @@ Page({
             } else {
               wx.showToast({
                 title: res.data.message,
+                image: '../../images/icon_info.png',
                 duration: 3000
               })
             }
@@ -825,6 +830,7 @@ Page({
               } else {   //加入保持编辑订单接口
                 wx.showToast({
                   title: res.data.message,
+                  image: '../../images/icon_info.png',
                   duration: 3000
                 })
               }
@@ -1058,6 +1064,7 @@ Page({
                     } else {   
                       wx.showToast({
                         title: res.data.message,
+                        image: '../../images/icon_info.png',
                         duration: 3000
                       })
                     }
@@ -1066,6 +1073,7 @@ Page({
               } else {   //加入保持编辑订单接口
                 wx.showToast({
                   title: res.data.message,
+                  image: '../../images/icon_info.png',
                   duration: 3000
                 })
               }

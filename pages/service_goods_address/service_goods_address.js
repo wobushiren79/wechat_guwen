@@ -167,11 +167,35 @@ Page({
     }
     kehu.selfDelivery = ''
     kehu.selfDeliveryTime = ''
+    if (kehu.contact == ''){
+      wx.showToast({
+        title: '联系人不能为空',
+        image: '../../images/icon_info.png',
+        // mask: true,
+        duration: 2000
+      })
+    } else if (kehu.contactPhone == ''){
+      wx.showToast({
+        title: '电话不能为空',
+        image: '../../images/icon_info.png',
+        // mask: true,
+        duration: 2000
+      })
+    } else if (kehu.location == ''){
+      wx.showToast({
+        title: '详细地址不能为空',
+        image: '../../images/icon_info.png',
+        // mask: true,
+        duration: 2000
+      })
+    }else{
     //客户填写信息
     wx.setStorageSync('kehu', kehu)
     wx.navigateBack({
       delta: 1
     })
+    }
+
     //取出渠道
     // wx.getStorage({
     //   key: 'channel',

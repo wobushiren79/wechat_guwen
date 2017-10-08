@@ -1,11 +1,12 @@
 {
   "pages": [
-     "pages/index/index",
      "pages/login/login",
+     "pages/index/index",
 		 "pages/list/list", 
 		 "pages/new/new", 
      "pages/new_/new_",
 		 "pages/demo_new/demo_new", 
+     "pages/gq/gq",
      "pages/zs/zs",
 		 "pages/order/order",
 		 "pages/agentman_info/agentman_info",
@@ -41,7 +42,14 @@
      "pages/service_order_list_succeed/service_order_list_succeed",
      "pages/service_order_list_submit/service_order_list_submit",
      "pages/service_order_content/service_order_content",
-     "pages/service_forward/service_forward"
+     "pages/service_forward/service_forward",
+     "pages/list_a/list_a",
+     "pages/list_b/list_b",
+     "pages/funeral_img/funeral_img",
+     "pages/search/search",
+     "pages/cem/cem",
+     "pages/password_reset/password_reset",
+     "pages/signin/signin"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -62,14 +70,21 @@
       "text": "首页",
       "iconPath": "images/icon_tabBar_index0.png",
       "selectedIconPath": "images/icon_tabBar_index1.png"
-    },{
+    },
+    {
+      "pagePath": "pages/service_buy/service_buy",
+      "text": "服务车",
+      "iconPath": "images/icon_tabBar_shop0.png",
+      "selectedIconPath": "images/icon_tabBar_shop1.png"
+    }
+    ,{
       "pagePath": "pages/order_index/order_index",
       "text": "订单",
       "iconPath": "images/icon_tabBar_list0.png",
       "selectedIconPath": "images/icon_tabBar_list1.png"
     },{
       "pagePath":  "pages/Sift/Sift",
-      "text": "发现",
+      "text": "活动",
       "iconPath": "images/icon_tabBar_more0.png",
       "selectedIconPath": "images/icon_tabBar_more1.png"
     }]

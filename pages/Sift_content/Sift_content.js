@@ -31,7 +31,7 @@ Page({
         var article = res.data
         WxParse.wxParse('article', 'html', article, that,);
         that.setData({
-          id:optionsId,
+          id:optionId,
           titledata: titledata
         })
       }

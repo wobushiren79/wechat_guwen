@@ -14,27 +14,32 @@
 
           <!-- 姓名 -->
           <view class="title ">
-            客户：<text>{{listData.goodsServiceInfo.contact}}</text>
+            客户：
+            <text>{{listData.goodsServiceInfo.contact}}</text>
             <text class="phone" bindtap="call_phone" data-phone="{{listData.goodsServiceInfo.contactPhone}}">{{listData.goodsServiceInfo.contactPhone}}</text>
           </view>
           <view class="content ">
 
             <!-- 地址 -->
             <view class=" ">
-              地址：<text>{{listData.goodsServiceInfo.serviceLocation}}</text>
+              地址：
+              <text>{{listData.goodsServiceInfo.serviceLocation}}</text>
             </view>
 
             <!-- 服务时间 -->
             <view class=" ">
-            <black wx:if="{{listData.goodsServiceInfo.serviceWay == 0}}">
-              服务时间：<text>及时服务</text>
-            </black>
-            <black wx:if="{{listData.goodsServiceInfo.serviceWay == 1}}">
-              服务时间：<text>{{listData.goodsServiceInfo.bookTime}}</text>
-            </black>
-            <black wx:if="{{listData.goodsServiceInfo.serviceWay == 2}}">
-              服务时间：<text>{{listData.goodsServiceInfo.selfDeliveryTime}}</text>
-            </black>
+              <black wx:if="{{listData.goodsServiceInfo.serviceWay == 0}}">
+                服务时间：
+                <text>及时服务</text>
+              </black>
+              <black wx:if="{{listData.goodsServiceInfo.serviceWay == 1}}">
+                服务时间：
+                <text>{{listData.goodsServiceInfo.bookTime}}</text>
+              </black>
+              <black wx:if="{{listData.goodsServiceInfo.serviceWay == 2}}">
+                服务时间：
+                <text>{{listData.goodsServiceInfo.selfDeliveryTime}}</text>
+              </black>
             </view>
           </view>
         </view>
@@ -55,7 +60,8 @@
             购置商品
           </view>
           <view class="footer ">
-            总计：<text>{{listData.goodsItemPerforms.length}}</text>件
+            总计：
+            <text>{{listData.goodsItemPerforms.length}}</text>件
           </view>
         </view>
       </view>
@@ -73,56 +79,59 @@
 
         <!-- 详情列表 star -->
         <view class="group">
-<black wx:for="{{listData.goodsItemPerforms}}">
-          <view class="group_item clearfix">
-            <view class="checkbox_wrap">
-              <checkbox value="value" checked="" />
-            </view>
-            <view class="img_wrap">
-              <image src="http://wechat.e-funeral.cn/Public/Uploads/{{item.titleImg}}"></image>
-            </view>
-            <view class="info show">
-              <view class="name">
-                <text>{{item.specOrderedVolume}}</text>
-                <!--<text>适合男女175cm</text>\r\n<text>具体规格描述</text>-->
+          <black wx:for="{{listData.goodsItemPerforms}}">
+            <view class="group_item clearfix">
+              <view class="checkbox_wrap">
+                <checkbox value="value" checked="" />
               </view>
-              <view class="size">
-                <text>{{item.specAlias}}</text>：<text>{{item.specName}}</text>
+              <view class="img_wrap">
+                <image src="https://goodsmgr.e-funeral.cn/Public/Uploads/{{item.titleImg}}"></image>
               </view>
-              <view class="money">
-                ￥<text>{{item.adviserPrice/100}}</text>
+              <view class="info show">
+                <view class="name">
+                  <text>{{item.specOrderedVolume}}</text>
+                  <!--<text>适合男女175cm</text>\r\n<text>具体规格描述</text>-->
+                </view>
+                <view class="size">
+                  <text>{{item.specAlias}}</text>：
+                  <text>{{item.specName}}</text>
+                </view>
+                <view class="money">
+                  ￥
+                  <text>{{item.adviserPrice/100}}</text>
+                </view>
+                <view class="num">
+                  x
+                  <text>{{item.specOrderedNum}}</text>
+                </view>
+                <view class="action">
+                  <black wx:if="{{item.performStatu == 0}}">
+                    <text>待派单</text>
+                  </black>
+                  <black wx:if="{{item.performStatu == 1}}">
+                    <text>已派单(待接单)</text>
+                  </black>
+                  <black wx:if="{{item.performStatu == 2}}">
+                    <text>待执行(已接单)</text>
+                  </black>
+                  <black wx:if="{{item.performStatu == 3}}">
+                    <text>执行中</text>
+                  </black>
+                  <black wx:if="{{item.performStatu == 4}}">
+                    <text>审核中</text>
+                  </black>
+                  <black wx:if="{{item.performStatu == 5}}">
+                    <text>成功服务</text>
+                  </black>
+                </view>
+                <black wx:if="{{item.performStatu == 2 || item.performStatu == 3 || item.performStatu == 4 || item.performStatu == 5}}">
+                  <image bindtap="popup" class="info" src="../../images/icon_info.png" bindtap="zhixing" data-id="{{item.id}}"></image>
+                </black>
               </view>
-              <view class="num">
-                x<text>{{item.specOrderedNum}}</text>
-              </view>
-              <view class="action">
-              <black wx:if="{{item.performStatu == 0}}">
-                <text>待派单</text>
-              </black>
-              <black wx:if="{{item.performStatu == 1}}">
-                <text>已派单(待接单)</text>
-              </black>
-              <black wx:if="{{item.performStatu == 2}}">
-                <text>待执行(已接单)</text>
-              </black>
-              <black wx:if="{{item.performStatu == 3}}">
-                <text>执行中</text>
-              </black>
-              <black wx:if="{{item.performStatu == 4}}">
-                <text>审核中</text>
-              </black>
-              <black wx:if="{{item.performStatu == 5}}">
-                <text>成功服务</text>
-              </black>
-              </view>
-              <black wx:if="{{item.performStatu == 2 || item.performStatu == 3 || item.performStatu == 4 || item.performStatu == 5}}">
-              <image bindtap="popup" class="info" src="../../images/icon_info.png" bindtap="zhixing" data-id="{{item.id}}"></image>
-              </black>
-            </view>
 
 
-          </view>
-  </black>
+            </view>
+          </black>
         </view>
         <!-- 详情列表 end -->
 
@@ -137,38 +146,39 @@
             发票信息
           </view>
           <view class="footer ">
-          <black wx:if="{{listData.goodsOrder.needInvoice == 0}}">
-            <text>不需要发票</text>
-          </black>
-          <black wx:if="{{listData.goodsOrder.needInvoice == 1}}">
-            <text>需要发票</text>
-          </black>
+            <black wx:if="{{listData.goodsOrder.needInvoice == 0}}">
+              <text>不需要发票</text>
+            </black>
+            <black wx:if="{{listData.goodsOrder.needInvoice == 1}}">
+              <text>需要发票</text>
+            </black>
           </view>
 
         </view>
- <black wx:if="{{listData.goodsOrder.needInvoice == 1}}">
-        <view class="dt">
-          <view class="header ">
-           发票台头类型
+        <black wx:if="{{listData.goodsOrder.needInvoice == 1}}">
+          <view class="dt">
+            <view class="header ">
+              发票台头类型
+            </view>
+            <black wx:if="{{listData.goodsInvoice.titleType == 1}}">
+              <view class="footer ">
+                公司: {{listData.goodsInvoice.title}}
+              </view>
+            </black>
+            <black wx:if="{{listData.goodsInvoice.titleType == 0}}">
+              <view class="footer ">
+                个人
+              </view>
+            </black>
           </view>
-          <black wx:if="{{listData.goodsInvoice.titleType == 1}}">
-           <view class="footer ">
-            公司:               {{listData.goodsInvoice.title}}
-          </view>
-          </black>
-          <black wx:if="{{listData.goodsInvoice.titleType == 0}}">
-          <view class="footer ">
-            个人
-          </view>
-          </black>
-        </view>
-</black>
-        <view class="dd textarea">
+        </black>
+        <view class="dd">
           <view class="header ">
             备注
           </view>
           <view class="footer ">
-            <textarea placeholder="在此填入备注文字 " value="{{listData.goodsOrder.orderComment}}"/>
+            {{listData.goodsOrder.orderComment}}
+            <!--<textarea placeholder="在此填入备注文字 " value="{{listData.goodsOrder.orderComment}}" />-->
           </view>
         </view>
         <view class="dd width">
@@ -176,15 +186,17 @@
             客户订单金额
           </view>
           <view class="footer ">
-            ￥<text>{{listData.goodsOrder.showTotalPrice/100}}</text>
+            ￥
+            <text>{{listData.goodsOrder.showTotalPrice/100}}</text>
           </view>
         </view>
         <view class="dd width">
           <view class="header ">
-            应付结算金额
+            应付圆满金额
           </view>
           <view class="footer ">
-            ￥<text>{{listData.goodsOrder.totalPrice/100}}</text>
+            ￥
+            <text>{{listData.goodsOrder.totalPrice/100}}</text>
           </view>
         </view>
         <view class="dd width">
@@ -192,14 +204,14 @@
             优惠信息
           </view>
           <black wx:if="{{listData.goodsFinance.couponInfo == null}}">
-          <view class="footer ">
-            <text></text>
-          </view>
+            <view class="footer ">
+              <text></text>
+            </view>
           </black>
           <black wx:else>
-          <view class="footer ">
-            <text>{{listData.goodsFinance.couponInfo}}</text>
-          </view>
+            <view class="footer ">
+              <text>{{listData.goodsFinance.couponInfo}}</text>
+            </view>
           </black>
         </view>
         <view class="dd width">
@@ -207,7 +219,8 @@
             运费
           </view>
           <view class="footer ">
-            ￥<text>{{listData.goodsFinance.freight/100}}</text>
+            ￥
+            <text>{{listData.goodsFinance.freight/100}}</text>
           </view>
         </view>
         <view class="dd money">
@@ -215,19 +228,13 @@
 
           </view>
           <view class="footer ">
-            实付结算金额
+            实付圆满金额
             <black wx:if="{{listData.goodsFinance.actualPayment  == null}}">
-            <text> 订单未结算</text>
+              <text> 订单未支付</text>
             </black>
             <black wx:if="{{listData.goodsFinance.actualPayment  != null}}">
-            <text> ￥{{listData.goodsFinance.actualPayment/100}}</text>
+              <text> ￥{{listData.goodsFinance.actualPayment/100}}</text>
             </black>
-            <!--<black wx:if="{{listData.goodsFinance.actualPayment == 0}}">
-            <text>订单未结算</text>
-            </black>
-            <black wx:if="{{listData.goodsFinance.actualPayment != 0}}">
-            <text>{{listData.goodsFinance.actualPayment/100}}</text>
-            </black>-->
           </view>
         </view>
         <view class="dd other">
@@ -246,82 +253,58 @@
             {{listData.goodsOrder.createdAt}}
           </view>
         </view>
-         <black wx:if="{{listData.goodsFinance.paymentTime != null}}">
-        <view class="dd other">
-          <view class="header ">
-            付款时间：
+        <black wx:if="{{listData.goodsFinance.paymentTime != null}}">
+          <view class="dd other">
+            <view class="header ">
+              付款时间：
+            </view>
+
+            <view class="footer ">
+              {{listData.goodsFinance.paymentTime}}
+            </view>
           </view>
-         
-          <view class="footer ">
-            {{listData.goodsFinance.paymentTime}}
+          <view class="dd other">
+            <view class="header ">
+              付款流水：
+            </view>
+            <view class="footer ">
+              {{listData.goodsFinance.paymentNumber}}
+            </view>
           </view>
-        </view>
-        <view class="dd other">
-          <view class="header ">
-            付款流水：
-          </view>
-          <view class="footer ">
-            {{listData.goodsFinance.paymentNumber}}
-          </view>
-        </view>
         </black>
-         <!--<black wx:if="{{listData.goodsFinance.paymentTime == null}}">
-        <view class="dd other">
-          <view class="header ">
-            付款时间：
-          </view>
-         
-          <view class="footer ">
-            未付款
-          </view>
-        </view>
-        <view class="dd other">
-          <view class="header ">
-            付款流水：
-          </view>
-          <view class="footer ">
-            未付款
-          </view>
-        </view>
-        </black>-->
       </view>
     </view>
 
     <!-- 提示 -->
     <view class="p">
-      提示：如果需要修改信息等，请联系客服
+      提示：如果需要修改订单信息或对订单有疑问，请联系客服
     </view>
 
     <!-- 固定底部 star -->
     <view class="footerfix clearfix">
       <!-- 客服 -->
-      <view class="server">
-      <contact-button 
-  size="20"
-  session-from="WeChat"
->
-</contact-button>
-        <!--<image src="../../images/icon_server.png"></image>
-        <text>客服</text>-->
-      </view>
+      <!-- <contact-button size="20" session-from="WeChat">
+      </contact-button> -->
+      <!-- <view class="server">
+        <image src="../../images/icon_server.png"></image>
+        <text>客服</text>
+      </view> -->
       <!-- 购物车 -->
-      <view class="shop">
-        <image src="../../images/icon_shop.png"></image>
-        <text>取消订单</text>
-      </view>
+      <!-- <view class="shop">
+         <image src="../../images/icon_shop.png"></image> 
+        <text></text>
+      </view>  -->
       <!-- 加入购物车 -->
-      <black wx:if="{{listData.goodsOrder.orderStatus == 0}}">
-      <!--<view class="shopping" bindtap="queren" data-orderid="{{listData.goodsOrder.id}}">-->
-      <view class="buy" bindtap="queren" data-orderid="{{listData.goodsOrder.id}}">
-        提交
-      </view>
-      </black>
-      <!-- 直接购买 -->
-      <black wx:if="{{listData.goodsFinance.paymentTime == null && listData.goodsOrder.orderStatus != 0}}">
-      <view class="buy" bindtap="fukuang" data-orderid="{{listData.goodsOrder.id}}">
-        付款
-      </view>
-      </black>
+      
+        <contact-button size="20" session-from="WeChat">
+      </contact-button>
+        <view class="shopping" bindtap="queren" data-orderid="{{listData.goodsOrder.id}}">
+          在线客服
+        </view>
+        <view class="buy" bindtap="kehuphone">
+          电话客服
+        </view>
+  
     </view>
     <!-- 固定底部 end -->
 
@@ -341,15 +324,15 @@
               <text>执行方式</text>
             </view>
             <view class="footer">
-            <black wx:if="{{zhixing.goodsPerform.performWay == 0}}">
-              <text>同城送达</text>
-            </black>
-            <black wx:if="{{zhixing.goodsPerform.performWay == 1}}">
-              <text>上门服务</text>
-            </black>
-            <black wx:if="{{zhixing.goodsPerform.performWay == 2}}">
-              <text>快递物流</text>
-            </black>
+              <black wx:if="{{zhixing.goodsPerform.performWay == 0}}">
+                <text>同城送达</text>
+              </black>
+              <black wx:if="{{zhixing.goodsPerform.performWay == 1}}">
+                <text>上门服务</text>
+              </black>
+              <black wx:if="{{zhixing.goodsPerform.performWay == 2}}">
+                <text>快递物流</text>
+              </black>
             </view>
           </view>
           <view class="dd">
@@ -368,24 +351,24 @@
               <text>{{zhixing.goodsPerform.performUserName}}</text>
             </view>
           </view>
-       <black wx:if="{{zhixing.goodsExpress.expressName == null  && zhixing.goodsExpress.deliveryNumber == null}}">
-          <view class="dd">
-            <view class="header">
-              <text>快递公司</text>
+          <black wx:if="{{zhixing.goodsExpress.expressName == null  && zhixing.goodsExpress.deliveryNumber == null}}">
+            <view class="dd">
+              <view class="header">
+                <text>快递公司</text>
+              </view>
+              <view class="footer">
+                <text>{{zhixing.goodsExpress.expressName}}</text>
+              </view>
             </view>
-            <view class="footer">
-              <text>{{zhixing.goodsExpress.expressName}}</text>
+            <view class="dd">
+              <view class="header">
+                <text>快递单号</text>
+              </view>
+              <view class="footer">
+                <text>{{zhixing.goodsExpress.deliveryNumber}}</text>
+              </view>
             </view>
-          </view>
-          <view class="dd">
-            <view class="header">
-              <text>快递单号</text>
-            </view>
-            <view class="footer">
-              <text>{{zhixing.goodsExpress.deliveryNumber}}</text>
-            </view>
-          </view>
-       </black>
+          </black>
           <view class="dd">
             <view class="header">
               <text>备注</text>

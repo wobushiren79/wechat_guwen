@@ -42,6 +42,7 @@ Page({
       },
 
       success: function (res) {
+        // console.log(res)
         if (res.data.code == 1000) {
           var list = res.data.content.content
           that.setData({
@@ -52,6 +53,7 @@ Page({
         } else {
           wx.showToast({
             title: res.data.message,
+            image: '../../images/icon_info.png',
             duration: 2000
           })
         }
@@ -113,7 +115,7 @@ Page({
               pageSize: pageSize + 2
             })
             wx.showToast({
-              title: '该状态已经加载全部',
+              title: '已经加载全部',
               duration: 2000
             })
           }
@@ -121,6 +123,7 @@ Page({
         } else {
           wx.showToast({
             title: res.data.message,
+            image: '../../images/icon_info.png',
             duration: 2000
           })
         }

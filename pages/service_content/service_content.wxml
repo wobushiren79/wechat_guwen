@@ -1,4 +1,3 @@
-
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
   <view class="page__bd clearfix">
 
@@ -8,7 +7,7 @@
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{list.imgs}}">
         <swiper-item>
-          <image src="http://wechat.e-funeral.cn/Public/Uploads/{{item.pic_add}}" class="slide-image" width="355" height="150" />
+          <image src="https://goodsmgr.e-funeral.cn/Public/Uploads/{{item.pic_add}}" class="slide-image" width="355" height="150" />
         </swiper-item>
       </block>
     </swiper>
@@ -23,7 +22,7 @@
 
       <!-- 价格 -->
       <view class="money">
-        ￥
+        推荐价:
         <text>{{list.price}}</text>
         <image src="../../images/icon_money.png" bindtap="popup"></image>
       </view>
@@ -44,7 +43,8 @@
         <view class="address">
           适用区域：
           <black wx:for="{{list.apply_area}}">
-            <text><black wx:if="{{index != 0}}">/</black>{{item.name}}</text>
+            <text>
+              <black wx:if="{{index != 0}}">/</black>{{item.name}}</text>
           </black>
         </view>
       </view>
@@ -53,55 +53,41 @@
 
     <!-- 规格选择 stra-->
     <black wx:if="{{chatxian}}">
-    <view class="goods_size">
-      <view class="show">
-        选择商品规格   \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n
-        \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n
-        \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n
-        \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n
-        ¥{{spec_price}}
-        <!--<text>乌木</text>，
+      <view class="goods_size">
+        <view class="show">
+          选择商品规格 \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n ¥{{spec_price}}
+          <!--<text>乌木</text>，
         <text>1</text>个-->
-        <image src="../../images/right.png"></image>
-      </view>
-
-      <view class="hide">
-        <view class="item">
-          <view class="title">{{list.spec_alias}}</view>
-          <view class="content">
-            <black wx:for="{{list.specprice}}">
-              <text class="btn" wx:if="{{item.spec_stock > 0 && xuanzhe !=index}}" bindtap="xuanzhe" data-index="{{index}}">{{item.spec_name}}</text>
-              <text class="btn btn_dis" wx:elif="{{item.spec_stock == 0 || item.spec_stock < 0}}">{{item.spec_name}}</text>
-              <text class="btn btn_active" wx:elif="{{item.spec_stock > 0 && xuanzhe == index}}">{{item.spec_name}}</text>
-              <!--<text class="btn btn_active" >{{item.spec_name}}</text>-->
-            </black>
-          </view>
+          <!-- <image src="../../images/right.png"></image> -->
         </view>
 
-
-        <!-- <view class="item">
-          <view class="title">规格2</view>
-          <view class="content">
-            <text class="btn">乌木</text>
-            <text class="btn btn_active">乌木</text>
+        <view class="hide">
+          <view class="item">
+            <view class="title">{{list.spec_alias}}</view>
+            <view class="content">
+              <black wx:for="{{list.specprice}}">
+                <text class="btn" wx:if="{{item.spec_stock > 0 && xuanzhe !=index}}" bindtap="xuanzhe" data-index="{{index}}">{{item.spec_name}}</text>
+                <text class="btn btn_dis" wx:elif="{{item.spec_stock == 0 || item.spec_stock < 0}}">{{item.spec_name}}</text>
+                <text class="btn btn_active" wx:elif="{{item.spec_stock > 0 && xuanzhe == index}}">{{item.spec_name}}</text>
+                <!--<text class="btn btn_active" >{{item.spec_name}}</text>-->
+              </black>
+            </view>
           </view>
-        </view> -->
 
-
-        <view class="num">
-          <view class="title">数量</view>
-          <view class="content">
-            <button bindtap="reduce" data-goods_number="{{goods_number}}">-</button>
-            <!--<view class="imgs"><image  src="../../images/reduce.png" bindtap="reduce" data-goods_number="{{goods_number}}"></image></view>-->
-            <text>{{goods_number}}</text>
-            <!--<view class="imgs"><image  src="../../images/add.png" bindtap="add" data-goods_number="{{goods_number}}"></image></view>-->
-            <button bindtap="add" data-goods_number="{{goods_number}}" >+</button>
+          <view class="num">
+            <view class="title">数量</view>
+            <view class="content">
+              <button bindtap="reduce" data-goods_number="{{goods_number}}">-</button>
+              <!--<view class="imgs"><image  src="../../images/reduce.png" bindtap="reduce" data-goods_number="{{goods_number}}"></image></view>-->
+              <text>{{goods_number}}</text>
+              <!--<view class="imgs"><image  src="../../images/add.png" bindtap="add" data-goods_number="{{goods_number}}"></image></view>-->
+              <button bindtap="add" data-goods_number="{{goods_number}}">+</button>
+            </view>
           </view>
         </view>
       </view>
-    </view>
-    <!-- 规格选择 end-->
-</black>
+      <!-- 规格选择 end-->
+    </black>
 
     <!-- 适用信息 star -->
     <view class="useinfo">
@@ -145,9 +131,7 @@
 
     <!-- 商品详情 star -->
     <view class="goods_content">
-      <span style="font-size:18px;"><import src="../../wxParse/wxParse.wxml"/>   
-        
-      <!--<loading hidden = "{{hide}}">加载中...</loading>  -->
+      <span style="font-size:24rpx;"><import src="../../wxParse/wxParse.wxml"/>   
         
       <view class="wxParse">  
               <template is="wxParse" data="{{wxParseData:descrip_detail.nodes}}"/>  
@@ -163,25 +147,30 @@
         <image src="../../images/icon_server.png"></image>
         <text>客服</text>
       </button>-->
-<contact-button 
-  size="20"
-  session-from="WeChat"
->
-</contact-button>
+      <view class="server">
+        <image src="../../images/icon_server.png"></image>
+        <text>客服</text>
+      </view>
+      <contact-button size="20" session-from="WeChat">
+      </contact-button>
       <!-- 购物车 -->
       <view class="shop" bindtap="cartlist">
         <image src="../../images/icon_shop.png"></image>
         <text>服务车</text>
+        <black wx:if="{{shoppingTotalNumber>0}}" >
+        <text class="num" wx:if="{{shoppingTotalNumber >99}}">99+</text>
+        <text class="num" wx:else>{{shoppingTotalNumber}}</text>
+        </black>
       </view>
       <black wx:if="{{chatxian}}">
-      <!-- 加入购物车 -->
-      <view class="shopping" bindtap="cart">
-        加入服务车
-      </view>
-      <!-- 直接购买 -->
-      <view class="buy" bindtap="purchase">
-        直接购买
-      </view>
+        <!-- 加入购物车 -->
+        <view class="shopping" bindtap="cart">
+          加入服务车
+        </view>
+        <!-- 直接购买 -->
+        <view class="buy" bindtap="purchase">
+          直接购买
+        </view>
       </black>
     </view>
     <!-- 固定底部 end -->

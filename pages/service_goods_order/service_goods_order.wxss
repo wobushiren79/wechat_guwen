@@ -1,4 +1,3 @@
-
 .icon {
   width: 14rpx;
   height: 24rpx;
@@ -10,7 +9,6 @@
   transition: all 0.3s;
 }
 
-
 .list .dl .dd, .list .dl .dt {
   display: flex;
   line-height: 96rpx;
@@ -18,7 +16,8 @@
   position: relative;
   background: #fff;
 }
-.list .dl .dd input, .list .dl .dt input{
+
+.list .dl .dd input, .list .dl .dt input {
   display: block;
   line-height: 96rpx;
   height: 96rpx;
@@ -26,28 +25,32 @@
   color: #353535;
   font-size: 24rpx;
 }
-.list .dl .dd.list_header{
+
+.list .dl .dd.list_header {
   border-bottom: 1px solid #efefef;
-  
 }
-.list .dl .dd.list_header .header{
+
+.list .dl .dd.list_header .header {
   font-size: 34rpx;
   color: #48cfad;
 }
+
 .list .dl .dd.list_footer {
   border-top: 1px solid #efefef;
 }
-.list .dl .dd.list_footer .money{
+
+.list .dl .dd.list_footer .money {
   font-size: 30rpx;
-  color:#fc8383;
-  font-weight: 600
+  color: #fc8383;
+  font-weight: 600;
 }
-.money text{
-  color:#fc8383;
+
+.money text {
+  color: #fc8383;
 }
 
 .list .dl .dd .header, .list .dl .dt .header {
-  flex-basis: 180rpx;
+  flex-basis: 200rpx;
   padding-left: 16rpx;
   box-sizing: border-box;
   font-size: 30rpx;
@@ -63,17 +66,27 @@
   color: #353535;
   font-size: 24rpx;
 }
-.list .dl navigator .dd .footer{
+
+.list .dl navigator .dd .footer {
   color: #48cfad;
 }
-.list .dl .dd .body{
+
+.list .dl .dd .body {
   flex: 1;
   color: #353535;
   font-size: 24rpx;
 }
 
+.index {
+  margin-top: 50rpx;
+  text-align: center;
+}
 
-
+.index navigator {
+  display: inline-block;
+  color: #48cfad;
+  font-size: 30rpx;
+}
 
 .footerfix {
   position: fixed;
@@ -86,10 +99,9 @@
   border-top: 1px solid #efefef;
 }
 
-
 .footerfix .keep {
   height: 100rpx;
-  color: #ffffff;
+  color: #fff;
   font-size: 32rpx;
   line-height: 100rpx;
   background: linear-gradient(to left, #3eb99a, #269080);

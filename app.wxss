@@ -91,7 +91,7 @@ button[type="primary"] {
     overflow: hidden;
 
     /*dqr_20170617*/
-    margin-left:-2em;
+    margin-left:0em;
 
 }
 
@@ -122,6 +122,16 @@ input{
     -webkit-box-orient: vertical;
 }
 
+.aui-ellipsis-2{
+    display: -webkit-box!important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    word-break: break-all;
+    white-space: normal !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
 .mask{
 
     position: fixed;
@@ -306,3 +316,29 @@ input{
   flex: 1;
 }
 /* 单项服务订单列表 end */
+
+/*客服按钮 star*/
+/*contact-button{
+  width:125rpx;
+color:#c3c3c3;
+font-size:24rpx;
+display:block;
+float:left;
+height:100rpx;
+line-height: 3.8
+}
+contact-button text{
+  display: block;
+  text-align: center;
+  margin-top: -60rpx;
+  color:#c3c3c3;
+}*/
+contact-button{
+  display: block;
+  width: 125rpx;
+  height: 100rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  opacity: 0;
+}

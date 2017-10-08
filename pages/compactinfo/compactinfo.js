@@ -130,6 +130,7 @@ Page({
             } else {
               wx.showToast({
                 title: res.data.message,
+                image: '../../images/icon_info.png',
                 // title: '111111',
                 duration: 3000
               })
@@ -163,6 +164,7 @@ Page({
             } else {
               wx.showToast({
                 title: res.data.message,
+                image: '../../images/icon_info.png',
                 // title: '22222',
                 duration: 3000
               })
@@ -226,6 +228,7 @@ Page({
             } else {
               wx.showToast({
                 title: res.data.message,
+                image: '../../images/icon_info.png',
                 // title: '33333',
                 duration: 3000
               })
