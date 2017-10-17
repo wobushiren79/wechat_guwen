@@ -61,7 +61,7 @@
           </view>
           <view class="footer ">
             总计：
-            <text>{{listData.goodsItemPerforms.length}}</text>件
+            <text>{{listData.goodsItemPerforms.length+listData.goodsPackages.length}}</text>件
           </view>
         </view>
       </view>
@@ -79,7 +79,7 @@
 
         <!-- 详情列表 star -->
         <view class="group">
-          <black wx:for="{{listData.goodsItemPerforms}}">
+          <black wx:if="{{listData.goodsItemPerforms.length>0}}" wx:for="{{listData.goodsItemPerforms}}">
             <view class="group_item clearfix">
               <view class="checkbox_wrap">
                 <checkbox value="value" checked="" />
@@ -127,6 +127,61 @@
                 <black wx:if="{{item.performStatu == 2 || item.performStatu == 3 || item.performStatu == 4 || item.performStatu == 5}}">
                   <image bindtap="popup" class="info" src="../../images/icon_info.png" bindtap="zhixing" data-id="{{item.id}}"></image>
                 </black>
+              </view>
+
+
+            </view>
+          </black>
+          <black wx:if="{{listData.goodsPackages.length>0}}" wx:for="{{listData.goodsPackages}}">
+            <view class="group_item clearfix">
+              <view class="checkbox_wrap">
+                <checkbox value="value" checked="" />
+              </view>
+              <view class="img_wrap">
+                <image src="https://goodsmgr.e-funeral.cn/Public/Uploads/{{item.titleImg}}"></image>
+                <!-- 套餐IQ -->
+                <image src='../../images/ispackage.png' class='ispackage' style='width: 100rpx;height: 50rpx;'></image>
+              </view>
+              <view class="info show">
+                <view class="name">
+                  <text>{{item.specOrderedVolume}}</text>
+                  <!--<text>适合男女175cm</text>\r\n<text>具体规格描述</text>-->
+                </view>
+                <view class="size">
+                  <text>{{item.specAlias}}</text>：
+                  <text>{{item.specName}}</text>
+                </view>
+                <view class="money">
+                  ￥
+                  <text>{{item.adviserPrice/100}}</text>
+                </view>
+                <view class="num">
+                  x
+                  <text>{{item.specOrderedNum}}</text>
+                </view>
+                <view class="action">
+                  <!-- <black wx:if="{{item.performStatu == 0}}">
+                    <text>待派单</text>
+                  </black>
+                  <black wx:if="{{item.performStatu == 1}}">
+                    <text>已派单(待接单)</text>
+                  </black>
+                  <black wx:if="{{item.performStatu == 2}}">
+                    <text>待执行(已接单)</text>
+                  </black>
+                  <black wx:if="{{item.performStatu == 3}}">
+                    <text>执行中</text>
+                  </black>
+                  <black wx:if="{{item.performStatu == 4}}">
+                    <text>审核中</text>
+                  </black>
+                  <black wx:if="{{item.performStatu == 5}}">
+                    <text>成功服务</text>
+                  </black>  -->
+                </view>
+                <!-- <black wx:if="{{item.performStatu == 2 || item.performStatu == 3 || item.performStatu == 4 || item.performStatu == 5}}"> -->
+                <image class="info" src="../../images/icon_info.png" bindtap="packages" data-id="{{item.id}}"></image>
+                <!-- </black> -->
               </view>
 
 
@@ -295,16 +350,16 @@
         <text></text>
       </view>  -->
       <!-- 加入购物车 -->
-      
-        <contact-button size="20" session-from="WeChat">
+
+      <contact-button size="20" session-from="WeChat">
       </contact-button>
-        <view class="shopping" bindtap="queren" data-orderid="{{listData.goodsOrder.id}}">
-          在线客服
-        </view>
-        <view class="buy" bindtap="kehuphone">
-          电话客服
-        </view>
-  
+      <view class="shopping" bindtap="queren" data-orderid="{{listData.goodsOrder.id}}">
+        在线客服
+      </view>
+      <view class="buy" bindtap="kehuphone">
+        电话客服
+      </view>
+
     </view>
     <!-- 固定底部 end -->
 
@@ -382,6 +437,121 @@
       <!-- 弹窗 end -->
     </black>
     <!-- 隐藏部分 end -->
+    <black wx:if="{{package_a}}">
+      <!-- 遮罩层 star -->
+      <view class="mask" bindtap="package_b"></view>
+      <!-- 遮罩层 end -->.
 
+      <!-- 弹窗 star -->
+      <view class="package_view" bindtap="package_b">
+        <!-- <view class="dl">
+          <view class="dt">详情信息</view>
+          <view class="dd">
+            <view class="header">
+              <text>执行方式</text>
+            </view>
+            <view class="footer">
+              <black wx:if="{{zhixing.goodsPerform.performWay == 0}}">
+                <text>同城送达</text>
+              </black>
+              <black wx:if="{{zhixing.goodsPerform.performWay == 1}}">
+                <text>上门服务</text>
+              </black>
+              <black wx:if="{{zhixing.goodsPerform.performWay == 2}}">
+                <text>快递物流</text>
+              </black>
+            </view>
+          </view>
+          <view class="dd">
+            <view class="header">
+              <text>执行人电话</text>
+            </view>
+            <view class="footer phone">
+              <text bindtap="call_phone" data-phone="{{zhixing.goodsPerform.performUserPhone}}">{{zhixing.goodsPerform.performUserPhone}}</text>
+            </view>
+          </view>
+          <view class="dd">
+            <view class="header">
+              <text>执行人姓名</text>
+            </view>
+            <view class="footer">
+              <text>{{zhixing.goodsPerform.performUserName}}</text>
+            </view>
+          </view>
+          <black wx:if="{{zhixing.goodsExpress.expressName == null  && zhixing.goodsExpress.deliveryNumber == null}}">
+            <view class="dd">
+              <view class="header">
+                <text>快递公司</text>
+              </view>
+              <view class="footer">
+                <text>{{zhixing.goodsExpress.expressName}}</text>
+              </view>
+            </view>
+            <view class="dd">
+              <view class="header">
+                <text>快递单号</text>
+              </view>
+              <view class="footer">
+                <text>{{zhixing.goodsExpress.deliveryNumber}}</text>
+              </view>
+            </view>
+          </black>
+          <view class="dd">
+            <view class="header">
+              <text>备注</text>
+            </view>
+            <view class="footer">
+              <text>{{zhixing.goodsPerform.performComment}}</text>
+            </view>
+          </view>
+        </view> -->
+        <block wx:for="{{get_goodsItemPerforms}}">
+          <view class='package_view_c clearfix'>
+            <view class='package_view_d'>
+               <image class='package_img' src='https://goodsmgr.e-funeral.cn/Public/Uploads/{{item.titleImg}}'></image> 
+              <!-- <image class='package_img' src='http://192.168.0.89/shian_goods/Public/Uploads/{{item.titleImg}}'></image> -->
+            </view>
+            <view class='package_view_a'>
+              <view class='aui-ellipsis-2'>
+                <text>名称:</text>\r\n\r\n\r\n\r\n
+
+                <text>{{item.specOrderedAttr}}</text>\r\n
+                <text>{{item.specName}}</text>
+
+              </view>
+              <view>
+                <text>数量:</text>\r\n\r\n\r\n\r\n
+                <text>{{item.specOrderedNum}}</text>
+                <text>{{item.unit}}</text>\r\n\r\n\r\n\r\n
+                <text>执行状态:</text>\r\n\r\n\r\n\r\n
+                <black wx:if="{{item.performStatu == 0}}">
+                  <text>待派单</text>
+                </black>
+                <black wx:if="{{item.performStatu == 1}}">
+                  <text>已派单(待接单)</text>
+                </black>
+                <black wx:if="{{item.performStatu == 2}}">
+                  <text>待执行(已接单)</text>
+                </black>
+                <black wx:if="{{item.performStatu == 3}}">
+                  <text>执行中</text>
+                </black>
+                <black wx:if="{{item.performStatu == 4}}">
+                  <text>审核中</text>
+                </black>
+                <black wx:if="{{item.performStatu == 5}}">
+                  <text>成功服务</text>
+                </black>
+              </view>
+              <!-- <view>
+                
+
+              </view> -->
+            </view>
+          </view>
+        </block>
+      </view>
+      <!-- 弹窗 end -->
+    </black>
   </view>
 </view>

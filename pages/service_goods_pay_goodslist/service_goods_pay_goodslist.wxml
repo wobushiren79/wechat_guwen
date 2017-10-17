@@ -1,0 +1,45 @@
+<form bindsubmit="bindFormSubmit">
+  <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__bd clearfix">
+
+
+
+      <!-- 套餐列表 -->
+      <view class="goods_list list ">
+        <!-- 套餐1 -->
+        <view class="dl show}">
+          
+          <view class="group">
+            <!-- 套餐商品 -->
+            <block wx:for="{{getdatalist}}">
+            <view class="group_item clearfix">
+
+              <view class="img_wrap">
+                 <image src="https://goodsmgr.e-funeral.cn/Public/Uploads/{{item.title_img}}" mode='widthFix'></image> 
+                <!-- <image src="http://www.shiangoods.com/Public/Uploads/{{item.title_img}}" mode='widthFix'></image> -->
+              </view>
+              <view class="info show">
+                <view class="name aui-ellipsis-2">
+                  <text>商品</text>：
+                  <text>{{item.name}}</text>
+                </view>
+                <view class="size aui-ellipsis-2">
+                  <text>规格</text>：
+                  <text>{{item.spec_name}}</text>
+                </view>
+              </view>
+              <view class="num">
+                ×<text>{{item.goods_spec_number*specNum}}</text>
+              </view>
+            </view>
+            </block>
+          </view>
+        </view>
+        
+      </view>
+
+
+
+    </view>
+  </view>
+</form>

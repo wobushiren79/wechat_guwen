@@ -1,7 +1,8 @@
 Page({
   data: {
     list_show: false,
-    popup: false
+    popup: false,
+    package_a:false
   },
   bind_list: function () {
     var that = this;
@@ -43,6 +44,12 @@ Page({
   popup_close: function () {
     this.setData({
       popup: false
+    })
+  },
+  package_b:function(){
+    this.setData({
+      get_goodsItemPerforms:[],
+      package_a: false
     })
   },
   onLoad: function (evet) {
@@ -97,10 +104,28 @@ Page({
       },
     })
   },
+  packages:function(e){
+    var that = this
+    wx.showLoading({
+      title: '请稍后',
+    })
+    var get_goodsItemPerforms=[]
+    var id = e.currentTarget.dataset.id
+    var goodsItemPerforms = that.data.listData
+    for (var i in goodsItemPerforms.goodsPackages){
+      if (goodsItemPerforms.goodsPackages[i].id == id){
+        get_goodsItemPerforms = goodsItemPerforms.goodsPackages[i].goodsItemPerforms
+          }
+    }
+        that.setData({
+          get_goodsItemPerforms: get_goodsItemPerforms,
+          package_a:true
+        })
+        wx.hideLoading()
+  },
   zhixing:function(e){
     wx.showLoading({
       title: '请稍后',
-      mask: true,
     })
     var that=this
     var JSESSIONID = that.data.JSESSIONID
@@ -119,7 +144,7 @@ Page({
       },
 
       success: function (res) {
-        console.log(res)
+        // console.log(res)
         if (res.data.code == 1000) {
           var listData = res.data.content
           that.setData({

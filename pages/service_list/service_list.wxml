@@ -16,12 +16,12 @@
         <text>销售量</text>
       </view>
 
-      <view class="active2" wx:if="{{jiage == 1}}" bindtap="jiage2">
+      <view class="active2" wx:if="{{jiage == 1}}" bindtap="jiage1">
         <text>价格</text>
         <image src="../../images/down.png"></image>
       </view>
 
-      <view class="active1" wx:elif="{{jiage == 0}}">
+      <view class="active1" wx:elif="{{jiage == 0}}" bindtap='jiage2'>
         <text>价格</text>
         <image src="../../images/down.png"></image>
       </view>
@@ -42,7 +42,9 @@
     <!-- 列表 -->
     <view class="tab_content">
       <view class="ul">
-        <black wx:for="{{list}}">
+        <block wx:for="{{list}}">
+        <!-- 判断如果不是套餐 -->
+        <block wx:if="{{item.is_package == 0}}">
           <navigator url="../service_content/service_content?goods_id={{item.id}}" class="li">
             <image class="li_img" src="https://goodsmgr.e-funeral.cn/Public/Uploads/{{item.title_img}}"></image>
             <view class="li_content">
@@ -62,13 +64,42 @@
               <image src="../../images/right.png"></image>
             </view>
           </navigator>
-        </black>
+        </block>
+        <!-- 判断如果为套餐 -->
+        <block wx:elif="{{item.is_package == 1}}">
+          <navigator url="../service_content/service_content?package_id={{item.id}}" class="li">
+            <image class="li_img" src="https://goodsmgr.e-funeral.cn/Public/Uploads/{{item.title_img}}"></image>
+            <!-- 套餐IQ -->
+            <image src='../../images/ispackage.png' class='ispackage'></image>
+            <view class="li_content">
+              <view class="title aui-ellipsis-2">
+                <text>{{item.name}}</text>
+                <text> {{item.goods_slogan}}</text>
+              </view>
+              <view class="money" wx:if="{{item.price == null}}">
+                <text>商品更新中</text>
+              </view>
+              <view class="money" wx:else>
+                推荐价:<text>{{item.price}}</text>
+              </view>
+              <view class="num">
+                销售量<text>{{item.sale_amount}}</text>
+              </view>
+              <image src="../../images/right.png"></image>
+            </view>
+          </navigator>
+        </block>
+
+        </block>
       </view>
     </view>
 
     <!-- 购物车 -->
-    <navigator url="../service_buy/service_buy" class="shoppgo">
+    <navigator url="../service_buy/service_buy" open-type='switchTab' class="shoppgo">
       <image src="../../images/icon_shopgo.png"></image>
     </navigator>
+    <block wx:if="{{xianshi == true}}">
+    <view class='xianshi'>已全部加载完成</view>
+    </block>
   </view>
 </view>

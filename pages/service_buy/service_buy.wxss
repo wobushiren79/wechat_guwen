@@ -61,6 +61,7 @@ checkbox-group .group_item .img_wrap {
   /* padding: 8rpx 0; */
   float: left;
   width: 26%;
+    position: relative;
 }
 
 checkbox-group .group_item image {
@@ -244,4 +245,13 @@ checkbox-group .group_item .delete {
 .footerfix .buy {
   /* background: #29ae8c; */
   background: linear-gradient(to left, #3eb99a, #269080);
+}
+/* 套餐iQ定位 */
+.ispackage{
+  width: 100rpx;
+  height: 50rpx;
+  position: absolute;
+  left: 90rpx;
+  top:0rpx;
+
 }

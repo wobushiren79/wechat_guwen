@@ -50,7 +50,7 @@
 }
 
 .list .dl .dd .header, .list .dl .dt .header {
-  flex-basis: 200rpx;
+  flex-basis: 220rpx;
   padding-left: 16rpx;
   box-sizing: border-box;
   font-size: 30rpx;

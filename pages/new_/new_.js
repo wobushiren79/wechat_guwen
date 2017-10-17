@@ -61,7 +61,7 @@ Page({
       
     }
     // console.log(ContentData)
-    if (ContentData.customerName != '' && ContentData.promiseTime != '' && ContentData.planCemeteryLocation != '' && ContentData.trafficWay != '' && ContentData.planCemeteryId != '' && ContentData.personNum != '' && ContentData.customerLocation != '' && ContentData.customerMobile !='') {
+    if (ContentData.customerName != '' && ContentData.promiseTime != '' && ContentData.planCemeteryLocation != '' && ContentData.trafficWay != '' && ContentData.planCemeteryId != '' && ContentData.personNum != '' && ContentData.customerLocation != '' ) {
     // 取出緩存登錄信息
     wx.getStorage({
       key: 'Gmlogin',

@@ -311,6 +311,7 @@
   margin-bottom: 10rpx;
   border-bottom: 1px solid #efefef;
   padding: 10rpx 0;
+  position: relative;
 }
 
 .useinfo .dd {
@@ -326,4 +327,15 @@
 .useinfo .dd>view:last-of-type {
   flex: 1;
   text-align: right;
+}
+
+.icon {
+  width: 14rpx;
+  height: 24rpx;
+  position: absolute;
+  top: 50%;
+  right: 16rpx;
+  transform: translateY(-50%);
+  opacity: 0.5;
+  transition: all 0.3s;
 }

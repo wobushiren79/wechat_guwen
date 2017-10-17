@@ -77,7 +77,7 @@
             <view>
               <image src="{{icon_service}}" style=""></image>
             </view>
-            <text>圆满商城</text>
+            <text>选购产品</text>
           </navigator>
         </block>
         <block wx:else>
@@ -85,11 +85,17 @@
             <view>
               <image src="{{icon_service}}" style=""></image>
             </view>
-            <text>圆满商城</text>
+            <text>选购产品</text>
           </navigator>
         </block>
 
-        <block wx:if="{{Gmlogin == 1}}">
+          <view class="weui-flex__item " hover-class='navigator-hover' bindtap='gongmu'>
+            <view style='margin-top:0rpx;'>
+              <image src="{{icon_cem}}" style=""></image>
+            </view>
+            <text>新建看墓</text>
+          </view>
+        <!-- <block wx:if="{{Gmlogin == 1}}">
           <navigator url="../new_/new_" class="weui-flex__item">
             <view>
               <image src="{{icon_cem}}" style=""></image>
@@ -97,20 +103,20 @@
             <text>圆满公墓</text>
           </navigator>
         </block>
-        <block wx:else>
+         <block wx:else>
           <navigator url="../cem/cem" class="weui-flex__item">
             <view>
               <image src="{{icon_cem}}" style=""></image>
             </view>
             <text>圆满公墓</text>
           </navigator>
-        </block>
+        </block>  -->
         <block wx:if="{{Bylogin}}">
           <navigator url="../funeral_img/funeral_img" class="weui-flex__item">
             <view>
               <image src="{{icon_plan}}" style=""></image>
             </view>
-            <text>圆满白事</text>
+            <text>去接单</text>
           </navigator>
         </block>
         <block wx:else>
@@ -118,7 +124,7 @@
             <view>
               <image src="{{icon_plan}}" style=""></image>
             </view>
-            <text>圆满白事</text>
+            <text>去接单</text>
           </navigator>
         </block>
       </view>

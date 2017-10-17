@@ -59,20 +59,39 @@ Page({
               var goodsId=''
               var channelId=''
               var goodsSpecId = ''
+              var packageId=''
+              var packageSpecId=''
               for (var i in list){
                 if(i==0){
-                  goodsId += list[i]['goodsId']
-                  channelId += list[i]['channelId']
-                  goodsSpecId += list[i]['goodsSpecId']
+                  if (list[i]['isPackage'] == 0){
+                    goodsId += list[i]['goodsId']+','
+                    channelId += list[i]['channelId'] + ','
+                    goodsSpecId += list[i]['goodsSpecId'] + ','
+                  }
+                  if (list[i]['isPackage'] == 1){
+                    packageSpecId += list[i]['goodsSpecId'] + ','
+                    packageId += list[i]['goodsId'] + ','
+                    channelId += list[i]['channelId'] + ','
+                  }
+
                 }else{
-                  goodsId += ','+list[i]['goodsId'] 
-                  channelId += ','+list[i]['channelId']
-                  goodsSpecId += ','+list[i]['goodsSpecId']
+                  if (list[i]['isPackage'] == 0) {
+                    goodsId += list[i]['goodsId'] + ','
+                    channelId += list[i]['channelId'] + ','
+                    goodsSpecId += list[i]['goodsSpecId'] + ','
+                  }
+                  if (list[i]['isPackage'] == 1) {
+                    packageSpecId += list[i]['goodsSpecId'] + ','
+                    packageId += list[i]['goodsId'] + ','
+                    channelId += list[i]['channelId'] + ','
+                  }
                 }
                 var str={}
                 str.goodsId = goodsId
                 str.channelId = channelId
                 str.goodsSpecId = goodsSpecId
+                str.packageSpecId = packageSpecId
+                str.packageId = packageId
               }
               wx.request({
                 url: LocalUrl + 'Getgoods/getattrgoods',
@@ -89,7 +108,7 @@ Page({
                          var getdata=[]
                          for (var j in listt) {
                          for(var i in list){
-                           if (list[i].goodsId == parseInt(listt[j].goods_id) && list[i].goodsSpecId == parseInt(listt[j].spec_id) && list[i].channelId == parseInt(listt[j].channel_id)){
+                           if (list[i].goodsId == parseInt(listt[j].goods_id) && list[i].goodsSpecId == parseInt(listt[j].spec_id) && list[i].channelId == parseInt(listt[j].channel_id) || list[i].goodsId == parseInt(listt[j].package_id) && list[i].goodsSpecId == parseInt(listt[j].spec_id) && list[i].channelId == parseInt(listt[j].channel_id)){
                                 listt[j].id = list[i].id
                                 listt[j].specNum = list[i].specNum
                                 totla_price += parseInt(list[i].specNum) * parseFloat(listt[j].spec_price)
@@ -97,12 +116,11 @@ Page({
                                  }
                             }
                          }
-                        //  console.log(totla_price)
-                        //  console.log(getdata)
                          var formData = getdata
                          //分类名称
                          wx.setStorageSync('class_name', class_name)
-                        //  console.log(totla_price)
+                         //缓存购物车列表
+                         wx.setStorageSync('getdatalist', getdata)
                        that.setData({
                          getdata: getdata,
                          class_name: class_name,
@@ -159,6 +177,10 @@ Page({
         formData[index].specNum = parseFloat(formData[index].specNum) - 1
         getdata[index].specNum = parseFloat(getdata[index].specNum) - 1
         totla_price -= parseFloat(formData[index].spec_price)
+        if (totla_price.toString().split(".")[1].length>3){
+          totla_price =parseFloat(totla_price.toFixed(2))
+        }
+        console.log(totla_price)
         content.id = id
         getcontent.content = content
         wx.request({
@@ -201,6 +223,7 @@ Page({
   add:function(e){
     var that=this
     var JSESSIONID = that.data.JSESSIONID
+    var r = /^\+?[1-9][0-9]*$/;　　//正整数
     wx.showLoading({
       title: '请稍后',
     })
@@ -217,6 +240,12 @@ Page({
         formData[index].specNum = parseFloat(formData[index].specNum) + 1
         getdata[index].specNum = parseFloat(getdata[index].specNum) + 1
         totla_price +=parseFloat(formData[index].spec_price)
+        if (!r.test(totla_price)) {
+          if (totla_price.toString().split(".")[1].length > 3) {
+            totla_price = parseFloat(totla_price.toFixed(2))
+          }
+        }
+        console.log(totla_price)
         content.id = id
         getcontent.content = content
         wx.request({
@@ -249,6 +278,7 @@ Page({
   EventHandle:function(e){
     var that = this
     var JSESSIONID = that.data.JSESSIONID
+    var r = /^\+?[1-9][0-9]*$/;　　//正整数
     wx.showLoading({
       title: '请稍后',
     })
@@ -267,10 +297,15 @@ Page({
         formData[index].specNum = parseFloat(specNum)
         getdata[index].specNum = parseFloat(specNum)
         totla_price += parseFloat(formData[index].specNum) * parseFloat(formData[index].spec_price)
+        if (!r.test(totla_price)){
+        if (totla_price.toString().split(".")[1].length > 3) {
+          totla_price = parseFloat(totla_price.toFixed(2))
+        }
+        }
+        console.log(totla_price)
         content.id = id
         content.specNum = specNum
         getcontent.content = content
-        console.log(getcontent)
         wx.request({
           url: javaApi + 'api/goods/shopping/updateShopingNum',
           method: "POST",
@@ -376,6 +411,7 @@ Page({
   },
   del:function(e){
     var that = this
+    var r = /^\+?[1-9][0-9]*$/;　　//正整数
     var JSESSIONID = that.data.JSESSIONID
     wx.showLoading({
       title: '请稍后',
@@ -388,12 +424,17 @@ Page({
     var formData = that.data.formData
     if (formData[index].id == id){
         totla_price -= parseFloat(formData[index].specNum) * parseFloat(formData[index].spec_price)
+        if (!r.test(totla_price)) {
+          if (totla_price.toString().split(".")[1].length > 3) {
+            totla_price = parseFloat(totla_price.toFixed(2))
+          }
+        }
+        // console.log(totla_price)
         delete formData[index]
         delete getdata[index]
       }
     var ForData={}
     ForData.content = { 'shoppingCartIds':[id]}
-    console.log(ForData)
     wx.request({
       url: javaApi + 'api/goods/shopping/remove',
       method: "POST",

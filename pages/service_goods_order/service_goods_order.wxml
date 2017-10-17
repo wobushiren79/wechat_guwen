@@ -34,7 +34,7 @@
           </navigator>
 
           <navigator url="">
-            <view class="dd">
+            <!-- <view class="dd">
               <view class="header ">
                 优惠券
               </view>
@@ -46,7 +46,7 @@
                 使用优惠券
                 <image src="../../images/right.png" class="icon"></image>
               </view>
-            </view>
+            </view> -->
           </navigator>
 
           <view class="dd">
@@ -59,12 +59,12 @@
             </view>
           </view>
           <view class="dd">
-            <view class="header ">
+            <!-- <view class="header ">
               积分
             </view>
             <view class="footer ">
               <text>0</text>分
-            </view>
+            </view> -->
           </view>
           <view class="dd list_footer">
             <view class="header ">

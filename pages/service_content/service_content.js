@@ -46,6 +46,12 @@ Page({
       success: function (res) {
         
     var goods_id=e.goods_id
+    var package_id=e.package_id
+    if (e.goods_id){
+      var goods_ids = goods_id
+    }else{
+      var goods_ids = package_id
+    }
     var LocalUrl = getApp().globalData.LocalUrl
     var javaApi = getApp().globalData.javaApi
     var JSESSIONID = ''
@@ -65,7 +71,12 @@ Page({
       success: function (res) {
         var channel = {}
         channel.channel_id = res.data.id
-        channel.goods_id = goods_id
+        if (goods_id){
+          channel.goods_id = goods_id
+        }else{
+          channel.package_id = package_id
+        }
+        // console.log(channel)
         var content={}
         content.content='钟明坏蛋'
         //查询分类接口
@@ -80,9 +91,17 @@ Page({
           success: function (res) {
             if (res.data.code == 1000) {
               var list = res.data.list
-              console.log(list)
+              // console.log(list)
+              if (list.is_package == 0){
+                var goods_cate_id= res.data.list.goods_cate_id
+                // var spec_attr_id=res.data.list.spec_attr_id
+              }else{
+                var goods_cate_id = res.data.list.package_cate_id
+                // var spec_attr_id = res.data.list.spec_attr_id
+              }
               WxParse.wxParse('descrip_detail', 'html', list.descrip_detail, that, );
               if (res.data.list.specprice.length >0) {
+                wx.setStorageSync('speclist', res.data.list.specprice)
                 wx.request({
                   url: javaApi + 'api/goods/shopping/getShoppingNumber',
                   method: "POST",
@@ -106,9 +125,9 @@ Page({
                         spec_price: res.data.list.specprice[0].spec_price,
                         shoppingTotalNumber: shoppingTotalNumber,
                         goods_number: 1,
-                        goods_cate_id: res.data.list.goods_cate_id,
+                        goods_cate_id: goods_cate_id,
                         spec_attr_id: res.data.list.spec_attr_id,
-                        goods_id: goods_id,
+                        goods_id: goods_ids,
                         chatxian: true
                       })
                       wx.hideLoading()
@@ -145,9 +164,9 @@ Page({
                         // spec_price: res.data.list.specprice[0].spec_price,
                         shoppingTotalNumber: shoppingTotalNumber,
                         // goods_number: 1,
-                        goods_cate_id: res.data.list.goods_cate_id,
+                        goods_cate_id: goods_cate_id,
                         spec_attr_id: res.data.list.spec_attr_id,
-                        goods_id: goods_id,
+                        goods_id: goods_ids,
                         chatxian: true
                       })
                       wx.hideLoading()
@@ -246,8 +265,14 @@ Page({
    var content = {}
 
    content.channelId = xuanzhedata.channel_id
-   content.goodsId = xuanzhedata.goods_id
-   content.goodsSpecId = xuanzhedata.goods_spec_id
+   if (xuanzhedata.goods_id){
+     content.goodsId = xuanzhedata.goods_id
+     content.goodsSpecId = xuanzhedata.goods_spec_id
+   }else{
+     content.packageId = xuanzhedata.package_id
+     content.packageSpecId = xuanzhedata.package_spec_id
+   }
+
    var getData={}
    wx.request({
      url: LocalUrl + 'Getgoods/getattrgoods',
@@ -259,7 +284,6 @@ Page({
        // "Cookie": "sid=" + res.data.content.sessionId
      },
      success: function (res) {
-       console.log(res.data)
        var totla_price = 0;
        //分类名称
        wx.setStorageSync('class_name', res.data.class_name)
@@ -288,15 +312,23 @@ Page({
   })
   var goods_number = that.data.goods_number
   var Goodsdata = that.data.xuanzhedata
+  var setlist=that.data.list
   var spec_attr_id = that.data.spec_attr_id
   var goods_cate_id = that.data.goods_cate_id
   var formdata = {}
-  formdata.goodsId = Goodsdata.goods_id
-  formdata.goodsSpecId = Goodsdata.goods_spec_id
+  if (setlist.is_package == 1){
+    formdata.goodsId = Goodsdata.package_id
+    formdata.goodsSpecId = Goodsdata.package_spec_id
+  }else{
+    formdata.goodsId = Goodsdata.goods_id
+    formdata.goodsSpecId = Goodsdata.goods_spec_id
+  }
+
   formdata.classifyAttrId = spec_attr_id
   formdata.classifyId = goods_cate_id
   formdata.specNum = goods_number
   formdata.channelId = Goodsdata.channel_id
+  formdata.isPackage = setlist.is_package
 
   var list =[]
   list.push(formdata)
@@ -304,7 +336,7 @@ Page({
   var aaaa = { content: formDataa}
   //转换字符串
   var ForData = JSON.stringify(aaaa)
-  console.log(ForData)
+  // console.log(ForData)
   var javaApi = getApp().globalData.javaApi
   wx.getStorage({
     key: 'JSESSIONID',

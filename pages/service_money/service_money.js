@@ -36,11 +36,16 @@ Page({
       key: 'formData',
       success: function (res) {
         var formData = res.data
+        // console.log(res.data)
+        //缓存结算列表
+        wx.setStorageSync('getdatalist', formData)
+        // wx.getStorageSync(key)
         var goodsnumber = formData.length
         //顾问总金额
         var dviser_Price = 0
         for (var i in formData) {
           dviser_Price += formData[i].adviser_price * formData[i].specNum
+          
         }
         that.setData({
           formData: formData,
@@ -113,6 +118,7 @@ Page({
     var getdata = {}
     var goodsOrder = {}
     var goodsOrderItems = []
+    var goodsPackages=[]
     var goodsInvoice = {}
     var goodsServiceInfo = {}
     //渠道
@@ -149,44 +155,99 @@ Page({
       if (num4) {
         goodsOrder.showTotalPrice = parseFloat(totla_price) * 100
       } else {
-        var start = totla_price.indexOf('.');
-        var b =totla_price.substring(start + 1)
+        var start = totla_price.toString().indexOf('.');
+        var b = totla_price.toString().substring(start + 1)
         if (b.length > 1) {
-          goodsOrder.showTotalPrice = parseFloat(totla_price.replace('.', '')) 
+          goodsOrder.showTotalPrice = parseFloat(totla_price.toString().replace('.', '')) 
         } else {
-          goodsOrder.showTotalPrice = parseFloat(totla_price.replace('.', '') + '0')
+          goodsOrder.showTotalPrice = parseFloat(totla_price.toString().replace('.', '') + '0')
         }
-        // goodsOrder.showTotalPrice = a + b
       }
-     // goodsOrder.showTotalPrice = parseFloat(totla_price)
       //顾问总金额
-      var totalPrice = 0
-      for (var i in formData) {
-        var num3 = r.test(parseFloat(formData[i].adviser_price))
-        if (num3) {
-          totalPrice += parseFloat(formData[i].adviser_price) * 100
-        } else {
-          var start = formData[i].adviser_price.indexOf('.');
-          var b = formData[i].adviser_price.substring(start + 1)
-          if (b.length > 1) {
-            totalPrice += parseFloat(formData[i].adviser_price.replace('.', '')) * formData[i].specNum
-          } else {
-            totalPrice += parseFloat(formData[i].adviser_price.replace('.', '') + '0') * formData[i].specNum
-          }
-          // var c = a + b
-          // totalPrice += parseInt(d) * formData[i].specNum
-        }
-        
-      }
-      goodsOrder.totalPrice = totalPrice
+      var totalPrice = that.data.dviser_Price
+      goodsOrder.totalPrice = totalPrice*100
       getdata.goodsOrder = goodsOrder
       // console.log(formData)
       //商品ID
       for (var i in formData) {
+        if (formData[i].is_package == 1){
+          var packagelist = {}
+          var goodsOrderItemss=[]
+          for (var j in formData[i].goods){
+            var goodsList = {}
+            goodsList.goodsId = formData[i].goods[j].goods_id
+            goodsList.goodsSpecId = formData[i].goods[j].goods_spec_id
+            goodsList.classifyAttrId = formData[i].goods[j].class_attr_id
+            goodsList.classifyId = formData[i].goods[j].goods_class_id
+            goodsList.specOrderedNum = formData[i].goods[j].goods_spec_number
+            goodsList.specOrderedVolume = formData[i].goods[j].spec_name
+            goodsList.specAlias = formData[i].goods[j].spec_alias
+            goodsList.currentDiscount = 1
+            goodsList.specOrderedAttr = formData[i].goods[j].name
+            goodsList.specNumber = formData[i].goods[j].goods_number
+            goodsList.titleImg = formData[i].goods[j].title_img
+            goodsList.unit = formData[i].goods[j].unit
+            goodsList.specName = formData[i].goods[j].spec_name
+            goodsOrderItemss.push(goodsList)
+          }
+          packagelist.goodsOrderItems = goodsOrderItemss
+          packagelist.packageId = parseInt(formData[i].package_id)
+          packagelist.packageSpecId = parseInt(formData[i].spec_id)
+          var num2 = r.test(parseFloat(formData[i].spec_price))
+          if (num2) {
+            packagelist.specOrderedPrice = parseFloat(formData[i].spec_price) * 100
+          } else {
+            var start = formData[i].spec_price.indexOf('.');
+            var b = formData[i].spec_price.substring(start + 1)
+            if (b.length > 1) {
+              packagelist.specOrderedPrice = parseFloat(formData[i].spec_price.replace('.', ''))
+            } else {
+              packagelist.specOrderedPrice = parseFloat(formData[i].spec_price.replace('.', '') + '0')
+            }
+          }
+          packagelist.specOrderedNum = parseInt(formData[i].specNum)
+          packagelist.specOrderedVolume = formData[i].package_name
+          packagelist.specAlias = formData[i].spec_alias
+          packagelist.currentDiscount = 1
+          packagelist.specOrderedAttr = formData[i].class_name
+          packagelist.titleImg = formData[i].title_img
+          packagelist.unit = formData[i].unit
+          packagelist.specName = formData[i].spec_name
+          //  goodslist.ementPrice = parseFloat(formData[i].ement_price)
+          var num1 = r.test(parseFloat(formData[i].ement_price))
+          if (num1) {
+            packagelist.ement_price = parseFloat(formData[i].ement_price) * 100
+          } else {
+            var start = formData[i].ement_price.indexOf('.');
+            var b = formData[i].ement_price.substring(start + 1)
+            if (b.length > 1) {
+              packagelist.ement_price = parseFloat(formData[i].ement_price.replace('.', ''))
+            } else {
+              packagelist.ement_price = parseFloat(formData[i].ement_price.replace('.', '') + '0')
+            }
+          }
+          // goodslist.adviserPrice = parseFloat(formData[i].adviser_price)
+          var num = r.test(parseFloat(formData[i].adviser_price))
+          if (num) {
+            packagelist.adviserPrice = parseFloat(formData[i].adviser_price) * 100
+          } else {
+            var start = formData[i].adviser_price.indexOf('.');
+            var b = formData[i].adviser_price.substring(start + 1)
+            var d = b.length
+            if (b.length > 1) {
+              packagelist.adviserPrice = parseFloat(formData[i].adviser_price.replace('.', ''))
+            } else {
+              packagelist.adviserPrice = parseFloat(formData[i].adviser_price.replace('.', '') + '0')
+            }
+          }
+          packagelist.specNumber = formData[i].package_number
+          packagelist.classifyId = parseInt(formData[i].package_class_id)
+          packagelist.classifyAttrId = parseInt(formData[i].class_attr_id)
+          goodsPackages.push(packagelist)
+        }else{
         var goodslist = {}
         goodslist.goodsId = parseInt(formData[i].goods_id)
         goodslist.goodsSpecId = parseInt(formData[i].spec_id)
-      //  goodslist.specOrderedPrice = parseFloat(formData[i].spec_price)
         var num2 = r.test(parseFloat(formData[i].spec_price))
         if (num2) {
           goodslist.specOrderedPrice = parseFloat(formData[i].spec_price) * 100
@@ -240,7 +301,9 @@ Page({
         goodsOrderItems.push(goodslist)
         // console.log(goodslist)
       }
+      }
       getdata.goodsOrderItems = goodsOrderItems
+      getdata.goodsPackages = goodsPackages
       //发票信息组装
       if (fapiao) {
         goodsInvoice.titleType = fapiao.titleType
@@ -267,6 +330,7 @@ Page({
       var OrderData = JSON.stringify(orderdata)
       // console.log(orderdata)
       var javaApi = getApp().globalData.javaApi
+      console.log(orderdata)
       wx.request({
         url: javaApi + 'api/goods/order/save',
         method: "POST",

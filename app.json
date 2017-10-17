@@ -1,7 +1,7 @@
 {
   "pages": [
-     "pages/login/login",
      "pages/index/index",
+     "pages/login/login",
 		 "pages/list/list", 
 		 "pages/new/new", 
      "pages/new_/new_",
@@ -49,7 +49,9 @@
      "pages/search/search",
      "pages/cem/cem",
      "pages/password_reset/password_reset",
-     "pages/signin/signin"
+     "pages/signin/signin",
+     "pages/service_goods_list/service_goods_list",
+     "pages/service_goods_pay_goodslist/service_goods_pay_goodslist"
   ],
   "window": {
     "navigationBarTextStyle": "black",

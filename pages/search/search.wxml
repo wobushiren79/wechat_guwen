@@ -14,6 +14,7 @@
     <view class="tab_content">
       <view class="ul">
 <block wx:for="{{search_data}}">
+<block wx:if="{{item.is_package == 0}}">
         <navigator url="../service_content/service_content?goods_id={{item.id}}" class="li">
           <image class="li_img" src="https://goodsmgr.e-funeral.cn/Public/Uploads/{{item.title_img}}"></image>
           <view class="li_content">
@@ -33,6 +34,30 @@
             <image src="../../images/right.png"></image>
           </view>
         </navigator>
+</block>
+<block wx:if="{{item.is_package == 1}}">
+        <navigator url="../service_content/service_content?package_id={{item.id}}" class="li">
+          <image class="li_img" src="https://goodsmgr.e-funeral.cn/Public/Uploads/{{item.title_img}}"></image>
+            <!-- 套餐IQ -->
+          <image src='../../images/ispackage.png' class='ispackage'></image>
+          <view class="li_content">
+            <view class="title aui-ellipsis-1">
+              <text>{{item.name}}</text>
+              <text> {{item.package_slogan}}</text>
+            </view>
+            <view class="money" wx:if="{{item.price == null}}">
+              <text>商品更新中</text>
+            </view>
+            <view class="money" wx:else>
+              推荐价:<text>{{item.price}}</text>
+            </view>
+            <view class="num">
+              销售量<text>{{item.sale_amount}}</text>
+            </view>
+            <image src="../../images/right.png"></image>
+          </view>
+        </navigator>
+</block>
 </block>
 <block wx:if="{{search_data.length==0}}">
 <view>暂无此搜索相关商品!我们正在努力更新商品中!</view>

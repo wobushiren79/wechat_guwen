@@ -40,7 +40,7 @@ App({
   },
   globalData:{
     userInfo:null,
-    // LocalUrl:"http://192.168.0.78/shian_goods/Api/",
+    // LocalUrl:"http://www.shiangoods.com/Api/",
     LocalUrl: "https://goodsmgr.e-funeral.cn/Api/",
     RouteUrl:"https://web.shianlife.cn/shianlife-adviser-1.0-SNAPSHOT/",
     //殡仪
@@ -52,8 +52,11 @@ App({
     AppUrl:"https://app.e-funeral.cn/",
     // javaApi:"http://192.168.0.199:8299/goods/"   权哥
     //小慌
-  //  javaApi:"http://192.168.0.77:8088/goods/"
+    // javaApi: "http://192.168.0.71:8080/goods/", 
+    // javaApi: "http://prd-goods.xicp.cn/", 
     javaApi: "https://goods.shianlife.cn/",
+    // platform:"http://prd-platform.xicp.cn/"
+    // platform:"http://192.168.0.71:8099/ki4so-web/"
     platform:"https://platform.shianlife.cn/"
     // javaApi: "http://192.168.0.75:8299/goods/"
     // RouteUrl:"http://192.168.0.146:8088/adviser/"

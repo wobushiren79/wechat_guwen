@@ -86,45 +86,33 @@ Page({
       }
     })
   },
-  // onReady:function(){
-  //   wx.getStorage({
-  //     key: 'Gmlogin',
-  //     success: function (res) {
-  //       that.setData({
-  //         // Gmdata: true,
-  //         Gmlogin: true
-  //       })
-  //     },
-  //     fail: function () {
-  //       that.setData({
-  //         // Gmdata: true,
-  //         Gmlogin: false
-  //       })
-  //     }
-  //   })
-  // },
-  // onShow: function () {
-  //   wx.getStorage({
-  //     key: 'Gmlogin',
-  //     success: function (res) {
-  //       that.setData({
-  //         // Gmdata: true,
-  //         Gmlogin: true
-  //       })
-  //     },
-  //     fail: function () {
-  //       that.setData({
-  //         // Gmdata: true,
-  //         Gmlogin: false
-  //       })
-  //     }
-  //   })
-  // },
-  onLoad: function (asd) {
+  gongmu:function(){
+    wx.showLoading({
+      title: '加载中',
+    })
+    wx.getStorage({
+      key: 'Gmlogin',
+      success: function (res) {
+        //跳转登录页面
+        wx.navigateTo({
+          url: '../new_/new_',
+        })
+        wx.hideLoading()
+      },
+      fail: function () {
+        //跳转登录页面
+        wx.navigateTo({
+          url: '../cem/cem',
+        })
+        wx.hideLoading()
+      }
+    })
+  },
+  onLoad: function () {
     var that = this
     var GmUrl = getApp().globalData.GmUrl  //公墓接口地址前缀
     var RouteUrl = getApp().globalData.RouteUrl
-    console.log(asd)
+    // console.log(asd)
     //取出公墓登录权限
     // var obj = wx.getStorageSync('Gmlogin')
     // if (obj) {
@@ -255,6 +243,7 @@ Page({
                                 "Content-Type": "application/x-www-form-urlencodeed",
                               },
                               success: function (resss) {
+                                // console.log(resss)
                                 if (resss.data.code == 1000) {
                                   that.setData({
                                     labellist: resss.data.list,
@@ -300,45 +289,45 @@ Page({
        else if (res.data[i] == "cemetery.advisor") {
           // var FormData = asd.FormData
           // console.log(asd.FormData)
-          wx.request({
-            url: GmUrl + 'doLogin/marketing',
-            method: "POST",
-            data: { "content": { "username": asd.username,"password": asd.password, "systemType": "2"}},
-            header: {
-              "Content-Type": "application/x-www-form-urlencodeed"
-              // 'content-type': 'application/json'
-            },
-            success: function (res) {
-              // console.log(res)
-              if (res.data.code == 1000) {
-                //公墓登录信息缓存
-                // wx.setStorageSync('Gmlogin', res.data)
-              that.setData({
-                // Gmdata: true,
-                Gmlogin: 1
-              })
-                wx.setStorage({
-                  key: "Gmlogin",
-                  data: res.data
-                })
+          // wx.request({
+          //   url: GmUrl + 'doLogin/marketing',
+          //   method: "POST",
+          //   data: { "content": { "username": asd.username,"password": asd.password, "systemType": "2"}},
+          //   header: {
+          //     "Content-Type": "application/x-www-form-urlencodeed"
+          //     // 'content-type': 'application/json'
+          //   },
+          //   success: function (res) {
+          //     // console.log(res)
+          //     if (res.data.code == 1000) {
+          //       //公墓登录信息缓存
+          //       // wx.setStorageSync('Gmlogin', res.data)
+          //     that.setData({
+          //       // Gmdata: true,
+          //       Gmlogin: 1
+          //     })
+          //       wx.setStorage({
+          //         key: "Gmlogin",
+          //         data: res.data
+          //       })
 
-                //  var  Gmlogin = true
-                wx.hideLoading()
-              } else {
-                // var Gmlogin = false
-              that.setData({
-                // Gmdata: true,
-                Gmlogin: 0
-              })
-                wx.showToast({
-                  title: '公墓登录失败',
-                  image: '../../images/icon_info.png',
-                  duration: 3000,
-                  // mask:true
-                })
-              }
-            }
-          })
+          //       //  var  Gmlogin = true
+          //       wx.hideLoading()
+          //     } else {
+          //       // var Gmlogin = false
+          //     that.setData({
+          //       // Gmdata: true,
+          //       Gmlogin: 0
+          //     })
+          //       wx.showToast({
+          //         title: '公墓登录失败',
+          //         image: '../../images/icon_info.png',
+          //         duration: 3000,
+          //         // mask:true
+          //       })
+          //     }
+          //   }
+          // })
           // //取出公墓登录权限
           // var obj = wx.getStorageSync('Gmlogin')
           // if (obj) {
@@ -367,7 +356,7 @@ Page({
           //     console.log(22222222)
           //     that.setData({
           //       // Gmdata: true,
-          //       Gmlogin: false
+          //       Gmlogin: 0
           //     })
           //   }
           // })

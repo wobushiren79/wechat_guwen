@@ -149,3 +149,10 @@ input {
   bottom: 10px;
   right: 15px;
 }
+/* 套餐iQ定位 */
+.ispackage{
+  width: 100rpx;
+  height: 50rpx;
+  position: absolute;
+  left: 104rpx;
+}

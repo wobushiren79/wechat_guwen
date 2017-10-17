@@ -7,7 +7,7 @@
         <view class="li">
           <navigator url="../list_/list_" hover-class="active">
             <image src="../../images/icon_order_cem.png"></image>
-            <text>圆满-公墓</text>
+            <text>看墓订单</text>
           </navigator>
         </view>
 
@@ -15,7 +15,7 @@
         <view class="li">
           <navigator url="../list/list" hover-class="active">
             <image src="../../images/icon_order_plan.png"></image>
-            <text>圆满-白事</text>
+            <text>白事订单</text>
           </navigator>
         </view>
 
@@ -23,7 +23,7 @@
         <view class="li">
           <navigator url="../service_order_list_submit/service_order_list_submit" hover-class="active">
             <image src="../../images/icon_order_server.png"></image>
-            <text>圆满-商城</text>
+            <text>商城订单</text>
           </navigator>
         </view>
 

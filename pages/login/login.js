@@ -9,21 +9,30 @@ Page({
     systemType:2,
         value3:'',
         value4:'',
-        str:''
+        str:'',
+        subSystems:[
+          "funeral.advisor",
+        ],
+        is_loction:0,
+        hasDealSubSystem:0
   },
     systemType:function(e){
     this.setData({systemType:e.detail.value})
   },
     formSubmit: function (e) {
+      var that=this
       wx.showLoading({
         title: '登录中!请稍后',
         // mask:true
       })
+      wx.clearStorageSync()
       var RouteUrl = getApp().globalData.RouteUrl
       // var Gmlogin=false
       var GmUrl = getApp().globalData.GmUrl  //公墓接口地址前缀
       var ByUrl = getApp().globalData.ByUrl  //殡仪接口地址前缀
       var platform = getApp().globalData.platform  //平台接口地址前缀
+      var subSystems = that.data.subSystems
+      var hasDealSubSystem = that.data.hasDealSubSystem
       var Contentdata = e.detail.value
       if (Contentdata.username == '' || Contentdata.password == '' || Contentdata.password == null || Contentdata.username == null) {
         wx.showToast({
@@ -77,71 +86,38 @@ Page({
               //   //缓存用户权限
               wx.setStorageSync('resourceCodes', res.data.content.resourceCodes)
               // console.log(res.data.content.resourceCodes)
+              for (var j in subSystems){
+                hasDealSubSystem++
               for (var i in res.data.content.resourceCodes){
-                if (res.data.content.resourceCodes[i] == "funeral.advisor"){
-                // console.log(ByUrl + 'doLogin')
-                // continue;
-                // wx.request({
-                //   //登录殡仪
-                //   url: ByUrl + 'doLogin',
-                //   method: "POST",
-                //   data: FormData,
-                //   header: {
-                //     "Content-Type": "application/x-www-form-urlencodeed"
-                //     // 'client-Type': 'wechatapp',
-                //     // 'content-type': 'application/json'
-                //   },
-                //   success: function (res) {
-                //     if (res.data.code == 1000 && res.data.message == '操作成功') {
-                //       //殡仪登錄信息緩存
-                //      wx.setStorageSync('logindata', res.data)
-                //       if (res.data.content.token) {
-                //         var tokendata = { content: { token: res.data.content.token } }
-                //         //转换字符串
-                //         var tokenData = JSON.stringify(tokendata)
-                //         // wx.request({
-                //         //   url: 'https://www.baidu.com',
-                //         //   method:"GET"
-                //         // })
-                //         wx.request({
-                //           url: GmUrl + 'doLogin/marketing',
-                //           method: "POST",
-                //           data: tokenData,
-                //           header: {
-                //             "Content-Type": "application/x-www-form-urlencodeed"
-                //             // 'content-type': 'application/json'
-                //           },
-                //           success: function (res) {
-                //             if (res.data.code == 1000) {
-                //               //公墓登录信息缓存
-                //               wx.setStorageSync('Gmlogin', res.data)
-                //               // 頁面跳轉
-                //               // wx.navigateBack({
-                //               //   delta: 1
-                //               // })
-                //               wx.hideLoading()
-                //             } else {
-                //               wx.showToast({
-                //                 title: res.data.message,
-                //                 duration: 3000,
-                //                 // mask:true
-                //               })
-                //             }
-                //           }
-                //         })
-                //       }
-                //     }
-                //   }
-                // })
+                if (res.data.content.resourceCodes[i] == "cemetery.advisor"){
+                  // console.log(asd.FormData)
+                  wx.request({
+                    url: GmUrl + 'doLogin/marketing',
+                    method: "POST",
+                    data: FormData,
+                    header: {
+                      "Content-Type": "application/x-www-form-urlencodeed"
+                      // 'content-type': 'application/json'
+                    },
+                    success: function (res) {
+                      if (res.data.code == 1000) {
+                        //公墓登录信息缓存
+                        wx.setStorageSync('Gmlogin', res.data)
+                        wx.hideLoading()
+                      } else {
+                        wx.showToast({
+                          title: '公墓登录失败',
+                          image: '../../images/icon_info.png',
+                          duration: 3000,
+                        })
+                      }
+                      that.is_login(hasDealSubSystem, subSystems, that.data.is_loction)
+                    }
+                  })
               }
-              //   if (res.data.content.resourceCodes[i] == "cemetery.advisor"){
-
-              // }
               }
-              // 頁面跳轉
-              wx.reLaunch({
-                url: '../index/index?username=' + Contentdata.username + '&password=' + Contentdata.password,
-              })
+              }
+              that.is_login(hasDealSubSystem, subSystems, that.data.is_loction)
             }else{
               wx.showToast({
                 title: res.data.message,
@@ -174,5 +150,20 @@ Page({
         }
       }
     },
+    is_login: function(hasDealSubSystem, subSystems, is_loction) {
+    if(subSystems.length == hasDealSubSystem) {
+      if (is_loction == 0) {
+        this.setData({
+          is_loction:1
+        })
+        // 頁面跳轉
+        wx.reLaunch({
+          url: '../index/index',
+        })
+        // console.log(00000)
+      }
+    }else{
+    }
+  }
 })
 

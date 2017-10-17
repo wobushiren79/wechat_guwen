@@ -17,7 +17,12 @@
       <!-- 商品名字和一句话描述 -->
       <view class="nametext">
         <text class="name">{{list.name}}</text>\r
-        <text class="text">{{list.goods_slogan}}</text>
+        <block wx:if="{{list.is_package == 1}}">
+          <text class="text">{{list.package_slogan}}</text>
+        </block>
+        <block wx:else>
+          <text class="text">{{list.goods_slogan}}</text>
+        </block>
       </view>
 
       <!-- 价格 -->
@@ -54,13 +59,16 @@
     <!-- 规格选择 stra-->
     <black wx:if="{{chatxian}}">
       <view class="goods_size">
-        <view class="show">
-          选择商品规格 \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n ¥{{spec_price}}
-          <!--<text>乌木</text>，
-        <text>1</text>个-->
-          <!-- <image src="../../images/right.png"></image> -->
-        </view>
-
+        <block wx:if="{{list.is_package == 1}}">
+          <view class="show">
+            选择套餐规格 \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n ¥{{spec_price}}
+          </view>
+        </block>
+        <block wx:else>
+          <view class="show">
+            选择商品规格 \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n ¥{{spec_price}}
+          </view>
+        </block>
         <view class="hide">
           <view class="item">
             <view class="title">{{list.spec_alias}}</view>
@@ -78,9 +86,7 @@
             <view class="title">数量</view>
             <view class="content">
               <button bindtap="reduce" data-goods_number="{{goods_number}}">-</button>
-              <!--<view class="imgs"><image  src="../../images/reduce.png" bindtap="reduce" data-goods_number="{{goods_number}}"></image></view>-->
               <text>{{goods_number}}</text>
-              <!--<view class="imgs"><image  src="../../images/add.png" bindtap="add" data-goods_number="{{goods_number}}"></image></view>-->
               <button bindtap="add" data-goods_number="{{goods_number}}">+</button>
             </view>
           </view>
@@ -88,6 +94,19 @@
       </view>
       <!-- 规格选择 end-->
     </black>
+
+    <!-- 适用信息 star -->
+    <block wx:if="{{list.is_package  == 1}}">
+    <view class="useinfo">
+      <view class="dl">
+        <navigator class="dt" url='../service_goods_list/service_goods_list'>套餐规格商品详情列表
+          <image src='../../images/right.png' class='icon'></image>
+        </navigator>
+
+      </view>
+    </view>
+    </block>
+    <!-- 适用信息 end-->
 
     <!-- 适用信息 star -->
     <view class="useinfo">
@@ -131,11 +150,13 @@
 
     <!-- 商品详情 star -->
     <view class="goods_content">
-      <span style="font-size:24rpx;"><import src="../../wxParse/wxParse.wxml"/>   
-        
-      <view class="wxParse">  
-              <template is="wxParse" data="{{wxParseData:descrip_detail.nodes}}"/>  
-      </view></span>
+      <span style="font-size:24rpx;">
+        <import src="../../wxParse/wxParse.wxml" />
+
+        <view class="wxParse">
+          <template is="wxParse" data="{{wxParseData:descrip_detail.nodes}}" />
+        </view>
+      </span>
     </view>
     <!-- 商品详情 end-->
 
@@ -157,9 +178,9 @@
       <view class="shop" bindtap="cartlist">
         <image src="../../images/icon_shop.png"></image>
         <text>服务车</text>
-        <black wx:if="{{shoppingTotalNumber>0}}" >
-        <text class="num" wx:if="{{shoppingTotalNumber >99}}">99+</text>
-        <text class="num" wx:else>{{shoppingTotalNumber}}</text>
+        <black wx:if="{{shoppingTotalNumber>0}}">
+          <text class="num" wx:if="{{shoppingTotalNumber >99}}">99+</text>
+          <text class="num" wx:else>{{shoppingTotalNumber}}</text>
         </black>
       </view>
       <black wx:if="{{chatxian}}">
