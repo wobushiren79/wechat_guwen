@@ -17,7 +17,8 @@ Page({
     var goods_id = this.data.goods_id
     return {
       title: '圆满人生公共殡葬服务平台',
-      path: '/pages/service_forward/service_forward?goods_id='+goods_id,
+      // path: '/pages/service_forward/service_forward?goods_id='+goods_id,
+      path: '/pages/service_content/service_content?goods_id='+goods_id,
       success: function (res) {
         wx.showToast({
           title: '转发成功',
@@ -295,6 +296,8 @@ Page({
          }
          //结算购物车数据
          wx.setStorageSync('formData', res.data.list)
+         //缓存购物车列表
+         wx.setStorageSync('getdatalist', res.data.list)
          //总价格
          wx.setStorageSync('totla_price', totla_price)
          wx.reLaunch({

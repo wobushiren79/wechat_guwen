@@ -73,7 +73,7 @@ Page({
     var orderid={}
     orderid.id = orderId
     content.content = orderid
-    console.log(content)
+    // console.log(content)
     wx.request({
       url: javaApi + 'api/goods/order/findOrderDetailById',
       method: "POST",
@@ -85,8 +85,9 @@ Page({
       },
 
       success: function (res) {
-        console.log(res)
+        // console.log(res)
         if (res.data.code == 1000) {
+          // console.log(res.data.content)
           var listData=res.data.content
           that.setData({
             listData:listData

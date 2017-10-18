@@ -61,7 +61,7 @@
           </view>
           <view class="footer ">
             总计：
-            <text>{{listData.goodsItemPerforms.length+listData.goodsPackages.length}}</text>件
+            <text>{{listData.goodsItemPerforms != null && listData.goodsPackages != null?listData.goodsItemPerforms.length+listData.goodsPackages.length:listData.goodsItemPerforms == null && listData.goodsPackages != null?listData.goodsPackages.length:listData.goodsItemPerforms != null && listData.goodsPackages == nul?goodsItemPerforms.length:0}}</text>件
           </view>
         </view>
       </view>

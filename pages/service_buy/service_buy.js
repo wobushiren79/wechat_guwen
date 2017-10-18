@@ -117,6 +117,7 @@ Page({
                             }
                          }
                          var formData = getdata
+                        //  console.log(formData)
                          //分类名称
                          wx.setStorageSync('class_name', class_name)
                          //缓存购物车列表

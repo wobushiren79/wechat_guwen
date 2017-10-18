@@ -10,12 +10,12 @@ navigator{
   display: block;
   position: absolute;
   z-index: 6;
-
+  /* background: rgba(0, 0, 0, .5) */
 }
 
 
 .img1 navigator{
-  bottom: 0;
+  bottom: 52rpx;
   width:684rpx;
 height:312rpx;
   left: 50%;

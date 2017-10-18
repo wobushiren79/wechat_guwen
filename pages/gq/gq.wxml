@@ -2,35 +2,37 @@
 <page>
 
   <view class='img img1'>
-    <image src='http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/gq1.png' mode='widthFix'>
+    <image src='http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/gq_img1.png' mode='widthFix'>
     </image>
-    <navigator url='../service_content/service_content?goods_id=115' class=""></navigator>
+    <navigator url='../service_content/service_content?goods_id=26' class=""></navigator>
   </view>
 
-  <!-- <view class='img img2'>
-    <image src='http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/gq_2.png' mode='widthFix'>
+  <view class='img img5'>
+    <image src='http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/gq_img2.png' mode='widthFix'>
     </image>
-    <navigator url='../service_content/service_content?goods_id=92' class='left img_1_1'></navigator>
-    <navigator url='../service_content/service_content?goods_id=93' class='right img_1_1'></navigator>
-  </view> -->
+    <navigator url='../service_content/service_content?goods_id=92' class="l_t img_1_1"></navigator>
+    <navigator url='../service_content/service_content?goods_id=93' class="r_t img_1_1"></navigator>
+    <navigator url='../service_content/service_content?goods_id=90' class="l_b img_1_1"></navigator>
+    <navigator url='../service_content/service_content?goods_id=91' class="r_b img_1_1"></navigator>
+  </view>
   <view class='img img3'>
-    <image src='http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/gq3.png' mode='widthFix'>
+    <image src='http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/gq_img3.png' mode='widthFix'>
     </image>
-    <navigator url='../service_content/service_content?goods_id=109' class="t img_2_1"></navigator>
-    <navigator url='../service_content/service_content?goods_id=110' class="m img_2_1"></navigator>
-    <navigator url='../service_content/service_content?goods_id=111' class="b img_2_1"></navigator>
+    <navigator url='../service_content/service_content?goods_id=105' class="t img_2_1"></navigator>
+    <navigator url='../service_content/service_content?goods_id=106' class="m img_2_1"></navigator>
+    <navigator url='../service_content/service_content?goods_id=107' class="b img_2_1"></navigator>
   </view>
 
   <view class='img img4 img3'>
-    <image src='http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/gq4.png' mode='widthFix'>
+    <image src='http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/gq_img4.png' mode='widthFix'>
     </image>
-    <navigator url='../service_content/service_content?goods_id=112' class="t img_2_1"></navigator>
-    <navigator url='../service_content/service_content?goods_id=113' class="m img_2_1"></navigator>
-    <navigator url='../service_content/service_content?goods_id=114' class="b img_2_1"></navigator>
+    <navigator url='../service_content/service_content?goods_id=108' class="t img_2_1"></navigator>
+    <navigator url='../service_content/service_content?goods_id=109' class="m img_2_1"></navigator>
+    <navigator url='../service_content/service_content?goods_id=110' class="b img_2_1"></navigator>
   </view>
   <!-- 517330921 -->
   <view class='img img5'>
-    <image src='http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/gq5.png' mode='widthFix'>
+    <image src='http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/gq_img5.png' mode='widthFix'>
     </image>
     <navigator url='../service_content/service_content?goods_id=38' class="l_t img_1_1"></navigator>
     <navigator url='../service_content/service_content?goods_id=37' class="r_t img_1_1"></navigator>
@@ -38,36 +40,37 @@
     <navigator url='../service_content/service_content?goods_id=75' class="r_b img_1_1"></navigator>
   </view>
   <view class='img img6 img5'>
-    <image src='http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/gq6_.png' mode='widthFix'>
+    <image src='http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/gq_img6.png' mode='widthFix'>
     </image>
-    <navigator url='../service_content/service_content?goods_id=117' class="l_t img_1_1"></navigator>
-    <navigator url='../service_content/service_content?goods_id=118' class="r_t img_1_1"></navigator>
+    <navigator url='../service_content/service_content?goods_id=111' class="l_t img_1_1"></navigator>
+    <navigator url='../service_content/service_content?goods_id=112' class="r_t img_1_1"></navigator>
     <navigator url='../service_content/service_content?goods_id=95' class="l_b img_1_1"></navigator>
-    <navigator url='../service_content/service_content?goods_id=116' class="r_b img_1_1"></navigator>
+    <navigator url='../service_content/service_content?goods_id=113' class="r_b img_1_1"></navigator>
   </view>
   <view class='img img7 img5'>
-    <image src='http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/gq7.png' mode='widthFix'>
+    <image src='http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/gq_img7.png' mode='widthFix'>
     </image>
-    <navigator url='../service_content/service_content?goods_id=105' class="t img_2_1"></navigator>
-    <navigator url='../service_content/service_content?goods_id=106' class="l_b img_1_1"></navigator>
-    <navigator url='../service_content/service_content?goods_id=107' class="r_b img_1_1"></navigator>
+    <navigator url='../service_content/service_content?goods_id=114' class="t img_2_1"></navigator>
+    <navigator url='../service_content/service_content?goods_id=115' class="l_b img_1_1"></navigator>
+    <navigator url='../service_content/service_content?goods_id=116' class="r_b img_1_1"></navigator>
   </view>
 
   <view class='img img8 img7 img5'>
-    <image src='http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/gq8.png' mode='widthFix'>
+    <image src='http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/gq_img8.png' mode='widthFix'>
     </image>
     <navigator url='../service_content/service_content?goods_id=10' class="t img_2_1"></navigator>
-    <navigator url='../service_content/service_content?goods_id=108' class="l_b img_1_1"></navigator>
+    <navigator url='../service_content/service_content?goods_id=117' class="l_b img_1_1"></navigator>
     <navigator url='../service_content/service_content?goods_id=101' class="r_b img_1_1"></navigator>
   </view>
 
   <view class='img img9 img7 img5'>
-    <image src='http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/gq9.png' mode='widthFix'>
+    <image src='http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/gq_img9.png' mode='widthFix'>
     </image>
     <navigator url='../service_content/service_content?goods_id=23' class="t img_2_1"></navigator>
     <navigator url='../service_content/service_content?goods_id=36' class="l_b img_1_1"></navigator>
     <navigator url='../service_content/service_content?goods_id=28' class="r_b img_1_1"></navigator>
   </view>
 
-  <image src='http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/gq10.png' mode='widthFix'></image>
+  <image src='http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/gq_img10.png' mode='widthFix'>
+  </image>
 </page>
