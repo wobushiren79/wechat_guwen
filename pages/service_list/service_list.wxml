@@ -32,7 +32,7 @@
       </view>
 
       <view class="">
-        <navigator url="../service/service" open-type="navigateBack">
+        <navigator url="../service/service" open-type="redirect">
           筛选
         </navigator>
       </view>

@@ -300,7 +300,8 @@ Page({
          wx.setStorageSync('getdatalist', res.data.list)
          //总价格
          wx.setStorageSync('totla_price', totla_price)
-         wx.reLaunch({
+         wx.hideLoading()
+         wx.navigateTo({
            url: '../service_money/service_money'
          })
        }

@@ -32,6 +32,8 @@
       </view>
     </form>
 
+    <image class='banner' src='../../images/login_banner.png' mode="widthFix"></image>
+
     <!--页脚-->
     <view class="foot">
       <navigator url='../password_reset/password_reset'>

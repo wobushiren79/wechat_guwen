@@ -380,6 +380,7 @@ onLoad: function (e) {
         channel.pageNumber = pageNumber
         channel.pageSize = pageSize
         channel.order = order
+        // console.log(channel)
         //查询分类接口
         wx.request({
           url: LocalUrl + 'Goods/goods',

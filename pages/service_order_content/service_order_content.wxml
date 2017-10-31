@@ -133,7 +133,7 @@
             </view>
           </black>
           <black wx:if="{{listData.goodsPackages.length>0}}" wx:for="{{listData.goodsPackages}}">
-            <view class="group_item clearfix">
+            <view class="group_item clearfix" bindtap="packages" data-id="{{item.id}}">
               <view class="checkbox_wrap">
                 <checkbox value="value" checked="" />
               </view>
@@ -160,27 +160,12 @@
                   <text>{{item.specOrderedNum}}</text>
                 </view>
                 <view class="action">
-                  <!-- <black wx:if="{{item.performStatu == 0}}">
-                    <text>待派单</text>
-                  </black>
-                  <black wx:if="{{item.performStatu == 1}}">
-                    <text>已派单(待接单)</text>
-                  </black>
-                  <black wx:if="{{item.performStatu == 2}}">
-                    <text>待执行(已接单)</text>
-                  </black>
-                  <black wx:if="{{item.performStatu == 3}}">
-                    <text>执行中</text>
-                  </black>
-                  <black wx:if="{{item.performStatu == 4}}">
-                    <text>审核中</text>
-                  </black>
-                  <black wx:if="{{item.performStatu == 5}}">
-                    <text>成功服务</text>
-                  </black>  -->
+                <text >
+                查看详情
+                </text>
                 </view>
                 <!-- <black wx:if="{{item.performStatu == 2 || item.performStatu == 3 || item.performStatu == 4 || item.performStatu == 5}}"> -->
-                <image class="info" src="../../images/icon_info.png" bindtap="packages" data-id="{{item.id}}"></image>
+                <!-- <image class="info" src="../../images/icon_info.png" bindtap="packages" data-id="{{item.id}}"></image> -->
                 <!-- </black> -->
               </view>
 
@@ -265,7 +250,7 @@
           </black>
           <black wx:else>
             <view class="footer ">
-              <text>{{listData.goodsFinance.couponInfo}}</text>
+              <text>{{listData.goodsFinance.couponInfo.parseJSON().totalFee*100}}</text>
             </view>
           </black>
         </view>

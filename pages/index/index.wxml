@@ -93,7 +93,14 @@
             <view style='margin-top:0rpx;'>
               <image src="{{icon_cem}}" style=""></image>
             </view>
-            <text>新建看墓</text>
+            <text>新建工单</text>
+          </view>
+
+          <view class="weui-flex__item " hover-class='navigator-hover' bindtap='order'>
+            <view style='margin-top:0rpx;'>
+              <image src="{{icon_cem}}" style=""></image>
+            </view>
+            <text>去接单</text>
           </view>
         <!-- <block wx:if="{{Gmlogin == 1}}">
           <navigator url="../new_/new_" class="weui-flex__item">
@@ -111,22 +118,22 @@
             <text>圆满公墓</text>
           </navigator>
         </block>  -->
-        <block wx:if="{{Bylogin}}">
+        <!-- <block wx:if="{{Bylogin}}"> -->
+          <!-- <navigator url="../funeral_img/funeral_img" class="weui-flex__item">
+            <view>
+              <image src="{{icon_plan}}" style=""></image>
+            </view>
+            <text>去接单</text>
+          </navigator> -->
+        <!-- </block> -->
+        <!-- <block wx:else>
           <navigator url="../funeral_img/funeral_img" class="weui-flex__item">
             <view>
               <image src="{{icon_plan}}" style=""></image>
             </view>
             <text>去接单</text>
           </navigator>
-        </block>
-        <block wx:else>
-          <navigator url="../funeral_img/funeral_img" class="weui-flex__item">
-            <view>
-              <image src="{{icon_plan}}" style=""></image>
-            </view>
-            <text>去接单</text>
-          </navigator>
-        </block>
+        </block> -->
       </view>
     </view>
     <block wx:if="{{labellist}}">

@@ -59,7 +59,8 @@
                     </view>
                 </view>
 
-            </view>  
+            </view> 
+
           <!--<map id="myMap" show-location />-->
             <view class="weui-btn-area">
                 <button class="weui-btn" type="primary" bindtap="showTopTips" formType="submit">创建订单</button>

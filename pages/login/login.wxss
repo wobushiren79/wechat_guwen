@@ -92,3 +92,9 @@
 .weui-flex .weui-flex__item:first-of-type {
   text-align: right;
 }
+
+.banner{
+  display: block;
+  width: 400rpx;
+  margin: 70rpx auto 0 auto;
+}

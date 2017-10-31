@@ -51,7 +51,13 @@
      "pages/password_reset/password_reset",
      "pages/signin/signin",
      "pages/service_goods_list/service_goods_list",
-     "pages/service_goods_pay_goodslist/service_goods_pay_goodslist"
+     "pages/service_goods_pay_goodslist/service_goods_pay_goodslist",
+      "pages/allot/order_list_wait/order_list_wait",
+      "pages/allot/order_content/order_content",
+      "pages/allot/order_edit/order_edit",
+      "pages/allot/order_list_processing/order_list_processing",
+      "pages/allot/order_list_audit/order_list_audit",
+      "pages/allot/order_list_finish/order_list_finish"
   ],
   "window": {
     "navigationBarTextStyle": "black",

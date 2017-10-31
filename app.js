@@ -48,17 +48,22 @@ App({
     // ByUrl: "http://192.168.0.37:8088/app/", 
     //公墓
     GmUrl: "https://t-cemetery-api.shianlife.cn/shianlife-advisor-cemetery-1.0-SNAPSHOT/",
-    // GmUrl: "http://192.168.0.73:8088/app/",
+    // GmUrl: "http://192.168.0.71:8084/app/",
+    // GmUrl: "http://192.168.0.71:8084/cemetery/",
     AppUrl:"https://app.e-funeral.cn/",
     // javaApi:"http://192.168.0.199:8299/goods/"   权哥
     //小慌
     // javaApi: "http://192.168.0.71:8080/goods/", 
     // javaApi: "http://prd-goods.xicp.cn/", 
     javaApi: "https://goods.shianlife.cn/",
-    // platform:"http://prd-platform.xicp.cn/"
-    // platform:"http://192.168.0.71:8099/ki4so-web/"
-    platform:"https://platform.shianlife.cn/"
+    // platform:"http://prd-platform.xicp.cn/",
+    // platform:"http://192.168.0.71:8099/ki4so-web/",
+    // platform:"http://192.168.0.86:8080/ki4so-web/",
+    platform:"https://platform.shianlife.cn/",
     // javaApi: "http://192.168.0.75:8299/goods/"
     // RouteUrl:"http://192.168.0.146:8088/adviser/"
+    // orderCenterUrl:'http://192.168.0.71:8085/center/'
+    orderCenterUrl:'https://order.shianlife.cn/'
+    // orderCenterUrl:'http://192.168.0.86:8090/order/'
   }
 })

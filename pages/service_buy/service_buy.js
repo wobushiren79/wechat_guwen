@@ -161,6 +161,7 @@ Page({
   reduce:function(e){
     var that=this
     var JSESSIONID = that.data.JSESSIONID
+    var r = /^\+?[1-9][0-9]*$/;　　//正整数
     wx.showLoading({
       title: '请稍后',
     })
@@ -178,10 +179,12 @@ Page({
         formData[index].specNum = parseFloat(formData[index].specNum) - 1
         getdata[index].specNum = parseFloat(getdata[index].specNum) - 1
         totla_price -= parseFloat(formData[index].spec_price)
-        if (totla_price.toString().split(".")[1].length>3){
-          totla_price =parseFloat(totla_price.toFixed(2))
+        if (!r.test(totla_price)) {
+          if (totla_price.toString().split(".")[1].length > 3) {
+            totla_price = parseFloat(totla_price.toFixed(2))
+          }
         }
-        console.log(totla_price)
+        // console.log(totla_price)
         content.id = id
         getcontent.content = content
         wx.request({
@@ -246,7 +249,7 @@ Page({
             totla_price = parseFloat(totla_price.toFixed(2))
           }
         }
-        console.log(totla_price)
+        // console.log(totla_price)
         content.id = id
         getcontent.content = content
         wx.request({
@@ -370,7 +373,7 @@ Page({
        duration: 2000
      })
    }else{
-     wx.redirectTo({
+     wx.navigateTo({
        url: '../service_money/service_money'
      })
    }

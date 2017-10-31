@@ -25,7 +25,10 @@ Page({
         title: '登录中!请稍后',
         // mask:true
       })
-      wx.clearStorageSync()
+      //同步清空缓存
+      // wx.clearStorageSync()
+      wx.removeStorageSync('JSESSIONID')
+      wx.removeStorageSync('orderCenter')
       var RouteUrl = getApp().globalData.RouteUrl
       // var Gmlogin=false
       var GmUrl = getApp().globalData.GmUrl  //公墓接口地址前缀
@@ -56,9 +59,6 @@ Page({
         wx.request({
           //登录集成平台
           url: platform+'applogin',
-          // url: 'http://192.168.0.199:8080/applogin',
-          // url: 'http://192.168.0.75:8199/platform/applogin',
-          
           method: "POST",
           data: forData,
           header: {
@@ -67,9 +67,7 @@ Page({
             'content-type': 'application/json'
           },
           success: function (res) {
-            // console.log(res)
             if (res.data.code == 1000){
-              // console.log(res)
               var ress = res.header['Set-Cookie']
               var start = ress.indexOf('KI4SO_SERVER_EC') + 16
               var end = ress.indexOf('rememberMe') - 1
@@ -85,12 +83,10 @@ Page({
               wx.setStorageSync('DataUserId', res.data.content.userId)
               //   //缓存用户权限
               wx.setStorageSync('resourceCodes', res.data.content.resourceCodes)
-              // console.log(res.data.content.resourceCodes)
               for (var j in subSystems){
                 hasDealSubSystem++
               for (var i in res.data.content.resourceCodes){
                 if (res.data.content.resourceCodes[i] == "cemetery.advisor"){
-                  // console.log(asd.FormData)
                   wx.request({
                     url: GmUrl + 'doLogin/marketing',
                     method: "POST",
@@ -138,18 +134,30 @@ Page({
       }
       }
     },
+    //设置页面转发功能
     onShareAppMessage: function () {
       return {
         title: '圆满人生公共殡葬服务平台',
         path: '/pages/login/login',
         success: function (res) {
+          wx.showToast({
+            title: '转发成功',
+            // image: '../../images/icon_info.png',
+            duration: 3000,
+          })
           // 转发成功
         },
         fail: function (res) {
           // 转发失败
+          wx.showToast({
+            title: '转发失败',
+            image: '../../images/icon_info.png',
+            duration: 3000,
+          })
         }
       }
     },
+    //判断跳转首页条件是否满足
     is_login: function(hasDealSubSystem, subSystems, is_loction) {
     if(subSystems.length == hasDealSubSystem) {
       if (is_loction == 0) {
