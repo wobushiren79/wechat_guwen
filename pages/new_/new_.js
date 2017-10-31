@@ -67,11 +67,10 @@ Page({
   // 参观公墓
   bindPickerChange_a: function (e) {
     // if (e.target.dataset.name == '院山'){
-    var GmName = this.data.types
+    var GmName = this.data.GmList
       this.setData({
         businessType_a: e.detail.value,
-        // GmName: types[e.detail.value].name,
-        // yuansan:true
+        GmName: GmName[e.detail.value].name,
       })
   },
   //预约类型
@@ -166,7 +165,7 @@ Page({
     var orderCenterUrl = getApp().globalData.orderCenterUrl
     //console.log(e.detail.value)
     var ContentData = {}
-    ContentData.personNum = e.detail.value.personNum ? e.detail.value.personNum:0
+    // ContentData.personNum = e.detail.value.personNum ? e.detail.value.personNum:0
     ContentData.contactName = e.detail.value.contactName
     ContentData.contactPhone = e.detail.value.contactPhone
     ContentData.orderDescribe = e.detail.value.orderDescribe
@@ -187,8 +186,8 @@ Page({
     var get_data={}
     // get_data.reason = e.detail.value.reason
     get_data.seats = e.detail.value.seats
-    get_data.proposerName = e.detail.value.proposerName
-    get_data.proposerMobile = e.detail.value.proposerMobile
+    // get_data.proposerName = e.detail.value.proposerName
+    // get_data.proposerMobile = e.detail.value.proposerMobile
     get_data.connecterName = e.detail.value.connecterName
     get_data.connecterMobile = e.detail.value.connecterMobile
     get_data.remark = e.detail.value.remark
@@ -197,7 +196,7 @@ Page({
     get_data.reason = that.data.ChatList[that.data.businessType_chat]
     get_data.targetLocation = e.detail.value.targetLocation
     ContentData.carApplyLog = get_data
-    if (ContentData.personNum.length == 0 || ContentData.contactName.length == 0 || ContentData.contactPhone.length == 0 || ContentData.orderDescribe.length == 0 || ContentData.address == 0){
+    if (ContentData.contactName.length == 0 || ContentData.address == 0){
       wx.hideLoading()
       wx.showToast({
         title: '文本框必填',
@@ -213,18 +212,6 @@ Page({
       })
     } else if (ContentData.trafficWay == '需要派车'){
       if (get_data.seats.length == 0){
-        wx.showToast({
-          title: '文本框必填',
-          image: '../../images/icon_info.png',
-          duration: 2000
-        })
-      } else if (get_data.proposerName.length == 0){
-        wx.showToast({
-          title: '文本框必填',
-          image: '../../images/icon_info.png',
-          duration: 2000
-        })
-      } else if (get_data.proposerMobile.length == 0) {
         wx.showToast({
           title: '文本框必填',
           image: '../../images/icon_info.png',

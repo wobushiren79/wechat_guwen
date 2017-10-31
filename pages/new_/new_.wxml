@@ -15,7 +15,7 @@
         </view>
 
         <!--联系电话-->
-        <view class="weui-cell weui-cell_input required">
+        <view class="weui-cell weui-cell_input ">
           <view class="weui-cell__hd">
             <view class="weui-label">联系电话</view>
           </view>
@@ -58,7 +58,7 @@
         </view>
 
        <!-- 订单描述 -->
-        <view class="weui-cell weui-cell_input required">
+        <view class="weui-cell weui-cell_input ">
           <view class="weui-cell__hd">
             <view class="weui-label">工单描述</view>
           </view>
@@ -70,14 +70,14 @@
 
         <block wx:if="{{yuy_type}}">
         <!--参观人数-->
-        <view class="weui-cell weui-cell_input required">
+        <!-- <view class="weui-cell weui-cell_input required">
           <view class="weui-cell__hd">
             <view class="weui-label">参观人数</view>
           </view>
           <view class="weui-cell__bd">
             <input class="weui-input" placeholder="人数" name="personNum" type='number' value='0'/>
           </view>
-        </view>
+        </view> -->
 
         <!--预约参观公墓-->
         <view class="weui-cell weui-cell_input required">
@@ -91,18 +91,6 @@
           </view>
         </view>
       </block>
-        <!--交通方式-->
-        <view class="weui-cell weui-cell_input required">
-          <view class="weui-cell__hd">
-            <view class="weui-label">交通方式</view>
-          </view>
-          <view class="weui-cell__bd">
-            <picker bindchange="bindPickerChange_b" value="{{businessType_b}}" range="{{zhidianData}}" data-name="{{zhidianData}}">
-              <view class="picker">{{zhidianData[businessType_b]}}</view>
-            </picker>
-          </view>
-        </view>
-
         <!--客户地址-->
         <view class="weui-cell weui-cell_input weui-cell_input_icon required">
           <view class="weui-cell__hd">
@@ -113,6 +101,17 @@
           </view>
           <view class="icon" bindtap="Location">
             <image src="../../images/address.png"></image>
+          </view>
+        </view>
+        <!--交通方式-->
+        <view class="weui-cell weui-cell_input required">
+          <view class="weui-cell__hd">
+            <view class="weui-label">交通方式</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker bindchange="bindPickerChange_b" value="{{businessType_b}}" range="{{zhidianData}}" data-name="{{zhidianData}}">
+              <view class="picker">{{zhidianData[businessType_b]}}</view>
+            </picker>
           </view>
         </view>
 
@@ -142,24 +141,24 @@
           </view>
         </view>
         <!--申请人-->
-        <view class="weui-cell weui-cell_input required">
+        <!-- <view class="weui-cell weui-cell_input required">
           <view class="weui-cell__hd">
             <view class="weui-label">申请人</view>
           </view>
           <view class="weui-cell__bd">
             <input class="weui-input" placeholder="申请人" name="proposerName" bindblur='notNull'/>
           </view>
-        </view>
+        </view> -->
 
         <!--申请人电话-->
-        <view class="weui-cell weui-cell_input required">
+        <!-- <view class="weui-cell weui-cell_input required">
           <view class="weui-cell__hd">
             <view class="weui-label">申请人电话</view>
           </view>
           <view class="weui-cell__bd">
             <input class="weui-input" placeholder="申请人电话" name="proposerMobile" type='number' maxlength='11' bindblur='checktels' />
           </view>
-        </view>
+        </view> -->
         <!--用车人-->
         <view class="weui-cell weui-cell_input required">
           <view class="weui-cell__hd">
@@ -217,7 +216,7 @@
             <view class="weui-label">前往目的地</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="地址" bindblur='notNull' name="targetLocation" value="{{spot}}" />
+            <input class="weui-input" placeholder="地址" bindblur='notNull' name="targetLocation" value="{{GmName?GmName:''}}" />
           </view>
           <view class="icon" bindtap="spot">
             <image src="../../images/address.png"></image>

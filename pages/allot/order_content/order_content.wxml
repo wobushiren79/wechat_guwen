@@ -1,0 +1,223 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd page_service_order page_allot_order_list">
+
+    <!-- 列表 -->
+    <view class="list">
+      <view class='title'>
+        订单信息
+      </view>
+      <view class="ul">
+        <!-- 模板1 待接单 star-->
+        <view class="li">
+          <view class="li_header">
+            <view class="header">工单： {{content.workOrder.orderNumber}}
+            </view>
+            <view class="footer">
+              <button type="primary" class="btn btn_1" bindtap="zxture" data-id="{{content.workOrder.relateOrderNo}}">关联工单</button>
+            </view>
+          </view>
+          <view class="li_body">
+            <view>
+              <view class="header">
+                服务地址：
+              </view>
+              <view class="body">
+                {{content.customerInfo.address}}
+              </view>
+            </view>
+            <view>
+              <view class="header">
+                预约时间：
+              </view>
+              <view class="body">
+                {{content.workOrder.appointmentTime}}
+              </view>
+            </view>
+            <view>
+              <view class="header">
+                服务类型：
+              </view>
+              <block wx:if="{{content.workOrder.orderType == 0}}">
+                <view class="body">
+                  殡仪
+                </view>
+              </block>
+              <block wx:elif="{{content.workOrder.orderType == 1}}">
+                <view class="body">
+                  公墓
+                </view>
+              </block>
+              <block wx:elif="{{content.workOrder.orderType == 3}}">
+                <view class="body">
+                  其他
+                </view>
+              </block>
+            </view>
+            <view>
+              <view class="header">
+                联系人：
+              </view>
+              <view class="body">
+                <view class='call clearfix' bindtap="tel" data-tel="{{content.customerInfo.contactPhone}}">
+                  <text>{{content.customerInfo.contactName}}</text>
+                  <image src="../../../images/icon_call_phone.png" mode="widthFix"></image>
+                </view>
+              </view>
+            </view>
+            <view>
+              <view class="header">
+                经办人：
+              </view>
+              <view class="body">
+                <view class='call clearfix' bindtap="tel" data-tel="{{content.customerInfo.agentPhone}}">
+                  <text>{{content.customerInfo.agentName}}</text>
+                  <image src="../../../images/icon_call_phone.png" mode="widthFix"></image>
+                </view>
+              </view>
+            </view>
+            <view>
+              <view class="header">
+                服务对象：
+              </view>
+              <view class="body">
+                {{content.customerInfo.serviceTarget}}
+              </view>
+            </view>
+
+            <view>
+              <view class="header">
+                描述：
+              </view>
+              <view class="body">
+                {{content.workOrder.orderDescribe}}
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!--处理记录 -->
+
+    <view class="list">
+      <view class='title'>
+        处理记录
+      </view>
+
+      <view class="ul">
+        <block wx:if="{{content.listPerformRecord.length>0}}">
+          <block wx:for="{{content.listPerformRecord}}">
+            <view class="li">
+              <view class="li_body">
+
+                <view>
+                  <view class="header">
+                    处理时间：
+                  </view>
+                  <view class="body">
+                    {{item.createdAt}}
+                  </view>
+                </view>
+                <view>
+                  <view class="header">
+                    金额：
+                  </view>
+                  <view class="body">
+                    {{item.orderPrice/100}}元
+                  </view>
+                </view>
+
+                <view>
+                  <view class="header">
+                    处理人员：
+                  </view>
+                  <view class="body">
+                    <view class='call clearfix' bindtap="tel" data-tel="{{item.performerPhone}}">
+                      <text>{{item.performerName}}</text>
+                      <image src="../../../images/icon_call_phone.png" mode="widthFix"></image>
+                    </view>
+                  </view>
+                </view>
+
+                <view>
+                  <view class="header">
+                    处理反馈：
+                  </view>
+                  <view class="body">
+                    {{item.performSummary}}
+                  </view>
+                </view>
+                <view class='img_show'>
+                  <view class="header">
+                    图片展示：
+                  </view>
+                  <view class="body clearfix">
+                    <!-- <text>{{item.performPic}}</text>  -->
+                    <block wx:for='{{get_data[index]}}' wx:for-item="itm">
+                      <!-- <text>{{item.performPic.split(',')}}</text> -->
+                      <view class='img_wrap' bindtap='bind_popup_img' data-imgurl='http://oq6rkq859.bkt.clouddn.com/{{itm}}'>
+                        <image src="http://oq6rkq859.bkt.clouddn.com/{{itm}}"></image>
+                      </view>
+                    </block>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </block>
+        </block>
+      </view>
+    </view>
+
+    <!--审核记录 -->
+    <view class="list">
+      <view class='title'>
+        审核记录
+      </view>
+      <view class="ul">
+        <block wx:if="{{content.listAuditRecord.length>0}}">
+          <block wx:for="{{content.listAuditRecord}}">
+            <view class="li">
+              <view class="li_body">
+                <view>
+                  <view class="header">
+                    审核时间：
+                  </view>
+                  <view class="body">
+                    {{item.createdAt}}
+                  </view>
+                </view>
+
+                <view>
+                  <view class="header">
+                    审核人员：
+                  </view>
+                  <view class="body">
+                    <view class='call clearfix' bindtap="tel" data-tel="{{item.auditorPhone}}">
+                      <text>{{item.auditorName}}</text>
+                      <image src="../../../images/icon_call_phone.png" mode="widthFix"></image>
+                    </view>
+                  </view>
+                </view>
+
+                <view>
+                  <view class="header">
+                    审核意见：
+                  </view>
+                  <view class="body">
+                    {{item.auditSummary}}
+                  </view>
+                </view>
+              </view>
+            </view>
+          </block>
+        </block>
+      </view>
+    </view>
+
+      <view class='popup_img' wx:if="{{popup_img}}">
+        <image src='{{imgurl}}' mode="widthFix" bindtap='bind_popup_close'></image>
+      </view>
+
+      <view class='mask' wx:if="{{popup_img}}" bindtap='bind_popup_close'></view>
+  </view>
+</view>

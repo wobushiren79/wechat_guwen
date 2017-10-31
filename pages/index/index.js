@@ -156,11 +156,6 @@ Page({
                     })
                   },
                 })
-              }else{
-                //如果获取缓存不成功就跳转登录页面
-                wx.navigateTo({
-                  url: '../cem/cem',
-                })
               }
             }
           },
@@ -244,11 +239,6 @@ Page({
                       }
                     })
                   },
-                })
-              } else {
-                //如果获取缓存不成功就跳转登录页面
-                wx.navigateTo({
-                  url: '../cem/cem',
                 })
               }
             }
