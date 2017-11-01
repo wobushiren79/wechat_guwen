@@ -119,6 +119,10 @@
             <block wx:if="{{item.performerAssignRecord.valid == 1}}">
               <navigator type="primary" url='../order_edit/order_edit?orderId={{item.workOrder.id}}'  class="btn">处理</navigator>
               </block>
+              <!-- 用车按钮 -->
+              <!-- <navigator type="primary" url='../order_edit/order_edit?orderId={{item.workOrder.id}}'  class="btn">用车申请</navigator> -->
+              <!-- 用车列表 -->
+              <!-- <navigator type="primary" url='../order_edit/order_edit?orderId={{item.workOrder.id}}'  class="btn">用车列表</navigator> -->
             </view>
           </view>
         </view> 

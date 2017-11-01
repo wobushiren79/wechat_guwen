@@ -18,7 +18,27 @@ Page({
         duration: 2000
       })
     } else {
-
+     
+    }
+  },
+  //验证价格
+  orderPrice:function(e){
+    this.checkStr(e.detail.value)
+  },
+  //验证数字和小数组合的字符串
+  checkStr:function(str){
+    var that=this
+    var re = /^\d+(?=\.{0,1}\d+$|$)/ 
+    if (re.test(str)){
+      that.setData({
+        price:true
+      })
+    }else{
+      wx.showToast({
+        title: '价格不正确',
+        image: '../../../images/icon_info.png',
+        duration: 2000
+      })
     }
   },
   //上传图片
@@ -58,7 +78,7 @@ Page({
             wx.hideLoading()
             wx.showToast({
               title: '上传失败',
-              image: '../../images/icon_info.png',
+              image: '../../../images/icon_info.png',
               duration: 3000
             })
           }
@@ -67,7 +87,7 @@ Page({
             wx.hideLoading()
             wx.showToast({
               title: '网络错误',
-              image: '../../images/icon_info.png',
+              image: '../../../images/icon_info.png',
               duration: 3000
             })
           }
@@ -135,77 +155,90 @@ Page({
    get_data = e.detail.value
    get_data.orderId=that.data.orderId 
    get_data.performStatus=1
-   get_data.performPic = that.data.files.join(',') 
+   if (that.data.files.length>0){
+     get_data.performPic = that.data.files.join(',') 
+   }
     content.content = get_data
     var orderCenterUrl = getApp().globalData.orderCenterUrl
-    if (get_data.performPic != '' && get_data.performSummar !== '' && get_data.agentName !== '' && get_data.agentPhone !== '' && get_data.serviceTarget !== '' && get_data.orderPrice !== ''){
+    if (get_data.performPic !=='' && get_data.performSummar !== '' && get_data.agentName !== '' && get_data.agentPhone !== '' && get_data.serviceTarget !== '' && get_data.orderPrice !== ''){
 
-    
-    wx.request({
-      url: orderCenterUrl + 'api/performer/dealAgain',
-      data: content,
-      header: {
-        'content-type': 'application/json',
-        "Cookie": that.data.orderCenter
-      },
-      method: 'POST',
-      dataType: 'json',
-      success: function (opt) {
-        // console.log(opt.data)
-        if (opt.data.code == 1000) {
-          wx.showModal({
-            title: '圆满人生提示您',
-            content: opt.data.message,
-            confirmText:'跳转审核',
-            cancelText:'返回列表',
-            success: function (res) {
-              if (res.confirm) {
-                wx.redirectTo({
-                  url: '../order_list_audit/order_list_audit',
-                })
-              } else if (res.cancel) {
-                wx.redirectTo({
-                  url: '../order_list_wait/order_list_wait',
-                })
-              }
-            }
-          })
-          wx.hideLoading()
-        } else {
-          wx.hideLoading()
-          wx.showModal({
-            title: opt.data.message,
-            content: '是否返回重新登录',
-            success: function (res) {
-              if (res.confirm) {
-                wx.reLaunch({
-                  url: '../../login/login',
-                })
-              } else if (res.cancel) {
-
-              }
-            }
-          })
-        }
-      },
-      fail: function (res) {
-        wx.hideLoading()
-        wx.showModal({
-          title: '网络错误',
-          content: '是否返回重新登录',
-          success: function (res) {
-            if (res.confirm) {
-              wx.reLaunch({
-                url: '../../login/login',
+      if (that.data.price){
+        wx.request({
+          url: orderCenterUrl + 'api/performer/dealAgain',
+          data: content,
+          header: {
+            'content-type': 'application/json',
+            "Cookie": that.data.orderCenter
+          },
+          method: 'POST',
+          dataType: 'json',
+          success: function (opt) {
+            // console.log(opt.data)
+            if (opt.data.code == 1000) {
+              wx.showModal({
+                title: '圆满人生提示您',
+                content: opt.data.message,
+                confirmText: '跳转审核',
+                cancelText: '返回列表',
+                success: function (res) {
+                  if (res.confirm) {
+                    wx.redirectTo({
+                      url: '../order_list_audit/order_list_audit',
+                    })
+                  } else if (res.cancel) {
+                    wx.redirectTo({
+                      url: '../order_list_wait/order_list_wait',
+                    })
+                  }
+                }
               })
-            } else if (res.cancel) {
+              wx.hideLoading()
+            } else {
+              wx.hideLoading()
+              wx.showModal({
+                title: opt.data.message,
+                content: '是否返回重新登录',
+                success: function (res) {
+                  if (res.confirm) {
+                    wx.reLaunch({
+                      url: '../../login/login',
+                    })
+                  } else if (res.cancel) {
 
+                  }
+                }
+              })
             }
-          }
+          },
+          fail: function (res) {
+            wx.hideLoading()
+            wx.showModal({
+              title: '网络错误',
+              content: '是否返回重新登录',
+              success: function (res) {
+                if (res.confirm) {
+                  wx.reLaunch({
+                    url: '../../login/login',
+                  })
+                } else if (res.cancel) {
+
+                }
+              }
+            })
+          },
         })
-      },
-    })
     }else{
+        wx.hideLoading()
+        wx.showToast({
+          title: '金额不正确',
+          duration: 2000,
+          image: '../../../images/icon_info.png',
+          // mask: true,
+        })
+    }
+
+    }else{
+      wx.hideLoading()
       wx.showToast({
         title: '不能为空',
         duration: 2000,
@@ -228,72 +261,85 @@ Page({
     get_data = e.detail.value
     get_data.orderId = that.data.orderId
     get_data.performStatus = 0
-    get_data.performPic = that.data.files.join(',')
+    if (that.data.files.length > 0) {
+      get_data.performPic = that.data.files.join(',')
+    }
     content.content = get_data
     var orderCenterUrl = getApp().globalData.orderCenterUrl
-    if (get_data.performPic != '' && get_data.performSummar !== '' && get_data.agentName !== '' && get_data.agentPhone !== '' && get_data.serviceTarget !== '' && get_data.orderPrice !== '') {
+    if (get_data.performPic !== '' && get_data.performSummar !== '' && get_data.agentName !== '' && get_data.agentPhone !== '' && get_data.serviceTarget !== '' && get_data.orderPrice !== '') {
 
+     if(that.data.price){
+       wx.request({
+         url: orderCenterUrl + 'api/performer/dealAgain',
+         data: content,
+         header: {
+           'content-type': 'application/json',
+           "Cookie": that.data.orderCenter
+         },
+         method: 'POST',
+         dataType: 'json',
+         success: function (opt) {
+           // console.log(opt.data)
+           if (opt.data.code == 1000) {
+             wx.showModal({
+               title: '圆满人生提示您',
+               content: opt.data.message,
+               showCancel: false,
+               success: function (res) {
+                 if (res.confirm) {
+                   wx.navigateBack({
+                     delta: 1
+                   })
+                 }
+               }
+             })
+             wx.hideLoading()
+           } else {
+             wx.hideLoading()
+             wx.showModal({
+               title: opt.data.message,
+               content: '是否返回重新登录',
+               success: function (res) {
+                 if (res.confirm) {
+                   wx.reLaunch({
+                     url: '../../login/login',
+                   })
+                 } else if (res.cancel) {
 
-      wx.request({
-        url: orderCenterUrl + 'api/performer/dealAgain',
-        data: content,
-        header: {
-          'content-type': 'application/json',
-          "Cookie": that.data.orderCenter
-        },
-        method: 'POST',
-        dataType: 'json',
-        success: function (opt) {
-          // console.log(opt.data)
-          if (opt.data.code == 1000) {
-            wx.showModal({
-              title: '圆满人生提示您',
-              content: opt.data.message,
-              showCancel:false,
-              success: function (res) {
-                if (res.confirm) {
-                  wx.navigateBack({
-                    delta: 1
-                  })
-                } 
-              }
-            })
-            wx.hideLoading()
-          } else {
-            wx.hideLoading()
-            wx.showModal({
-              title: opt.data.message,
-              content: '是否返回重新登录',
-              success: function (res) {
-                if (res.confirm) {
-                  wx.reLaunch({
-                    url: '../../login/login',
-                  })
-                } else if (res.cancel) {
+                 }
+               }
+             })
+           }
+         },
+         fail: function (res) {
+           wx.hideLoading()
+           wx.showModal({
+             title: '网络错误',
+             content: '是否返回重新登录',
+             success: function (res) {
+               if (res.confirm) {
+                 wx.reLaunch({
+                   url: '../../login/login',
+                 })
+               } else if (res.cancel) {
 
-                }
-              }
-            })
-          }
-        },
-        fail: function (res) {
-          wx.hideLoading()
-          wx.showModal({
-            title: '网络错误',
-            content: '是否返回重新登录',
-            success: function (res) {
-              if (res.confirm) {
-                wx.reLaunch({
-                  url: '../../login/login',
-                })
-              } else if (res.cancel) {
+               }
+             }
+           })
+         },
+       })
+     }else{
+       wx.hideLoading()
+       wx.showToast({
+         title: '金额不正确',
+         duration: 2000,
+         image: '../../../images/icon_info.png',
+         // mask: true,
+       })
+     }
 
-              }
-            }
-          })
-        },
-      })
     } else {
+      wx.hideLoading()
       wx.showToast({
         title: '不能为空',
         duration: 2000,

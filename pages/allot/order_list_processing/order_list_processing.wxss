@@ -1,0 +1,10 @@
+.page_allot_order_list .list .ul .li .li_footer .header {
+  flex-basis: 270rpx;
+  /* background: #ff0000; */
+}
+ .page_allot_order_list .list .ul .li .li_footer .footer .btn:nth-of-type(2){
+   right: 148rpx;
+ }
+  .page_allot_order_list .list .ul .li .li_footer .footer .btn:nth-of-type(3){
+   right: 296rpx;
+ }

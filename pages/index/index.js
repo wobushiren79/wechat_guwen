@@ -88,6 +88,7 @@ Page({
   },
   gongmu: function () {
     var that = this
+    var ifnumber=0
     wx.showLoading({
       title: '加载中',
     })
@@ -107,6 +108,7 @@ Page({
           key: 'resourceCodes',
           success: function (res) {
             for (var i in res.data) {
+              
               //如果有分单权限
               if (res.data[i] == "orderc.advisor") {
                 wx.getStorage({
@@ -156,7 +158,16 @@ Page({
                     })
                   },
                 })
+              }else{
+                ifnumber++
               }
+            }
+            if (ifnumber == res.data.length){
+              //如果获取缓存不成功就跳转登录页面
+              wx.navigateTo({
+                url: '../cem/cem',
+              })
+              wx.hideLoading()
             }
           },
           fail:function(){
@@ -174,6 +185,7 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
+    var ifnumber=0
     //取出分单子系统token
     wx.getStorage({
       key: 'orderCenter',
@@ -240,7 +252,16 @@ Page({
                     })
                   },
                 })
+              }else{
+                ifnumber++
               }
+            }
+            if (ifnumber == res.data.length) {
+              //如果获取缓存不成功就跳转登录页面
+              wx.navigateTo({
+                url: '../funeral_img/funeral_img',
+              })
+              wx.hideLoading()
             }
           },
           fail: function () {

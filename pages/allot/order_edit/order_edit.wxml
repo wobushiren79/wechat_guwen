@@ -34,7 +34,7 @@
                 订单金额
               </view>
               <view class="footer ">
-                <input type="text" placeholder="金额" name="orderPrice" type="number" maxlength='8'/>
+                <input type="text" placeholder="金额" name="orderPrice"  maxlength='10' bindblur='orderPrice'/>
               </view>
             </view>
             <view class="dd fuid note required">
@@ -46,7 +46,7 @@
                 <textarea maxlength='10000' name="performSummary"></textarea>
               </view>
             </view>
-            <view class="dd fuid note required">
+            <view class="dd fuid note ">
               <view class="header ">
                 服务照片上传
               </view>

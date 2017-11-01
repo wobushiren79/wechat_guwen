@@ -13,6 +13,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    var ifnumber = 0
     wx.showLoading({
       title: '加载中',
     })
@@ -68,11 +69,14 @@ Page({
                 })
               },
             })
+          }else{
+            ifnumber++
           }
-
-
-
         }
+        if (ifnumber == res.data.length){
+          wx.hideLoading()
+        }
+        
       }
     })
   },
