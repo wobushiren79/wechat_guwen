@@ -64,7 +64,8 @@ Page({
             if (opt.data.code == 1000) {
                 that.setData({
                   content: opt.data.content,
-                  get_data: get_data
+                  get_data: get_data,
+                  orderId: e.orderId
                 })
               wx.hideLoading()
             } else {

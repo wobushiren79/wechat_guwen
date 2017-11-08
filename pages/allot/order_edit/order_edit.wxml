@@ -46,7 +46,7 @@
                 <textarea maxlength='10000' name="performSummary"></textarea>
               </view>
             </view>
-            <view class="dd fuid note ">
+            <view class="dd fuid note required">
               <view class="header ">
                 服务照片上传
               </view>

@@ -17,6 +17,9 @@ Page({
       over: false
     })
   },
+  onShow:function(){
+    this.onLoad()
+  },
   onLoad:function(){
     var that=this
     var JSESSIONID=''

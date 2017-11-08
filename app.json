@@ -57,7 +57,11 @@
       "pages/allot/order_edit/order_edit",
       "pages/allot/order_list_processing/order_list_processing",
       "pages/allot/order_list_audit/order_list_audit",
-      "pages/allot/order_list_finish/order_list_finish"
+      "pages/allot/order_list_finish/order_list_finish",
+      "pages/allot/use_car/use_car",
+      "pages/allot/use_car_content/use_car_content",
+      "pages/allot/use_car_list/use_car_list",
+      "pages/bank/index/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -91,8 +95,8 @@
       "iconPath": "images/icon_tabBar_list0.png",
       "selectedIconPath": "images/icon_tabBar_list1.png"
     },{
-      "pagePath":  "pages/Sift/Sift",
-      "text": "活动",
+      "pagePath":  "pages/bank/index/index",
+      "text": "我",
       "iconPath": "images/icon_tabBar_more0.png",
       "selectedIconPath": "images/icon_tabBar_more1.png"
     }]

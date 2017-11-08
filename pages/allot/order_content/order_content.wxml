@@ -13,7 +13,8 @@
             <view class="header">工单： {{content.workOrder.orderNumber}}
             </view>
             <view class="footer">
-              <button type="primary" class="btn btn_1" bindtap="zxture" data-id="{{content.workOrder.relateOrderNo}}">关联工单</button>
+              <!-- <button type="primary" class="btn btn_1" bindtap="zxture" data-id="{{content.workOrder.relateOrderNo}}">关联工单</button> -->
+               <navigator type="primary" url='../use_car_list/use_car_list?orderId={{orderId}}'  class="btn">用车记录</navigator> 
             </view>
           </view>
           <view class="li_body">

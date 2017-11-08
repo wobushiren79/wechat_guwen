@@ -26,7 +26,7 @@
              {{item.workOrder.orderNumber}}
             </view>
             <view class="footer">
-              <button type="primary" class="btn btn_1" bindtap="zxture" data-id="{{item.workOrder.relateOrderNo}}">关联工单</button>
+              <!-- <button type="primary" class="btn btn_1" bindtap="zxture" data-id="{{item.workOrder.relateOrderNo}}">关联工单</button> -->
             </view>
           </view>
           <navigator class="li_body" url="/pages/allot/order_content/order_content?orderId={{item.workOrder.id}}" hover-class="active">
@@ -112,10 +112,17 @@
             <view class="header">
               <view bindtap="tel" data-tel="{{item.customerInfo.contactPhone}}">
                 <image src="../../../images/icon_call_phone.png"></image>联系人</view>
+               <block wx:if="{{item.customerInfo.agentPhone !== '' || item.customerInfo.agentPhone.length>0}}"> 
               <view bindtap="tel" data-tel="{{item.customerInfo.agentPhone}}">
-                <image src="../../../images/icon_call_phone.png"></image>经办人</view>
-            </view>
+                <image src="../../../images/icon_call_phone.png"></image>经办人
+              </view>
+                 </block> 
+                 </view>
             <view class="footer">
+              <!-- 用车列表 -->
+              <!-- <block wx:if="{{item.hasCarLogInfo == 1}}">
+               <navigator type="primary" url='../use_car_list/use_car_list?orderId={{item.workOrder.id}}'  class="btn">用车记录</navigator> 
+               </block> -->
             <!-- <block wx:if="{{item.performerAssignRecord.valid == 1}}">
               <navigator type="primary" url='../order_edit/order_edit?orderId={{item.workOrder.id}}'  class="btn">处理</navigator>
               </block> -->

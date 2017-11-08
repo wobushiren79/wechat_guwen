@@ -216,7 +216,7 @@
             <view class="weui-label">前往目的地</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="地址" bindblur='notNull' name="targetLocation" value="{{GmName?GmName:''}}" />
+            <input class="weui-input" placeholder="地址" bindblur='notNull' name="targetLocation" value="{{spot?spot:GmName}}" />
           </view>
           <view class="icon" bindtap="spot">
             <image src="../../images/address.png"></image>

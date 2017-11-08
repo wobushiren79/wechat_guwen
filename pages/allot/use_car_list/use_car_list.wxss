@@ -1,0 +1,3 @@
+.page_service_order .list .ul .li .li_body > wx-view .header{
+   flex-basis: 170rpx; 
+}

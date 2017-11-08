@@ -68,9 +68,10 @@ Page({
   bindPickerChange_a: function (e) {
     // if (e.target.dataset.name == '院山'){
     var GmName = this.data.GmList
+    // console.log(GmName)
       this.setData({
         businessType_a: e.detail.value,
-        GmName: GmName[e.detail.value].name,
+        GmName: GmName[e.detail.value],
       })
   },
   //预约类型
@@ -226,6 +227,12 @@ Page({
       } else if (get_data.connecterMobile.length == 0) {
         wx.showToast({
           title: '文本框必填',
+          image: '../../images/icon_info.png',
+          duration: 2000
+        })
+      } else if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(get_data.connecterMobile))) {
+        wx.showToast({
+          title: '号码不正确',
           image: '../../images/icon_info.png',
           duration: 2000
         })
@@ -485,10 +492,12 @@ Page({
               var GmList=[]
               for(var i in gmList){
                 GmList.push(gmList[i].name)
+                GmName: gmList[0]
               }
               that.setData({
                 GmList:GmList,
-                gmList: gmList
+                gmList: gmList,
+                GmName: GmList[0]
               })
             }
           },

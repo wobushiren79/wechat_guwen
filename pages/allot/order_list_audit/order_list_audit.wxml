@@ -19,124 +19,137 @@
 
 
         <!-- 模板1 待接单 star-->
-      <block wx:for="{{listdata}}">   
-        <view class="li">
-          <view class="li_header">
-            <view class="header">工单：
-              {{item.workOrder.orderNumber}}
+        <block wx:for="{{listdata}}">
+          <view class="li">
+            <view class="li_header">
+              <view class="header">工单： {{item.workOrder.orderNumber}}
+              </view>
+              <view class="footer">
+                <!-- <button type="primary" class="btn btn_1" bindtap="zxture" data-id="{{item.workOrder.relateOrderNo}}">关联工单</button> -->
+                <navigator url='../use_car/use_car?orderId={{item.workOrder.id}}'>
+                  <image src='../../../images/shenqing.png' mode='widthFix'></image>
+                </navigator>
+              </view>
             </view>
-            <view class="footer">
-              <button type="primary" class="btn btn_1" bindtap="zxture" data-id="{{item.workOrder.relateOrderNo}}">关联工单</button>
+            <navigator class="li_body" url="/pages/allot/order_content/order_content?orderId={{item.workOrder.id}}" hover-class="active">
+              <image src="../../../images/right.png" class="icon"></image>
+              <view>
+                <view class="header">
+                  服务地址：
+                </view>
+                <view class="body">
+                  {{item.customerInfo.address}}
+                </view>
+              </view>
+              <view>
+                <view class="header">
+                  预约时间：
+                </view>
+                <view class="body">
+                  {{item.workOrder.appointmentTime}}
+                </view>
+              </view>
+              <view>
+                <view class="header">
+                  服务类型：
+                </view>
+                <block wx:if="{{item.workOrder.orderType == 0}}">
+                  <view class="body">
+                    殡仪
+                  </view>
+                </block>
+                <block wx:elif="{{item.workOrder.orderType == 1}}">
+                  <view class="body">
+                    公墓
+                  </view>
+                </block>
+                <block wx:elif="{{item.workOrder.orderType == 3}}">
+                  <view class="body">
+                    其他
+                  </view>
+                </block>
+              </view>
+              <view>
+                <view class="header">
+                  联系人：
+                </view>
+                <view class="body">
+                  {{item.customerInfo.contactName}}
+                </view>
+              </view>
+              <view>
+                <view class="header">
+                  经办人：
+                </view>
+                <view class="body">
+                  {{item.customerInfo.agentName}}
+                </view>
+              </view>
+              <view>
+                <view class="header">
+                  服务对象：
+                </view>
+                <view class="body">
+                  {{item.customerInfo.serviceTarget}}
+                </view>
+              </view>
+              <block wx:if="{{item.auditorName.length>0}}">
+                <view>
+                  <view class="header">
+                    审核员:
+                  </view>
+                  <view class="body">
+                    {{item.auditorName}}
+                  </view>
+                </view>
+              </block>
+              <view>
+                <view class="header">
+                  派单时间：
+                </view>
+                <view class="body">
+                  {{updateTime[index]}}
+                </view>
+              </view>
+              <view>
+                <view class="header">
+                  描述：
+                </view>
+                <view class="body">
+                  {{item.workOrder.orderDescribe}}
+                </view>
+              </view>
+            </navigator>
+            <view class="li_footer">
+              <view class="header">
+                <view bindtap="tel" data-tel="{{item.customerInfo.contactPhone}}">
+                  <image src="../../../images/icon_call_phone.png"></image>联系人</view>
+                <block wx:if="{{item.customerInfo.agentPhone.length>0}}">
+                  <view bindtap="tel" data-tel="{{item.customerInfo.agentPhone}}">
+                    <image src="../../../images/icon_call_phone.png"></image>经办人
+                  </view>
+                </block>
+                <block wx:if="{{item.customerInfo.auditorPhone.length>0}}">
+                  <view bindtap="tel" data-tel="{{item.customerInfo.auditorPhone}}">
+                    <image src="../../../images/icon_call_phone.png"></image>审核员
+                  </view>
+                </block>
+              </view>
+              <view class="footer">
+                <!-- 用车按钮 -->
+                <navigator type="primary" url='../use_car/use_car?orderId={{item.workOrder.id}}' class="btn">用车申请</navigator>
+                <!-- 用车列表 -->
+                <!-- <block wx:if="{{item.hasCarLogInfo == 1}}">
+               <navigator type="primary" url='../use_car_list/use_car_list?orderId={{item.workOrder.id}}'  class="btn">用车记录</navigator> 
+               </block> -->
+              </view>
             </view>
           </view>
-          <navigator class="li_body" url="/pages/allot/order_content/order_content?orderId={{item.workOrder.id}}" hover-class="active">
-            <image src="../../../images/right.png" class="icon"></image>
-            <view>
-              <view class="header">
-                服务地址：
-              </view>
-              <view class="body">
-                {{item.customerInfo.address}}
-              </view>
-            </view>
-            <view>
-              <view class="header">
-                预约时间：
-              </view>
-              <view class="body">
-                {{item.workOrder.appointmentTime}}
-              </view>
-            </view>
-            <view>
-              <view class="header">
-                服务类型：
-              </view>
-              <block wx:if="{{item.workOrder.orderType == 0}}">
-              <view class="body">
-              殡仪
-              </view>
-              </block>
-              <block wx:elif="{{item.workOrder.orderType == 1}}">
-              <view class="body">
-              公墓
-              </view>
-              </block>
-              <block wx:elif="{{item.workOrder.orderType == 3}}">
-              <view class="body">
-              其他
-              </view>
-              </block>
-            </view>
-            <view>
-              <view class="header">
-                联系人：
-              </view>
-              <view class="body">
-                {{item.customerInfo.contactName}}
-              </view>
-            </view>
-            <view>
-              <view class="header">
-                经办人：
-              </view>
-              <view class="body">
-              {{item.customerInfo.agentName}}
-              </view>
-            </view>
-            <view>
-              <view class="header">
-                服务对象：
-              </view>
-              <view class="body">
-               {{item.customerInfo.serviceTarget}}
-              </view>
-            </view>
-            <view>
-              <view class="header">
-                审核员:
-              </view>
-              <view class="body">
-                {{item.auditorName}}
-              </view>
-            </view>
-            <view>
-              <view class="header">
-                派单时间：
-              </view>
-              <view class="body">
-              {{updateTime[index]}}
-              </view>
-            </view>
-            <view>
-              <view class="header">
-                描述：
-              </view>
-              <view class="body">
-               {{item.workOrder.orderDescribe}}
-              </view>
-            </view>
-          </navigator>
-          <view class="li_footer">
-            <view class="header">
-              <view bindtap="tel" data-tel="{{item.customerInfo.contactPhone}}">
-                <image src="../../../images/icon_call_phone.png"></image>联系人</view>
-              <view bindtap="tel" data-tel="{{item.customerInfo.agentPhone}}">
-                <image src="../../../images/icon_call_phone.png"></image>经办人</view>
-              <view bindtap="tel" data-tel="{{item.auditorPhone}}">
-                <image src="../../../images/icon_call_phone.png"></image>审核员</view>
-            </view>
-            <view class="footer">
-            <!-- <block wx:if="{{item.performerAssignRecord.valid == 1}}">
-              <navigator type="primary" url='../order_edit/order_edit?orderId={{item.workOrder.id}}'  class="btn">处理</navigator>
-              </block> -->
-            </view>
-          </view>
-        </view> 
-      </block>   
+        </block>
       </view>
     </view>
 
-    <navigator  class='fix_new' url='../../new_/new_'>
+    <navigator class='fix_new' url='../../new_/new_'>
       <text>＋</text>
     </navigator>
   </view>

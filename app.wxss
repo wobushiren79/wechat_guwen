@@ -270,7 +270,12 @@ input {
   flex: 1;
   text-align: right;
 }
-
+.page_service_order .list .ul .li .li_header .footer navigator image{
+  /* display: block */
+  width: 60rpx;
+  position: relative;
+  top: 10rpx;
+}
 .page_service_order .list .ul .li .li_footer .footer {
   position: relative;
   z-index: 99;

@@ -64,22 +64,31 @@
                  {{item.customerInfo.contactName}}
                 </view>
               </view>
-              <view>
-                <view class="header">
-                  经办人：
+            <view>
+              <view class="header">
+                经办人：
+              </view>
+              <block wx:if="{{item.customerInfo.agentName !== null || item.customerInfo.agentName !== ''}}">
+                <view class="body">
+                  未分配
                 </view>
+              </block>
+              <block wx:else>
                 <view class="body">
                   {{item.customerInfo.agentName}}
                 </view>
+              </block>
+            </view>
+            <block wx:if="{{item.customerInfo.serviceTarget.length>0}}">
+            <view>
+              <view class="header">
+                服务对象：
               </view>
-              <view>
-                <view class="header">
-                  服务对象：
-                </view>
-                <view class="body">
-                  {{item.customerInfo.serviceTarget}}
-                </view>
+              <view class="body">
+                {{item.customerInfo.serviceTarget}}
               </view>
+            </view>
+            </block>
               <view>
                 <view class="header">
                   派单时间：
@@ -103,8 +112,11 @@
               <view class="header">
                 <view bindtap="tel" data-tel="{{item.customerInfo.contactPhone}}">
                   <image src="../../../images/icon_call_phone.png"></image>联系人</view>
-                <view bindtap="tel" data-tel="{{item.customerInfo.agentPhone}}">
-                  <image src="../../../images/icon_call_phone.png"></image>经办人</view>
+               <block wx:if="{{item.customerInfo.agentPhone.length>0}}"> 
+              <view bindtap="tel" data-tel="{{item.customerInfo.agentPhone}}">
+                <image src="../../../images/icon_call_phone.png"></image>经办人
+              </view>
+                 </block> 
               </view>
               <view class="footer">
                 <block wx:if="{{item.performerAssignRecord.valid == 1}}">

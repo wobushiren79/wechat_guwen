@@ -1,0 +1,29 @@
+/**login.wxss**/
+.picker{
+height:2.58823529em;
+min-height:2.58823529em;
+line-height:2.58823529em;
+color: #3baf92;
+}
+.paiche::before{
+  border-bottom: none!important;
+}
+
+
+.weui-cell_input.required .weui-label{
+  position: relative;
+}
+.weui-cell_input.required .weui-label::before{
+  content: "*";
+  display: block;
+  color: #ff0000;
+  position: absolute;
+  left: -20rpx;
+  top: 50%;
+  transform: translate(0,-50%);
+  margin-top: 6rpx;
+}
+
+.paiche{
+  /* margin-top: 15px; */
+}
