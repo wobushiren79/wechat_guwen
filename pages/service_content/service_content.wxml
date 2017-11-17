@@ -204,7 +204,7 @@
       <!-- 弹窗 star -->
       <view class="popup" bindtap="popupdata">
         <view class="dl">
-          <view class="dt">圆满价格</view>
+          <view class="dt">{{amateurLevel == 10000 ?'圆满价格':'提成金额'}}</view>
           <black wx:for="{{list.specprice}}">
             <view class="dd">
               <view class="name">
@@ -213,7 +213,7 @@
               </view>
               <view class="money">
                 ￥
-                <text>{{item.adviser_price}}</text>
+                <text>{{amateurLevel == 10000?item.adviser_price:item.spec_price+'*'+amateurLevel}}</text>
               </view>
             </view>
           </black>

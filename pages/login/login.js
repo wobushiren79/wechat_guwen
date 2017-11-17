@@ -29,6 +29,7 @@ Page({
       // wx.clearStorageSync()
       wx.removeStorageSync('JSESSIONID')
       wx.removeStorageSync('orderCenter')
+      wx.removeStorageSync('amateurLevel')
       var RouteUrl = getApp().globalData.RouteUrl
       // var Gmlogin=false
       var GmUrl = getApp().globalData.GmUrl  //公墓接口地址前缀
@@ -86,6 +87,7 @@ Page({
               for (var j in subSystems){
                 hasDealSubSystem++
               for (var i in res.data.content.resourceCodes){
+                //如果有公墓权限登录公墓
                 if (res.data.content.resourceCodes[i] == "cemetery.advisor"){
                   wx.request({
                     url: GmUrl + 'doLogin/marketing',
@@ -109,6 +111,45 @@ Page({
                       }
                       that.is_login(hasDealSubSystem, subSystems, that.data.is_loction)
                     }
+                  })
+                  //如果不是职业顾问查询非职业顾问等级
+                } 
+                 if (res.data.content.resourceCodes[i] == "goods.advisor.amateur"){
+                  var level = {}
+                  var level_content = {}
+                  var userIds = []
+                  var levelType=[]
+                  levelType.push('goods.advisor.amateur')
+                  userIds.push(res.data.content.userId)
+                  level.userIds = userIds
+                  level.levelType = levelType
+                  level_content.content = level
+                  wx.request({
+                    //获取职业顾问级别
+                    url: platform + 'api/level/findbyuserids',
+                    method: "POST",
+                    data: level_content,
+                    header: {
+                      'content-type': 'application/json',
+                      "Cookie": 'JSESSIONID=' + res.data.content.sessionId
+                    },
+                    success: function (dat) {
+                      console.log(dat)
+                      if (dat.data.code == 1000){
+                        //   //缓存用户顾问级别
+                        wx.setStorageSync('amateurLevel', dat.data.content.resultList)
+                        that.is_login(hasDealSubSystem, subSystems, that.data.is_loction)
+                      }else{
+                        wx.setStorageSync('amateurLevel', '非职业顾问')
+                        wx.showToast({
+                          title: dat.data.message,
+                          image: '../../images/icon_info.png',
+                          duration: 3000,
+                          // mask: true
+                        })
+                      }
+                    }
+
                   })
               }
               }

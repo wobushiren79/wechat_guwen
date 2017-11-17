@@ -32,7 +32,7 @@
           <black wx:if="{{item.order_status ==10 }}">
             <view class="header"></view>
             </black>
-            <view class="footer">￥<text>{{item.total_price/100}}</text></view>
+            <view class="footer">￥<text>{{amateurLevel?item.show_total_price/100:item.total_price/100}}</text></view>
           </view>
           <navigator url="../service_order_content/service_order_content?orderid={{item.id}}" class="li_body" hover-class="active">
             <image src="../../images/right.png" class="icon"></image>
@@ -80,7 +80,11 @@
         <!-- 模板五 服务完成-服务完成 end-->
 </black>
         <!-- 模板七 交易关闭-交易关闭 end-->
-
+<block wx:if="{{xinshi}}">
+<view class='prompt'>
+<text>没有更多订单啦</text>
+</view>
+</block>
 
       </view>
     </view>

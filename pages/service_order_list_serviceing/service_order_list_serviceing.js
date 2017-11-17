@@ -4,11 +4,42 @@ Page({
     pageNumber: 0
 
   },
+  onReady:function(){
+    var that=this
+    //是否职业顾问
+    wx.getStorage({
+      key: 'amateurLevel',
+      success: function (res) {
+        that.setData({
+          amateurLevel: true
+        })
+      },
+      fail: function () {
+        that.setData({
+          amateurLevel: false
+        })
+      }
+    })
+  },
   onLoad: function () {
     var that = this
     wx.showLoading({
       title: '加载中',
       mask: true,
+    })
+    //是否职业顾问
+    wx.getStorage({
+      key: 'amateurLevel',
+      success: function (res) {
+        that.setData({
+          amateurLevel: true
+        })
+      },
+      fail: function () {
+        that.setData({
+          amateurLevel: false
+        })
+      }
     })
     var JSESSIONID=''
     wx.getStorage({
@@ -42,14 +73,23 @@ Page({
       },
 
       success: function (res) {
+        // console.log(res)
         if (res.data.code == 1000) {
           var list = res.data.content.content
-          console.log(list)
-          that.setData({
-            list: list,
-            pageSize: pageSize + 2
-          })
-          wx.hideLoading()
+          if (list.length == pageSize) {
+            that.setData({
+              list: list,
+              pageSize: pageSize + 2
+            })
+            wx.hideLoading()
+          } else {
+            that.setData({
+              list: list,
+              pageSize: pageSize,
+              xinshi: true
+            })
+            wx.hideLoading()
+          }
         } else {
           wx.showToast({
             title: res.data.message,
@@ -112,12 +152,10 @@ Page({
           } else {
             that.setData({
               list: list,
-              pageSize: pageSize + 2
+              pageSize: pageSize,
+              xinshi: true
             })
-            wx.showToast({
-              title: '已经加载全部',
-              duration: 2000
-            })
+            wx.hideLoading()
           }
 
         } else {

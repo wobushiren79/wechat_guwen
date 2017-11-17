@@ -61,7 +61,11 @@
       "pages/allot/use_car/use_car",
       "pages/allot/use_car_content/use_car_content",
       "pages/allot/use_car_list/use_car_list",
-      "pages/bank/index/index"
+      "pages/bank/index/index",
+      "pages/bank/card/card",
+      "pages/bank/money/money",
+      "pages/bank/add/add",
+      "pages/bank/history/history"
   ],
   "window": {
     "navigationBarTextStyle": "black",

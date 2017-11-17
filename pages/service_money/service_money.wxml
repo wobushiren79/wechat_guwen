@@ -217,6 +217,7 @@
         </view>
 
         <!-- 合计 -->
+        <block wx:if="{{!levelId}}">
         <view class="count" bindlongtap="price">
           <black wx:if="{{price}}">
             应付圆满金额：
@@ -231,7 +232,14 @@
           </black>
 
         </view>
-
+        </block>
+        <block wx:else>
+        <view class="count" >
+            客户支付金额:
+            <text>￥</text>
+            <text>{{totla_price}}</text>
+        </view>
+        </block>
         <!-- 直接购买 -->
         <button class="buy" form-type="submit">
         下一步

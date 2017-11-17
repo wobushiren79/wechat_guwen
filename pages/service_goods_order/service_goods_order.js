@@ -6,6 +6,20 @@ Page({
   onLoad:function(evet){
     var that=this
     // var JSESSIONID=''
+    //是否职业顾问
+    wx.getStorage({
+      key: 'amateurLevel',
+      success: function (res) {
+        that.setData({
+          amateurLevel:true
+        })
+      },
+      fail:function(){
+        that.setData({
+          amateurLevel: false
+        })
+      }
+    })
     wx.getStorage({
       key: 'JSESSIONID',
       success: function(res) {
@@ -52,6 +66,7 @@ Page({
     })
   },
   fukuang: function (e) {
+    // console.log(1111111111)
     var that=this
     var orderId = e.currentTarget.dataset.orderid
     var JSESSIONID = that.data.JSESSIONID

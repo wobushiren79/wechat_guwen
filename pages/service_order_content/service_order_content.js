@@ -59,6 +59,20 @@ Page({
       title: '请稍后',
       mask: true,
     })
+    //是否职业顾问
+    wx.getStorage({
+      key: 'amateurLevel',
+      success: function (res) {
+        that.setData({
+          amateurLevel: true
+        })
+      },
+      fail: function () {
+        that.setData({
+          amateurLevel: false
+        })
+      }
+    })
     var JSESSIONID=''
     wx.getStorage({
       key: 'JSESSIONID',
@@ -87,7 +101,7 @@ Page({
       success: function (res) {
         // console.log(res)
         if (res.data.code == 1000) {
-          // console.log(res.data.content)
+          console.log(res.data.content)
           var listData=res.data.content
           that.setData({
             listData:listData

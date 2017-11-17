@@ -22,7 +22,7 @@
         <block wx:for="{{listdata}}">
           <view class="li">
             <view class="li_header">
-              <view class="header">工单： {{item.workOrder.orderNumber}}
+              <view class="header">单号： {{item.workOrder.orderNumber}}
               </view>
               <view class="footer">
                 <!-- <button type="primary" class="btn btn_1" bindtap="zxture" data-id="{{item.workOrder.relateOrderNo}}">关联工单</button> -->
@@ -69,30 +69,30 @@
                   </view>
                 </block>
               </view>
-              <view>
+              <!-- <view>
                 <view class="header">
                   联系人：
                 </view>
                 <view class="body">
                   {{item.customerInfo.contactName}}
                 </view>
-              </view>
-              <view>
+              </view> -->
+              <!-- <view>
                 <view class="header">
                   经办人：
                 </view>
                 <view class="body">
                   {{item.customerInfo.agentName}}
                 </view>
-              </view>
-              <view>
+              </view> -->
+              <!-- <view>
                 <view class="header">
                   服务对象：
                 </view>
                 <view class="body">
                   {{item.customerInfo.serviceTarget}}
                 </view>
-              </view>
+              </view> -->
               <block wx:if="{{item.auditorName.length>0}}">
                 <view>
                   <view class="header">
@@ -154,7 +154,7 @@
     </navigator>
   </view>
   <block wx:if="{{notNumber}}">
-    <view class='warning_text'>
+    <view class='prompt'>
       <text>没有更多订单啦</text>
     </view>
   </block>

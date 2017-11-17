@@ -462,3 +462,15 @@ contact-button {
   bottom: 0;
   opacity: 0;
 }
+
+/* 提示 */
+.prompt{
+  padding:30rpx 16rpx 30rpx 30rpx!important;
+}
+.prompt text{
+  display: block!important;
+  width: 100%!important;
+  text-align: center!important;
+  font-size: 30rpx!important;
+  color: #bbb!important;
+}

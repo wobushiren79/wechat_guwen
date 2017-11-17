@@ -12,12 +12,12 @@
         </view>
 
         <!-- 殡仪服务 -->
-        <view class="li">
+        <!-- <view class="li">
           <navigator url="../list/list" hover-class="active">
             <image src="../../images/icon_order_plan.png"></image>
             <text>白事订单</text>
           </navigator>
-        </view>
+        </view> -->
 
         <!-- 单项服务 -->
         <view class="li">

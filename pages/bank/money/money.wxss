@@ -1,0 +1,150 @@
+.weui-panel__bd .icon {
+  width: 14rpx;
+  height: 24rpx;
+  position: absolute;
+  top: 50%;
+  right: 16rpx;
+  transform: translateY(-50%);
+  opacity: 0.5;
+  transition: all 0.3s;
+}
+
+.weui-media-box {
+  padding: 30rpx 16rpx 30rpx 30rpx;
+}
+
+.weui-flex_wrap {
+  padding: 30rpx 0 30rpx 30rpx;
+  background: #fff;
+}
+
+.weui-flex {
+  padding: 0 16rpx 0rpx 0;
+}
+
+.weui-flex .weui-flex__item:first-of-type {
+  color: #48cfad;
+  font-size: 35rpx;
+  font-weight: 600;
+}
+
+.weui-flex .weui-flex__item:nth-of-type(2){
+  text-align: right;
+  font-size: 28rpx;
+  color: #7d7d7d;
+  line-height: 54rpx;
+}
+.weui-flex .weui-flex__item.num{
+  font-size: 30rpx;
+  color: #353535;
+  margin-top: 10rpx;
+}
+
+.weui-flex .weui-flex__item.num input{
+  display: inline-block;
+  font-size: 36rpx;
+  width: 400rpx;
+  min-height: 0;
+  height: auto;
+  position: relative;
+  top: 4rpx;
+  font-weight: 100;
+}
+/* 列表 */
+
+.list .weui-media-box__hd_in-appmsg {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.list.weui-panel::after, .list.weui-panel::before {
+  display: none !important;
+}
+
+.list .weui-media-box__bd text {
+  margin-right: 20rpx;
+}
+
+.list .weui-media-box__ft {
+  text-align: right;
+}
+.weui-media-box::after,
+.weui-media-box::before{
+  display: none;
+}
+.weui-media-box.title{
+  padding: 20rpx 16rpx 20rpx 30rpx;
+  background: #f8f8f8;
+  font-size: 28rpx;
+  color: #7d7d7d;
+}
+
+
+
+/*按钮*/
+
+.weui-btn-area {
+  margin-top: 60rpx;
+  background: transparent;
+}
+
+.weui-btn-area button {
+  background-color: #48cfad;
+  color: #fff;
+  border: none;
+  outline: none;
+}
+
+/*下划线*/
+
+
+form .weui-cells{
+  margin-bottom: 0;
+}
+
+.phonenum button {
+  font-size: 16px;
+  border: none!important;
+  outline: none;
+  color: #48cfad;
+  /* width: 230rpx; */
+  text-align: center;
+   padding: 0!important; 
+  background: #ffffff!important;
+  line-height: 110rpx;
+}
+.phonenum button::after{
+   display: none; 
+}
+.phonenum button.hidden {
+  display: none;
+}
+
+.weui-cells {
+  background-color: transparent;
+}
+.weui-cells::after,
+.weui-cells::before {
+  border: none;
+}
+
+.weui-cells {
+  margin-bottom: 30px;
+}
+
+.weui-cell{
+  
+}
+.weui-cell::before {
+  display: none;
+
+}
+
+.weui-cells {
+  margin-bottom: 15px;
+}
+
+.phonenum .other{
+  line-height: 110rpx;
+}
+

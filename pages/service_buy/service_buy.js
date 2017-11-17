@@ -107,7 +107,7 @@ Page({
                   if (res.data.code == 1000){
                        var listt=res.data.list
                        var class_name = res.data.class_name
-                       var totla_price = that.data.totla_price
+                       var totla_price = 0
                          var getdata=[]
                          for (var j in listt) {
                          for(var i in list){

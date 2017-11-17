@@ -319,7 +319,7 @@ Page({
         })
         for (var i in res.data) {
           //如果有单项权限就登录单项子系统
-          if (res.data[i] == "goods.advisor") {
+          if (res.data[i] == "goods.advisor" || res.data[i] == "goods.advisor.amateur") {
             wx.getStorage({
               key: 'Individual',
               success: function (opt) {
@@ -340,6 +340,7 @@ Page({
                     'content-type': 'application/json'
                   },
                   success: function (ress) {
+                    // console.log(ress)
                     var cookies = ress.header['Set-Cookie']
                     if (cookies) {
                       var end = cookies.indexOf('Path') - 2
@@ -360,8 +361,9 @@ Page({
                             "Content-Type": "application/x-www-form-urlencodeed",
                           },
                           success: function (resss) {
-                            // console.log(resss)
+                            // console.log(resss.data.list)
                             if (resss.data.code == 1000) {
+                              if (resss.data.list != null){
                               that.setData({
                                 labellist: resss.data.list,
                                 label_id: resss.data.list[0].id
@@ -385,6 +387,7 @@ Page({
                                   }
                                 }
                               })
+                              }
                             }
                           }
                         })
@@ -395,7 +398,7 @@ Page({
                   fail: function () {
                     //如果获取缓存不成功就跳转登录页面
                     wx.reLaunch({
-                      url: '../login/login',
+                      url: '/pages/login/login',
                     })
                   }
                 })
@@ -408,7 +411,7 @@ Page({
       fail: function () {
         //如果获取缓存不成功就跳转登录页面
         wx.reLaunch({
-          url: '../login/login',
+          url: '/pages/login/login',
         })
       }
     })
@@ -498,14 +501,14 @@ Page({
             } else {
               //跳转登录页面
               wx.reLaunch({
-                url: '../login/login',
+                url: '/pages/login/login',
               })
             }
           },
           fail: function () {
             //跳转登录页面
             wx.reLaunch({
-              url: '../login/login',
+              url: '/pages/login/login',
             })
           }
         })

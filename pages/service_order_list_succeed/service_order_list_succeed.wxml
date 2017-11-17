@@ -80,6 +80,11 @@
         </view>
         <!-- 模板五 服务完成-服务完成 end-->
 </black>
+<block wx:if="{{xinshi}}">
+<view class='prompt'>
+<text>没有更多订单啦</text>
+</view>
+</block>
       </view>
     </view>
 

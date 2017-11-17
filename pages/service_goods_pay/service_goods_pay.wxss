@@ -73,3 +73,14 @@
  background: linear-gradient(to left, #3eb99a, #269080);
 }
 
+.footerfix .keep.pay_jieguo{
+  width: 100%;
+  background: linear-gradient(to left, #48cfad, #85ecdc);
+}
+
+form .ewm view{
+  text-align: center;
+}
+form .ewm canvas{
+  background: #f8f8f8!important;
+}

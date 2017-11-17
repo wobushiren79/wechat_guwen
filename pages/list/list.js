@@ -191,7 +191,7 @@ Page({
                             
                             if(res.data.code == 1000){ 
                             var TalkData=res.data.content.items 
-                              if(TalkData !=''){
+                              if(TalkData.length>0){
                                 var Length = TalkData.length
                                 that.setData({
                                   array: TalkData,

@@ -52,15 +52,15 @@
               </view>
               <view class="footer files_img clearfix">
                 <!-- <input type="text" placeholder="意见反馈" /> -->
-                <view class='img_wrap'>
-                  <image src='../../../images/zhy_fileupload_button_normal.png' bindtap='uploadImage' mode='widthFix'></image>
-                </view>
                 <block wx:for="{{files}}">
                   <view class='img_wrap'>
                     <image class='close' src='../../../images/cha.png' bindtap='deleteImage' mode='widthFix' data-img='{{item}}'></image>
                     <image src='http://oq6rkq859.bkt.clouddn.com/{{item}}'  mode='widthFix'></image>
                   </view>
                 </block>
+                <view class='img_wrap'>
+                  <image src='../../../images/zhy_fileupload_button_normal.png' bindtap='uploadImage' mode='widthFix'></image>
+                </view>
               </view>
             </view>
 

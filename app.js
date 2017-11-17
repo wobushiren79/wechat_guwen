@@ -56,8 +56,12 @@ App({
     // javaApi: "http://192.168.0.43:8080/goods/", 
     // javaApi: "http://prd-goods.xicp.cn/", 
     javaApi: "https://goods.shianlife.cn/",
+    //钟明
+    //  javaApi:"http://192.168.0.57:8089/goods/",
     // platform:"http://prd-platform.xicp.cn/",
-    // platform:"http://192.168.0.43:8099/ki4so-web/",
+    // platform:"http://192.168.0.50:8100/platform/",
+    // platform:"http://192.168.0.199:8080/",
+    //钟明
     // platform:"http://192.168.0.57:8080/ki4so-web/",
     platform:"https://platform.shianlife.cn/",
     // javaApi: "http://192.168.0.75:8299/goods/"
@@ -65,5 +69,37 @@ App({
     // orderCenterUrl:'http://192.168.0.43:8085/center/'
     orderCenterUrl:'https://order.shianlife.cn/'
     // orderCenterUrl:'http://192.168.0.57:8090/order/'
+  },
+  //网络请求超时时间1000毫秒=1秒
+  "networkTimeout": {
+     "request": 30000,
+     "connectSocket": 10000,
+     "uploadFile": 50000,
+     "downloadFile": 10000
+  },
+  //根据价格(price)追加后两位小数
+  ProcessingPrice:function(price){
+    var price = price.toString()
+    var index = price.indexOf('.')
+    var indexlength = price.length
+    var returnData=''
+    if (index== -1){
+      return returnData=price + '.00'
+    } else if (index > -1 ){
+      if (indexlength - index == 2){
+        return returnData=price + '0'
+      } else if (indexlength - index == 3){
+        return returnData=price
+         }
+     }
+  },
+  //金额正则验证
+  AmountVerification:function(price){
+    var t =/(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/
+    if (t.test(price)){
+      return true
+    }else{
+      return false
+    }
   }
 })

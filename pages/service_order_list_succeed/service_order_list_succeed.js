@@ -44,11 +44,21 @@ Page({
       success: function (res) {
         if (res.data.code == 1000) {
           var list = res.data.content.content
-          that.setData({
-            list: list,
-            pageSize: pageSize + 2
-          })
-          wx.hideLoading()
+          if(list.length == pageSize){ 
+            that.setData({
+              list: list,
+              pageSize: pageSize+2,
+            })
+            wx.hideLoading()
+          }else{
+            that.setData({
+              list: list,
+              pageSize: pageSize,
+              xinshi: true
+            })
+            wx.hideLoading()
+          }
+         
         } else {
           wx.showToast({
             title: res.data.message,
@@ -112,12 +122,10 @@ Page({
           } else {
             that.setData({
               list: list,
-              pageSize: pageSize + 2
+              pageSize: pageSize,
+              xinshi:true
             })
-            wx.showToast({
-              title: '已经加载全部',
-              duration: 2000
-            })
+            wx.hideLoading()
           }
 
         } else {

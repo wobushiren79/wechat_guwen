@@ -10,6 +10,20 @@ Page({
       title: '加载中',
       mask: true,
     })
+    //是否职业顾问
+    wx.getStorage({
+      key: 'amateurLevel',
+      success: function (res) {
+        that.setData({
+          amateurLevel: true
+        })
+      },
+      fail: function () {
+        that.setData({
+          amateurLevel: false
+        })
+      }
+    })
     var JSESSIONID=''
     wx.getStorage({
       key: 'JSESSIONID',
@@ -19,7 +33,6 @@ Page({
           JSESSIONID: JSESSIONID
         })
 
-    console.log(JSESSIONID)
     var content = {}
     var javaApi = getApp().globalData.javaApi
     // content.content = { 'orderStatus':0}
@@ -45,11 +58,20 @@ Page({
         // console.log(res)
         if (res.data.code == 1000) {
           var list = res.data.content.content
-          that.setData({
-            list: list,
-            pageSize: pageSize + 2
-          })
-          wx.hideLoading()
+          if (list.length == pageSize) {
+            that.setData({
+              list: list,
+              pageSize: pageSize + 2
+            })
+            wx.hideLoading()
+          } else {
+            that.setData({
+              list: list,
+              pageSize: pageSize,
+              xinshi: true
+            })
+            wx.hideLoading()
+          }
         } else {
           wx.showToast({
             title: res.data.message,
@@ -112,12 +134,10 @@ Page({
           } else {
             that.setData({
               list: list,
-              pageSize: pageSize + 2
+              pageSize: pageSize,
+              xinshi: true
             })
-            wx.showToast({
-              title: '已经加载全部',
-              duration: 2000
-            })
+            wx.hideLoading()
           }
 
         } else {

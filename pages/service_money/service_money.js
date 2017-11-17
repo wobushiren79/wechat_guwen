@@ -2,7 +2,12 @@ Page({
   data: {
     show: false,
     list_show: true,
-    xuyao: '不需要发票'
+    xuyao: '不需要发票',
+    levelId:false,
+    levelType:'',
+    levelName:'',
+    orderType:1
+
   },
   bind_list: function () {
     var that = this;
@@ -20,6 +25,34 @@ Page({
           JSESSIONID: res.data
         })
       },
+    })
+
+
+    //是否职业顾问
+    wx.getStorage({
+      key: 'amateurLevel',
+      success: function (res) {
+        if (res.data == null) {
+          that.setData({
+            levelId: 0,
+            orderType:2
+          })
+        } else {
+          that.setData({
+            levelId: res.data[0].systemLevel.id,
+            orderType:2,
+            levelName : res.data[0].systemLevel.levelName,
+            levelType : res.data[0].systemLevel.levelType
+            
+          })
+        }
+      },
+      fail: function () {
+        that.setData({
+          levelId: false,
+          orderType: 1
+        })
+      }
     })
     //取出渠道
     wx.getStorage({
@@ -130,6 +163,7 @@ Page({
     var class_name = that.data.class_name
     //总单价
     var totla_price = that.data.totla_price
+    var levelId = that.data.levelId
     //客户信息
     var kehu = that.data.kehu
     if (kehu) {
@@ -143,6 +177,27 @@ Page({
       goodsOrder.orderComment = e.detail.value.orderComment
       goodsOrder.customerName = kehu.contact
       goodsOrder.customerPhone = kehu.contactPhone
+      // goodsOrder.test = 1111111111111111111
+      //是否职业顾问
+      // wx.getStorage({
+      //   key: 'amateurLevel',
+      //   success: function(res) {
+      //     goodsOrder.orderType=2
+      //     if (res.data == null){
+      //     }else{
+      //        goodsOrder.levelName = res.data[0].systemLevel.levelName
+      //       goodsOrder.levelType = res.data[0].systemLevel.levelType
+      //       goodsOrder.levelId = res.data[0].systemLevel.id
+      //     }
+      //   },
+      //   fail:function(){
+      //     goodsOrder.orderType = 1
+      //   }
+      // })
+      goodsOrder.levelName = that.data.levelName
+      goodsOrder.levelType = that.data.levelType
+      goodsOrder.levelId = that.data.levelId
+      goodsOrder.orderType = that.data.orderType
       //是否需要发票
       if (fapiao) {
         goodsOrder.needInvoice = fapiao.needInvoice
@@ -193,6 +248,23 @@ Page({
           packagelist.goodsOrderItems = goodsOrderItemss
           packagelist.packageId = parseInt(formData[i].package_id)
           packagelist.packageSpecId = parseInt(formData[i].spec_id)
+          if (levelId != false) {
+            if (levelId == 0){
+              packagelist.commissionRatio = 0
+            }else{
+              if (formData[i].commission ==null){
+              packagelist.commissionRatio = 0
+            }else{
+            for (var p in formData[i].commission) {
+              if (formData[i].commission[p].amateur_id == levelId) {
+                packagelist.commissionRatio = formData[i].commission[p].commission
+              }
+            }
+            }
+          }
+          } else {
+            packagelist.commissionRatio = false
+          }
           var num2 = r.test(parseFloat(formData[i].spec_price))
           if (num2) {
             packagelist.specOrderedPrice = parseFloat(formData[i].spec_price) * 100
@@ -246,6 +318,26 @@ Page({
           goodsPackages.push(packagelist)
         }else{
         var goodslist = {}
+        
+        if (levelId != false) {
+          if (levelId == 0) {
+            goodslist.commissionRatio = 0
+          } else {
+            if (formData[i].commission==null) {
+              goodslist.commissionRatio = 0
+            } else {
+          for (var o in formData[i].commission) {
+            if (formData[i].commission[o].amateur_id == levelId) {
+              goodslist.commissionRatio = formData[i].commission[o].commission
+            }
+          }
+            }
+          }
+        } else {
+          goodslist.commissionRatio = false
+        }
+
+
         goodslist.goodsId = parseInt(formData[i].goods_id)
         goodslist.goodsSpecId = parseInt(formData[i].spec_id)
         var num2 = r.test(parseFloat(formData[i].spec_price))
@@ -330,11 +422,11 @@ Page({
       var OrderData = JSON.stringify(orderdata)
       // console.log(orderdata)
       var javaApi = getApp().globalData.javaApi
-      console.log(orderdata)
+      // console.log(OrderData)
       wx.request({
         url: javaApi + 'api/goods/order/save',
         method: "POST",
-        data: orderdata,
+        data: OrderData,
         header: {
           // "Content-Type": "application/x-www-form-urlencodeed",
           'content-type': 'application/json',

@@ -28,7 +28,7 @@
         <view class="li">
           <view class="li_header">
             <view class="header">已确认</view>
-            <view class="footer">￥<text>{{item.total_price/100}}</text></view>
+            <view class="footer">￥<text>{{amateurLevel?item.show_total_price/100:item.total_price/100}}</text></view>
           </view>
           <navigator url="../service_order_content/service_order_content?orderid={{item.id}}" class="li_body" hover-class="active">
             <image src="../../images/right.png" class="icon"></image>
@@ -76,7 +76,11 @@
         </view>
         </black>
         <!-- 模板一 待付款-待支付 end-->
-
+<block wx:if="{{xinshi}}">
+<view class='prompt'>
+<text>没有更多订单啦</text>
+</view>
+</block>
       </view>
     </view>
 

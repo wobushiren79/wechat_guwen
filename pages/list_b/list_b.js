@@ -92,10 +92,18 @@ Page({
                 var TalkData = res.data.content.list
                 // console.log(TalkData)
                 var Length = TalkData.length
-                that.setData({
-                  gmList: TalkData,
-                  Length: Length
-                })
+                if (TalkData.length == size) {
+                  that.setData({
+                    gmList: TalkData,
+                    Length: Length,
+                  })
+                } else {
+                  that.setData({
+                    gmList: TalkData,
+                    Length: Length,
+                    xianshi: true
+                  })
+                }
               } else {
                 wx.showToast({
                   title: res.data.message,
@@ -157,11 +165,18 @@ Page({
                 var TalkData = res.data.content.list
                 //console.log(TalkData)
                 var Length = TalkData.length
-                that.setData({
-                  gmList: TalkData,
-                  Length: Length,
-
-                })
+                if (TalkData.length == size) {
+                  that.setData({
+                    gmList: TalkData,
+                    Length: Length,
+                  })
+                } else {
+                  that.setData({
+                    gmList: TalkData,
+                    Length: Length,
+                    xianshi: true
+                  })
+                }
               } else {
                 wx.showToast({
                   title: res.data.message,
@@ -212,20 +227,19 @@ Page({
               // console.log(res)
               if (res.data.code == 1000) {
                 var gmList = res.data.content.list
-                console.log(gmList)
-                if(gmList.length > 0){
                   var Length = gmList.length
-                  that.setData({
-                    gmList: gmList,
-                    Length: Length
-                  })
-                }else{
-                  wx.showToast({
-                    title: '暂无未定墓单',
-                    image: '../../images/icon_info.png',
-                    duration: 2000
-                  })
-                }
+                  if (gmList.length == size) {
+                    that.setData({
+                      gmList: gmList,
+                      Length: Length
+                    })
+                  } else {
+                    that.setData({
+                      gmList: gmList,
+                      Length: Length,
+                      xianshi: true
+                    })
+                  }
 
               }
             }

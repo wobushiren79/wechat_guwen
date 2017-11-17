@@ -10,7 +10,7 @@
         <!-- 模板1 待接单 star-->
         <view class="li">
           <view class="li_header">
-            <view class="header">工单： {{content.workOrder.orderNumber}}
+            <view class="header">单号： {{content.workOrder.orderNumber}}
             </view>
             <view class="footer">
               <!-- <button type="primary" class="btn btn_1" bindtap="zxture" data-id="{{content.workOrder.relateOrderNo}}">关联工单</button> -->
