@@ -1,76 +1,144 @@
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
   <view class="page__bd">
     <!--国庆节  -->
-    <navigator url='../gq/gq' class='gq'>
-      <image src='../../images/gq.png'></image>
-    </navigator>
-    <!--个人信息 -->
-    <view bindtap="bindViewTap" class="userinfo">
+    <!-- <navigator url='../gq/gq' class='gq'>
+      <image src='../../images/gq.png'  mode='widthFix'></image>
+    </navigator> -->
 
-      <!--头像-->
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    
 
-      <!--名字-->
-      <view class="namenum">
-
-        <!--名字-->
-        <!-- <text class="userinfo-nickname">{{userInfo.nickName}}</text> -->
-        <text class="userinfo-nickname">{{UserName}}</text>
-        <!--服务评分-->
-        <view class="num">
-          <!-- {{grade}} -->
-          评分：10
-        </view>
-        <block wx:if="{{canCheckin}}">
-          <view class="num sign" bindtap='sign'>
-            <!-- {{grade}} -->
-            点击签到
-          </view>
-        </block>
-        <block wx:else>
-          <navigator class="num sign" url='../signin/signin'>
-            <!-- {{grade}} -->
-            今日已签到
-          </navigator>
-        </block>
-      </view>
-      <view bindtap="call_phone" class="call_phone" data-phone="966188">
-        <image src="../../images/icon_call_phone.png"></image>
-        <text>966188</text>
-      </view>
-      <view class="exit" bindtap="dele">
-        退出
+    <!-- banner -->
+    <view class='section_banner'>
+      <image src='../../images/logo_0.png' mode='widthFix'></image>
+      <view class='search'>
+        <image class='icon_search' src='../../images/search_icon.png' mode='widthFix'></image>
+         <navigator url="../search/search" >
+        <input type='text' placeholder='点击输入搜索商品' placeholder-class='input_placeholder'></input>
+        </navigator>
+        <image class='icon_sm' src='../../images/icon_sm.png' mode='widthFix'></image>
       </view>
     </view>
 
+    <!-- flex -->
+    <view class="section_flex weui-flex">
+      <navigator class="weui-flex__item" url='../service/service'>
+        <image src='../../images/icon_index_flex1.png' mode='widthFix'></image>
+        <text>圆满商城</text>
+      </navigator>
+      <view class="weui-flex__item" bindtap='gongmu'>
+        <image src='../../images/icon_index_flex2.png' mode='widthFix'></image>
+        <text>新建单</text>
+      </view>
+      <view class="weui-flex__item" bindtap='order'>
+        <image src='../../images/icon_index_flex3.png' mode='widthFix'></image>
+        <text>接单</text>
+      </view>
+       <block wx:if="{{canCheckin}}">
+      <view class="weui-flex__item" bindtap='sign'>
+        <image src='../../images/icon_index_flex4.png' mode='widthFix'></image>
+        <text>签到</text>
+      </view>
+        </block>
+        <block wx:else>
+      <navigator class="weui-flex__item" url='../signin/signin'>
+        <image src='../../images/icon_index_flex4.png' mode='widthFix'></image>
+        <text>今日已签到</text>
+      </navigator>
+        </block>
+    </view>
+
+    <!-- swiper -->
+    <swiper indicator-dots="{{indicatorDots_banner}}" autoplay="{{autoplay}}" interval="{{interval_banner}}" duration="{{duration}}" circular="{{circular}}">
+      <swiper-item>
+        <navigator url="" hover-class="navigator-hover">
+          <image src="http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/index_swiper.png" class="slide-image" mode='widthFix' />
+        </navigator>
+      </swiper-item>
+      <swiper-item>
+        <navigator url="" hover-class="navigator-hover">
+          <image src="http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/index_swiper.png" class="slide-image" mode='widthFix' />
+        </navigator>
+      </swiper-item>
+      <swiper-item>
+        <navigator url="" hover-class="navigator-hover">
+          <image src="http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/index_swiper.png" class="slide-image" mode='widthFix' />
+        </navigator>
+      </swiper-item>
+    </swiper>
+
+
+
+
+
+
+
+    <!--个人信息 -->
+    <!-- <view bindtap="bindViewTap" class="userinfo"> -->
+
+      <!--头像-->
+      <!-- <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image> -->
+
+      <!--名字-->
+      <!-- <view class="namenum"> -->
+
+        <!--名字-->
+        <!-- <text class="userinfo-nickname">{{userInfo.nickName}}</text> -->
+        <!-- <text class="userinfo-nickname">{{UserName}}</text> -->
+        <!--服务评分-->
+        <!-- <view class="num"> -->
+          <!-- {{grade}} -->
+          <!-- 评分：10 -->
+        <!-- </view> -->
+        <!-- <block wx:if="{{canCheckin}}"> -->
+          <!-- <view class="num sign" bindtap='sign'> -->
+            <!-- {{grade}} -->
+            <!-- 点击签到 -->
+          <!-- </view> -->
+        <!-- </block> -->
+        <!-- <block wx:else> -->
+          <!-- <navigator class="num sign" url='../signin/signin'> -->
+            <!-- {{grade}} -->
+            <!-- 今日已签到 -->
+          <!-- </navigator> -->
+        <!-- </block> -->
+      <!-- </view> -->
+      <!-- <view bindtap="call_phone" class="call_phone" data-phone="966188"> -->
+        <!-- <image src="../../images/icon_call_phone.png"></image> -->
+        <!-- <text>966188</text> -->
+      <!-- </view> -->
+      <!-- <view class="exit" bindtap="dele"> -->
+        <!-- 退出 -->
+      <!-- </view> -->
+    <!-- </view> -->
+
     <!--服务信息-->
-    <view class=" page__bd_spacing info">
+    <!-- <view class=" page__bd_spacing info">
       <view class="weui-flex">
         <view class="weui-flex__item">
-          <view>积分</view>
+          <view>积分</view> -->
           <!-- <text>{{num}}</text> -->
-          <text>{{!usableCredit?0:usableCredit ==''?0:usableCredit}}</text>
+          <!-- <text>{{!usableCredit?0:usableCredit ==''?0:usableCredit}}</text>
         </view>
         <view class="weui-flex__item">
-          <view>优惠券</view>
+          <view>优惠券</view> -->
           <!-- <text>{{service}}</text> -->
-          <text>0</text>
-        </view>
+          <!-- <text>0</text>
+        </view> -->
         <!-- <view class="weui-flex__item">
           <view>钱包</view> -->
           <!-- <text>￥{{money}}</text> -->
           <!-- <text>￥0.00</text>
         </view> -->
-      </view>
-    </view>
+      <!-- </view>
+    </view> -->
 
     <!-- 搜索 -->
-    <navigator url="../search/search" class="page__bd_spacing search">
+    <!-- <navigator url="../search/search" class="page__bd_spacing search">
       <image src="../../images/index_search.png" style=""></image>
-    </navigator>
+    </navigator> -->
 
     <!--服务菜单-->
-    <view class=" page__bd_spacing server">
+    <!-- <view class=" page__bd_spacing server">
       <view class="weui-flex">
         <block wx:if="{{Individual}}">
           <navigator url="../service/service" class="weui-flex__item">
@@ -101,7 +169,7 @@
               <image src="{{icon_cem}}" style=""></image>
             </view>
             <text>去接单</text>
-          </view>
+          </view> -->
         <!-- <block wx:if="{{Gmlogin == 1}}">
           <navigator url="../new_/new_" class="weui-flex__item">
             <view>
@@ -134,8 +202,14 @@
             <text>去接单</text>
           </navigator>
         </block> -->
-      </view>
-    </view>
+      <!-- </view>
+    </view> -->
+
+
+
+
+
+
     <block wx:if="{{labellist}}">
       <view class="tab_index">
         <!--服务菜单-->
@@ -160,15 +234,28 @@
                     <text>{{item.name}}</text>
                     <text> {{item.goods_slogan}}</text>
                   </view>
+                  <block wx:if="{{!amateurLevel}}">
                   <view class="money">
                     <text class="s">圆满价：</text>
                     <text class="b"></text>
                     <text class="b">{{item.adviser_price}}</text>
                   </view>
-                  <view class="num">
+                    <view class="num">
                     推荐价：
                     <text>{{item.price}}</text>
                   </view>
+                  </block>
+                  <block wx:else>
+                  <view class="money">
+                    <text class="s">推荐价：</text>
+                    <text class="b"></text>
+                    <text class="b">{{item.price}}</text>
+                  </view>
+                    <!-- <view class="num">
+                    推荐价：
+                    <text>{{item.price}}</text>
+                  </view> -->
+                  </block>
                   <block wx:if="{{label_id==labellist[0].id}}">
                     <view class="btn btn2">
                       立即抢购

@@ -66,6 +66,7 @@
               </view>
             </view>
             <view>
+            <block wx:if="{{content.customerInfo.agentName.length>0}}">
               <view class="header">
                 经办人：
               </view>
@@ -75,6 +76,7 @@
                   <image src="../../../images/icon_call_phone.png" mode="widthFix"></image>
                 </view>
               </view>
+            </block>
             </view>
             <view>
               <view class="header">

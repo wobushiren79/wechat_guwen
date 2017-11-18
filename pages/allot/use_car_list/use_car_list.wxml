@@ -92,9 +92,13 @@
       </block>
       </block>
       <block wx:else>
-      <view>
-      此工单暂时没有申请用车记录
-      </view>
+
+
+    <view class='prompt'>
+      <text>没有更多记录啦</text>
+    </view>
+
+
       </block>
       </view>
     </view>

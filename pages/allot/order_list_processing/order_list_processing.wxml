@@ -3,6 +3,9 @@
     <!--选项卡-->
     <view class="tab">
       <view>
+        <navigator url="../order_list_wait/order_list_wait" open-type="redirect">待接单</navigator>
+      </view>
+      <view>
         <navigator url="../order_list_processing/order_list_processing" class="active" open-type="redirect">处理中</navigator>
       </view>
       <view>

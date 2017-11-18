@@ -66,6 +66,10 @@ Page({
     })
   },
   fukuang: function (e) {
+    wx.showLoading({
+      title: '请稍后',
+      mask: true,
+    })
     // console.log(1111111111)
     var that=this
     var orderId = e.currentTarget.dataset.orderid
@@ -88,7 +92,9 @@ Page({
           wx.redirectTo({
             url: '../service_goods_pay/service_goods_pay?orderId=' + orderId
           })
+          wx.hideLoading()
         } else {
+          wx.hideLoading()
           wx.showToast({
             title: res.data.message,
             image: '../../images/icon_info.png',

@@ -355,7 +355,7 @@ input {
 /* 分单系统订单列表 star */
 
 .page_allot_order_list .tab view {
-  width: 33.3333%;
+  width: 25%;
 }
 
 .page_allot_order_list .list .ul .li .li_header .header,
@@ -473,4 +473,20 @@ contact-button {
   text-align: center!important;
   font-size: 30rpx!important;
   color: #bbb!important;
+}
+
+/* 购物车 */
+
+.shoppgo{
+  display: block;
+  width: 130rpx;
+  height: 130rpx;
+  position: fixed;
+  bottom: 130rpx;
+  right: 50rpx;
+}
+.shoppgo image{
+  display: block;
+  width: 100%;
+  height: 100%;
 }

@@ -12,30 +12,35 @@
         </view>
 
         <!-- 殡仪服务 -->
-        <!-- <view class="li">
+        <view class="li">
           <navigator url="../list/list" hover-class="active">
             <image src="../../images/icon_order_plan.png"></image>
             <text>白事订单</text>
           </navigator>
-        </view> -->
+        </view>
 
         <!-- 单项服务 -->
-        <view class="li">
+        <!-- <view class="li">
           <navigator url="../service_order_list_submit/service_order_list_submit" hover-class="active">
             <image src="../../images/icon_order_server.png"></image>
             <text>商城订单</text>
           </navigator>
+        </view> -->
+        <view class="li">
+          <navigator url="../service_order_list_submit/service_order_list_submit" hover-class="active">
+            <image src="../../images/icon_order_server.png"></image>
+            <text>我的门店</text>
+          </navigator>
         </view>
-
 
         <!-- 已接定单 -->
         <block wx:if="{{orderCenter}}">
-        <view class="li">
-          <navigator url="../allot/order_list_processing/order_list_processing" hover-class="active">
-            <image src="../../images/icon_order_server.png"></image>
-            <text>处理工单</text>
-          </navigator>
-        </view>
+          <view class="li">
+            <navigator url="../allot/order_list_processing/order_list_processing" hover-class="active">
+              <image src="../../images/icon_order_server.png"></image>
+              <text>处理工单</text>
+            </navigator>
+          </view>
         </block>
 
       </view>

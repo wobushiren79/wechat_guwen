@@ -226,7 +226,7 @@ Page({
               if (res.confirm) {
                 //頁面跳轉
                 wx.redirectTo({
-                  url: '/pages/allot/order_list_processing/order_list_processing',
+                  url: '../allot/order_list_processing/order_list_processing',
                 })
               } else if (res.cancel) {
                 // wx.navigateBack({

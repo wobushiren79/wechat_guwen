@@ -82,7 +82,10 @@
   border-top: 1px solid #efefef!important;
 }
 
-
+.input_placeholder{
+  font-size: 36rpx;
+  color: #909090;
+}
 
 .goods_other.list .dl .dd:last-of-type .footer {
   font-size: 30rpx !important;

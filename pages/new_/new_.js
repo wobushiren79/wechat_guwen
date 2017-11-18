@@ -279,7 +279,7 @@ Page({
                 if (res.data.code == 1000) {
                   wx.hideLoading()
                   //頁面跳轉
-                  wx.redirectTo({
+                  wx.switchTab({
                     url: '../allot/order_list_wait/order_list_wait',
                   })
                 } else {

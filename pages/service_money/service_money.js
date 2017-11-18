@@ -3,7 +3,7 @@ Page({
     show: false,
     list_show: true,
     xuyao: '不需要发票',
-    levelId:false,
+    levelId: false,
     levelType:'',
     levelName:'',
     orderType:1
@@ -142,7 +142,7 @@ Page({
   bindFormSubmit: function (e) {
     wx.showLoading({
       title: '请稍后',
-      // mask: true,
+      mask: true,
     })
     var that = this
     var r = /^\+?[1-9][0-9]*$/;　　//正整数
@@ -196,7 +196,7 @@ Page({
       // })
       goodsOrder.levelName = that.data.levelName
       goodsOrder.levelType = that.data.levelType
-      goodsOrder.levelId = that.data.levelId
+      goodsOrder.levelId = that.data.levelId ? that.data.levelId:''
       goodsOrder.orderType = that.data.orderType
       //是否需要发票
       if (fapiao) {
@@ -263,7 +263,7 @@ Page({
             }
           }
           } else {
-            packagelist.commissionRatio = false
+            packagelist.commissionRatio = ''
           }
           var num2 = r.test(parseFloat(formData[i].spec_price))
           if (num2) {
@@ -334,7 +334,7 @@ Page({
             }
           }
         } else {
-          goodslist.commissionRatio = false
+          goodslist.commissionRatio = ''
         }
 
 
@@ -420,13 +420,13 @@ Page({
       getdata.goodsServiceInfo = goodsServiceInfo
       orderdata = { content: getdata }
       var OrderData = JSON.stringify(orderdata)
-      // console.log(orderdata)
+      console.log(orderdata)
       var javaApi = getApp().globalData.javaApi
       // console.log(OrderData)
       wx.request({
         url: javaApi + 'api/goods/order/save',
         method: "POST",
-        data: OrderData,
+        data: orderdata,
         header: {
           // "Content-Type": "application/x-www-form-urlencodeed",
           'content-type': 'application/json',
@@ -445,6 +445,14 @@ Page({
               duration: 2000
             })
           }
+        },
+        fail:function(){
+          wx.showToast({
+            title: '请求失败',
+            image: '../../images/icon_info.png',
+            // mask: true,
+            duration: 2000
+          })
         }
       })
     } else {

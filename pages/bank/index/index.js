@@ -5,6 +5,14 @@ Page({
   onShow:function(){
     this.onLoad()
   },
+  dele: function () {
+    wx.clearStorageSync()
+    //跳转登录页面
+    wx.reLaunch({
+      url: '../../login/login',
+    })
+
+  },
   onLoad: function () {
     var that = this;
     wx.showLoading({
@@ -62,6 +70,51 @@ Page({
             })
           }
           })
+      }
+    })
+    wx.getStorage({
+      key: 'ptjssessionid',
+      success: function (res) {
+        var ptjssessionid = res.data
+        wx.request({
+          url: platform + 'api/credit/getCredit',
+          // url: 'http://192.168.0.199:8080/api/credit/getCredit',
+          method: "POST",
+          data: '',
+          header: {
+            'content-type': 'application/json',
+            "Cookie": 'JSESSIONID=' + ptjssessionid
+          },
+
+          success: function (dat) {
+            if (dat.data.code) {
+              if (dat.data.code == 1000) {
+                that.setData({
+                  usableCredit: dat.data.content.usableCredit,
+                  canCheckin: dat.data.content.canCheckin,
+                })
+              } else {
+                wx.showToast({
+                  title: dat.data.message,
+                  duration: 2000,
+                  image: '../../images/icon_info.png',
+                  // mask: true,
+                })
+              }
+            } else {
+              //跳转登录页面
+              wx.reLaunch({
+                url: '/pages/login/login',
+              })
+            }
+          },
+          fail: function () {
+            //跳转登录页面
+            wx.reLaunch({
+              url: '/pages/login/login',
+            })
+          }
+        })
       }
     })
   }

@@ -21,8 +21,15 @@
   border: 4rpx solid #48cfad;
   box-shadow: 0 0 0 4rpx #c8f1e6;
 }
-.userinfo .weui-media-box__bd .weui-media-box__title text{
+.userinfo .weui-media-box__bd .weui-media-box__title{
+    font-size: 24rpx;
+}
+.userinfo .weui-media-box__bd .weui-media-box__desc{
+  font-size: 30rpx;
+}
+.userinfo .weui-media-box__bd .weui-media-box__desc text{
   color: #41b396;
+  margin-left: 5rpx;
 }
 .userinfo.weui-panel::after,
 .userinfo.weui-panel::before,
@@ -60,7 +67,7 @@
     position: absolute;
   top: 100rpx;
   right: 30rpx;
-  width: 135rpx;
+  width: 120rpx;
   height: 55rpx;
   box-sizing: border-box;
   border: 1px solid #ffffff;

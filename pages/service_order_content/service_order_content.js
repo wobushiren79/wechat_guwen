@@ -1,6 +1,7 @@
 Page({
   data: {
     list_show: false,
+    img_wrap:false,
     popup: false,
     package_a:false
   },
@@ -8,6 +9,12 @@ Page({
     var that = this;
     that.setData({
       list_show: (!that.data.list_show)
+    })
+  },
+  bind_img: function () {
+    var that = this;
+    that.setData({
+      img_wrap: (!that.data.img_wrap)
     })
   },
   call_phone: function (e) {
@@ -99,7 +106,7 @@ Page({
       },
 
       success: function (res) {
-        // console.log(res)
+        console.log(res)
         if (res.data.code == 1000) {
           console.log(res.data.content)
           var listData=res.data.content

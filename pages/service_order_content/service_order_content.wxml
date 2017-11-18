@@ -241,7 +241,7 @@
           </view>
         </view>
         </block>
-        <view class="dd width">
+        <!-- <view class="dd width">
           <view class="header ">
             优惠信息
           </view>
@@ -255,7 +255,7 @@
               <text>{{listData.goodsFinance.couponInfo.parseJSON().totalFee*100}}</text>
             </view>
           </black>
-        </view>
+        </view> -->
         <view class="dd width">
           <view class="header ">
             运费
@@ -271,7 +271,7 @@
           </view>
           <block wx:if="{{amateurLevel}}">
           <view class="footer ">
-            实付订单金额
+            <view class="img_wrap {{img_wrap?'show':'hide'}} " bindtap='bind_img'><image src='../../images/icon_money.png' mode='widthFix'></image><text>提成:¥{{listData.goodsOrder.commissionPrice/100}}</text></view> 实付订单金额
             <black wx:if="{{listData.goodsFinance.actualPayment  == null}}">
               <text> 订单未支付</text>
             </black>

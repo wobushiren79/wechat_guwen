@@ -10,9 +10,11 @@
           </view>
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
             <view class="weui-media-box__title">
-              <view class="">您好，
-                <text>{{nickName}}</text>
-              </view>
+              {{nickName}}
+            </view>
+            <view class="weui-media-box__desc">
+              账户积分
+              <text>{{!usableCredit?0:usableCredit ==''?0:usableCredit}}</text>
             </view>
           </view>
           <image class='icon' src='../../../images/right.png'></image>
@@ -20,11 +22,13 @@
       </view>
     </navigator>
 
+
     <!-- 钱包 -->
     <view class='section_money'>
       <view class='content'>
         <view class='text'>钱包余额</view>
-        <view class='num'>￥<text>{{usableMoney}}</text>
+        <view class='num'>￥
+          <text>{{usableMoney}}</text>
         </view>
         <navigator class='go' url='../money/money'>提现</navigator>
       </view>
@@ -54,6 +58,28 @@
           </view>
           <image class='icon' src='../../../images/right.png'></image>
         </navigator>
+        <navigator class="weui-media-box weui-media-box_appmsg" url='../../signin/signin'>
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image class="weui-media-box__thumb" src="../../../images/icon_bank_index3.png" />
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">
+              积分记录
+            </view>
+          </view>
+          <image class='icon' src='../../../images/right.png'></image>
+        </navigator>
+
+        <view class="weui-media-box weui-media-box_appmsg" bindtap="dele">
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">
+              退出
+            </view>
+          </view>
+          <image class='icon' src='../../../images/right.png'></image>
+        </view>
       </view>
     </view>
   </view>

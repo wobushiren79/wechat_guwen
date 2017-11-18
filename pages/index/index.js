@@ -12,15 +12,17 @@ Page({
     icon_plan: "../../images/index_icon_plan.png",
     icon_right: "../../images/icon_right.png",
     role: '',
+    // 是否出现焦点
+    indicatorDots_banner: true,
+    // 是否自动播放
+    autoplay: true,
+    // 自动播放间隔时间
+    interval_banner: 3000,
+    // 滑动动画时间
+    duration: 500,
+    circular: true,
+    vertical: true,
     Gmlogin: 0
-  },
-  dele: function () {
-    wx.clearStorageSync()
-    //跳转登录页面
-    wx.reLaunch({
-      url: '../login/login',
-    })
-
   },
   call_phone: function (e) {
     var phone = e.currentTarget.dataset.phone;
@@ -279,6 +281,20 @@ Page({
     var GmUrl = getApp().globalData.GmUrl  //公墓接口地址前缀
     var RouteUrl = getApp().globalData.RouteUrl
     var LocalUrl = getApp().globalData.LocalUrl + 'Channel/channel'
+    //是否职业顾问
+    wx.getStorage({
+      key: 'amateurLevel',
+      success: function (res) {
+        that.setData({
+          amateurLevel: true
+        })
+      },
+      fail: function () {
+        that.setData({
+          amateurLevel: false
+        })
+      }
+    })
     //查询渠道接口
     wx.request({
       url: LocalUrl,
@@ -469,6 +485,20 @@ Page({
   onShow: function () {
     var that = this
     var platform = getApp().globalData.platform
+    //是否职业顾问
+    wx.getStorage({
+      key: 'amateurLevel',
+      success: function (res) {
+        that.setData({
+          amateurLevel: true
+        })
+      },
+      fail: function () {
+        that.setData({
+          amateurLevel: false
+        })
+      }
+    })
     wx.getStorage({
       key: 'ptjssessionid',
       success: function (res) {

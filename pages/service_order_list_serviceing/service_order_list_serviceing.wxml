@@ -3,7 +3,7 @@
     <!--选项卡-->
     <view class="tab">
       <view>
-        <navigator url="../service_order_list_submit/service_order_list_submit" open-type="redirect" >待提交</navigator>
+        <navigator url="../service_order_list_submit/service_order_list_submit" open-type="switchTab" >待提交</navigator>
       </view>
       <view>
         <navigator url="../service_order_list_pay/service_order_list_pay" open-type="redirect" >待付款</navigator>

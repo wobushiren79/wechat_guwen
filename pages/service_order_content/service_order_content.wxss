@@ -137,7 +137,23 @@
 .goods_other.list .dl .dd.money .footer {
   font-size: 30rpx !important;
 }
-
+.goods_other.list .dl .dd.money .footer .img_wrap{
+  display: inline-block;
+  margin-right: 15rpx;
+}
+.goods_other.list .dl .dd.money .footer .img_wrap image{
+  display: inline-block;
+  width: 40rpx;
+}
+.goods_other.list .dl .dd.money .footer .img_wrap text{
+  display: none;
+}
+.goods_other.list .dl .dd.money .footer .img_wrap.show image{
+  display: none;
+}
+.goods_other.list .dl .dd.money .footer .img_wrap.show text{
+  display: block;
+}
 .goods_other.list .dl .dd.money text {
   font-weight: 600;
   color: #fc8383;
