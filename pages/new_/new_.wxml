@@ -204,7 +204,7 @@
             <view class="weui-label">上车地点</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="地址" name="location" value="{{top_chat}}" />
+            <input class="weui-input" placeholder="地址" name="location" value="{{top_chat?top_chat:customerAddressNew}}" />
           </view>
           <view class="icon" bindtap="top_chat">
             <image src="../../images/address.png"></image>

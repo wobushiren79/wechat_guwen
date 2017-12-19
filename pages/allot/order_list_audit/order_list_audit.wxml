@@ -140,7 +140,7 @@
               </view>
               <view class="footer">
                 <!-- 用车按钮 -->
-                <navigator type="primary" url='../use_car/use_car?orderId={{item.workOrder.id}}' class="btn">用车申请</navigator>
+                <!-- <navigator type="primary" url='../use_car/use_car?orderId={{item.workOrder.id}}' class="btn">用车申请</navigator> -->
                 <!-- 用车列表 -->
                 <!-- <block wx:if="{{item.hasCarLogInfo == 1}}">
                <navigator type="primary" url='../use_car_list/use_car_list?orderId={{item.workOrder.id}}'  class="btn">用车记录</navigator> 

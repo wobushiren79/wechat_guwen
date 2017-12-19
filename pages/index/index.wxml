@@ -228,13 +228,20 @@
           <view class="ul">
             <block wx:for="{{label_data}}">
               <navigator url="../service_content/service_content?goods_id={{item.id}}" class="li">
-                <image class="li_img" src="https://goodsmgr.e-funeral.cn/Public/Uploads/{{item.title_img}}"></image>
+                <image class="li_img" src="{{item.title_img}}"></image>
                 <view class="li_content">
                   <view class="title aui-ellipsis-2">
                     <text>{{item.name}}</text>
                     <text> {{item.goods_slogan}}</text>
                   </view>
-                  <block wx:if="{{!amateurLevel}}">
+                  <block wx:if="{{amateurLevel}}">
+                  <view class="money">
+                    <text class="s">推荐价：</text>
+                    <text class="b"></text>
+                    <text class="b">{{item.price}}</text>
+                  </view>
+                  </block>
+                  <block wx:else>
                   <view class="money">
                     <text class="s">圆满价：</text>
                     <text class="b"></text>
@@ -244,13 +251,8 @@
                     推荐价：
                     <text>{{item.price}}</text>
                   </view>
-                  </block>
-                  <block wx:else>
-                  <view class="money">
-                    <text class="s">推荐价：</text>
-                    <text class="b"></text>
-                    <text class="b">{{item.price}}</text>
-                  </view>
+
+
                     <!-- <view class="num">
                     推荐价：
                     <text>{{item.price}}</text>

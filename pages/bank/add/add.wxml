@@ -12,7 +12,7 @@
               姓名
             </view>
             <view class="footer ">
-              <input type="text" placeholder="持卡人姓名" name="accountName" />
+              <input type="text" placeholder="持卡人姓名" placeholder-class='input_placeholder' name="accountName" />
             </view>
           </view>
 
@@ -21,7 +21,7 @@
               卡号
             </view>
             <view class="footer ">
-              <input type="text" placeholder="银行卡卡号" name="cardNo" bindblur="bankName"/>
+              <input type="text" placeholder="银行卡卡号" placeholder-class='input_placeholder' name="cardNo" bindblur="bankName"/>
             </view>
           </view>
 
@@ -30,7 +30,7 @@
               所属银行
             </view>
             <view class="footer ">
-              <input type="text" placeholder="银行卡所属银行" name="bankName" value='{{bankName?bankName:""}}' />
+              <input type="text" placeholder="银行卡所属银行" placeholder-class='input_placeholder' name="bankName" value='{{bankName?bankName:""}}' />
             </view>
           </view>
           <!-- <view class="dd order_time">

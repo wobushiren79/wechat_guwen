@@ -192,7 +192,9 @@ Page({
     get_data.connecterName = e.detail.value.connecterName
     get_data.connecterMobile = e.detail.value.connecterMobile
     get_data.remark = e.detail.value.remark
-    get_data.preDate = that.data.dates +' '+ that.data.datess+':00'
+    var nweData = that.data.dates == undefined ? that.data.date : that.data.dates
+    var nweTime = that.data.datess == undefined ? that.data.time : that.data.datess
+    get_data.preDate = nweData + ' ' +nweTime+':00'
     get_data.location = e.detail.value.location
     get_data.reason = that.data.ChatList[that.data.businessType_chat]
     get_data.targetLocation = e.detail.value.targetLocation
@@ -265,6 +267,7 @@ Page({
           key: 'orderCenter',
           success: function (msg) {
             var forData = { content: ContentData }
+            // console.log(forData)
             //转换字符串
             var ForData = JSON.stringify(forData)
             wx.request({
@@ -279,7 +282,7 @@ Page({
                 if (res.data.code == 1000) {
                   wx.hideLoading()
                   //頁面跳轉
-                  wx.switchTab({
+                  wx.redirectTo({
                     url: '../allot/order_list_wait/order_list_wait',
                   })
                 } else {
@@ -309,6 +312,7 @@ Page({
       key: 'orderCenter',
       success: function (msg) {
         var forData = { content: ContentData }
+        // console.log(forData)
         //转换字符串
         var ForData = JSON.stringify(forData)
         wx.request({
@@ -434,80 +438,65 @@ Page({
   },
   onLoad: function () {
     var that = this
-    var that = this
+    // var that = this
+    // console.log(Date.parse(new Date()))
+    var nowDate = getApp().formatData()
+    var nowTime=getApp().formatTime()
     var GmUrl = getApp().globalData.GmUrl
+    var platform = getApp().globalData.platform  //平台接口地址前缀
     var Contentdata = { content: { dictCode: 'consultTrafficWay'}}
     var ContentData = JSON.stringify(Contentdata)
-    //请求字典接口和公墓接口
-    // wx.getStorage({
-    //   key: 'Gmlogin',
-    //   success: function (res) {
-        //字典接口
-        // wx.request({
-        //   url: GmUrl+'marketing/dict/items/list',
-        //   method: "POST",
-        //   data: ContentData,
+        that.setData({
+          date: nowDate,
+          time: nowTime
+        })
+        wx.getStorage({
+          key: 'ptjssessionid',
+          success: function(ress) {
+            //查询公墓接口
+            wx.request({
+              // url: GmUrl + 'marketing/cemetery/structure/list',
+              url: platform + 'api/syssystem/getSubsystemList',
+              method: "POST",
+              data: "{\"systemIndex\":1}",
 
-        //   header: {
-        //     "Content-Type": "application/x-www-form-urlencodeed",
-        //     "Cookie": "sid=" + res.data.content.sessionId
-        //   },
-        //   success: function (res) {
-        //     if (res.data.code == 1000) {
-        //       var zhidianData=[]
-        //       var zhidian=res.data.content.items
-        //       for(var i in zhidian){
-        //        zhidianData.push(zhidian[i].text)
-        //       }
-        //       that.setData({
-        //         zhidian: zhidian,
-        //         zhidianData:zhidianData
-        //       })
-        //     }
-        //   },
-        //   fail:function(v){
-        //     wx.showToast({
-        //       title: '网络错误',
-        //       image: '../../images/icon_info.png',
-        //       duration: 3000
-        //     })
-        //   }
-        // })
-        //查询公墓接口
-        wx.request({
-          // url: GmUrl + 'marketing/cemetery/structure/list',
-          url: GmUrl + 'marketing/cemetery/structure/listNoLogin',
-          method: "POST",
-          data: "{\"content\":{\"itemType\":0}}",
-
-          header: {
-            // "Content-Type": "application/x-www-form-urlencodeed",
-            'content-type': 'application/json',
-            // "Cookie": "sid=" + res.data.content.sessionId
-          },
-          success: function (res) {
-            // console.log(res)
-            if (res.data.code == 1000) {
-              var gmList=res.data.content.items
-              var GmList=[]
-              for(var i in gmList){
-                GmList.push(gmList[i].name)
-                GmName: gmList[0]
+              header: {
+                // "Content-Type": "application/x-www-form-urlencodeed",
+                'content-type': 'application/json',
+                "Cookie": "JSESSIONID=" + ress.data
+              },
+              success: function (res) {
+                // console.log(res)
+                if (res.data.code == 1000) {
+                  var gmList = res.data.content
+                  // console.log(gmList)
+                  var GmList = []
+                  for (var i in gmList) {
+                    GmList.push(gmList[i].name)
+                    GmName: gmList[0]
+                  }
+                  that.setData({
+                    GmList: GmList,
+                    gmList: gmList,
+                    GmName: GmList[0],
+                  })
+                }
+              },
+              fail: function (v) {
+                wx.showToast({
+                  title: '网络错误',
+                  image: '../../images/icon_info.png',
+                  duration: 3000
+                })
               }
-              that.setData({
-                GmList:GmList,
-                gmList: gmList,
-                GmName: GmList[0]
-              })
-            }
+            })
           },
-          fail: function (v) {
-            wx.showToast({
-              title: '网络错误',
-              image: '../../images/icon_info.png',
-              duration: 3000
+          fail:function(){
+            wx.reLaunch({
+              url: '../login/login',
             })
           }
         })
+
   }
 });

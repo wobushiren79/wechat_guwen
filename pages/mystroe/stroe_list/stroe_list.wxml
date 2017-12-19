@@ -1,0 +1,37 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd clearfix">
+
+    <!-- 列表 -->
+    <view class="tab_content">
+      <view class="ul">
+
+        <!-- 判断如果不是套餐 -->
+        <block wx:for="{{list}}">
+          <navigator url="../service_order_list_pay/service_order_list_pay?storeId={{item.id}}" class="li">
+            <image class="li_img" src="{{item.shop_img}}"></image>
+            <view class="li_content">
+              <view class="title aui-ellipsis-2">
+                <text>门店名称:</text>
+                <text>{{item.shop_name}}</text>
+              </view>
+              <view class="money">
+                <text>地址:{{item.shop_location}}</text>
+              </view>
+              <view class="num">
+                <block wx:for="{{item.store_the_tag}}">
+                  <text>{{item.name}}</text>
+                </block>
+              </view>
+              <image src="../../../images/right.png"></image>
+            </view>
+          </navigator>
+        </block>
+      </view>
+    </view>
+
+
+    <block wx:if="{{xianshi == true}}">
+      <view class='xianshi'>已全部加载完成</view>
+    </block>
+  </view>
+</view>

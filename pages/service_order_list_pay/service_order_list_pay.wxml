@@ -3,13 +3,13 @@
     <!--选项卡-->
     <view class="tab">
       <view>
-        <navigator url="../service_order_list_submit/service_order_list_submit" open-type="switchTab" >待提交</navigator>
+        <navigator url="../service_order_list_submit/service_order_list_submit" open-type="switchTab">待提交</navigator>
       </view>
       <view>
         <navigator url="../service_order_list_pay/service_order_list_pay" open-type="redirect" class="active">待付款</navigator>
       </view>
       <view>
-        <navigator url="../service_order_list_serviceing/service_order_list_serviceing" open-type="redirect" >服务中</navigator>
+        <navigator url="../service_order_list_serviceing/service_order_list_serviceing" open-type="redirect">服务中</navigator>
       </view>
       <view>
         <navigator url="../service_order_list_succeed/service_order_list_succeed" open-type="redirect">已服务</navigator>
@@ -25,65 +25,74 @@
 
         <!-- 模板一 待付款-待支付 star-->
         <black wx:for="{{list}}">
-        <view class="li">
-          <view class="li_header">
-            <view class="header">已确认</view>
-            <view class="footer">￥<text>{{amateurLevel?item.show_total_price/100:item.total_price/100}}</text></view>
+          <view class="li">
+            <view class="li_header">
+              <view class="header">已确认</view>
+              <view class="footer">￥
+                <text>{{amateurLevel?item.show_total_price/100:item.total_price/100}}</text>
+              </view>
+            </view>
+            <navigator url="../service_order_content/service_order_content?orderid={{item.id}}" class="li_body" hover-class="active">
+              <image src="../../images/right.png" class="icon"></image>
+              <view class="address">
+                <view class="header">
+                  治丧地址：
+                </view>
+                <view class="body">
+                  {{item.service_location}}
+                </view>
+              </view>
+              <view class="name">
+                <view class="header">
+                  客户：
+                </view>
+                <view class="body">
+                  {{item.customer_name}}
+                </view>
+              </view>
+              <view class="time">
+                <view class="header">
+                  时间：
+                </view>
+                <view class="body">
+                  <black wx:if="{{item.service_way == 1}}">
+                    <text>{{item.book_time}}</text>\r\n
+                    <text>进行服务</text>
+                  </black>
+                  <black wx:if="{{item.service_way == 0}}">
+                    <text></text>\r\n
+                    <text>及时服务</text>
+                  </black>
+                  <black wx:if="{{item.service_way == 2}}">
+                    <text>{{item.book_time}}</text>\r\n
+                    <text>自提服务</text>
+                  </black>
+                </view>
+              </view>
+            </navigator>
+            <view class="li_footer">
+              <view class="header" bindtap="tel" data-tel="{{item.customer_phone}}">
+                <image src="../../images/icon_call_phone.png"></image>联系客户
+              </view>
+              <view class="footer">
+                <button type="primary" class="btn" bindtap="fukuang" data-orderid="{{item.id}}">付款</button>
+              </view>
+            </view>
           </view>
-          <navigator url="../service_order_content/service_order_content?orderid={{item.id}}" class="li_body" hover-class="active">
-            <image src="../../images/right.png" class="icon"></image>
-            <view class="address">
-              <view class="header">
-                治丧地址：
-              </view>
-              <view class="body">
-                {{item.service_location}}
-              </view>
-            </view>
-            <view class="name">
-              <view class="header">
-                客户：
-              </view>
-              <view class="body">
-                {{item.customer_name}}
-              </view>
-            </view>
-            <view class="time">
-              <view class="header">
-                时间：
-              </view>
-              <view class="body">
-              <black wx:if="{{item.service_way == 1}}">
-                <text >{{item.book_time}}</text>\r\n<text>进行服务</text>
-                </black>
-              <black wx:if="{{item.service_way == 0}}">
-                <text ></text>\r\n<text>及时服务</text>
-                </black>
-              <black wx:if="{{item.service_way == 2}}">
-                <text >{{item.book_time}}</text>\r\n<text>自提服务</text>
-                </black>
-              </view>
-            </view>
-          </navigator>
-          <view class="li_footer">
-            <view class="header" bindtap="tel" data-tel="{{item.customer_phone}}">
-              <image src="../../images/icon_call_phone.png"></image>联系客户
-            </view>
-            <view class="footer">
-              <button type="primary" class="btn" bindtap="fukuang" data-orderid="{{item.id}}">付款</button>
-            </view>
-          </view>
-        </view>
         </black>
         <!-- 模板一 待付款-待支付 end-->
-<block wx:if="{{xinshi}}">
-<view class='prompt'>
-<text>没有更多订单啦</text>
-</view>
-</block>
+        <block wx:if="{{xinshi}}">
+          <view class='prompt'>
+            <text>没有更多订单啦</text>
+          </view>
+        </block>
       </view>
     </view>
-
+    
+    <navigator class="shoppgo" url="../service_buy/service_buy">
+      <image src="../../images/icon_shopgo.png">
+      </image>
+    </navigator>
   </view>
 
 

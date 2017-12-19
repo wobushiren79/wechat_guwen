@@ -365,9 +365,15 @@ Page({
         })
       },
       fail: function () {
-        that.setData({
-          amateurLevel: false
-        })
+        if (evet.store == 1){
+          that.setData({
+            amateurLevel: true
+          })
+        }else{
+          that.setData({
+            amateurLevel: false
+          })
+        }
       }
     })
     wx.getStorage({
@@ -397,8 +403,8 @@ Page({
             if (res.data.code == 1000) {
               // var orderNumber = res.data.content.orderNumber
               that.setData({
-                showTotalPrice: res.data.content.showTotalPrice,
-                totalPrice: res.data.content.totalPrice,
+                showTotalPrice: res.data.content.orderPrice,
+                totalPrice: res.data.content.orderPrice,
                 orderNumber: res.data.content.orderNumber,
                 orderId: orderId
               })

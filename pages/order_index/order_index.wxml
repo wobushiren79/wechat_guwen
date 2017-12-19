@@ -12,12 +12,12 @@
         </view>
 
         <!-- 殡仪服务 -->
-        <view class="li">
+        <!-- <view class="li">
           <navigator url="../list/list" hover-class="active">
             <image src="../../images/icon_order_plan.png"></image>
             <text>白事订单</text>
           </navigator>
-        </view>
+        </view> -->
 
         <!-- 单项服务 -->
         <!-- <view class="li">
@@ -27,7 +27,7 @@
           </navigator>
         </view> -->
         <view class="li">
-          <navigator url="../service_order_list_submit/service_order_list_submit" hover-class="active">
+          <navigator url="../mystroe/stroe_list/stroe_list" hover-class="active">
             <image src="../../images/icon_order_server.png"></image>
             <text>我的门店</text>
           </navigator>

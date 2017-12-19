@@ -281,20 +281,7 @@ Page({
     var GmUrl = getApp().globalData.GmUrl  //公墓接口地址前缀
     var RouteUrl = getApp().globalData.RouteUrl
     var LocalUrl = getApp().globalData.LocalUrl + 'Channel/channel'
-    //是否职业顾问
-    wx.getStorage({
-      key: 'amateurLevel',
-      success: function (res) {
-        that.setData({
-          amateurLevel: true
-        })
-      },
-      fail: function () {
-        that.setData({
-          amateurLevel: false
-        })
-      }
-    })
+
     //查询渠道接口
     wx.request({
       url: LocalUrl,
@@ -323,16 +310,7 @@ Page({
     wx.getStorage({
       key: 'resourceCodes',
       success: function (res) {
-        //取出用户信息
-        wx.getStorage({
-          key: 'userObj',
-          success: function (res) {
-            // console.log(res.data.name)
-            that.setData({
-              UserName: res.data.name
-            })
-          }
-        })
+
         for (var i in res.data) {
           //如果有单项权限就登录单项子系统
           if (res.data[i] == "goods.advisor" || res.data[i] == "goods.advisor.amateur") {
@@ -367,6 +345,20 @@ Page({
                         wx.setStorageSync('JSESSIONID', str)
                         that.setData({
                           JSESSIONID: str
+                        })
+                        //是否职业顾问
+                        wx.getStorage({
+                          key: 'amateurLevel',
+                          success: function (res) {
+                            that.setData({
+                              amateurLevel: true
+                            })
+                          },
+                          fail: function () {
+                            that.setData({
+                              amateurLevel: false
+                            })
+                          }
                         })
                         //查询商品标签
                         wx.request({

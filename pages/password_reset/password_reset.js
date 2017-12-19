@@ -114,18 +114,18 @@ Page({
         },
         success: function (res) {
           // console.log(getCurrentPages())
-          if (res.data.code == 1000) {
-            wx.request({
-              // url: 'https://platform.shianlife.cn/api/usersInfo/forgetKeys',
-              url: 'https://t-cemetery-api.shianlife.cn/shianlife-advisor-cemetery-1.0-SNAPSHOT/modifyAccountPwd',
-              method: "POST",
-              data: get_data,
-              header: {
-                'content-type': 'application/json'
-              },
-              success:function(opt){
-                console.log(opt)
-                if (opt.data.code == 1000){
+          // if (res.data.code == 1000) {
+          //   wx.request({
+          //     // url: 'https://platform.shianlife.cn/api/usersInfo/forgetKeys',
+          //     url: 'https://t-cemetery-api.shianlife.cn/shianlife-advisor-cemetery-1.0-SNAPSHOT/modifyAccountPwd',
+          //     method: "POST",
+          //     data: get_data,
+          //     header: {
+          //       'content-type': 'application/json'
+          //     },
+          //     success:function(opt){
+          //       console.log(opt)
+          if (res.data.code == 1000){
                   wx.showModal({
                     title: '重置密码提示',
                     content: '重置密码成功',
@@ -142,7 +142,7 @@ Page({
                   })
                 }else{
                   wx.showToast({
-                    title: opt.data.message,
+                    title: res.data.message,
                     image: '../../images/icon_info.png',
                     duration: 3000,
                     // mask:true
@@ -150,16 +150,16 @@ Page({
                 }
               }
             })
-          }else{
-            wx.showToast({
-              title: res.data.message,
-              image: '../../images/icon_info.png',
-              duration: 3000,
-              // mask:true
-            })
-          }
-        }
-        })
+        //   }else{
+        //     wx.showToast({
+        //       title: res.data.message,
+        //       image: '../../images/icon_info.png',
+        //       duration: 3000,
+        //       // mask:true
+        //     })
+        //   }
+        // }
+        // })
     } else if (e.detail.value.keys == ''){
       wx.showToast({
         title: '新密码不能为空',

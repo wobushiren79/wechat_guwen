@@ -62,9 +62,8 @@ Page({
       var size = that.data.pageSize
       var PageNums = { content: { "pageNum": unm, "pageSize": size } }
       var PageNum = JSON.stringify(PageNums)
-      wx.showNavigationBarLoading() //在标题栏中显示加载
-      wx.setNavigationBarTitle({
-        title: '刷新中!请稍后'
+      wx.showLoading({
+        title: '加载中',
       })
       this.setData({
         // pageSize:this.data.pageSize+2,
@@ -84,8 +83,8 @@ Page({
             method: "POST",
             data: PageNum,
             header: {
-              "Content-Type": "application/x-www-form-urlencodeed",
-              "Cookie": "sid=" + res.data.content.sessionId
+              'content-type': 'application/json',
+              "Cookie": "JSESSIONID=" + res.data.content.sessionId
             },
             success: function (res) {
               if (res.data.code == 1000) {
@@ -97,14 +96,17 @@ Page({
                     gmList: TalkData,
                     Length: Length,
                   })
+                  wx.hideLoading()
                 } else {
                   that.setData({
                     gmList: TalkData,
                     Length: Length,
                     xianshi: true
                   })
+                  wx.hideLoading()
                 }
               } else {
+                wx.hideLoading()
                 wx.showToast({
                   title: res.data.message,
                   image: '../../images/icon_info.png',
@@ -112,28 +114,15 @@ Page({
                 })
               }
             },
-            complete: function () {
-              that.setData({
-                hidden: false
-              })
-              wx.setNavigationBarTitle({
-                title: '圆满公墓'
-              })
-              wx.hideNavigationBarLoading() //完成停止加载
-              wx.stopPullDownRefresh() //停止下拉刷新
-            }
           })
         }
       })
     },
     //下拉添加记录条数
     onReachBottom() {
-      //console.log('--------下拉刷新-------')
-      wx.showNavigationBarLoading() //在标题栏中显示加载
-      wx.setNavigationBarTitle({
-        title: '加载中!请稍后'
-      })
-
+    wx.showLoading({
+      title: '加载中',
+    })
       this.setData({
         pageSize: this.data.pageSize + 2,
         hidden: true
@@ -156,8 +145,8 @@ Page({
             method: "POST",
             data: PageNum,
             header: {
-              "Content-Type": "application/x-www-form-urlencodeed",
-              "Cookie": "sid=" + res.data.content.sessionId
+              'content-type': 'application/json',
+              "Cookie": "JSESSIONID=" + res.data.content.sessionId
             },
             success: function (res) {
 
@@ -170,14 +159,17 @@ Page({
                     gmList: TalkData,
                     Length: Length,
                   })
+                  wx.hideLoading()
                 }else{
                   that.setData({
                     gmList: TalkData,
                     Length: Length,
                     xianshi:true
                   })
+                  wx.hideLoading()
                 }
               } else {
+                wx.hideLoading()
                 wx.showToast({
                   title: res.data.message,
                   image: '../../images/icon_info.png',
@@ -185,22 +177,15 @@ Page({
                 })
               }
             },
-            complete: function () {
-              that.setData({
-                hidden: false
-              })
-              wx.setNavigationBarTitle({
-                title: '圆满公墓'
-              })
-              wx.hideNavigationBarLoading() //完成停止加载
-              wx.stopPullDownRefresh() //停止下拉刷新
-            }
           })
         }
       })
     },
     onLoad: function () {
       var that = this
+      wx.showLoading({
+        title: '加载中',
+      })
       var unm = that.data.pageNum
       var size = that.data.pageSize
       var PageNums = { content: { "pageNum": unm, "pageSize": size } }
@@ -220,11 +205,11 @@ Page({
             data: PageNum,
 
             header: {
-              "Content-Type": "application/x-www-form-urlencodeed",
-              "Cookie": "sid=" + res.data.content.sessionId
+              'content-type': 'application/json',
+              "Cookie": "JSESSIONID=" + res.data.content.sessionId
             },
             success: function (res) {
-              // console.log(res)
+              console.log(res)
               if (res.data.code == 1000) {
                 var gmList = res.data.content.list
                 // console.log(res.data.content.list.length)
@@ -234,15 +219,18 @@ Page({
                       gmList: gmList,
                       Length: Length
                     })
+                    wx.hideLoading()
                   } else {
                     that.setData({
                       gmList: gmList,
                       Length: Length,
                       xianshi: true
                     })
+                    wx.hideLoading()
                   }
 
               }
+              wx.hideLoading()
             }
           })
         },

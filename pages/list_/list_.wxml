@@ -108,14 +108,15 @@
         </form>
       </view>
     </template>
+        <view wx:for="{{gmList}}">
+      <template is="list_a" data="{{...item}}" />
+    </view>
     <block wx:if="{{xianshi}}">
       <view class='prompt'>
          <text>没有更多订单啦</text>
       </view>
     </block>
-    <view wx:for="{{gmList}}">
-      <template is="list_a" data="{{...item}}" />
-    </view>
+
 
 
   </view>

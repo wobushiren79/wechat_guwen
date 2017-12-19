@@ -69,14 +69,14 @@ Page({
       title: '请稍后',
       mask:true,
     })
-    var bankName = that.data.bankName
+    // var bankName = that.data.bankName
     var get_data = e.detail.value
-    get_data.bankName = bankName
+    // get_data.bankName = bankName
     get_data.isDefault = 0
     var get_content={}
     get_content.content = get_data
     var platform = getApp().globalData.platform
-    if (get_data.accountName.length == 0 || get_data.cardNo.length == 0 || get_data.bankName== undefined){
+    if (get_data.accountName.length == 0 || get_data.cardNo.length == 0 || get_data.bankName == undefined || get_data.bankName.length == 0){
       wx.hideLoading()
       wx.showToast({
         title: '不能为空',
@@ -97,6 +97,7 @@ Page({
               "Cookie": 'JSESSIONID=' + res.data
             },
             success: function (opt) {
+              // console.log(get_content)
               if (opt.data.code == 1000) {
                 wx.hideLoading()
                 wx.showToast({

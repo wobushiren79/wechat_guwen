@@ -34,7 +34,7 @@
                 订单金额
               </view>
               <view class="footer ">
-                <input type="text" placeholder="金额" name="orderPrice"  maxlength='10' bindblur='orderPrice'/>
+                <input type="number" placeholder="金额" name="orderPrice"  maxlength='10' bindblur='orderPrice'/>
               </view>
             </view>
             <view class="dd fuid note required">

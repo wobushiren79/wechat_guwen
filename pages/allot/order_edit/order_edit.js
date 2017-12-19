@@ -59,7 +59,7 @@ Page({
         })
         wx.uploadFile({
           // url: GmUrl+'fileqiniu/upload', //仅为示例，非真实的接口地址
-          url: 'https://t-cemetery-api.shianlife.cn/shianlife-advisor-cemetery-1.0-SNAPSHOT/fileqiniu/upload', //仅为示例，非真实的接口地址
+          url: 'https://platform.shianlife.cn/fileqiniu/upload', //仅为示例，非真实的接口地址
           filePath: tempFilePaths[0],//要上传文件资源的路径
           name: 'file',//文件对应的 key , 开发者在服务器端通过这个 key 可以获取到文件二进制内容
           formData: {//HTTP 请求中其他额外的 form data

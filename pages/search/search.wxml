@@ -16,7 +16,7 @@
 <block wx:for="{{search_data}}">
 <block wx:if="{{item.is_package == 0}}">
         <navigator url="../service_content/service_content?goods_id={{item.id}}" class="li">
-          <image class="li_img" src="https://goodsmgr.e-funeral.cn/Public/Uploads/{{item.title_img}}"></image>
+          <image class="li_img" src="{{item.title_img}}"></image>
           <view class="li_content">
             <view class="title aui-ellipsis-1">
               <text>{{item.name}}</text>
@@ -37,7 +37,7 @@
 </block>
 <block wx:if="{{item.is_package == 1}}">
         <navigator url="../service_content/service_content?package_id={{item.id}}" class="li">
-          <image class="li_img" src="https://goodsmgr.e-funeral.cn/Public/Uploads/{{item.title_img}}"></image>
+          <image class="li_img" src="{{item.title_img}}"></image>
             <!-- 套餐IQ -->
           <image src='../../images/ispackage.png' class='ispackage'></image>
           <view class="li_content">

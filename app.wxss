@@ -219,7 +219,7 @@ input {
 /* 单项服务订单列表 star */
 
 .page_service_order .tab view {
-  width: 20%;
+   width: 20%; 
 }
 
 .page_service_order .icon {
@@ -400,6 +400,11 @@ input {
 }
 
 /* 分单系统订单列表 end */
+.page_mystroe_service .tab wx-view{
+  width: 25%
+}
+
+/* 我的门店 */
 
 /* 尾部警告 */
 .warning_text{
@@ -484,6 +489,7 @@ contact-button {
   position: fixed;
   bottom: 130rpx;
   right: 50rpx;
+  z-index: 99
 }
 .shoppgo image{
   display: block;

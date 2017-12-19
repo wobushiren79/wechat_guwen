@@ -118,3 +118,8 @@
   line-height: 100rpx;
   background: linear-gradient(to left, #3eb99a, #269080);
 }
+
+.input_placeholder{
+  font-size: 36rpx;
+  color: #909090;
+}

@@ -40,16 +40,18 @@ App({
   },
   globalData:{
     userInfo:null,
-    // LocalUrl:"http://www.shiangoods.com/Api/",
+    //图片地址前缀
+    // ImgUrl: 'https://goodsmgr.e-funeral.cn/Public/Uploads/',
+    // LocalUrl:"http://192.168.0.54/shian_goods/Api/",
     LocalUrl: "https://goodsmgr.e-funeral.cn/Api/",
     RouteUrl:"https://web.shianlife.cn/shianlife-adviser-1.0-SNAPSHOT/",
     //殡仪
     ByUrl: "https://t-cemetery-api.shianlife.cn/shianlife-adviser-1.0-SNAPSHOT/", 
     // ByUrl: "http://192.168.0.37:8088/app/", 
     //公墓
-    GmUrl: "https://t-cemetery-api.shianlife.cn/shianlife-advisor-cemetery-1.0-SNAPSHOT/",
+    GmUrl: "https://t-cemetery-api.shianlife.cn/",
     // GmUrl: "http://192.168.0.43:8084/app/",
-    // GmUrl: "http://192.168.0.71:8084/cemetery/",
+    // GmUrl: "http://192.168.0.59:8081/app/",
     AppUrl:"https://app.e-funeral.cn/",
     // javaApi:"http://192.168.0.199:8299/goods/"   权哥
     //小慌
@@ -57,18 +59,18 @@ App({
     // javaApi: "http://prd-goods.xicp.cn/", 
     javaApi: "https://goods.shianlife.cn/",
     //钟明
-    //  javaApi:"http://192.168.0.57:8089/goods/",
+    //  javaApi:"http://192.168.0.59:8080/goods/",
     // platform:"http://prd-platform.xicp.cn/",
     // platform:"http://192.168.0.50:8100/platform/",
-    // platform:"http://192.168.0.199:8080/",
+    // platform:"http://192.168.0.59:8099/ki4so-web/",
     //钟明
-    // platform:"http://192.168.0.57:8080/ki4so-web/",
+    // platform:"http://192.168.0.59:8099/ki4so-web/",
     platform:"https://platform.shianlife.cn/",
     // javaApi: "http://192.168.0.75:8299/goods/"
     // RouteUrl:"http://192.168.0.146:8088/adviser/"
     // orderCenterUrl:'http://192.168.0.43:8085/center/'
     orderCenterUrl:'https://order.shianlife.cn/'
-    // orderCenterUrl:'http://192.168.0.57:8090/order/'
+    // orderCenterUrl:'http://192.168.0.59:8085/center/'
   },
   //网络请求超时时间1000毫秒=1秒
   "networkTimeout": {
@@ -101,5 +103,31 @@ App({
     }else{
       return false
     }
-  }
+  },
+  /** 
+ * 
+ * 获取当前年月日
+*/
+
+  formatData: function () {  
+    var numbers = Date.parse(new Date());
+    var date = new Date(numbers);
+    var Y = date.getFullYear() + '-';
+    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+    var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+    var dateTime = Y + M + D;
+    return dateTime
+    },
+  /** 
+ * 
+ * 获取当前时分秒
+*/
+    formatTime:function(){
+      var numbers = Date.parse(new Date());
+      var date = new Date(numbers);
+      var hour = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+      var minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+      // var sec = date.getSeconds();
+      return hour + ":" +minutes
+    }
 })

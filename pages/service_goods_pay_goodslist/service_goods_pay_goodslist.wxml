@@ -15,7 +15,7 @@
             <view class="group_item clearfix">
 
               <view class="img_wrap">
-                 <image src="https://goodsmgr.e-funeral.cn/Public/Uploads/{{item.title_img}}" mode='widthFix'></image> 
+                 <image src="{{item.title_img}}" mode='widthFix'></image> 
                 <!-- <image src="http://www.shiangoods.com/Public/Uploads/{{item.title_img}}" mode='widthFix'></image> -->
               </view>
               <view class="info show">

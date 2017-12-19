@@ -9,7 +9,7 @@
         <navigator  url="../list_a/list_a" open-type="redirect">看墓中</navigator>
       </view>
       <view>
-        <navigator  url="../list_a/list_b" open-type="redirect">未定墓</navigator>
+        <navigator  url="../list_b/list_b" open-type="redirect">未定墓</navigator>
       </view>
       <view>
         <navigator class="active" url="../list_s/list_s" open-type="redirect">已定墓</navigator>
@@ -101,14 +101,15 @@
           </view>
       </view>
     </template>
-    <block wx:if="{{xianshi}}">
+
+    <view wx:for="{{gmList}}">
+      <template is="list_c" data="{{...item}}" />
+    </view>
+        <block wx:if="{{xianshi}}">
       <view class='prompt'>
          <text>没有更多订单啦</text>
       </view>
     </block>
-    <view wx:for="{{gmList}}">
-      <template is="list_c" data="{{...item}}" />
-    </view>
   </view>
 
   <!--<view class="body-view">

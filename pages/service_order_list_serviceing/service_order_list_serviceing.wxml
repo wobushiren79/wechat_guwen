@@ -3,13 +3,13 @@
     <!--选项卡-->
     <view class="tab">
       <view>
-        <navigator url="../service_order_list_submit/service_order_list_submit" open-type="switchTab" >待提交</navigator>
+        <navigator url="../service_order_list_submit/service_order_list_submit" open-type="switchTab">待提交</navigator>
       </view>
       <view>
-        <navigator url="../service_order_list_pay/service_order_list_pay" open-type="redirect" >待付款</navigator>
+        <navigator url="../service_order_list_pay/service_order_list_pay" open-type="redirect">待付款</navigator>
       </view>
       <view>
-        <navigator url="../service_order_list_serviceing/service_order_list_serviceing" open-type="redirect" class="active" >服务中</navigator>
+        <navigator url="../service_order_list_serviceing/service_order_list_serviceing" open-type="redirect" class="active">服务中</navigator>
       </view>
       <view>
         <navigator url="../service_order_list_succeed/service_order_list_succeed" open-type="redirect">已服务</navigator>
@@ -22,133 +22,147 @@
     <!-- 列表 -->
     <view class="list">
       <view class="ul">
-<black wx:for="{{list}}">
-        <!-- 模板二 服务中-待服务 star-->
-        <black wx:if="{{item.check_order == 1}}">
-        <view class="li">
-          <view class="li_header">
-          <black wx:if="{{item.order_status == 1}}">
-            <view class="header">已确认</view>
+        <black wx:for="{{list}}">
+          <!-- 模板二 服务中-待服务 star-->
+          <black wx:if="{{item.check_order == 1}}">
+            <view class="li">
+              <view class="li_header">
+                <black wx:if="{{item.order_status == 1}}">
+                  <view class="header">已确认</view>
+                </black>
+                <black wx:if="{{item.order_status == 2}}">
+                  <view class="header">正在服务</view>
+                </black>
+                <view class="footer">￥
+                  <text>{{amateurLevel?item.show_total_price/100:item.total_price/100}}</text>
+                </view>
+              </view>
+              <navigator url="../service_order_content/service_order_content?orderid={{item.id}}" class="li_body" hover-class="active">
+                <image src="../../images/right.png" class="icon"></image>
+                <view class="address">
+                  <view class="header">
+                    治丧地址：
+                  </view>
+                  <view class="body">
+                    {{item.service_location}}
+                  </view>
+                </view>
+                <view class="name">
+                  <view class="header">
+                    客户：
+                  </view>
+                  <view class="body">
+                    {{item.customer_name}}
+                  </view>
+                </view>
+                <view class="time">
+                  <view class="header">
+                    时间：
+                  </view>
+                  <view class="body">
+                    <black wx:if="{{item.service_way == 1}}">
+                      <text>{{item.book_time}}</text>\r\n
+                      <text>进行服务</text>
+                    </black>
+                    <black wx:if="{{item.service_way == 0}}">
+                      <text></text>\r\n
+                      <text>及时服务</text>
+                    </black>
+                    <black wx:if="{{item.service_way == 2}}">
+                      <text>{{item.book_time}}</text>\r\n
+                      <text>自提服务</text>
+                    </black>
+                  </view>
+                </view>
+              </navigator>
+              <view class="li_footer">
+                <view class="header" bindtap="tel" data-tel="{{item.customer_phone}}">
+                  <image src="../../images/icon_call_phone.png"></image>联系客户
+                </view>
+                <view class="footer">
+                  <button type="primary" class="btn btn_1" bindtap="zxture" data-id="{{item.id}}">提醒执行</button>
+                  <black wx:if="{{item.payment_status == 0}}">
+                    <button type="primary" class="btn" bindtap="fukuang" data-orderid="{{item.id}}">付款</button>
+                  </black>
+                </view>
+              </view>
+            </view>
           </black>
-          <black wx:if="{{item.order_status == 2}}">
-            <view class="header">正在服务</view>
+          <black wx:if="{{item.check_order == 0}}">
+            <!-- 模板四 服务中-确认中 star-->
+            <view class="li">
+              <view class="li_header">
+                <view class="header">确认中</view>
+                <view class="footer">￥
+                  <text>{{amateurLevel?item.show_total_price/100:item.total_price/100}}</text>
+                </view>
+              </view>
+              <navigator url="../service_order_content/service_order_content?orderid={{item.id}}" class="li_body" hover-class="active">
+                <image src="../../images/right.png" class="icon"></image>
+                <view class="address">
+                  <view class="header">
+                    治丧地址：
+                  </view>
+                  <view class="body">
+                    {{item.service_location}}
+                  </view>
+                </view>
+                <view class="name">
+                  <view class="header">
+                    客户：
+                  </view>
+                  <view class="body">
+                    {{item.customer_name}}
+                  </view>
+                </view>
+                <view class="time">
+                  <view class="header">
+                    时间：
+                  </view>
+                  <view class="body">
+                    <black wx:if="{{item.service_way == 1}}">
+                      <text>{{item.book_time}}</text>\r\n
+                      <text>进行服务</text>
+                    </black>
+                    <black wx:if="{{item.service_way == 0}}">
+                      <text></text>\r\n
+                      <text>及时服务</text>
+                    </black>
+                    <black wx:if="{{item.service_way == 2}}">
+                      <text>{{item.book_time}}</text>\r\n
+                      <text>自提服务</text>
+                    </black>
+                  </view>
+
+                </view>
+              </navigator>
+              <view class="li_footer">
+                <view class="header" bindtap="tel" data-tel="{{item.customer_phone}}">
+                  <image src="../../images/icon_call_phone.png"></image>联系客户
+                </view>
+                <view class="footer">
+                  <button type="primary" class="btn btn_1" bindtap="qrtrue" data-id="{{item.id}}">提醒确认</button>
+                  <black wx:if="{{item.payment_status == 0}}">
+                    <button type="primary" class="btn" bindtap="fukuang" data-orderid="{{item.id}}">付款</button>
+                  </black>
+                </view>
+              </view>
+            </view>
+            <!-- 模板四 服务中-确认中 end-->
           </black>
-            <view class="footer">￥<text>{{amateurLevel?item.show_total_price/100:item.total_price/100}}</text></view>
-          </view>
-          <navigator url="../service_order_content/service_order_content?orderid={{item.id}}" class="li_body" hover-class="active">
-            <image src="../../images/right.png" class="icon"></image>
-            <view class="address">
-              <view class="header">
-                治丧地址：
-              </view>
-              <view class="body">
-                {{item.service_location}}
-              </view>
-            </view>
-            <view class="name">
-              <view class="header">
-                客户：
-              </view>
-              <view class="body">
-               {{item.customer_name}}
-              </view>
-            </view>
-            <view class="time">
-              <view class="header">
-                时间：
-              </view>
-              <view class="body">
-              <black wx:if="{{item.service_way == 1}}">
-                <text >{{item.book_time}}</text>\r\n<text>进行服务</text>
-                </black>
-              <black wx:if="{{item.service_way == 0}}">
-                <text ></text>\r\n<text>及时服务</text>
-                </black>
-              <black wx:if="{{item.service_way == 2}}">
-                <text >{{item.book_time}}</text>\r\n<text>自提服务</text>
-                </black>
-              </view>
-            </view>
-          </navigator>
-          <view class="li_footer">
-            <view class="header" bindtap="tel" data-tel="{{item.customer_phone}}">
-              <image src="../../images/icon_call_phone.png"></image>联系客户
-            </view>
-            <view class="footer">
-            <button type="primary" class="btn btn_1" bindtap="zxture" data-id="{{item.id}}">提醒执行</button>
-            <black wx:if="{{item.payment_status == 0}}">
-              <button type="primary" class="btn" bindtap="fukuang" data-orderid="{{item.id}}">付款</button>
-            </black>
-            </view>
-          </view>
-        </view>
         </black>
-<black  wx:if="{{item.check_order == 0}}">
-        <!-- 模板四 服务中-确认中 star-->
-        <view class="li">
-          <view class="li_header">
-            <view class="header">确认中</view>
-            <view class="footer">￥<text>{{amateurLevel?item.show_total_price/100:item.total_price/100}}</text></view>
+        <block wx:if="{{xinshi}}">
+          <view class='prompt'>
+            <text>没有更多订单啦</text>
           </view>
-          <navigator url="../service_order_content/service_order_content?orderid={{item.id}}" class="li_body" hover-class="active">
-            <image src="../../images/right.png" class="icon"></image>
-            <view class="address">
-              <view class="header">
-                治丧地址：
-              </view>
-              <view class="body">
-               {{item.service_location}}
-              </view>
-            </view>
-            <view class="name">
-              <view class="header">
-                客户：
-              </view>
-              <view class="body">
-               {{item.customer_name}}
-              </view>
-            </view>
-            <view class="time">
-              <view class="header">
-                时间：
-              </view>
-              <view class="body">
-              <black wx:if="{{item.service_way == 1}}">
-                <text >{{item.book_time}}</text>\r\n<text>进行服务</text>
-                </black>
-              <black wx:if="{{item.service_way == 0}}">
-                <text ></text>\r\n<text>及时服务</text>
-                </black>
-              <black wx:if="{{item.service_way == 2}}">
-              <text >{{item.book_time}}</text>\r\n<text>自提服务</text>
-              </black>
-              </view>
-              
-            </view>
-          </navigator>
-          <view class="li_footer">
-            <view class="header" bindtap="tel" data-tel="{{item.customer_phone}}">
-              <image src="../../images/icon_call_phone.png"></image>联系客户
-            </view>
-            <view class="footer">
-            <button type="primary" class="btn btn_1" bindtap="qrtrue" data-id="{{item.id}}">提醒确认</button>
-            <black wx:if="{{item.payment_status == 0}}">
-              <button type="primary" class="btn" bindtap="fukuang" data-orderid="{{item.id}}">付款</button>
-            </black>
-            </view>
-          </view>
-        </view>
-        <!-- 模板四 服务中-确认中 end-->
-</black>
-</black>
-<block wx:if="{{xinshi}}">
-<view class='prompt'>
-<text>没有更多订单啦</text>
-</view>
-</block>
-    </view>
+        </block>
+      </view>
     </view>
 
+    <navigator class="shoppgo" url="../service_buy/service_buy">
+      <image src="../../images/icon_shopgo.png">
+      </image>
+    </navigator>
   </view>
 
 

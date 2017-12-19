@@ -58,7 +58,12 @@ Page({
           },
           success: function (res) {
             if (res.data.code == 1000) {
+              wx.getStorage({
+                key: 'DataUserId',
+                success: function(userId) {
               var list=res.data.content.content
+              // console.log(list)s
+              var userId = userId.data
               var goodsId=''
               var channelId=''
               var goodsSpecId = ''
@@ -95,6 +100,7 @@ Page({
                 str.goodsSpecId = goodsSpecId
                 str.packageSpecId = packageSpecId
                 str.packageId = packageId
+                str.userId = userId
               }
               wx.request({
                 url: LocalUrl + 'Getgoods/getattrgoods',
@@ -104,7 +110,10 @@ Page({
                   "Content-Type": "application/x-www-form-urlencoded",
                 },
                 success: function (res) {
+                  // console.log(str)
+                  // console.log(res)
                   if (res.data.code == 1000){
+
                        var listt=res.data.list
                        var class_name = res.data.class_name
                        var totla_price = 0
@@ -145,6 +154,10 @@ Page({
                 }
 
                 })
+                },
+              })
+              // console.log(res.data.content.content)
+
               // //頁面跳轉
               // wx.redirectTo({
               //   url: '../service_buy/service_buy'
@@ -376,7 +389,7 @@ Page({
        duration: 2000
      })
    }else{
-     wx.navigateTo({
+     wx.redirectTo({
        url: '../service_money/service_money'
      })
    }
@@ -432,9 +445,9 @@ Page({
     if (formData[index].id == id){
         totla_price -= parseFloat(formData[index].specNum) * parseFloat(formData[index].spec_price)
         if (!r.test(totla_price)) {
-          if (totla_price.toString().split(".")[1].length > 3) {
+          // if (totla_price.toString().split(".")[1].length > 3) {
             totla_price = parseFloat(totla_price.toFixed(2))
-          }
+          // }
         }
         // console.log(totla_price)
         delete formData[index]

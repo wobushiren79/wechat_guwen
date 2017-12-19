@@ -84,8 +84,8 @@ Page({
             method: "POST",
             data: PageNum,
             header: {
-              "Content-Type": "application/x-www-form-urlencodeed",
-              "Cookie": "sid=" + res.data.content.sessionId
+             'content-type': 'application/json',
+              "Cookie": "JSESSIONID=" + res.data.content.sessionId
             },
             success: function (res) {
               if (res.data.code == 1000) {
@@ -156,8 +156,8 @@ Page({
             method: "POST",
             data: PageNum,
             header: {
-              "Content-Type": "application/x-www-form-urlencodeed",
-              "Cookie": "sid=" + res.data.content.sessionId
+             'content-type': 'application/json',
+              "Cookie": "JSESSIONID=" + res.data.content.sessionId
             },
             success: function (res) {
 
@@ -220,8 +220,8 @@ Page({
             data: PageNum,
 
             header: {
-              "Content-Type": "application/x-www-form-urlencodeed",
-              "Cookie": "sid=" + res.data.content.sessionId
+             'content-type': 'application/json',
+              "Cookie": "JSESSIONID=" + res.data.content.sessionId
             },
             success: function (res) {
               // console.log(res)

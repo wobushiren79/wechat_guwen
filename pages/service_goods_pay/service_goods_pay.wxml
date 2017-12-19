@@ -52,10 +52,10 @@
       <view class="footerfix clearfix">
         <block wx:if="{{!chaxun}}">
           <block wx:if="{{amateurLevel}}">
-            <button class="keep pay_up" bindtap="wechats">微信支付</button>
+            <button class="keep pay_up 2" bindtap="wechats">微信支付</button>
           </block>
           <block wx:else>
-            <button class="keep pay_up" bindtap="wechat">微信支付</button>
+            <button class="keep pay_up 1" bindtap="wechat">微信支付</button>
           </block>
           <button class="keep pay_down" bindtap="bind_moda">线下支付</button>
         </block>

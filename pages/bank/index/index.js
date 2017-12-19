@@ -19,6 +19,16 @@ Page({
       title: '加载中',
       // mask:true,
     })
+    //取出用户信息
+    wx.getStorage({
+      key: 'userObj',
+      success: function (res) {
+        // console.log(res.data.name)
+        that.setData({
+          UserName: res.data.name
+        })
+      }
+    })
     wx.getUserInfo({
       success: function (res) {
         // success

@@ -226,7 +226,7 @@ Page({
               if (res.confirm) {
                 //頁面跳轉
                 wx.redirectTo({
-                  url: '../allot/order_list_processing/order_list_processing',
+                  url: '../order_list_processing/order_list_processing',
                 })
               } else if (res.cancel) {
                 // wx.navigateBack({
@@ -238,6 +238,7 @@ Page({
           wx.hideLoading()
         } else {
           wx.hideLoading()
+
           wx.showModal({
             title: res.data.message,
             content: '是否返回重新登录',
@@ -247,10 +248,10 @@ Page({
                   url: '../../login/login',
                 })
               } else if (res.cancel) {
-
               }
             }
           })
+          
         }
       },
       fail: function(res) {

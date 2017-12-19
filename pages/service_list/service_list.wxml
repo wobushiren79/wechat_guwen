@@ -46,7 +46,7 @@
         <!-- 判断如果不是套餐 -->
         <block wx:if="{{item.is_package == 0}}">
           <navigator url="../service_content/service_content?goods_id={{item.id}}" class="li">
-            <image class="li_img" src="https://goodsmgr.e-funeral.cn/Public/Uploads/{{item.title_img}}"></image>
+            <image class="li_img" src="{{item.title_img}}"></image>
             <view class="li_content">
               <view class="title aui-ellipsis-2">
                 <text>{{item.name}}</text>
@@ -68,7 +68,7 @@
         <!-- 判断如果为套餐 -->
         <block wx:elif="{{item.is_package == 1}}">
           <navigator url="../service_content/service_content?package_id={{item.id}}" class="li">
-            <image class="li_img" src="https://goodsmgr.e-funeral.cn/Public/Uploads/{{item.title_img}}"></image>
+            <image class="li_img" src="{{item.title_img}}"></image>
             <!-- 套餐IQ -->
             <image src='../../images/ispackage.png' class='ispackage'></image>
             <view class="li_content">
@@ -95,7 +95,7 @@
     </view>
 
     <!-- 购物车 -->
-    <navigator url="../service_buy/service_buy" open-type='switchTab' class="shoppgo">
+    <navigator url="../service_buy/service_buy" class="shoppgo">
       <image src="../../images/icon_shopgo.png"></image>
     </navigator>
     <block wx:if="{{xianshi == true}}">

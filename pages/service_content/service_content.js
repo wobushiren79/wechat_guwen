@@ -193,7 +193,7 @@ Page({
                             goods_cate_id: goods_cate_id,
                             spec_attr_id: res.data.list.spec_attr_id,
                             goods_id: goods_ids,
-                            chatxian: true
+                            chatxian: false
                           })
                           wx.hideLoading()
                         } else {

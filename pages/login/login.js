@@ -72,7 +72,8 @@ Page({
               var ress = res.header['Set-Cookie']
               var start = ress.indexOf('KI4SO_SERVER_EC') + 16
               var end = ress.indexOf('rememberMe') - 1
-              var str = ress.substring(start, end)
+              var strr = ress.substring(start, end)
+              var str = strr.replace(',','')
               // var Gmlogin = false
               //   //系统登录信息
               wx.setStorageSync('Individual', str)
@@ -84,20 +85,23 @@ Page({
               wx.setStorageSync('DataUserId', res.data.content.userId)
               //   //缓存用户权限
               wx.setStorageSync('resourceCodes', res.data.content.resourceCodes)
+              console.log(res.data.content.resourceCodes)
               for (var j in subSystems){
                 hasDealSubSystem++
               for (var i in res.data.content.resourceCodes){
                 //如果有公墓权限登录公墓
                 if (res.data.content.resourceCodes[i] == "cemetery.advisor"){
                   wx.request({
-                    url: GmUrl + 'doLogin/marketing',
-                    method: "POST",
+                    url: GmUrl + 'login_subsystem_api?KI4SO_SERVER_EC=' + str,
+                    method: "GET",
                     data: FormData,
                     header: {
-                      "Content-Type": "application/x-www-form-urlencodeed"
-                      // 'content-type': 'application/json'
+                      // "Content-Type": "application/x-www-form-urlencodeed"
+                      'content-type': 'application/json'
                     },
                     success: function (res) {
+                      console.log(res)
+                      console.log(GmUrl + 'login_subsystem_api?KI4SO_SERVER_EC=' + str)
                       if (res.data.code == 1000) {
                         //公墓登录信息缓存
                         wx.setStorageSync('Gmlogin', res.data)
@@ -134,7 +138,7 @@ Page({
                       "Cookie": 'JSESSIONID=' + res.data.content.sessionId
                     },
                     success: function (dat) {
-                      console.log(dat)
+                      // console.log(dat)
                       if (dat.data.code == 1000){
                         //   //缓存用户顾问级别
                         wx.setStorageSync('amateurLevel', dat.data.content.resultList)

@@ -1,5 +1,6 @@
 {
   "pages": [
+       
      "pages/index/index",
      "pages/login/login",
 		 "pages/list/list", 
@@ -65,7 +66,16 @@
       "pages/bank/card/card",
       "pages/bank/money/money",
       "pages/bank/add/add",
-      "pages/bank/history/history"
+      "pages/bank/history/history",
+      "pages/mystroe/stroe_list/stroe_list",
+      "pages/mystroe/service_order_list_submit/service_order_list_submit",
+      "pages/mystroe/service_order_content/service_order_content",
+      "pages/mystroe/service_order_list_succeed/service_order_list_succeed",
+      "pages/mystroe/service_order_list_serviceing/service_order_list_serviceing",
+      "pages/mystroe/service_order_list_close/service_order_list_close",
+      "pages/mystroe/edit_price/edit_price",
+      "pages/mystroe/service_order_list_pay/service_order_list_pay"
+  
   ],
 "window": {
   "navigationBarTextStyle": "black",

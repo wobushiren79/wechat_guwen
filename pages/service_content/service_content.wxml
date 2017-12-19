@@ -7,7 +7,7 @@
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{list.imgs}}">
         <swiper-item>
-          <image src="https://goodsmgr.e-funeral.cn/Public/Uploads/{{item.pic_add}}" class="slide-image" width="355" height="150" />
+          <image src="{{item.pic_add}}" class="slide-image" width="355" height="150" />
         </swiper-item>
       </block>
     </swiper>
@@ -168,12 +168,14 @@
         <image src="../../images/icon_server.png"></image>
         <text>客服</text>
       </button>-->
+      
       <view class="server">
         <image src="../../images/icon_server.png"></image>
         <text>客服</text>
       </view>
       <contact-button size="20" session-from="WeChat">
       </contact-button>
+
       <!-- 购物车 -->
       <view class="shop" bindtap="cartlist">
         <image src="../../images/icon_shop.png"></image>

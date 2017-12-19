@@ -10,7 +10,7 @@
           </view>
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
             <view class="weui-media-box__title">
-              {{nickName}}
+              {{UserName}}
             </view>
             <view class="weui-media-box__desc">
               账户积分
