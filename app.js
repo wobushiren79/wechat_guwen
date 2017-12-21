@@ -74,7 +74,9 @@ App({
 
     goodsPHPUrl: "https://goodsmgr.e-funeral.cn/",
     JavaPlatformUrl: "https://platform.shianlife.cn/",
+    // JavaPlatformUrl: "http://192.168.0.57:8080/ki4so-web/",
     JavaGoodsUrl: "https://goods.shianlife.cn/",
+    // JavaGoodsUrl: "http://192.168.0.57:8089/goods/",
     JavaCemeteryUrl: "https://t-cemetery-api.shianlife.cn/",
     javaOrderCenterUrl: 'https://order.shianlife.cn/',
   },

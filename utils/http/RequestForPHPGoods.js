@@ -86,6 +86,25 @@ function getLabelGoods(data, callback) {
   baseRequest.sendPostHttpForForm(baseUrl + "api/Label/lobelgoods", data, callback, true)
 }
 
+/**
+ * 获取商品分类
+ */
+function getGoodsClass(data, callback) {
+  baseRequest.sendPostHttpForForm(baseUrl + "api/Goods/goodsclass", data, callback, true)
+}
+/**
+ * 获取商品分类下分类属性
+ */
+function getClassAttrGoods(data, callback) {
+  baseRequest.sendPostHttpForForm(baseUrl + "api/Goods/classattr", data, callback, true)
+}
+/**
+ * 获取分类属性下商品
+ */
+function searchGoods(data, callback) {
+  baseRequest.sendPostHttpForForm(baseUrl + "api/Goods/goods", data, callback, true)
+}
+
 module.exports.findAdviserStoreList = findAdviserStoreList;
 module.exports.findStoreInfoByStoreId = findStoreInfoByStoreId;
 module.exports.findStoreGoodsClass = findStoreGoodsClass;
@@ -98,3 +117,6 @@ module.exports.storesSearch = storesSearch;
 module.exports.getChannel = getChannel;
 module.exports.getLabelTag = getLabelTag;
 module.exports.getLabelGoods = getLabelGoods;
+module.exports.getGoodsClass = getGoodsClass;
+module.exports.getClassAttrGoods = getClassAttrGoods;
+module.exports.searchGoods = searchGoods;

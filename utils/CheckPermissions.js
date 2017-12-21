@@ -6,6 +6,12 @@ var storageKey = require("../utils/storage/StorageKey.js");
 function hasPermission(roleCode) {
   return baseCheckPermissions(roleCode);
 }
+/**
+ * 检测是否有非职业顾问权限
+ */
+function hasGoodsAdvisor() {
+  return baseCheckPermissions("goods.advisor");
+}
 
 /**
  * 检测是否有非职业顾问权限
@@ -20,6 +26,21 @@ function hasGoodsAdvisorAmateur() {
 function hasOrderCenterAdvisor() {
   return baseCheckPermissions("orderc.advisor");
 }
+
+/**
+ * 检测是否有公墓系统顾问权限
+ */
+function hasCemeteryAdvisor() {
+  return baseCheckPermissions("cemetery.advisor");
+}
+
+/**
+ * 检测是否有公墓系统洽谈权限
+ */
+function hasCemeteryTalker() {
+  return baseCheckPermissions("cemetery.talker");
+}
+
 
 function baseCheckPermissions(roleCode) {
   var resourceCodes = wx.getStorageSync(storageKey.PLATFORM_RESOURCE_CODES)
@@ -38,5 +59,8 @@ function baseCheckPermissions(roleCode) {
 }
 
 module.exports.hasPermission = hasPermission;
+module.exports.hasGoodsAdvisor = hasGoodsAdvisor;
 module.exports.hasGoodsAdvisorAmateur = hasGoodsAdvisorAmateur;
 module.exports.hasOrderCenterAdvisor = hasOrderCenterAdvisor;
+module.exports.hasCemeteryAdvisor = hasCemeteryAdvisor;
+module.exports.hasCemeteryTalker = hasCemeteryTalker;

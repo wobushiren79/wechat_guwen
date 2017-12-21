@@ -4,13 +4,14 @@
     <view class="content">
       <view class="ul clearfix">
         <!-- 公墓服务 -->
-        <view class="li">
-          <navigator url="../list_/list_" hover-class="active">
-            <image src="../../images/icon_order_cem.png"></image>
-            <text>看墓订单</text>
-          </navigator>
-        </view>
-
+        <block wx:if="{{cemeteryAdvisor}}">
+          <view class="li">
+            <navigator url="../list_/list_" hover-class="active">
+              <image src="../../images/icon_order_cem.png"></image>
+              <text>看墓订单</text>
+            </navigator>
+          </view>
+        </block>
         <!-- 殡仪服务 -->
         <!-- <view class="li">
           <navigator url="../list/list" hover-class="active">
@@ -26,13 +27,14 @@
             <text>商城订单</text>
           </navigator>
         </view> -->
-        <view class="li">
-          <navigator url="../mystroe/stroe_list/stroe_list" hover-class="active">
-            <image src="../../images/icon_order_server.png"></image>
-            <text>我的门店</text>
-          </navigator>
-        </view>
-
+        <block wx:if="{{goodsAdvisor}}">
+          <view class="li">
+            <navigator url="../mystroe/stroe_list/stroe_list" hover-class="active">
+              <image src="../../images/icon_order_server.png"></image>
+              <text>我的门店</text>
+            </navigator>
+          </view>
+        </block>
         <!-- 已接定单 -->
         <block wx:if="{{orderCenter}}">
           <view class="li">

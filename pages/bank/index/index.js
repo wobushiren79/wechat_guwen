@@ -1,8 +1,14 @@
+
+var platformHttp = require("../../../utils/http/RequestForPlatform.js");
+var toastUtil = require("../../../utils/ToastUtil.js");
+var storageKey = require("../../../utils/storage/StorageKey.js");
+var checkPermissions = require("../../../utils/CheckPermissions.js");
+var content;
 Page({
-    data: {
-      usableMoney:'0.00'
-    },
-  onShow:function(){
+  data: {
+    usableMoney: '0.00'
+  },
+  onShow: function () {
     this.onLoad()
   },
   dele: function () {
@@ -14,25 +20,23 @@ Page({
 
   },
   onLoad: function () {
-    var that = this;
-    wx.showLoading({
-      title: '加载中',
-      // mask:true,
+    content=this;
+    var userInfo = wx.getStorageSync(storageKey.PLATFORM_USER_OBJ);
+    if (!userInfo) {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+      return
+    }
+
+    content.setData({
+      UserName: userInfo.name
     })
-    //取出用户信息
-    wx.getStorage({
-      key: 'userObj',
-      success: function (res) {
-        // console.log(res.data.name)
-        that.setData({
-          UserName: res.data.name
-        })
-      }
-    })
+
     wx.getUserInfo({
       success: function (res) {
         // success
-        that.setData({
+        content.setData({
           nickName: res.userInfo.nickName,
           userInfoAvatar: res.userInfo.avatarUrl
         })
@@ -42,90 +46,46 @@ Page({
         console.log("获取失败！")
       },
     })
-    var platform = getApp().globalData.platform
-    wx.getStorage({
-      key: 'ptjssessionid',
-      success: function (res) {
-        wx.request({
-          url: platform + 'api/wallet/getWallet',
-          // url: 'http://192.168.0.199:8080/api/credit/checkin',
-          method: "POST",
-          data: '',
-          header: {
-            'content-type': 'application/json',
-            "Cookie": 'JSESSIONID=' + res.data
-          },
-          success:function(opt){
-            if (opt.data.code == 1000){
-              var usableMoney = opt.data.content.usableMoney/100
-              that.setData({
-                usableMoney: getApp().ProcessingPrice(usableMoney)
-              })
-              wx.hideLoading()
-            }else{
-              wx.hideLoading()
-              wx.showToast({
-                title: opt.data.message,
-                image: '../../../images/icon_info.png',
-                duration: 3000,
-              })
-            }
-          },
-          fail:function(){
-            wx.hideLoading()
-            wx.showToast({
-              title: '网络错误',
-              image: '../../../images/icon_info.png',
-              duration: 3000,
-            })
-          }
-          })
-      }
-    })
-    wx.getStorage({
-      key: 'ptjssessionid',
-      success: function (res) {
-        var ptjssessionid = res.data
-        wx.request({
-          url: platform + 'api/credit/getCredit',
-          // url: 'http://192.168.0.199:8080/api/credit/getCredit',
-          method: "POST",
-          data: '',
-          header: {
-            'content-type': 'application/json',
-            "Cookie": 'JSESSIONID=' + ptjssessionid
-          },
+    
+    getWalletInfo();
+    getCreditInfo();
 
-          success: function (dat) {
-            if (dat.data.code) {
-              if (dat.data.code == 1000) {
-                that.setData({
-                  usableCredit: dat.data.content.usableCredit,
-                  canCheckin: dat.data.content.canCheckin,
-                })
-              } else {
-                wx.showToast({
-                  title: dat.data.message,
-                  duration: 2000,
-                  image: '../../images/icon_info.png',
-                  // mask: true,
-                })
-              }
-            } else {
-              //跳转登录页面
-              wx.reLaunch({
-                url: '/pages/login/login',
-              })
-            }
-          },
-          fail: function () {
-            //跳转登录页面
-            wx.reLaunch({
-              url: '/pages/login/login',
-            })
-          }
-        })
-      }
-    })
   }
 });
+
+
+/**
+ * 获取钱包信息
+ */
+function getWalletInfo(){
+  var walletInfoCallBack={
+    success:function(data,res){
+      var usableMoney = data.usableMoney / 100
+      content.setData({
+        usableMoney: getApp().ProcessingPrice(usableMoney)
+      })
+    },
+    fail:function(data,res){
+      toastUtil.showToast("获取钱包失败");
+    }
+  }
+  platformHttp.getWalletInfo(null, walletInfoCallBack);
+}
+
+/**
+ * 查询用户签到情况
+ */
+function getCreditInfo() {
+  var queryCreditCallBack = {
+    success: function (data, res) {
+      content.setData({
+        usableCredit: data.usableCredit,
+        canCheckin: data.canCheckin,
+      })
+    },
+    fail: function (data, res) {
+
+    }
+  }
+  platformHttp.queryCreditInfo(null, queryCreditCallBack);
+}

@@ -114,7 +114,12 @@ function userCreditSign(data, callback) {
 function queryUserLevel(data, callback){
   baseRequest.sendPostHttpForContent(baseUrl + "api/level/findbyuserids", data, callback)
 }
-
+/**
+ * 获取钱包
+ */
+function getWalletInfo(data, callback){
+  baseRequest.sendPostHttpForContent(baseUrl + "api/wallet/getWallet", data, callback)
+}
 
 module.exports.loginPlatform = loginPlatform;
 module.exports.changeForPassWord = changeForPassWord;
@@ -131,4 +136,5 @@ module.exports.queryUserInfoById = queryUserInfoById;
 module.exports.loginPlatformByPhone = loginPlatformByPhone;
 module.exports.queryCreditInfo = queryCreditInfo;
 module.exports.userCreditSign = userCreditSign;
+module.exports.getWalletInfo = getWalletInfo;
 module.exports.queryUserLevel = queryUserLevel;

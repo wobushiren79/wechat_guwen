@@ -28,7 +28,8 @@
             <view class="li_header">
               <view class="header">待提交</view>
               <view class="footer">￥
-                <text>{{amateurLevel?item.show_total_price/100:item.total_price/100}}</text>
+                <!-- <text>{{amateurLevel?item.show_total_price/100:item.total_price/100}}</text> -->
+                <text>{{amateurLevel?item.total_price/100:item.total_price/100}}</text>
               </view>
             </view>
             <navigator url="../service_order_content/service_order_content?orderid={{item.id}}" class="li_body" hover-class="active">

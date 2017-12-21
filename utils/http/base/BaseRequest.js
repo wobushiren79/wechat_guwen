@@ -201,7 +201,8 @@ function loginGoods() {
       loginOrderCenter();
     }
   }
-  sendPostHttpForLogin(getApp().globalData.JavaGoodsUrl + "login_sys_api", null, loginGoodsCallBack, true)
+  sendPostHttpForLogin
+  (getApp().globalData.JavaGoodsUrl + "login_sys_api", null, loginGoodsCallBack, true)
 }
 /**
  * 登陆工单系统
@@ -215,7 +216,8 @@ function loginOrderCenter() {
       loginCemetery();
     }
   }
-  sendPostHttpForLogin(getApp().globalData.JavaGoodsUrl + "login_subsystem_api", null, loginOrderCenterCallBack, true)
+  sendPostHttpForLogin
+  (getApp().globalData.JavaGoodsUrl + "login_subsystem_api", null, loginOrderCenterCallBack, true)
 }
 /**
  * 登陆公墓
@@ -223,20 +225,18 @@ function loginOrderCenter() {
 function loginCemetery() {
   var loginCemeteryCallBack = {
     success: function (data, res) {
-      wx.navigateBack({
-        delta: 1
-      })
-      wx.navigateBack({
-        delta: 1
+      wx.reLaunch({
+        url: '/pages/index/index',
       })
     },
     fail: function (data, res) {
-      wx.navigateBack({
-        delta: 1
+      wx.reLaunch({
+        url: '/pages/index/index',
       })
     }
   }
-  sendPostHttpForLogin(getApp().globalData.JavaCemeteryUrl + "login_subsystem_api", null, loginCemeteryCallBack, true)
+  sendPostHttpForLogin
+  (getApp().globalData.JavaCemeteryUrl + "login_subsystem_api", null, loginCemeteryCallBack, true)
 }
 
 /**

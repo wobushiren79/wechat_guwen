@@ -167,7 +167,7 @@ function getCreditInfo() {
       })
     },
     fail: function (data, res) {
-      toastUtil.showToast("查询签到失败")
+
     }
   }
   platformHttp.queryCreditInfo(null, queryCreditCallBack);

@@ -1,132 +1,85 @@
+var goodsPHPHttp = require("../../utils/http/RequestForPHPGoods.js");
+var toastUtil = require("../../utils/ToastUtil.js");
+var storageKey = require("../../utils/storage/StorageKey.js");
+var content;
 Page({
-    data: {
+  data: {
 
-    },
-  goodsclass:function(e){
-    wx.showLoading({
-      title: '加载中',
-    })
-    var LocalUrl = getApp().globalData.LocalUrl
-    var id =e.target.dataset.id
+  },
+  goodsclass: function (e) {
+    var classId = e.target.dataset.id
     var index = e.target.dataset.index
     var name = e.target.dataset.name
-    var that=this
-    var formdata={}
-    formdata.id = id
-    wx.request({
-      url: LocalUrl + 'Goods/classattr',
-      method: "POST",
-      data: formdata,
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      success: function (res) {
-        if (res.data.code == 1000) {
-          var attrlist = res.data.list
-          that.setData({
-            attrlist: attrlist,
-            active: index,
-            name: name,
-          })
-          wx.hideLoading()
-        } else {
-          wx.showToast({
-            title: res.data.message,
-            image: '../../images/icon_info.png',
-            // mask: true,
-            duration: 2000
-          })
-        }
-      }
+    content.setData({
+      active: index,
+      name: name,
     })
+    getClassAttrGoods(classId);
   },
-onLoad:function(){
-  var that = this
-  var LocalUrl = getApp().globalData.LocalUrl
-  wx.showLoading({
-    title: '加载中',
-  })
-  // 取出渠道信息
-  wx.getStorage({
-    key: 'channel',
-    success: function (res) {
-      wx.getStorage({
-        key: 'DataUserId',
-        success: function(dat) {
-      var channel= {}
-      channel.channel_id=res.data.id
-      channel.user_id=dat.data
-      //查询分类接口
-      wx.request({
-        url: LocalUrl + 'Goods/goodsclass',
-        method: "POST",
-        data: channel,
-        header: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        success: function (res) {
-          if (res.data.code == 1000) {
-            var list =res.data.list
-            if (list.length>0){
-              var formdata = {}
-              formdata.id = list[0].id
-              wx.request({
-                url: LocalUrl + 'Goods/classattr',
-                method: "POST",
-                data: formdata,
-                header: {
-                  "Content-Type": "application/x-www-form-urlencoded",
-                },
-                success: function (res) {
-                  if (res.data.code == 1000) {
-                    var attrlist = res.data.list
-                    that.setData({
-                      attrlist: attrlist,
-                    })
-                    wx.hideLoading()
-                  } else {
-                    wx.showToast({
-                      title: res.data.message,
-                      image: '../../images/icon_info.png',
-                      duration: 2000
-                    })
-                  }
-                }
-              })
-              that.setData({
-                list: list,
-                active: 0,
-                name: list[0].name,
-                channeldata: channel,
-              })
-              wx.hideLoading()
-            }else{
-              wx.showToast({
-                title:'暂无数据!稍后再试',
-                image: '../../images/icon_info.png',
-                duration: 2000
-              })
-            }
+  
+  onLoad: function () {
+    content = this;
+    var channelId = wx.getStorageSync(storageKey.GOODS_CHANNEL);
+    var userId = wx.getStorageSync(storageKey.PLATFORM_USER_ID);
+    if (!channelId || !userId) {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+      return
+    }
+    getGoodsClass(channelId.id, userId);
+  }
+});
 
-          } else {
-            wx.showToast({
-              title: res.data.message,
-              image: '../../images/icon_info.png',
-              duration: 2000
-            })
-          }
-        }
-      })
-        }
-      })
+
+/**
+ * 获取商品分类
+ */
+function getGoodsClass(channelId, userId) {
+  var getGoodsClassRequest = {
+    channel_id: channelId,
+    user_id: userId,
+  }
+  var getGoodsClassCallBack = {
+    success: function (data, res) {
+      var list = res.data.list
+      if (list && list.length > 0) {
+        content.setData({
+          list: list,
+          active: 0,
+          name: list[0].name,
+          channeldata: channelId,
+        })
+        getClassAttrGoods(list[0].id)
+      }
     },
     fail: function () {
-      //如果获取缓存不成功就跳转登录页面
-      wx.redirectTo({
-        url: '../index/index',
-      })
+      toastUtil.showToast("获取分类失败")
     }
-  })
+  }
+
+  goodsPHPHttp.getGoodsClass(getGoodsClassRequest, getGoodsClassCallBack);
 }
 
-});
+/**
+ * 获取分类下列表
+ */
+function getClassAttrGoods(classId) {
+  var getClassAttrGoodsRequest = {
+    id: classId
+  }
+  var getClassAttrGoodsCallBack = {
+    success: function (data, res) {
+      var attrlist = res.data.list
+      if (!attrlist)
+        return
+      content.setData({
+        attrlist: attrlist,
+      })
+    },
+    fail: function (data, res) {
+      toastUtil.showToast("获取商品失败");
+    }
+  }
+  goodsPHPHttp.getClassAttrGoods(getClassAttrGoodsRequest, getClassAttrGoodsCallBack);
+}
