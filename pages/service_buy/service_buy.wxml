@@ -21,11 +21,11 @@
           </view>
         </black>
       </view>
-      <block wx:for="{{getdata}}" wx:for-item="ite" wx:if="{{ite.class_name == item}}">
+      <block wx:for="{{formData}}" wx:for-item="ite" wx:if="{{ite.class_name == item}}">
        <block wx:if="{{ite.is_package == 0}}">
         <view class="group_item clearfix">
           <view class="checkbox_wrap">
-            <checkbox value="{{ite.id}}" checked="true" bindtap="check" data-id="{{ite.id}}" data-index="{{index}}" />
+            <checkbox value="{{ite.id}}" checked="{{ite.isSelect}}" bindtap="check" data-id="{{ite.id}}" data-index="{{index}}" data-select="{{ite.isSelect}}"/>
           </view>
           <view class="img_wrap">
             <image src="{{ite.title_img}}"></image>
@@ -70,7 +70,7 @@
 
         <view class="group_item clearfix">
           <view class="checkbox_wrap">
-            <checkbox value="{{ite.id}}" checked="true" bindtap="check" data-id="{{ite.id}}" data-index="{{index}}" />
+            <checkbox value="{{ite.id}}" checked="{ite.isSelect}}" bindtap="check" data-id="{{ite.id}}" data-index="{{index}}" data-select="{{ite.isSelect}}"/>
           </view>
       <navigator url="../service_goods_pay_goodslist/service_goods_pay_goodslist?id={{ite.id}}">
           <view class="img_wrap">
@@ -126,9 +126,9 @@
         <text>全选</text>
       </view> -->
 
-      <view class="home">
+      <!-- <view class="home">
         <navigator url="../index/index" open-type="switchTab"><image src="../../images/right.png"></image>首页</navigator>
-      </view>
+      </view> -->
 
       <!-- 合计 -->
       <view class="count">

@@ -116,7 +116,7 @@ function findServiceInfoAddressList(data, callback) {
 /**
  * 设置默认送货地址
  */
-function setServiceInfoDefaultAddress(data,callback){
+function setServiceInfoDefaultAddress(data, callback) {
   baseRequest.sendPostHttpForContent(baseUrl + 'api/goods/shipping/default', data, callback, true)
 }
 
@@ -148,6 +148,13 @@ function findServiceInfoDefaultAddress(data, callback) {
   baseRequest.sendPostHttpForContent(baseUrl + 'api/goods/shipping/findDefaultAddress', data, callback, true)
 }
 
+/**
+ * 查询默认送货地址
+ */
+function changeOrderPrice(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + 'api/goods/order/updateOrderPrice', data, callback, true)
+}
+
 
 module.exports.loginGoods = loginGoods;
 module.exports.getGoodsOrderList = getGoodsOrderList;
@@ -170,3 +177,4 @@ module.exports.createServiceInfoAddress = createServiceInfoAddress;
 module.exports.updateServiceInfoAddress = updateServiceInfoAddress;
 module.exports.deleteServiceInfoAddress = deleteServiceInfoAddress;
 module.exports.findServiceInfoDefaultAddress = findServiceInfoDefaultAddress;
+module.exports.changeOrderPrice = changeOrderPrice;

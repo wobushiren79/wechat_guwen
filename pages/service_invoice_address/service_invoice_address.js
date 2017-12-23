@@ -1,6 +1,9 @@
 //获取应用实例
 var tcity = require("../../utils/citys.js");
-
+var storageKey=require("../../utils/storage/StorageKey.js");
+var toastUtil=require("../../utils/ToastUtil.js");
+var checkTools=require("../../utils/CheckTools.js");
+var content;
 var app = getApp()
 Page({
   data: {
@@ -117,6 +120,7 @@ Page({
 
 
   onLoad: function () {
+    content = this;
     var that = this;
     tcity.init(that);
     var cityData = that.data.cityData;
@@ -145,45 +149,57 @@ Page({
       footer: true
     })
   },
-  formSubmit:function(e){
-    var that=this
-    var need = that.data.need
-    var head = that.data.head
-    var fapiao = e.detail.value
-    if (need){
-      fapiao.needInvoice=1
-    }else{
-      fapiao.needInvoice = 0
-    }
-    if (head){
-      fapiao.titleType = 1
-    }else{
-      fapiao.titleType = 0
-    }
-    if (fapiao.needInvoice == 1 && fapiao.location){
-      fapiao.receiptLocation = fapiao.receiptLocation + "  " + fapiao.location
-    }
-    if (fapiao.needInvoice == 1 && fapiao.titleType == 0){
-      fapiao.title=''
-      fapiao.invoiceRemark=''
-      fapiao.companyTaxId=''
-    }
-    if (fapiao.needInvoice == 0){
-      fapiao.companyTaxId=''
-      fapiao.invoiceRemark=''
-      fapiao.location==''
-      fapiao.receiptLocation=''
-      fapiao.receiptName=''
-      fapiao.receiptPhone=''
-      fapiao.title=''
-      fapiao.titleType=''
+
+
+  formSubmit: function (e) {
+    var invoiceInfo = e.detail.value;
+    var submitInvoice = new Object();
+    //是否需要发票
+    var need = content.data.need
+    if (need) {
+      //需要
+      submitInvoice.needInvoice = 1
+      //发票抬头类型
+      var head = content.data.head
+      if (head) {
+        submitInvoice.titleType = 1
+        if (!invoiceInfo.title || invoiceInfo.title.length == 0) {
+          toastUtil.showToast("没有单位名称");
+          return
+        }
+        submitInvoice.title = invoiceInfo.title ;
+        submitInvoice.invoiceRemark = invoiceInfo.invoiceRemark;
+        submitInvoice.companyTaxId = invoiceInfo.companyTaxId;
+      } else {
+        submitInvoice.titleType = 0
+      }
+      if (!invoiceInfo.receiptName || invoiceInfo.receiptName.length==0){
+        toastUtil.showToast("没有收件人");
+        return
+      }
+      if (!invoiceInfo.receiptPhone || invoiceInfo.receiptPhone.length == 0) {
+        toastUtil.showToast("没有电话");
+        return
+      }
+      if (!checkTools.checkMobile(invoiceInfo.receiptPhone)) {
+        toastUtil.showToast("电话格式错误");
+        return
+      }
+      if (!invoiceInfo.location || invoiceInfo.location.length == 0) {
+        toastUtil.showToast("没有详细地址");
+        return
+      }
+      submitInvoice.receiptName = invoiceInfo.receiptName;
+      submitInvoice.receiptPhone = invoiceInfo.receiptPhone;
+      submitInvoice.receiptLocation = invoiceInfo.receiptLocation + "  " + invoiceInfo.location
+    } else {
+      //不需要
+      submitInvoice.needInvoice = 0
     }
     //客户发票信息
-    wx.setStorageSync('fapiao', fapiao)
+    wx.setStorageSync(storageKey.GOODS_ORDER_INVOICE_INFO, submitInvoice);
     wx.navigateBack({
       delta: 1
     })
-    // fapiao.receiptLocation = receiptLocation+"  "+location
-    // console.log(fapiao)
   }
 })

@@ -1,6 +1,9 @@
 //获取应用实例
 var tcity = require("../../utils/citys.js");
-
+var storageKey = require("../../utils/storage/StorageKey.js");
+var toastUtil = require("../../utils/ToastUtil.js");
+var checkTools = require("../../utils/CheckTools.js");
+var content;
 var app = getApp()
 Page({
   data: {
@@ -13,21 +16,20 @@ Page({
     value: [22, 0, 1],
     values: [22, 0, 1],
     condition: false,
-    footer:true,
+    footer: true,
     date: "请选择日期",
     time: "请选择时间",
     btn_1: true,
-    btn_2:false
+    btn_2: false
   },
 
   bindChange: function (e) {
-    var that=this
+    var that = this
     var val = e.detail.value
     var t = this.data.values;
     var cityData = this.data.cityData;
 
     if (val[0] != t[0]) {
-      console.log('province no ');
       const citys = [];
       const countys = [];
 
@@ -37,7 +39,7 @@ Page({
       for (let i = 0; i < cityData[val[0]].sub[0].sub.length; i++) {
         countys.push(cityData[val[0]].sub[0].sub[i].name)
       }
-      
+
       that.setData({
         province: this.data.provinces[val[0]],
         city: cityData[val[0]].sub[0].name,
@@ -50,7 +52,6 @@ Page({
       return;
     }
     if (val[1] != t[1]) {
-      console.log('city no');
       const countys = [];
 
       for (let i = 0; i < cityData[val[0]].sub[val[1]].sub.length; i++) {
@@ -67,7 +68,6 @@ Page({
       return;
     }
     if (val[2] != t[2]) {
-      console.log('county no');
       that.setData({
         county: this.data.countys[val[2]],
         values: val
@@ -86,7 +86,7 @@ Page({
   },
 
   // 及时服务和预约服务
-  bind_btn_1:function(){
+  bind_btn_1: function () {
     this.setData({
       btn_1: true,
       btn_2: false
@@ -109,14 +109,9 @@ Page({
     })
   },
   onLoad: function () {
-    // console.log("onLoad");
-    var that = this;
-
-    tcity.init(that);
-
-    var cityData = that.data.cityData;
-
-
+    content = this;
+    tcity.init(content);
+    var cityData = content.data.cityData;
     const provinces = [];
     const citys = [];
     const countys = [];
@@ -124,87 +119,67 @@ Page({
     for (let i = 0; i < cityData.length; i++) {
       provinces.push(cityData[i].name);
     }
-    // console.log('省份完成');
     for (let i = 0; i < cityData[0].sub.length; i++) {
       citys.push(cityData[22].sub[i].name)
     }
-    // console.log('city完成');
     for (let i = 0; i < cityData[0].sub[0].sub.length; i++) {
       countys.push(cityData[22].sub[0].sub[i].name)
     }
 
-    that.setData({
+    content.setData({
       'provinces': provinces,
       'citys': citys,
       'countys': countys,
-      // serviceWay: 0,
-
-      // 输入框初始化显示 四川省-成都市-锦江区
-      'province': cityData[22].name, 
+      'province': cityData[22].name,
       'city': cityData[22].sub[0].name,
       'county': cityData[22].sub[0].sub[1].name,
       footer: true
-
-      // 'province': '省',
-      // 'city': '市',
-      // 'county': '区'
     })
-    console.log('初始化完成');
   },
-  formSubmit:function(e){
-    var that=this
-    var bookTime=that.data.time
-    // var 
-    var kehu={}
-    kehu = e.detail.value
-    kehu.serviceLocation = kehu.serviceLocation+'  '+kehu.location
-    if (!that.data.btn_1){
-      kehu.bookTime = that.data.date + ' ' + that.data.time+':00'
-      kehu.serviceWay=1
-    }else{
-      kehu.serviceWay = 0
-      kehu.bookTime = ''
+
+  /**
+   * 提交数据
+   */
+  formSubmit: function (e) {
+    var serviceInfo = e.detail.value;
+    if (!serviceInfo.contact || serviceInfo.contact.length == 0) {
+      toastUtil.showToast("没有联系人");
+      return
     }
-    kehu.selfDelivery = ''
-    kehu.selfDeliveryTime = ''
-    if (kehu.contact == ''){
-      wx.showToast({
-        title: '联系人不能为空',
-        image: '../../images/icon_info.png',
-        // mask: true,
-        duration: 2000
-      })
-    } else if (kehu.contactPhone == ''){
-      wx.showToast({
-        title: '电话不能为空',
-        image: '../../images/icon_info.png',
-        // mask: true,
-        duration: 2000
-      })
-    } else if (kehu.location == ''){
-      wx.showToast({
-        title: '详细地址不能为空',
-        image: '../../images/icon_info.png',
-        // mask: true,
-        duration: 2000
-      })
-    }else{
+    if (!serviceInfo.contactPhone || serviceInfo.contactPhone.length == 0) {
+      toastUtil.showToast("没有联系电话");
+      return
+    }
+    if (!checkTools.checkMobile(serviceInfo.contactPhone)) {
+      toastUtil.showToast("电话格式错误");
+      return
+    }
+    if (!serviceInfo.location || serviceInfo.location.length == 0) {
+      toastUtil.showToast("没有详细地址");
+      return
+    }
+    if (!content.data.btn_1) {
+      if (!content.data.date || content.data.date.length == 0 || content.data.date=="请选择日期"){
+        toastUtil.showToast("没有选择日期");
+        return
+      }
+      if (!content.data.time || content.data.date.time == 0 || content.data.time == "请选择时间") {
+        toastUtil.showToast("没有选择时间");
+        return
+      }
+      serviceInfo.bookTime = content.data.date + ' ' + content.data.time + ':00'
+      serviceInfo.serviceWay = 1
+    } else {
+      serviceInfo.serviceWay = 0
+    }
+    serviceInfo.serviceLocation = serviceInfo.serviceLocation + '  ' + serviceInfo.location
+    // serviceInfo.selfDelivery = ''
+    // serviceInfo.selfDeliveryTime = ''
     //客户填写信息
-    wx.setStorageSync('kehu', kehu)
+    wx.setStorageSync(storageKey.GOODS_ORDER_SERVICE_INFO, serviceInfo)
     wx.navigateBack({
       delta: 1
     })
-    }
-
-    //取出渠道
-    // wx.getStorage({
-    //   key: 'channel',
-    //   success: function (r) {
-    //     var channel_id = r.data.id
-    //     kehu.orderChannel = channel_id
-    //   }
-    // })
-
-    // console.log(e.detail.value)
   }
+
 })

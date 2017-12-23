@@ -217,7 +217,7 @@ function loginOrderCenter() {
     }
   }
   sendPostHttpForLogin
-  (getApp().globalData.JavaGoodsUrl + "login_subsystem_api", null, loginOrderCenterCallBack, true)
+    (getApp().globalData.javaOrderCenterUrl + "login_subsystem_api", null, loginOrderCenterCallBack, true)
 }
 /**
  * 登陆公墓

@@ -30,7 +30,7 @@
             <view class="header">已确认</view>
             <view class="footer">￥<text>{{item.order_price/100}}</text></view>
           </view>
-          <navigator url="../service_order_content/service_order_content?orderid={{item.id}}" class="li_body" hover-class="active">
+          <navigator url="/pages/service_order_content/service_order_content?orderid={{item.id}}" class="li_body" hover-class="active">
             <image src="../../../images/right.png" class="icon"></image>
             <view class="address">
               <view class="header">

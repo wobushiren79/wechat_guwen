@@ -1,9 +1,18 @@
+var goodsPHPHttp = require("../../utils/http/RequestForPHPGoods.js");
+var goodsHttp = require("../../utils/http/RequestForGoods.js");
+var platformHttp = require("../../utils/http/RequestForPlatform.js");
+var toastUtil = require("../../utils/ToastUtil.js");
+var storageKey = require("../../utils/storage/StorageKey.js");
+var checkPermissions = require("../../utils/CheckPermissions.js");
 
+var content;
+
+var shoppingList;
 Page({
-  
-  data:{
+
+  data: {
     edit: true,
-    totla_price:0,
+    totla_price: 0,
   },
   bind_edit: function () {
     this.setData({
@@ -17,463 +26,281 @@ Page({
       over: false
     })
   },
-  onShow:function(){
-    this.onLoad()
+
+  onShow: function () {
+    var channelId = wx.getStorageSync(storageKey.GOODS_CHANNEL).id;
+    getGoodsShoppingList(channelId)
   },
-  onLoad:function(){
-    var that=this
-    var JSESSIONID=''
-    wx.showLoading({
-      title: '请稍后',
-      mask: true,
-    })
-    // 取出殡仪登录信息
-    wx.getStorage({
-      key: 'JSESSIONID',
-      success: function (res) {
-        JSESSIONID=res.data
-      }
-      })
-    var LocalUrl = getApp().globalData.LocalUrl
-    var javaApi = getApp().globalData.javaApi
-    // 取出渠道信息
-    wx.getStorage({
-      key: 'channel',
-      success: function (res) {
-        var channel_id=res.data.id
-        var content={}
-        content.pageSize = 1000
-        content.pageNumber=0
-        var contents={}
-        contents.channelId = channel_id
-        content.content = contents
-        var ForData = { content: content}
-        wx.request({
-          url: javaApi + 'api/goods/shopping/list',
-          method: "POST",
-          data: ForData,
-          header: {
-            'content-type': 'application/json',
-            "Cookie": JSESSIONID
-          },
-          success: function (res) {
-            if (res.data.code == 1000) {
-              wx.getStorage({
-                key: 'DataUserId',
-                success: function(userId) {
-              var list=res.data.content.content
-              // console.log(list)s
-              var userId = userId.data
-              var goodsId=''
-              var channelId=''
-              var goodsSpecId = ''
-              var packageId=''
-              var packageSpecId=''
-              for (var i in list){
-                if(i==0){
-                  if (list[i]['isPackage'] == 0){
-                    goodsId += list[i]['goodsId']+','
-                    channelId += list[i]['channelId'] + ','
-                    goodsSpecId += list[i]['goodsSpecId'] + ','
-                  }
-                  if (list[i]['isPackage'] == 1){
-                    packageSpecId += list[i]['goodsSpecId'] + ','
-                    packageId += list[i]['goodsId'] + ','
-                    channelId += list[i]['channelId'] + ','
-                  }
-
-                }else{
-                  if (list[i]['isPackage'] == 0) {
-                    goodsId += list[i]['goodsId'] + ','
-                    channelId += list[i]['channelId'] + ','
-                    goodsSpecId += list[i]['goodsSpecId'] + ','
-                  }
-                  if (list[i]['isPackage'] == 1) {
-                    packageSpecId += list[i]['goodsSpecId'] + ','
-                    packageId += list[i]['goodsId'] + ','
-                    channelId += list[i]['channelId'] + ','
-                  }
-                }
-                var str={}
-                str.goodsId = goodsId
-                str.channelId = channelId
-                str.goodsSpecId = goodsSpecId
-                str.packageSpecId = packageSpecId
-                str.packageId = packageId
-                str.userId = userId
-              }
-              wx.request({
-                url: LocalUrl + 'Getgoods/getattrgoods',
-                method: "POST",
-                data: str,
-                header: {
-                  "Content-Type": "application/x-www-form-urlencoded",
-                },
-                success: function (res) {
-                  // console.log(str)
-                  // console.log(res)
-                  if (res.data.code == 1000){
-
-                       var listt=res.data.list
-                       var class_name = res.data.class_name
-                       var totla_price = 0
-                         var getdata=[]
-                         for (var j in listt) {
-                         for(var i in list){
-                           if (list[i].goodsId == parseInt(listt[j].goods_id) && list[i].goodsSpecId == parseInt(listt[j].spec_id) && list[i].channelId == parseInt(listt[j].channel_id) || list[i].goodsId == parseInt(listt[j].package_id) && list[i].goodsSpecId == parseInt(listt[j].spec_id) && list[i].channelId == parseInt(listt[j].channel_id)){
-                                listt[j].id = list[i].id
-                                listt[j].specNum = list[i].specNum
-                                totla_price += parseInt(list[i].specNum) * parseFloat(listt[j].spec_price)
-                                getdata.push(listt[j])
-                                 }
-                            }
-                         }
-                         var formData = getdata
-                        //  console.log(formData)
-                         //分类名称
-                         wx.setStorageSync('class_name', class_name)
-                         //缓存购物车列表
-                         wx.setStorageSync('getdatalist', getdata)
-                       that.setData({
-                         getdata: getdata,
-                         class_name: class_name,
-                         totla_price: totla_price,
-                         formData: formData,
-                         pageSize: that.data.pageSize+2,
-                         JSESSIONID: JSESSIONID
-                       })
-
-                       wx.hideLoading()
-                  }else{
-                    wx.showToast({
-                      title: res.data.message,
-                      image: '../../images/icon_info.png',
-                      duration: 2000
-                    })
-                  }
-                }
-
-                })
-                },
-              })
-              // console.log(res.data.content.content)
-
-              // //頁面跳轉
-              // wx.redirectTo({
-              //   url: '../service_buy/service_buy'
-              // })
-            }else{
-              wx.showToast({
-                title: res.data.message,
-                duration: 2000
-              })
-            }
-          }
-        })
-      }
-    })
+  onLoad: function () {
+    content = this;
   },
+
   //点击减少数量
-  reduce:function(e){
-    var that=this
-    var JSESSIONID = that.data.JSESSIONID
-    var r = /^\+?[1-9][0-9]*$/;　　//正整数
-    wx.showLoading({
-      title: '请稍后',
-    })
-    var javaApi = getApp().globalData.javaApi
-    var id = e.target.dataset.id
-    var index = e.target.dataset.index
-    var totla_price = that.data.totla_price
-    var getdata = that.data.getdata
-    var formData = that.data.formData
-    var content = {}
-    var getcontent = {}
-    if (formData[index].id == id) {
-      if (parseFloat(formData[index].specNum) > 1){
-        content.specNum = parseFloat(formData[index].specNum) - 1
-        formData[index].specNum = parseFloat(formData[index].specNum) - 1
-        getdata[index].specNum = parseFloat(getdata[index].specNum) - 1
-        totla_price -= parseFloat(formData[index].spec_price)
-        if (!r.test(totla_price)) {
-          if (totla_price.toString().split(".")[1].length > 3) {
-            totla_price = parseFloat(totla_price.toFixed(2))
-          }
-        }
-        // console.log(totla_price)
-        content.id = id
-        getcontent.content = content
-        wx.request({
-          url: javaApi + 'api/goods/shopping/updateShopingNum',
-          method: "POST",
-          data: getcontent,
-          header: {
-            'content-type': 'application/json',
-            "Cookie": JSESSIONID
-          },
-          success: function (res) {
-            if (res.data.code == 1000) {
-              that.setData({
-                totla_price: totla_price,
-                getdata: getdata,
-                formData: formData
-              })
-              wx.hideLoading()
-            } else {
-              wx.showToast({
-                title: res.data.message,
-                image: '../../images/icon_info.png',
-                duration: 2000
-              })
-            }
-          }
-        })
-      }else{
-        wx.showToast({
-          title: '商品数量不能小于一',
-          image: '../../images/icon_info.png',
-          duration: 2000
-        })
+  reduce: function (e) {
+    var shoppingCartId = e.currentTarget.dataset.id;
+    var formData = content.data.formData
+    var goodsNumber;
+    for (var i in formData) {
+      if (formData[i].id == shoppingCartId) {
+        goodsNumber = formData[i].specNum - 1;
       }
-
     }
-
+    updateShoppingCartGoodsNumber(shoppingCartId, goodsNumber)
   },
   //点击数量添加
-  add:function(e){
-    var that=this
-    var JSESSIONID = that.data.JSESSIONID
-    var r = /^\+?[1-9][0-9]*$/;　　//正整数
-    wx.showLoading({
-      title: '请稍后',
-    })
-    var javaApi = getApp().globalData.javaApi
-    var id = e.target.dataset.id
-    var index = e.target.dataset.index
-    var totla_price = that.data.totla_price
-    var getdata = that.data.getdata
-    var formData = that.data.formData
-    var content={}
-    var getcontent={}
-    if (formData[index].id == id) {
-      content.specNum = parseFloat(formData[index].specNum) + 1
-        formData[index].specNum = parseFloat(formData[index].specNum) + 1
-        getdata[index].specNum = parseFloat(getdata[index].specNum) + 1
-        totla_price +=parseFloat(formData[index].spec_price)
-        if (!r.test(totla_price)) {
-          if (totla_price.toString().split(".")[1].length > 3) {
-            totla_price = parseFloat(totla_price.toFixed(2))
-          }
-        }
-        // console.log(totla_price)
-        content.id = id
-        getcontent.content = content
-        wx.request({
-          url: javaApi + 'api/goods/shopping/updateShopingNum',
-          method: "POST",
-          data: getcontent,
-          header: {
-            'content-type': 'application/json',
-            "Cookie": JSESSIONID
-          },
-          success: function (res) {
-            if (res.data.code == 1000) {
-              that.setData({
-                totla_price: totla_price,
-                getdata: getdata,
-                formData: formData
-              })
-              wx.hideLoading()
-            } else {
-              wx.showToast({
-                title: res.data.message,
-                image: '../../images/icon_info.png',
-                duration: 2000
-              })
-            }
-          }
-        })
-    }
-  },
-  EventHandle:function(e){
-    var that = this
-    var JSESSIONID = that.data.JSESSIONID
-    var r = /^\+?[1-9][0-9]*$/;　　//正整数
-    wx.showLoading({
-      title: '请稍后',
-    })
-    var javaApi = getApp().globalData.javaApi
-    var index=e.target.dataset.index
-    var id=e.target.dataset.id
-    var specNum=e.detail.value
-    var totla_price = that.data.totla_price
-    var getdata = that.data.getdata
-    var formData = that.data.formData
-    var content = {}
-    var getcontent = {}
-    if (formData[index].id == id) {
-      if (specNum != '' && specNum > 0){
-        totla_price -= parseFloat(formData[index].specNum) * parseFloat(formData[index].spec_price)
-        formData[index].specNum = parseFloat(specNum)
-        getdata[index].specNum = parseFloat(specNum)
-        totla_price += parseFloat(formData[index].specNum) * parseFloat(formData[index].spec_price)
-        if (!r.test(totla_price)){
-        if (totla_price.toString().split(".")[1].length > 3) {
-          totla_price = parseFloat(totla_price.toFixed(2))
-        }
-        }
-        console.log(totla_price)
-        content.id = id
-        content.specNum = specNum
-        getcontent.content = content
-        wx.request({
-          url: javaApi + 'api/goods/shopping/updateShopingNum',
-          method: "POST",
-          data: getcontent,
-          // dataType: json,
-          header: {
-            // "Content-Type": "application/x-www-form-urlencoded",
-            'content-type': 'application/json',
-            "Cookie": JSESSIONID
-          },
-          success: function (res) {
-            if (res.data.code == 1000) {
-              that.setData({
-                totla_price: totla_price,
-                getdata: getdata,
-                formData: formData
-              })
-              wx.hideLoading()
-            } else {
-              wx.showToast({
-                title: res.data.message,
-                image: '../../images/icon_info.png',
-                duration: 2000
-              })
-            }
-          }
-        })
-      }else{
-        wx.showToast({
-          title: '数量请大于0',
-          image: '../../images/icon_info.png',
-          duration: 2000
-        })
+  add: function (e) {
+    var shoppingCartId = e.currentTarget.dataset.id;
+    var formData = content.data.formData
+    var goodsNumber;
+    for (var i in formData) {
+      if (formData[i].id == shoppingCartId) {
+        goodsNumber = formData[i].specNum + 1;
       }
     }
-    that.setData({
-      totla_price: totla_price,
-      getdata: getdata,
+    updateShoppingCartGoodsNumber(shoppingCartId, goodsNumber)
+  },
+
+  /**
+ * 删除
+ */
+  del: function (e) {
+    var shoppingId = e.target.dataset.id
+    var index = e.target.dataset.index
+    removeShoppingCartGoods(shoppingId, index);
+  },
+
+  /**
+   * 更改数量
+   */
+  EventHandle: function (e) {
+    var shoppingCartId = e.currentTarget.dataset.id;
+    var goodsNumber = e.detail.value;
+    updateShoppingCartGoodsNumber(shoppingCartId, goodsNumber)
+  },
+  /**
+   * checkbox选择事件
+   */
+  check: function (e) {
+    var isSelect = e.target.dataset.select;
+    var shoppingId = e.target.dataset.id
+    var formData = content.data.formData
+    for (var i in formData) {
+      if (formData[i].id == shoppingId) {
+        formData[i].isSelect = !isSelect
+      }
+    }
+    content.setData({
       formData: formData
     })
+    changPrice();
   },
-  formSubmit:function(){
-    var that=this
-    var JSESSIONID = that.data.JSESSIONID
-   var  formData =[]
-   var dataa= that.data.formData
-   var totla_price = that.data.totla_price
-   for (var i in dataa){
-     var datab = {}
-      datab=dataa[i]
-      formData.push(datab)
-   }
-   //结算购物车数据
-   wx.setStorageSync('formData', formData)
-   //总价格
-   wx.setStorageSync('totla_price', totla_price)
-   if (formData.length <= 0){
-     wx.showToast({
-       title: '你未选择结算商品',
-       image: '../../images/icon_info.png',
-       duration: 2000
-     })
-   }else{
-     wx.redirectTo({
-       url: '../service_money/service_money'
-     })
-   }
-  },
-  check:function(e){
-    wx.showLoading({
-      title: '请稍后',
-    })
-    var that=this
-    var id = e.target.dataset.id
-    var index = e.target.dataset.index
-    var totla_price = that.data.totla_price
-    var getdata = that.data.getdata
-    var formData = that.data.formData
-    var isCon=''
-    for (var i in formData){
-      if (formData[index] ||formData[i].id == id) {
-        isCon = true
-      } else {
-        isCon = false
-      }
-      continue;
-    }
-      if (isCon == true){
-        totla_price -= parseFloat(formData[index].specNum) * parseFloat(formData[index].spec_price)
-        delete formData[index]
-        
-    }else{
-          if (getdata[index].id == id){
-            formData[index]=getdata[index]
-                totla_price += parseFloat(getdata[index].specNum) * parseFloat(getdata[index].spec_price)
+  /**
+   * 提交数据 
+   */
+  formSubmit: function () {
+    var oldFormData = content.data.formData
+    var newFormData = new Array();
+    for (var i in oldFormData) {
+      if (oldFormData[i].isSelect) {
+        newFormData.push(oldFormData[i]);
       }
     }
-    that.setData({
-      formData: formData,
-      totla_price: totla_price
+    if (newFormData.length == 0) {
+      toastUtil.showToast("没有选择商品")
+      return
+    }
+
+    var totla_price = content.data.totla_price
+    //结算购物车数据
+    wx.setStorageSync('formData', newFormData)
+    //总价格
+    wx.setStorageSync('totla_price', totla_price)
+    wx.redirectTo({
+      url: '../service_money/service_money'
     })
-    wx.hideLoading()
   },
-  del:function(e){
-    var that = this
-    var r = /^\+?[1-9][0-9]*$/;　　//正整数
-    var JSESSIONID = that.data.JSESSIONID
-    wx.showLoading({
-      title: '请稍后',
-    })
-    var javaApi = getApp().globalData.javaApi
-    var id = e.target.dataset.id
-    var index = e.target.dataset.index
-    var totla_price = that.data.totla_price
-    var getdata = that.data.getdata
-    var formData = that.data.formData
-    if (formData[index].id == id){
-        totla_price -= parseFloat(formData[index].specNum) * parseFloat(formData[index].spec_price)
-        if (!r.test(totla_price)) {
-          // if (totla_price.toString().split(".")[1].length > 3) {
-            totla_price = parseFloat(totla_price.toFixed(2))
-          // }
-        }
-        // console.log(totla_price)
-        delete formData[index]
-        delete getdata[index]
-      }
-    var ForData={}
-    ForData.content = { 'shoppingCartIds':[id]}
-    wx.request({
-      url: javaApi + 'api/goods/shopping/remove',
-      method: "POST",
-      data: ForData,
-      header: {
-        'content-type': 'application/json',
-        "Cookie": JSESSIONID
-      },
-      success: function (res) {
-           if (res.data.code == 1000){
-             that.setData({
-               formData: formData,
-               getdata: getdata,
-               totla_price: totla_price
-             })
-             wx.hideLoading()
-           }
-      }
-      })
+
+
+})
+
+/**
+ * 获取购物车列表
+ */
+function getGoodsShoppingList(channelId) {
+  var getShoppingListRequest = {
+    pageSize: 1000,
+    pageNumber: 1,
+    content: { channelId: channelId }
   }
-  
-})  
+  var getShoppingListCallBack = {
+    success: function (data, res) {
+      shoppingList = data.content
+      var userId = wx.getStorageSync(storageKey.PLATFORM_USER_ID)
+      var goodsId = ''
+      var channelId = ''
+      var goodsSpecId = ''
+      var packageId = ''
+      var packageSpecId = ''
+      for (var i in shoppingList) {
+        if (i == 0) {
+          if (shoppingList[i]['isPackage'] == 0) {
+            goodsId += shoppingList[i]['goodsId'] + ','
+            channelId += shoppingList[i]['channelId'] + ','
+            goodsSpecId += shoppingList[i]['goodsSpecId'] + ','
+          }
+          if (shoppingList[i]['isPackage'] == 1) {
+            packageSpecId += shoppingList[i]['goodsSpecId'] + ','
+            packageId += shoppingList[i]['goodsId'] + ','
+            channelId += shoppingList[i]['channelId'] + ','
+          }
+
+        } else {
+          if (shoppingList[i]['isPackage'] == 0) {
+            goodsId += shoppingList[i]['goodsId'] + ','
+            channelId += shoppingList[i]['channelId'] + ','
+            goodsSpecId += shoppingList[i]['goodsSpecId'] + ','
+          }
+          if (shoppingList[i]['isPackage'] == 1) {
+            packageSpecId += shoppingList[i]['goodsSpecId'] + ','
+            packageId += shoppingList[i]['goodsId'] + ','
+            channelId += shoppingList[i]['channelId'] + ','
+          }
+        }
+      }
+      var str = new Object();
+      str.goodsId = goodsId
+      str.channelId = channelId
+      str.goodsSpecId = goodsSpecId
+      str.packageSpecId = packageSpecId
+      str.packageId = packageId
+      str.userId = userId
+      findListGoodsDetails(str)
+    },
+    fail: function () {
+      toastUtil.showToast("获取列表失败");
+    }
+  }
+  goodsHttp.getGoodsShoppingList(getShoppingListRequest, getShoppingListCallBack);
+}
+
+
+/**
+ * 获取列表商品详情
+ */
+function findListGoodsDetails(requestData) {
+  var findListGoodsDetailsCallBack = {
+    success: function (data, res) {
+      var goodsDetailsList = res.data.list
+      var class_name = res.data.class_name
+      var totla_price = 0
+      var formData = []
+      for (var j in goodsDetailsList) {
+        for (var i in shoppingList) {
+          if ((shoppingList[i].goodsId == parseInt(goodsDetailsList[j].goods_id)
+            && shoppingList[i].goodsSpecId == parseInt(goodsDetailsList[j].spec_id)
+            && shoppingList[i].channelId == parseInt(goodsDetailsList[j].channel_id))
+            || (shoppingList[i].goodsId == parseInt(goodsDetailsList[j].package_id)
+              && shoppingList[i].goodsSpecId == parseInt(goodsDetailsList[j].spec_id)
+              && shoppingList[i].channelId == parseInt(goodsDetailsList[j].channel_id))) {
+            goodsDetailsList[j].id = shoppingList[i].id
+            goodsDetailsList[j].specNum = shoppingList[i].specNum
+            totla_price += parseInt(shoppingList[i].specNum) * parseFloat(goodsDetailsList[j].spec_price)
+            goodsDetailsList[j].isSelect = true;
+            formData.push(goodsDetailsList[j])
+          }
+        }
+      }
+      //分类名称
+      wx.setStorageSync('class_name', class_name)
+      //缓存购物车列表
+      wx.setStorageSync('getdatalist', formData)
+      content.setData({
+        class_name: class_name,
+        formData: formData
+      })
+      changPrice();
+    },
+    fail: function () {
+      toastUtil.showToast("获取列表失败");
+    }
+  }
+  goodsPHPHttp.findGoodsDetails(requestData, findListGoodsDetailsCallBack);
+}
+
+/**
+ * 修改购物车商品数量
+ */
+function updateShoppingCartGoodsNumber(shoppingId, goodsNumber) {
+  if (!shoppingId || !goodsNumber) {
+    toastUtil.showToast("数据错误");
+    return
+  }
+  if (isNaN(goodsNumber)) {
+    toastUtil.showToast("数量格式错误");
+    return;
+  }
+  if (goodsNumber <= 0) {
+    toastUtil.showToast("数量小于1");
+    return
+  }
+  var upShoppingCartRequest = {
+    id: shoppingId,
+    specNum: goodsNumber
+  }
+  var upShoppingCartCallBack = {
+    success: function (data, res) {
+      var formData = content.data.formData;
+      for (var i in formData) {
+        if (formData[i].id == shoppingId) {
+          formData[i].specNum = goodsNumber;
+        }
+      }
+      content.setData({
+        formData: formData
+      })
+      changPrice();
+    },
+    fail: function (data, res) {
+      toastUtil.showToast("更改数量失败");
+    }
+  }
+  goodsHttp.upShopingCartNum(upShoppingCartRequest, upShoppingCartCallBack);
+}
+
+/**
+ * 删除购物车商品
+ */
+function removeShoppingCartGoods(shoppingId, index) {
+  var removeRequest = {
+    shoppingCartIds: [shoppingId]
+  }
+  var removeCallBack = {
+    success: function (data, res) {
+      var formData = content.data.formData;
+      delete formData[index]
+      content.setData({
+        formData: formData
+      })
+      changPrice();
+    },
+    fail: function (data, res) {
+      toastUtil.showToast("删除失败");
+    }
+  }
+  goodsHttp.removeShoppingCartGoods(removeRequest, removeCallBack);
+}
+
+/**
+  * 改变价钱
+  */
+function changPrice() {
+  var totalPrice = 0;
+  var formData = content.data.formData;
+  for (var i in formData) {
+    if (formData[i].isSelect)
+      totalPrice += (formData[i].specNum * formData[i].spec_price);
+  }
+  content.setData({
+    totla_price: totalPrice
+  })
+}

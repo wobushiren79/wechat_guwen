@@ -80,9 +80,9 @@
         </view>
       </view>
 
-      <view class='index'>
+      <!-- <view class='index'>
         <navigator url='../index/index' open-type='reLaunch'>返回首页</navigator>
-      </view>
+      </view> -->
 
 
 

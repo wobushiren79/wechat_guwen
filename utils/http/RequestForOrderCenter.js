@@ -12,7 +12,7 @@ function loginOrderCenter(data, callback) {
  * 创建工单
  */
 function createOrder(data, callback) {
-  baseRequest.sendPostHttpForForm(baseUrl + "api/workorder/create", data, callback, true)
+  baseRequest.sendPostHttpForContent(baseUrl + "api/workorder/create", data, callback, true)
 }
 
 module.exports.loginOrderCenter = loginOrderCenter;

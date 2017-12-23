@@ -48,7 +48,7 @@ function findGoodsInfo(data, callback) {
  * 微信支付
  */
 function wechatPay(data, callback) {
-  baseRequest.sendPostHttpForForm(baseUrl + "api/Weixing/Ctoken", data, callback, true)
+  baseRequest.sendPostHttpForForm(baseUrl + "api/Weixing/token_code", data, callback, true)
 }
 
 /**
@@ -105,6 +105,20 @@ function searchGoods(data, callback) {
   baseRequest.sendPostHttpForForm(baseUrl + "api/Goods/goods", data, callback, true)
 }
 
+/**
+ * 获取分类属性下商品
+ */
+function searchGoodsByName(data, callback) {
+  baseRequest.sendPostHttpForForm(baseUrl + "api/Search/search", data, callback, true)
+}
+
+/**
+ * 获取分类属性下商品
+ */
+function getAdvistorStores(data, callback) {
+  baseRequest.sendPostHttpForForm(baseUrl + "api/Stores/StoresShop", data, callback, true)
+}
+
 module.exports.findAdviserStoreList = findAdviserStoreList;
 module.exports.findStoreInfoByStoreId = findStoreInfoByStoreId;
 module.exports.findStoreGoodsClass = findStoreGoodsClass;
@@ -120,3 +134,5 @@ module.exports.getLabelGoods = getLabelGoods;
 module.exports.getGoodsClass = getGoodsClass;
 module.exports.getClassAttrGoods = getClassAttrGoods;
 module.exports.searchGoods = searchGoods;
+module.exports.searchGoodsByName = searchGoodsByName;
+module.exports.getAdvistorStores = getAdvistorStores;

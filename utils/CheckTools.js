@@ -8,4 +8,13 @@ function checkMobile(sMobile) {
   }
 }
 
+//判断字符串是否为数字
+function checkRate(input) {
+  var re = /^[0-9]+.?[0-9]*$/;
+  if (!re.test(input)) {
+    return false;
+  }
+  return true;
+}
 module.exports.checkMobile = checkMobile;
+module.exports.checkRate = checkRate;

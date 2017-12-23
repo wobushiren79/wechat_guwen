@@ -24,10 +24,8 @@
           <navigator url="../service_goods_address/service_goods_address">
             <view class="hide clearfix">
               <image src="../../images/icon_money_my.png" class="img "></image>
-
               <!-- 信息 -->
               <view class="info clearfix ">
-
                 <!-- 姓名 -->
                 <view class="title ">
                   客户：
@@ -35,18 +33,18 @@
                   <text class="phone ">{{kehu.contactPhone}}</text>
                 </view>
                 <view class="content ">
-
                   <!-- 地址 -->
                   <view class=" ">
                     地址：
                     <text>{{kehu.serviceLocation}}</text>
                   </view>
-
                   <!-- 服务时间 -->
-                  <view class=" ">
-                    服务时间：
-                    <text>{{kehu.bookTime}}</text>
-                  </view>
+                  <block wx:if="{{kehu.bookTime}}">
+                    <view class=" ">
+                      服务时间：
+                      <text>{{kehu.bookTime}}</text>
+                    </view>
+                  </block>
                 </view>
               </view>
               <image src="../../images/right.png " class="icon "></image>
@@ -96,64 +94,64 @@
               </view>
 
               <block wx:for="{{formData}}" wx:for-item="ite" wx:if="{{ite.class_name == item}}">
-              <block wx:if="{{ite.is_package == 0}}">
-                <view class="group_item clearfix">
-                  <view class="checkbox_wrap">
-                    <checkbox value="value" checked="" />
-                  </view>
-                  <view class="img_wrap">
-                    <image src="{{ite.title_img}}"></image>
-                  </view>
-                  <view class="info show">
-                    <view class="name aui-ellipsis-2">
-                      <text>{{ite.goods_name}}</text>\r\n
-                      <text>{{ite.goods_slogan}}</text>
+                <block wx:if="{{ite.is_package == 0}}">
+                  <view class="group_item clearfix">
+                    <view class="checkbox_wrap">
+                      <checkbox value="value" checked="" />
                     </view>
-                    <view class="size">
-                      <text>{{ite.spec_alias}}</text>：
-                      <text>{{ite.spec_name}}</text>
+                    <view class="img_wrap">
+                      <image src="{{ite.title_img}}"></image>
                     </view>
-                    <view class="money">
-                      ￥
-                      <text>{{ite.spec_price}}</text>
-                    </view>
-                    <view class="num">
-                      {{ite.specNum}}{{ite.unit}}
-                    </view>
-                  </view>
-                </view>
-              </block>
-              <block wx:if="{{ite.is_package == 1}}">
-              <navigator url="../service_goods_pay_goodslist/service_goods_pay_goodslist?id={{ite.id}}">
-                <view class="group_item clearfix">
-                  <view class="checkbox_wrap">
-                    <checkbox value="value" checked="" />
-                  </view>
-                  <view class="img_wrap">
-                    <image src="{{ite.title_img}}"></image>
-                                            <!-- 套餐IQ -->
-            <image src='../../images/ispackage.png' class='ispackage' style='width: 100rpx;height: 50rpx;'></image>
-                  </view>
-                  <view class="info show">
-                    <view class="name aui-ellipsis-2">
-                      <text>{{ite.package_name}}</text>\r\n
-                      <text>{{ite.package_slogan}}</text>
-                    </view>
-                    <view class="size">
-                      <text>{{ite.spec_alias}}</text>：
-                      <text>{{ite.spec_name}}</text>
-                    </view>
-                    <view class="money">
-                      ￥
-                      <text>{{ite.spec_price}}</text>
-                    </view>
-                    <view class="num">
-                      {{ite.specNum}}{{ite.unit}}
+                    <view class="info show">
+                      <view class="name aui-ellipsis-2">
+                        <text>{{ite.goods_name}}</text>\r\n
+                        <text>{{ite.goods_slogan}}</text>
+                      </view>
+                      <view class="size">
+                        <text>{{ite.spec_alias}}</text>：
+                        <text>{{ite.spec_name}}</text>
+                      </view>
+                      <view class="money">
+                        ￥
+                        <text>{{ite.spec_price}}</text>
+                      </view>
+                      <view class="num">
+                        {{ite.specNum}}{{ite.unit}}
+                      </view>
                     </view>
                   </view>
-                </view>
-                </navigator>
-              </block>
+                </block>
+                <block wx:if="{{ite.is_package == 1}}">
+                  <navigator url="../service_goods_pay_goodslist/service_goods_pay_goodslist?id={{ite.id}}">
+                    <view class="group_item clearfix">
+                      <view class="checkbox_wrap">
+                        <checkbox value="value" checked="" />
+                      </view>
+                      <view class="img_wrap">
+                        <image src="{{ite.title_img}}"></image>
+                        <!-- 套餐IQ -->
+                        <image src='../../images/ispackage.png' class='ispackage' style='width: 100rpx;height: 50rpx;'></image>
+                      </view>
+                      <view class="info show">
+                        <view class="name aui-ellipsis-2">
+                          <text>{{ite.package_name}}</text>\r\n
+                          <text>{{ite.package_slogan}}</text>
+                        </view>
+                        <view class="size">
+                          <text>{{ite.spec_alias}}</text>：
+                          <text>{{ite.spec_name}}</text>
+                        </view>
+                        <view class="money">
+                          ￥
+                          <text>{{ite.spec_price}}</text>
+                        </view>
+                        <view class="num">
+                          {{ite.specNum}}{{ite.unit}}
+                        </view>
+                      </view>
+                    </view>
+                  </navigator>
+                </block>
               </block>
             </view>
           </black>
@@ -179,14 +177,16 @@
             </view>
           </navigator>
           <black wx:if="{{xuyao == '需要发票'}}">
-            <view class="dt">
-              <view class="header ">
-                抬头
+            <block wx:for="{{invoiceInfo}}">
+              <view class="dt">
+                <view class="header ">
+                  {{item.name}}
+                </view>
+                <view class="footer ">
+                  {{item.content}}
+                </view>
               </view>
-              <view class="footer ">
-                {{fapiao.title != ''?fapiao.title:'个人'}}
-              </view>
-            </view>
+            </block>
           </black>
           <view class="dd ">
             <view class="header ">
@@ -211,39 +211,38 @@
       <!-- 固定底部 star -->
       <view class="footerfix clearfix">
 
-        <view class="home">
-          
+        <!-- <view class="home">
           <navigator url="../index/index" open-type="switchTab"><image src="../../images/right.png"></image>首页</navigator>
-        </view>
+        </view> -->
 
         <!-- 合计 -->
         <block wx:if="{{!levelId}}">
-        <view class="count" bindlongtap="price">
-          <black wx:if="{{price}}">
-            应付圆满金额：
+          <view class="count" bindlongtap="price">
+            <black wx:if="{{price}}">
+              应付圆满金额：
 
-            <text>￥</text>
-            <text>{{dviser_Price}}</text>
-          </black>
-          <black wx:else>
-            客户支付金额:
-            <text>￥</text>
-            <text>{{totla_price}}</text>
-          </black>
+              <text>￥</text>
+              <text>{{dviser_Price}}</text>
+            </black>
+            <black wx:else>
+              客户支付金额:
+              <text>￥</text>
+              <text>{{totla_price}}</text>
+            </black>
 
-        </view>
+          </view>
         </block>
         <block wx:else>
-        <view class="count" >
+          <view class="count">
             客户支付金额:
             <text>￥</text>
             <text>{{totla_price}}</text>
-        </view>
+          </view>
         </block>
         <!-- 直接购买 -->
         <button class="buy" form-type="submit">
-        下一步
-      </button>
+          下一步
+        </button>
       </view>
       <!-- 固定底部 end -->
 
