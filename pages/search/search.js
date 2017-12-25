@@ -9,13 +9,12 @@ Page({
   },
   onLoad: function () {
     content = this;
-    var that = this
     // 取出渠道信息
     wx.getStorage({
       key: storageKey.GOODS_CHANNEL,
       success: function (res) {
         // console.log(res.data.id)
-        that.setData({
+        content.setData({
           channel_id: res.data.id
         })
       }

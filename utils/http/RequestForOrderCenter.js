@@ -50,6 +50,26 @@ function createCarOrder(data, callback) {
   baseRequest.sendPostHttpForContent(baseUrl + "api/car/create", data, callback, true)
 }
 
+/**
+ * 获取订单详情
+ */
+function getOrderDetails(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/workorder/details", data, callback, true)
+}
+
+/**
+ * 获取用车列表
+ */
+function getCarList(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/car/list", data, callback, true)
+}
+/**
+ * 获取用车详情
+ */
+function getCarDetails(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/car/details", data, callback, true)
+}
+
 module.exports.loginOrderCenter = loginOrderCenter;
 module.exports.createOrder = createOrder;
 module.exports.getOrderList = getOrderList;
@@ -57,3 +77,6 @@ module.exports.acceptOrder = acceptOrder;
 module.exports.dealOrder = dealOrder;
 module.exports.getCarInfo = getCarInfo;
 module.exports.createCarOrder = createCarOrder;
+module.exports.getOrderDetails = getOrderDetails;
+module.exports.getCarList = getCarList;
+module.exports.getCarDetails = getCarDetails;

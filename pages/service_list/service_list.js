@@ -19,6 +19,9 @@ Page({
     var classAttId = e.id;
     var channelId = wx.getStorageSync(storageKey.GOODS_CHANNEL);
 
+    content.setData({
+      channel_id: channelId
+    })
     pageUtil.initData();
     searchGoods(orderBy, channelId.id, classAttId);
   },
@@ -75,7 +78,7 @@ Page({
     pageUtil.initData();
     searchGoods(orderBy, channelId, classAttId, goodsName);
   },
-  
+
   //下拉添加记录条数
   onReachBottom() {
     var orderBy = content.data.order
@@ -95,7 +98,7 @@ function searchGoods(orderBy, channelId, classAttrId, goodsName) {
   searchGoodsRequest.channel_id = channelId;
   searchGoodsRequest.order = orderBy;
   searchGoodsRequest.id = classAttrId;
-  if (goodsName&&goodsName.length>0)
+  if (goodsName && goodsName.length > 0)
     searchGoodsRequest.goods_name = goodsName;
 
   var searchGoodsCallBack = pageUtil.getPageCallBack(

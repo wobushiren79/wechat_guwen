@@ -1,6 +1,12 @@
+var orderCenterHttp = require("../../../utils/http/RequestForOrderCenter.js")
+var toastUtil = require("../../../utils/ToastUtil.js");
+var pageUtil = require("../../../utils/PageUtil.js");
+var checkTools = require("../../../utils/CheckTools.js")
+var content;
+
 Page({
   data: {
-    popup_img:false
+    popup_img: false
 
   },
   tel: function (e) {
@@ -12,7 +18,7 @@ Page({
       },
     })
   },
-  bind_popup_img:function(e){
+  bind_popup_img: function (e) {
     var imgurl = e.currentTarget.dataset.imgurl
     this.setData({
       popup_img: true,
@@ -24,74 +30,35 @@ Page({
       popup_img: false
     })
   },
-  onLoad:function(e){
-    var that = this
-    wx.showLoading({
-      title: '请稍后',
-      mask: true,
-    })
-    var orderCenterUrl = getApp().globalData.orderCenterUrl
-    var get_content = {}
-    var content = {}
-    content.orderId = e.orderId
-    get_content.content = content
-    //取出单项登录权限
-    wx.getStorage({
-      key: 'orderCenter',
-      success: function (res) {
-        var orderCenter = res.data
-        wx.request({
-          url: orderCenterUrl + 'api/workorder/details',
-          data: get_content,
-          header: {
-            'content-type': 'application/json',
-            "Cookie": orderCenter
-          },
-          method: 'POST',
-          dataType: 'json',
-          success: function (opt) {
-            // console.log(opt.data.content.listPerformRecord)
-            // 组装处理图片地址
-            var get_data=[]
-            for (var i in opt.data.content.listPerformRecord){
-              get_data.push(opt.data.content.listPerformRecord[i].performPic.split(","))
-            }
-            //组装审核图片地址
-            // var bet_data=[]
-            // for (var i in opt.data.content.listPerformRecord) {
-            //   get_data.push(opt.data.content.listPerformRecord[i].performPic.split(","))
-            // }
-            if (opt.data.code == 1000) {
-                that.setData({
-                  content: opt.data.content,
-                  get_data: get_data,
-                  orderId: e.orderId
-                })
-              wx.hideLoading()
-            } else {
-              wx.hideLoading()
-              wx.showModal({
-                title: opt.data.message,
-                content: '是否返回重新登录',
-                success: function (res) {
-                  if (res.confirm) {
-                    wx.reLaunch({
-                      url: '../../login/login',
-                    })
-                  } else if (res.cancel) {
 
-                  }
-                }
-              })
-            }
-          },
-          fail: function (res) {
-            wx.reLaunch({
-              url: '../../login/login',
-            })
-          },
-        })
-      }
-    })
+  onLoad: function (e) {
+    content = this;
+    getOrderDetails(e.orderId)
   }
 });
+
+/**
+ * 获取工单详情
+ */
+function getOrderDetails(orderId) {
+  var getRequest = {
+    orderId: orderId
+  }
+  var getCallBack = {
+    success: function (data, res) {
+      var get_data = []
+      for (var i in data.listPerformRecord) {
+        get_data.push(data.listPerformRecord[i].performPic.split(","))
+      }
+      content.setData({
+        content: data,
+        get_data: get_data,
+        orderId: orderId
+      })
+    },
+    fail: function (data, res) {
+      toastUtil.showToast("获取详情失败");
+    }
+  }
+  orderCenterHttp.getOrderDetails(getRequest, getCallBack);
+}

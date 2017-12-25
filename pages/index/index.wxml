@@ -227,7 +227,7 @@
         <view class="tab_content">
           <view class="ul">
             <block wx:for="{{label_data}}">
-              <navigator url="../service_content/service_content?goods_id={{item.id}}" class="li">
+              <navigator url="../service_content/service_content?goods_id={{item.id}}&channel_id={{channel_id}}" class="li">
                 <image class="li_img" src="{{item.title_img}}"></image>
                 <view class="li_content">
                   <view class="title aui-ellipsis-2">

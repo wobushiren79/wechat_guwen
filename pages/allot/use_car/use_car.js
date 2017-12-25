@@ -70,27 +70,20 @@ Page({
     })
   },
   formSubmit: function (e) {
-    var that = this
-    wx.showLoading({
-      title: '请稍后',
-      mask: true
-    })
     var r = /^\+?[1-9][0-9]*$/;　　//正整数 
-    var orderCenterUrl = getApp().globalData.orderCenterUrl
-    // console.log(e.detail.value)
     var ContentData = {}
-    ContentData.busiId = that.data.orderId
+    ContentData.busiId = content.data.orderId
     ContentData.seats = e.detail.value.seats
     // get_data.proposerName = e.detail.value.proposerName
     // get_data.proposerMobile = e.detail.value.proposerMobile
     ContentData.connecterName = e.detail.value.connecterName
     ContentData.connecterMobile = e.detail.value.connecterMobile
     ContentData.remark = e.detail.value.remark
-    if (that.data.date && that.data.time){
-      ContentData.preDate = that.data.date + ' ' + that.data.time + ':00'
+    if (content.data.date && content.data.time){
+      ContentData.preDate = content.data.date + ' ' + content.data.time + ':00'
     }
     ContentData.location = e.detail.value.location
-    ContentData.reason = that.data.ChatList[that.data.businessType_chat]
+    ContentData.reason = content.data.ChatList[content.data.businessType_chat]
     ContentData.targetLocation = e.detail.value.targetLocation
 
     createCarOrder(ContentData);
@@ -153,13 +146,14 @@ function getCarInfo(orderId) {
       if (data.isCanCreate == 1) {
         if (data.listCarApplyLog.length > 0) {
           content.setData({
-            web_data: data.listCarApplyLog[0]
+            web_data: data.listCarApplyLog[0],
+            orderId: orderId
           })
         } else {
           wx.hideLoading()
           content.setData({
             web_data: false,
-            orderId: e.orderId
+            orderId: orderId
           })
         }
       } else {
@@ -208,7 +202,6 @@ function createCarOrder(createRequst) {
     toastUtil.showToast("没有目的地")
     return
   }
-
   var createCallBack = {
     success: function (data, res) {
       wx.navigateBack({
@@ -219,5 +212,5 @@ function createCarOrder(createRequst) {
       toastUtil.showToast("创建失败");
     }
   }
-  // orderCenterHttp.getCarInfo(createCarOrder, getCallBack)
+  orderCenterHttp.createCarOrder(createRequst, createCallBack)
 }

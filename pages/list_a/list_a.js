@@ -1,3 +1,7 @@
+var cemeteryHttp = require("../../utils/http/RequestForCemetery.js");
+var toastUtil = require("../../utils/ToastUtil.js");
+var pageUtil = require("../../utils/PageUtil.js")
+var content;
 Page({
     data: {
 
@@ -54,222 +58,34 @@ Page({
         }
       })
     },
-    //上拉刷新
-    onPullDownRefresh() {
-      var that = this
-      var GmUrl = getApp().globalData.GmUrl
-      var unm = that.data.pageNum
-      var size = that.data.pageSize
-      var PageNums = { content: { "pageNum": unm, "pageSize": size } }
-      var PageNum = JSON.stringify(PageNums)
-      wx.showNavigationBarLoading() //在标题栏中显示加载
-      wx.setNavigationBarTitle({
-        title: '刷新中!请稍后'
-      })
-      this.setData({
-        // pageSize:this.data.pageSize+2,
-        hidden: true
-      })
-
-      // 取出緩存登錄信息
-      wx.getStorage({
-        key: 'Gmlogin',
-        success: function (res) {
-          //  console.log(res.data)
-          //console.log(PageNum)
-          wx.request({
-            // url: GmUrl + 'marketing/bespeak/build/list',
-            url: GmUrl + "marketing/bespeak/build/list/look",
-            
-            method: "POST",
-            data: PageNum,
-            header: {
-             'content-type': 'application/json',
-              "Cookie": "JSESSIONID=" + res.data.content.sessionId
-            },
-            success: function (res) {
-              if (res.data.code == 1000) {
-                var TalkData = res.data.content.list
-                // console.log(TalkData)
-                var Length = TalkData.length
-                if (TalkData.length == size) {
-                  that.setData({
-                    gmList: TalkData,
-                    Length: Length,
-                  })
-                } else {
-                  that.setData({
-                    gmList: TalkData,
-                    Length: Length,
-                    xianshi: true
-                  })
-                }
-              } else {
-                wx.showToast({
-                  title: res.data.message,
-                  image: '../../images/icon_info.png',
-                  duration: 3000
-                })
-              }
-            },
-            complete: function () {
-              that.setData({
-                hidden: false
-              })
-              wx.setNavigationBarTitle({
-                title: '圆满公墓'
-              })
-              wx.hideNavigationBarLoading() //完成停止加载
-              wx.stopPullDownRefresh() //停止下拉刷新
-            }
-          })
-        }
-      })
-    },
+ 
     //下拉添加记录条数
     onReachBottom() {
-      //console.log('--------下拉刷新-------')
-      wx.showNavigationBarLoading() //在标题栏中显示加载
-      wx.setNavigationBarTitle({
-        title: '加载中!请稍后'
-      })
-
-      this.setData({
-        pageSize: this.data.pageSize + 2,
-        hidden: true
-      })
-      var unm = this.data.pageNum
-      var size = this.data.pageSize
-      var GmUrl = getApp().globalData.GmUrl
-      var PageNums = { content: { "pageNum": unm, "pageSize": size } }
-      var PageNum = JSON.stringify(PageNums)
-      var that = this
-      // 取出緩存登錄信息
-      wx.getStorage({
-        key: 'Gmlogin',
-        success: function (res) {
-          //  console.log(res.data)
-          //console.log(PageNum)
-          wx.request({
-            // url: GmUrl + 'marketing/bespeak/build/list',
-            url: GmUrl + "marketing/bespeak/build/list/look",
-            method: "POST",
-            data: PageNum,
-            header: {
-             'content-type': 'application/json',
-              "Cookie": "JSESSIONID=" + res.data.content.sessionId
-            },
-            success: function (res) {
-
-              if (res.data.code == 1000) {
-                var TalkData = res.data.content.list
-                //console.log(TalkData)
-                var Length = TalkData.length
-                if (TalkData.length == size) {
-                  that.setData({
-                    gmList: TalkData,
-                    Length: Length,
-                  })
-                } else {
-                  that.setData({
-                    gmList: TalkData,
-                    Length: Length,
-                    xianshi: true
-                  })
-                }
-              } else {
-                wx.showToast({
-                  title: res.data.message,
-                  image: '../../images/icon_info.png',
-                  duration: 3000
-                })
-              }
-            },
-            complete: function () {
-              that.setData({
-                hidden: false
-              })
-              wx.setNavigationBarTitle({
-                title: '圆满公墓'
-              })
-              wx.hideNavigationBarLoading() //完成停止加载
-              wx.stopPullDownRefresh() //停止下拉刷新
-            }
-          })
-        }
-      })
+      getOrderListForLook();
+    },
+    onShow:function(){
+      pageUtil.initData();
+      getOrderListForLook();
     },
     onLoad: function () {
-      var that = this
-      var unm = that.data.pageNum
-      var size = that.data.pageSize
-      var PageNums = { content: { "pageNum": unm, "pageSize": size } }
-      var PageNum = JSON.stringify(PageNums)
-      var GmUrl = getApp().globalData.GmUrl
-      //var Contentdata = { content: { dictCode: 'consultTrafficWay' } }
-     // var ContentData = JSON.stringify(Contentdata)
-      //请求字典接口和公墓接口
-      wx.getStorage({
-        key: 'Gmlogin',
-        success: function (res) {
-          //查询公墓接口
-          wx.request({
-            // url: GmUrl + 'marketing/bespeak/build/list',
-            url: GmUrl + "marketing/bespeak/build/list/look",
-            method: "POST",
-            data: PageNum,
-
-            header: {
-             'content-type': 'application/json',
-              "Cookie": "JSESSIONID=" + res.data.content.sessionId
-            },
-            success: function (res) {
-              // console.log(res)
-              if (res.data.code == 1000) {
-                var gmList = res.data.content.list
-                // console.log(gmList)
-                  var Length = gmList.length
-                  if (gmList.length == size) {
-                    that.setData({
-                      gmList: gmList,
-                      Length: Length
-                    })
-                  } else {
-                    that.setData({
-                      gmList: gmList,
-                      Length: Length,
-                      xianshi: true
-                    })
-                  }
-
-              }
-            }
-          })
-        },
-        fail:function(res){
-          wx.showModal({
-            title: '友情提示',
-            content: '您还没有公墓洽谈权限',
-            success: function (res) {
-              if (res.confirm) {
-                // //頁面跳轉
-                wx.switchTab({
-                  url: '../index/index',
-                })
-              } else if (res.cancel) {
-                // //頁面跳轉
-                wx.switchTab({
-                  url: '../index/index',
-                })
-              }
-            }
-          })
-        },
-
-
-
-
-
-      })
+     content=this
     }
 });
+
+
+function getOrderListForLook(){
+  var getListRequest = pageUtil.getPageData();
+
+  var getListCallBack = pageUtil.getPageCallBack(
+    function (data, res) {
+      content.setData({
+        gmList: data,
+        Length: data.length
+      })
+    },
+    function (data, res) {
+      toastUtil.showToast("获取列表失败");
+    }
+  )
+  cemeteryHttp.orderListForLook(getListRequest, getListCallBack);
+}

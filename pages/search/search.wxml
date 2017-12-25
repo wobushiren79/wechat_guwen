@@ -15,7 +15,7 @@
       <view class="ul">
 <block wx:for="{{search_data}}">
 <block wx:if="{{item.is_package == 0}}">
-        <navigator url="../service_content/service_content?goods_id={{item.id}}" class="li">
+        <navigator url="../service_content/service_content?goods_id={{item.id}}&channel_id={{channel_id}}" class="li">
           <image class="li_img" src="{{item.title_img}}"></image>
           <view class="li_content">
             <view class="title aui-ellipsis-1">
@@ -36,7 +36,7 @@
         </navigator>
 </block>
 <block wx:if="{{item.is_package == 1}}">
-        <navigator url="../service_content/service_content?package_id={{item.id}}" class="li">
+        <navigator url="../service_content/service_content?package_id={{item.id}}&channel_id={{channel_id}}" class="li">
           <image class="li_img" src="{{item.title_img}}"></image>
             <!-- 套餐IQ -->
           <image src='../../images/ispackage.png' class='ispackage'></image>

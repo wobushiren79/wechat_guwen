@@ -97,14 +97,14 @@
 
     <!-- 适用信息 star -->
     <block wx:if="{{list.is_package  == 1}}">
-    <view class="useinfo">
-      <view class="dl">
-        <navigator class="dt" url='../service_goods_list/service_goods_list'>套餐规格商品详情列表
-          <image src='../../images/right.png' class='icon'></image>
-        </navigator>
+      <view class="useinfo">
+        <view class="dl">
+          <navigator class="dt" url='../service_goods_list/service_goods_list'>套餐规格商品详情列表
+            <image src='../../images/right.png' class='icon'></image>
+          </navigator>
 
+        </view>
       </view>
-    </view>
     </block>
     <!-- 适用信息 end-->
 
@@ -162,40 +162,42 @@
 
 
     <!-- 固定底部 star -->
-    <view class="footerfix clearfix">
-      <!-- 客服 -->
-      <!--<button class="server" open-type="contact" session-from="wechat" bindtap="contact">
+    <block wx:if="{{isShow}}">
+      <view class="footerfix clearfix">
+        <!-- 客服 -->
+        <!--<button class="server" open-type="contact" session-from="wechat" bindtap="contact">
         <image src="../../images/icon_server.png"></image>
         <text>客服</text>
       </button>-->
-      
-      <view class="server">
-        <image src="../../images/icon_server.png"></image>
-        <text>客服</text>
-      </view>
-      <contact-button size="20" session-from="WeChat">
-      </contact-button>
 
-      <!-- 购物车 -->
-      <view class="shop" bindtap="cartlist">
-        <image src="../../images/icon_shop.png"></image>
-        <text>服务车</text>
-        <black wx:if="{{shoppingTotalNumber>0}}">
-          <text class="num" wx:if="{{shoppingTotalNumber >99}}">99+</text>
-          <text class="num" wx:else>{{shoppingTotalNumber}}</text>
+        <view class="server">
+          <image src="../../images/icon_server.png"></image>
+          <text>客服</text>
+        </view>
+        <contact-button size="20" session-from="WeChat">
+        </contact-button>
+
+        <!-- 购物车 -->
+        <view class="shop" bindtap="cartlist">
+          <image src="../../images/icon_shop.png"></image>
+          <text>服务车</text>
+          <black wx:if="{{shoppingTotalNumber>0}}">
+            <text class="num" wx:if="{{shoppingTotalNumber >99}}">99+</text>
+            <text class="num" wx:else>{{shoppingTotalNumber}}</text>
+          </black>
+        </view>
+        <black wx:if="{{chatxian}}">
+          <!-- 加入购物车 -->
+          <view class="shopping" bindtap="cart">
+            加入服务车
+          </view>
+          <!-- 直接购买 -->
+          <view class="buy" bindtap="purchase">
+            直接购买
+          </view>
         </black>
       </view>
-      <black wx:if="{{chatxian}}">
-        <!-- 加入购物车 -->
-        <view class="shopping" bindtap="cart">
-          加入服务车
-        </view>
-        <!-- 直接购买 -->
-        <view class="buy" bindtap="purchase">
-          直接购买
-        </view>
-      </black>
-    </view>
+    </block>
     <!-- 固定底部 end -->
 
     <black wx:if="{{popup}}">

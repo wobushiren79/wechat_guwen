@@ -2,7 +2,8 @@ var pageSizeValue = 4;
 
 var pageData = {
   pageSize: pageSizeValue,
-  pageNumber: 1
+  pageNumber: 1,
+  pageNum: 1
 }
 var listData = new Array();
 
@@ -10,9 +11,10 @@ var listData = new Array();
  * 初始化数据
  */
 function initData() {
-  pageData={
+  pageData = {
     pageSize: pageSizeValue,
-    pageNumber: 1
+    pageNumber: 1,
+    pageNum: 1
   }
   listData = new Array();
   onePage();
@@ -48,12 +50,24 @@ function getPageCallBack(dataSuccess, dataFail) {
           }
           nextPage();
         } else {
-          //php 后台page类型处理
-          if (!data.length || data.length == 0) {
-            isLast = true;
-          } else {
-            setListaData(data);
+          if (data.list) {
+            //java 后台page类型处理
+            if (data.pages == data.pageNum || data.pageNum == 0) {
+              isLast = true;
+            }
+            pageData.pageNum = data.pageNum;
+            if (data.total > listData.length) {
+              setListaData(data.list);
+            }
             nextPage();
+          } else {
+            //php 后台page类型处理
+            if (!data.length || data.length == 0) {
+              isLast = true;
+            } else {
+              setListaData(data);
+              nextPage();
+            }
           }
         }
       } else {
@@ -78,6 +92,7 @@ function getPageCallBack(dataSuccess, dataFail) {
  */
 function nextPage() {
   pageData.pageNumber = pageData.pageNumber + 1;
+  pageData.pageNum = pageData.pageNum + 1;
 }
 
 /**
@@ -85,6 +100,7 @@ function nextPage() {
  */
 function lastPage() {
   pageData.pageNumber = pageData.pageNumber - 1;
+  pageData.pageNum = pageData.pageNum - 1;
 }
 
 /**
@@ -92,6 +108,7 @@ function lastPage() {
  */
 function onePage() {
   pageData.pageNumber = 1
+  pageData.pageNum = 1
 }
 
 /**

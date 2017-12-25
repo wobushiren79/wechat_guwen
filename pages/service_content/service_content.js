@@ -24,14 +24,20 @@ Page({
     interval: 5000,
     // 滑动动画时间
     duration: 500,
-    userInfo: {}
+    userInfo: {},
+    isShow: false
   },
   onShareAppMessage: function () {
-    var goods_id = this.data.goods_id
+    var pathUrl = "";
+    if (goodsId) {
+      pathUrl = '/pages/service_content/service_content?goods_id=' + goodsId + "&channel_id=" + channelId
+    } else if (packageId) {
+      pathUrl = '/pages/service_content/service_content?package_id=' + goodsId + "&channel_id=" + channelId
+    }
     return {
       title: '圆满人生公共殡葬服务平台',
       // path: '/pages/service_forward/service_forward?goods_id='+goods_id,
-      path: '/pages/service_content/service_content?goods_id=' + goods_id,
+      path: pathUrl,
       success: function (res) {
         wx.showToast({
           title: '转发成功',
@@ -68,19 +74,34 @@ Page({
       }
     })
 
-    getShoppingCartNumber();
+    wx.getStorage({
+      key: storageKey.PLATFORM_RESOURCE_CODES,
+      success: function (res) {
+        if (res && res.data)
+          for (var i in res.data) {
+            if (res.data[i] == "goods.advisor" || res.data[i] == "goods.advisor.amateur") {
+              content.setData({
+                isShow: true
+              })
+              getShoppingCartNumber();
+              return
+            }
+          }
+      },
+    })
+
     getGoodsDetails(channelId, goodsId, packageId);
   },
 
   onLoad: function (e) {
     content = this;
-    channelId = wx.getStorageSync(storageKey.GOODS_CHANNEL).id;
+    // channelId = wx.getStorageSync(storageKey.GOODS_CHANNEL).id;
+    channelId = e.channel_id
     goodsId = e.goods_id
     packageId = e.package_id
   },
   popup: function () {
-    var that = this
-    that.setData({
+    content.setData({
       popup: true
     })
   },
@@ -174,9 +195,9 @@ Page({
     addGoodsShopping(requestData);
   },
 
-/**
- * 购物车列表
- */
+  /**
+   * 购物车列表
+   */
   cartlist: function () {
     //頁面跳轉
     wx.redirectTo({
@@ -280,7 +301,7 @@ function addGoodsShopping(addShoppingCartRequest) {
  */
 function getGoodsSpecDetails(detailsRequest) {
   var detailsCallBack = {
-    success: function (data,res) {
+    success: function (data, res) {
       for (var i in res.data.list) {
         res.data.list[i].specNum = goods_number
         totla_price += parseFloat(res.data.list[i].specNum) * parseFloat(res.data.list[i].spec_price)
