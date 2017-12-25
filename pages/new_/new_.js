@@ -175,10 +175,7 @@ Page({
   },
   formSubmit: function (e) {
     var that = this
-    wx.showLoading({
-      title: '请稍后',
-      mask: true
-    })
+
     // var GmUrl = getApp().globalData.GmUrl
     var orderCenterUrl = getApp().globalData.orderCenterUrl
     //console.log(e.detail.value)
@@ -215,76 +212,47 @@ Page({
     get_data.location = e.detail.value.location
     get_data.reason = that.data.ChatList[that.data.businessType_chat]
     get_data.targetLocation = e.detail.value.targetLocation
-    ContentData.carApplyLog = get_data
-    if (ContentData.contactName.length == 0 || ContentData.address == 0) {
-      wx.hideLoading()
-      wx.showToast({
-        title: '文本框必填',
-        image: '../../images/icon_info.png',
-        duration: 2000
-      })
-    } else if (ContentData.orderType == 1 && ContentData.personNum == 0) {
-      wx.hideLoading()
-      wx.showToast({
-        title: '参观人数<1',
-        image: '../../images/icon_info.png',
-        duration: 2000
-      })
-    } else if (ContentData.trafficWay == '需要派车') {
-      if (get_data.seats.length == 0) {
-        wx.showToast({
-          title: '文本框必填',
-          image: '../../images/icon_info.png',
-          duration: 2000
-        })
-      } else if (get_data.connecterName.length == 0) {
-        wx.showToast({
-          title: '文本框必填',
-          image: '../../images/icon_info.png',
-          duration: 2000
-        })
-      } else if (get_data.connecterMobile.length == 0) {
-        wx.showToast({
-          title: '文本框必填',
-          image: '../../images/icon_info.png',
-          duration: 2000
-        })
-      } else if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(get_data.connecterMobile))) {
-        wx.showToast({
-          title: '号码不正确',
-          image: '../../images/icon_info.png',
-          duration: 2000
-        })
-      } else if (get_data.preDate.length == 0) {
-        wx.showToast({
-          title: '文本框必填',
-          image: '../../images/icon_info.png',
-          duration: 2000
-        })
-      } else if (get_data.location.length == 0) {
-        wx.showToast({
-          title: '文本框必填',
-          image: '../../images/icon_info.png',
-          duration: 2000
-        })
-      } else if (get_data.reason.length == 0) {
-        wx.showToast({
-          title: '文本框必填',
-          image: '../../images/icon_info.png',
-          duration: 2000
-        })
-      } else if (get_data.targetLocation.length == 0) {
-        wx.showToast({
-          title: '文本框必填',
-          image: '../../images/icon_info.png',
-          duration: 2000
-        })
-      } else {
-        createOrder(ContentData);
-      }
-    } else {
-      createOrder(ContentData);
+
+    if (ContentData.contactName.length == 0) {
+      toastUtil.showToast("客户姓名必填")
+      return
     }
+    if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(ContentData.contactPhone))) {
+      toastUtil.showToast("电话不正确")
+      return
+    }
+    if (ContentData.appointmentTime.length == 0) {
+      toastUtil.showToast("没有服务日期")
+      return
+    }
+    if (ContentData.address.length == 0) {
+      toastUtil.showToast("没有客户地址")
+      return
+    }
+    if (ContentData.trafficWay =="需要派车") {
+      ContentData.carApplyLog = get_data
+      if (!get_data.preDate || get_data.preDate.length == 0) {
+        toastUtil.showToast("没有用车时间")
+        return
+      }
+      if (!get_data.connecterName || get_data.connecterName.length == 0) {
+        toastUtil.showToast("没有用车人")
+        return
+      }
+      if (!get_data.connecterMobile || !(/^1[3|4|5|8][0-9]\d{4,8}$/.test(get_data.connecterMobile))) {
+        toastUtil.showToast("电话不正确")
+        return
+      }
+      if (!get_data.seats || get_data.seats.length == 0) {
+        toastUtil.showToast("乘车人数<1")
+        return
+      }
+      if (!get_data.targetLocation || get_data.targetLocation.length == 0) {
+        toastUtil.showToast("没有目的地")
+        return
+      }
+    }
+    createOrder(ContentData);
   },
   Cname: function (e) {
     this.setData({
@@ -361,5 +329,5 @@ function createOrder(createOrderData) {
       toastUtil.showToast(data)
     }
   }
-  orderCenterHttp.createOrder(createOrderData,createOrderCallBack);
+  orderCenterHttp.createOrder(createOrderData, createOrderCallBack);
 }

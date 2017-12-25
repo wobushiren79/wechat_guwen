@@ -1,4 +1,8 @@
-//部分参数我就不抽出了，关键是看实现机制
+var orderCenterHttp = require("../../../utils/http/RequestForOrderCenter.js")
+var toastUtil = require("../../../utils/ToastUtil.js");
+var pageUtil = require("../../../utils/PageUtil.js");
+var checkTools = require("../../../utils/CheckTools.js")
+var content;
 var app = getApp();
 
 Page({
@@ -115,276 +119,106 @@ Page({
     wx.hideLoading()
   },
   onLoad: function (evet) {
-    var that = this
-    //取出分单登录权限
-    wx.getStorage({
-      key: 'orderCenter',
-      success: function (res) {
-        that.setData({
-          orderId: evet.orderId,
-          orderCenter: res.data
-        })
-      },
-      fail: function (res) {
-        wx.showModal({
-          title: '登录超时',
-          content: '是否返回重新登录',
-          success: function (res) {
-            if (res.confirm) {
-              wx.reLaunch({
-                url: '../../login/login',
-              })
-            } else if (res.cancel) {
-
-            }
-          }
-        })
-      }
+    content = this;
+    content.setData({
+      orderId: evet.orderId,
     })
   },
   //提交审核
   formSubmit: function (e) {
-    var that = this
-    wx.showLoading({
-      title: '请稍后',
-      // mask:true,
-    })
-    var files = that.data.files
-    var content = {}
     var get_data = {}
     get_data = e.detail.value
-    get_data.orderId = that.data.orderId
+    get_data.orderId = content.data.orderId
     get_data.performStatus = 1
-    if (that.data.files.length > 0) {
-      get_data.performPic = that.data.files.join(',')
-    
-    content.content = get_data
-    var orderCenterUrl = getApp().globalData.orderCenterUrl
-    if (get_data.performPic.length > 0 && get_data.performSummar !== '' && get_data.agentName !== '' && get_data.agentPhone !== '' && get_data.serviceTarget !== '' && get_data.orderPrice !== '') {
-
-      if (that.data.price) {
-        if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(get_data.agentPhone))) {
-          wx.hideLoading()
-          wx.showToast({
-            title: '电话不正确',
-            duration: 2000,
-            image: '../../../images/icon_info.png',
-            // mask: true,
-          })
-        } else {
-          wx.request({
-            url: orderCenterUrl + 'api/performer/dealAgain',
-            data: content,
-            header: {
-              'content-type': 'application/json',
-              "Cookie": that.data.orderCenter
-            },
-            method: 'POST',
-            dataType: 'json',
-            success: function (opt) {
-              // console.log(opt.data)
-              if (opt.data.code == 1000) {
-                wx.showModal({
-                  title: '圆满人生提示您',
-                  content: opt.data.message,
-                  confirmText: '跳转审核',
-                  cancelText: '返回列表',
-                  success: function (res) {
-                    if (res.confirm) {
-                      wx.redirectTo({
-                        url: '../order_list_audit/order_list_audit',
-                      })
-                    } else if (res.cancel) {
-                      wx.redirectTo({
-                        url: '../order_list_wait/order_list_wait',
-                      })
-                    }
-                  }
-                })
-                wx.hideLoading()
-              } else {
-                wx.hideLoading()
-                wx.showModal({
-                  title: opt.data.message,
-                  content: '是否返回重新登录',
-                  success: function (res) {
-                    if (res.confirm) {
-                      wx.reLaunch({
-                        url: '../../login/login',
-                      })
-                    } else if (res.cancel) {
-
-                    }
-                  }
-                })
-              }
-            },
-            fail: function (res) {
-              wx.hideLoading()
-              wx.showModal({
-                title: '网络错误',
-                content: '是否返回重新登录',
-                success: function (res) {
-                  if (res.confirm) {
-                    wx.reLaunch({
-                      url: '../../login/login',
-                    })
-                  } else if (res.cancel) {
-
-                  }
-                }
-              })
-            },
-          })
-        }
-
+    var fileStr = "";
+    for (var i in content.data.files) {
+      if (i == 0) {
+        fileStr += content.data.files[i]
       } else {
-        wx.hideLoading()
-        wx.showToast({
-          title: '金额不正确',
-          duration: 2000,
-          image: '../../../images/icon_info.png',
-          // mask: true,
-        })
+        fileStr += ("," + content.data.files[i])
       }
-
-    } else {
-      wx.hideLoading()
-      wx.showToast({
-        title: '不能为空',
-        duration: 2000,
-        image: '../../../images/icon_info.png',
-        // mask: true,
-      })
     }
-  }else{
-    wx.hideLoading()
-      wx.showToast({
-      title: '不能为空',
-      duration: 2000,
-      image: '../../../images/icon_info.png',
-      // mask: true,
-    })
-  }
+    get_data.performPic = fileStr;
+    dealOrder(get_data);
   },
   //再次处理
   formData: function (e) {
-    var that = this
-    wx.showLoading({
-      title: '请稍后',
-      // mask:true,
-    })
-    var files = that.data.files
-    var content = {}
     var get_data = {}
     get_data = e.detail.value
-    get_data.orderId = that.data.orderId
+    get_data.orderId = content.data.orderId
     get_data.performStatus = 0
-    if (that.data.files.length > 0) {
-      get_data.performPic = that.data.files.join(',')
-    
-    content.content = get_data
-    var orderCenterUrl = getApp().globalData.orderCenterUrl
-    if (get_data.performPic.length > 0 && get_data.performSummar !== '' && get_data.agentName !== '' && get_data.agentPhone !== '' && get_data.serviceTarget !== '' && get_data.orderPrice !== '') {
-
-      if (that.data.price) {
-        if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(get_data.agentPhone))) {
-          wx.hideLoading()
-          wx.showToast({
-            title: '电话不正确',
-            duration: 2000,
-            image: '../../../images/icon_info.png',
-            // mask: true,
-          })
-        } else {
-          wx.request({
-            url: orderCenterUrl + 'api/performer/dealAgain',
-            data: content,
-            header: {
-              'content-type': 'application/json',
-              "Cookie": that.data.orderCenter
-            },
-            method: 'POST',
-            dataType: 'json',
-            success: function (opt) {
-              // console.log(opt.data)
-              if (opt.data.code == 1000) {
-                wx.showModal({
-                  title: '圆满人生提示您',
-                  content: opt.data.message,
-                  showCancel: false,
-                  success: function (res) {
-                    if (res.confirm) {
-                      wx.navigateBack({
-                        delta: 1
-                      })
-                    }
-                  }
-                })
-                wx.hideLoading()
-              } else {
-                wx.hideLoading()
-                wx.showModal({
-                  title: opt.data.message,
-                  content: '是否返回重新登录',
-                  success: function (res) {
-                    if (res.confirm) {
-                      wx.reLaunch({
-                        url: '../../login/login',
-                      })
-                    } else if (res.cancel) {
-
-                    }
-                  }
-                })
-              }
-            },
-            fail: function (res) {
-              wx.hideLoading()
-              wx.showModal({
-                title: '网络错误',
-                content: '是否返回重新登录',
-                success: function (res) {
-                  if (res.confirm) {
-                    wx.reLaunch({
-                      url: '../../login/login',
-                    })
-                  } else if (res.cancel) {
-
-                  }
-                }
-              })
-            },
-          })
-        }
-
+    var fileStr = "";
+    for (var i in content.data.files) {
+      if (i == 0) {
+        fileStr += content.data.files[i]
       } else {
-        wx.hideLoading()
-        wx.showToast({
-          title: '金额不正确',
-          duration: 2000,
-          image: '../../../images/icon_info.png',
-          // mask: true,
-        })
+        fileStr += ("," + content.data.files[i])
       }
-
-    } else {
-      wx.hideLoading()
-      wx.showToast({
-        title: '不能为空',
-        duration: 2000,
-        image: '../../../images/icon_info.png',
-        // mask: true,
-      })
     }
-    }else{
-      wx.hideLoading()
-      wx.showToast({
-        title: '不能为空',
-        duration: 2000,
-        image: '../../../images/icon_info.png',
-        // mask: true,
-      })
-    }
+    get_data.performPic = fileStr;
+    dealOrder(get_data);
   },
 })
+
+/**
+ * 处理工单
+ */
+function dealOrder(dealRequest) {
+  if (!dealRequest) {
+    toastUtil.showToast("没有提交数据");
+    return
+  }
+  if (!dealRequest.orderId) {
+    toastUtil.showToast("没有orderId");
+    return
+  }
+  if (dealRequest.performStatus == null) {
+    toastUtil.showToast("没有performStatus");
+    return
+  }
+  if (!dealRequest.agentName || dealRequest.agentName.length == 0) {
+    toastUtil.showToast("经办人未填写");
+    return
+  }
+  if (!dealRequest.agentPhone || dealRequest.agentPhone.length == 0) {
+    toastUtil.showToast("电话未填写");
+    return
+  }
+  if (!checkTools.checkMobile(dealRequest.agentPhone)) {
+    toastUtil.showToast("电话格式不对");
+    return
+  }
+  if (!dealRequest.serviceTarget) {
+    toastUtil.showToast("没有服务对象");
+    return
+  }
+  if (!dealRequest.orderPrice) {
+    toastUtil.showToast("没有订单金额");
+    return
+  }
+  if (!checkTools.checkMoney(dealRequest.orderPrice)) {
+    toastUtil.showToast("金额格式错误");
+    return
+  }
+  if (!dealRequest.performSummary || dealRequest.performSummary.length == 0) {
+    toastUtil.showToast("没有处理结果");
+    return
+  }
+  if (!dealRequest.performPic || dealRequest.performPic.length == 0) {
+    toastUtil.showToast("没有服务照片");
+    return
+  }
+
+
+  var dealCallBack = {
+    success: function (data, res) {
+      wx.navigateBack({
+        delta: 1
+      })
+    },
+    fail: function (data, res) {
+      toastUtil.showToast("提交失败");
+    }
+  }
+  orderCenterHttp.dealOrder(dealRequest, dealCallBack);
+}

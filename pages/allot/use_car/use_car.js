@@ -1,3 +1,7 @@
+var orderCenterHttp = require("../../../utils/http/RequestForOrderCenter.js")
+var toastUtil = require("../../../utils/ToastUtil.js");
+var pageUtil = require("../../../utils/PageUtil.js");
+var content;
 Page({
   data: {
     businessType_chat: 0,
@@ -69,12 +73,11 @@ Page({
     var that = this
     wx.showLoading({
       title: '请稍后',
-      mask:true
+      mask: true
     })
     var r = /^\+?[1-9][0-9]*$/;　　//正整数 
     var orderCenterUrl = getApp().globalData.orderCenterUrl
     // console.log(e.detail.value)
-    var content={}
     var ContentData = {}
     ContentData.busiId = that.data.orderId
     ContentData.seats = e.detail.value.seats
@@ -83,80 +86,14 @@ Page({
     ContentData.connecterName = e.detail.value.connecterName
     ContentData.connecterMobile = e.detail.value.connecterMobile
     ContentData.remark = e.detail.value.remark
-    ContentData.preDate = that.data.date + ' ' + that.data.time + ':00'
+    if (that.data.date && that.data.time){
+      ContentData.preDate = that.data.date + ' ' + that.data.time + ':00'
+    }
     ContentData.location = e.detail.value.location
     ContentData.reason = that.data.ChatList[that.data.businessType_chat]
     ContentData.targetLocation = e.detail.value.targetLocation
-    content.content = ContentData
-    // console.log(content)
-    if (ContentData.seats.length > 0 && ContentData.connecterName.length > 0 && ContentData.connecterMobile.length > 0 && ContentData.preDate.length > 0 && ContentData.location.length > 0 && ContentData.reason.length > 0 && ContentData.targetLocation.length>0){
-      if ((/^1[3|4|5|8][0-9]\d{4,8}$/.test(ContentData.connecterMobile))){
-        if (r.test(ContentData.seats)){
-          wx.getStorage({
-            key: 'orderCenter',
-            success: function (msg) {
-              //转换字符串
-              var ForData = JSON.stringify(content)
-              wx.request({
-                url: orderCenterUrl +'api/car/create',
-                method: "POST",
-                data: ForData,
-                header: {
-                  'content-type': 'application/json',
-                  "Cookie": msg.data
-                },
-                success: function (res) {
-                  if (res.data.code == 1000 ) {
-                      wx.hideLoading()
-                    //頁面跳轉
-                    wx.navigateBack({
-                      delta:1
-                    })
-                  } else {
-                        wx.hideLoading()
-                    wx.showToast({
-                      title: res.data.message,
-                      image: '../../../images/icon_info.png',
-                      duration: 2000
-                    })
-                  }
-                },
-                fail: function () {
-                  wx.hideLoading()
-                  wx.showToast({
-                    title: '网络错误',
-                    image: '../../../images/icon_info.png',
-                    duration: 3000
-                  })
-                }
-              })
-            }
-          })
-           }else{
-          wx.hideLoading()
-          wx.showToast({
-            title: '人数不正确',
-            image: '../../../images/icon_info.png',
-            duration: 3000
-          })   
-           }
-      }else{
-        wx.hideLoading()
-        wx.showToast({
-          title: '电话不正确',
-          image: '../../../images/icon_info.png',
-          duration: 3000
-        }) 
-      }
-    }else{
-            wx.hideLoading()
-            wx.showToast({
-              title: '必填为空',
-              image: '../../../images/icon_info.png',
-              duration: 3000
-            })
-    }
 
+    createCarOrder(ContentData);
   },
   Cname: function (e) {
     this.setData({
@@ -191,79 +128,96 @@ Page({
 
     }
   },
+  onShow: function () {
+    var orderId = content.data.orderId;
+    getCarInfo(orderId)
+  },
   onLoad: function (e) {
-    var that = this
-    wx.showLoading({
-      title: '请稍后',
-      mask: true,
-    })
-    var orderCenterUrl = getApp().globalData.orderCenterUrl
-    var get_content = {}
-    var content = {}
-    content.orderId = e.orderId
-    get_content.content=content
-    wx.getStorage({
-      key: 'orderCenter',
-      success: function (res) {
-        wx.request({
-          url: orderCenterUrl +'api/car/check',
-          method: "POST",
-          data: get_content,
-          header: {
-            'content-type': 'application/json',
-            "Cookie": res.data
-          },
-          success:function(opt){
-            if (opt.data.code == 1000){
-              if (opt.data.content.isCanCreate  == 1){
-                  if (opt.data.content.listCarApplyLog.length>0){
-                    wx.hideLoading()
-                    that.setData({
-                      web_data: opt.data.content.listCarApplyLog[0],
-                      orderId: e.orderId
-                    })
-                  }else{
-                    wx.hideLoading()
-                    that.setData({
-                      web_data: false,
-                      orderId: e.orderId
-                    })
-                  }
-                }else{
-                wx.hideLoading()
-                  wx.showModal({
-                    title: '圆满人生提示您',
-                    content: '此单现在不能发起用车申请',
-                    showCancel:false,
-                    success: function (res) {
-                      if (res.confirm) {
-                        wx.navigateBack({
-                          delta: 1
-                        })
-                      }
-                    }
-                  })
-                }
-            }else{
-              wx.hideLoading()
-              wx.showToast({
-                title: opt.data.message,
-                image: '../../../images/icon_info.png',
-                duration: 3000
-              })
-            }
-          //  console.log(opt)
-          }
-        })
-      },
-      fail:function() {
-        wx.hideLoading()
-        wx.showToast({
-          title: '网络错误',
-          image: '../../../images/icon_info.png',
-          duration: 3000
-        })
-      }
+    content = this;
+    content.setData({
+      orderId: e.orderId
     })
   }
 });
+
+
+/**
+ * 获取用车详情
+ */
+function getCarInfo(orderId) {
+  var getRequest = {
+    orderId: orderId
+  }
+  var getCallBack = {
+    success: function (data, res) {
+      if (data.isCanCreate == 1) {
+        if (data.listCarApplyLog.length > 0) {
+          content.setData({
+            web_data: data.listCarApplyLog[0]
+          })
+        } else {
+          wx.hideLoading()
+          content.setData({
+            web_data: false,
+            orderId: e.orderId
+          })
+        }
+      } else {
+        wx.showModal({
+          title: '圆满人生提示您',
+          content: '此单现在不能发起用车申请',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          }
+        })
+      }
+    },
+    fail: function () {
+
+    }
+  }
+  orderCenterHttp.getCarInfo(getRequest, getCallBack)
+}
+
+/**
+ * 创建用车申请
+ */
+function createCarOrder(createRequst) {
+  if (!createRequst.preDate || createRequst.preDate.length == 0) {
+    toastUtil.showToast("没有用车时间")
+    return
+  }
+  if (!createRequst.connecterName || createRequst.connecterName.length == 0) {
+    toastUtil.showToast("没有用车人")
+    return
+  }
+  if (!createRequst.connecterMobile || !(/^1[3|4|5|8][0-9]\d{4,8}$/.test(createRequst.connecterMobile))) {
+    toastUtil.showToast("电话不正确")
+    return
+  }
+  if (!createRequst.seats || createRequst.seats.length == 0) {
+    toastUtil.showToast("乘车人数<1")
+    return
+  }
+  if (!createRequst.targetLocation || createRequst.targetLocation.length == 0) {
+    toastUtil.showToast("没有目的地")
+    return
+  }
+
+  var createCallBack = {
+    success: function (data, res) {
+      wx.navigateBack({
+        delta: 1
+      })
+    },
+    fail: function (data, res) {
+      toastUtil.showToast("创建失败");
+    }
+  }
+  // orderCenterHttp.getCarInfo(createCarOrder, getCallBack)
+}
