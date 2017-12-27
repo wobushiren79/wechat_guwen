@@ -1,4 +1,7 @@
-
+var RequestForPlatformm=require('../../../utils/http/RequestForPlatform.js');
+var RequestForCemetery = require('../../../utils/http/RequestForCemetery.js');
+var toastUtil = require("../../../utils/ToastUtil.js");
+var storageKey = require("../../../utils/storage/StorageKey.js");
 Page({
   data: {
     second: 60,
@@ -19,103 +22,48 @@ Page({
   },
   onLoad: function () {
     var that = this
-    wx.showLoading({
-      title: '加载中',
-      // mask:true,
-    })
-    var platform = getApp().globalData.platform
-    wx.getStorage({
-      key: 'ptjssessionid',
-      success: function (res) {
-        wx.request({
-          url: platform + 'api/bankcard/cashingInit',
-          // url: 'http://192.168.0.199:8080/api/credit/checkin',
-          method: "POST",
-          data: '',
-          header: {
-            'content-type': 'application/json',
-            "Cookie": 'JSESSIONID=' + res.data
-          },
-          success: function (opt) {
-            if (opt.data.code == 1000) {
-              // console.log(opt)
-              // var usableMoney = opt.data.content.usableMoney
-              var defaultBankCard = opt.data.content.defaultBankCard
+    var getCallBack={
+      success: function (opt,res){
+              var defaultBankCard = opt.defaultBankCard
               if (defaultBankCard){
                 //取前四位 defaultBankCard.cardNo.substring(0, 4) + '****' + 
               defaultBankCard.cardNo = defaultBankCard.cardNo.substring(defaultBankCard.cardNo.length - 4)
-              var usableMoney = opt.data.content.usableMoney / 100
+              var usableMoney = opt.usableMoney / 100
               that.setData({
                 usableMoney: getApp().ProcessingPrice(usableMoney),
-                mobile: opt.data.content.mobile,
+                mobile: opt.mobile,
                 defaultBankCard: defaultBankCard,
                 bankCardId: defaultBankCard.id
               })
-              wx.hideLoading()
               }else{
-                var usableMoney = opt.data.content.usableMoney / 100
+                var usableMoney = opt.usableMoney / 100
                 that.setData({
                   usableMoney: getApp().ProcessingPrice(usableMoney),
-                  mobile: opt.data.content.mobile,
+                  mobile: opt.mobile,
                   defaultBankCard: defaultBankCard,
                   // bankCardId: defaultBankCard.id
                 })
-                wx.hideLoading()
               }
-              // wx.hideLoading()
-            } else {
-              wx.hideLoading()
-              wx.showToast({
-                title: opt.data.message,
-                image: '../../../images/icon_info.png',
-                duration: 3000,
-              })
-            }
-            // console.log(opt)
-          },
-          fail: function () {
-            wx.hideLoading()
-            wx.showToast({
-              title: '网络错误',
-              image: '../../../images/icon_info.png',
-              duration: 3000,
-            })
-          }
-        })
-      }
-    })
+       },
+       fail:function(){
+         toastUtil.showToast("获取银行卡失败");
+       }
+    }
+    RequestForPlatformm.getCashingInit(null, getCallBack);
   },
   phoneData: function (e) {
     var that = this
-    wx.showLoading({
-      title: '请稍后',
-    })
-    var GmUrl = getApp().globalData.GmUrl
-    if (that.data.mobile != "") {
-      var get_data = {}
-      var content = {}
-      get_data.phone = that.data.mobile
-      content.content = get_data
-      // marketing / wechat / sms
-      //发短信接口
-      wx.request({
-        url: GmUrl + 'marketing/wechat/sms',
-        method: "POST",
-        data: content,
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          if (res.data.code == 1000) {
-            var msgCode = res.data.content
-            // console.log(msgCode)
-            wx.hideLoading()
+    var getRequest = {
+      phone: that.data.mobile
+    }
+    var getCallBack={
+      success:function(res){
             that.setData({
               selected: true,
               selected1: false,
               xianshi: true,
               second: 60,
-              msgCode: msgCode
+              msgCode: res
             })
             countdown(that)
             wx.showToast({
@@ -123,52 +71,15 @@ Page({
               duration: 3000,
               // mask:true
             })
-            wx.hideLoading()
-          } else if (res.data.code == 1006) {
-            wx.hideLoading()
-            wx.showToast({
-              title: res.data.message,
-              image: '../../../images/icon_info.png',
-              duration: 3000,
-              // mask:true
-            })
-          } else {
-            wx.hideLoading()
-            wx.showToast({
-              title: res.data.message,
-              image: '../../../images/icon_info.png',
-              duration: 3000,
-              // mask:true
-            })
-          }
-        },
-        file: function (opt) {
-          wx.hideLoading()
-          wx.showToast({
-            title: '系统错误',
-            image: '../../../images/icon_info.png',
-            duration: 3000,
-            // mask:true
-          })
-        }
-      })
-    } else {
-      wx.hideLoading()
-      wx.showToast({
-        title: '号码不能为空',
-        image: '../../../images/icon_info.png',
-        duration: 3000,
-        // mask:true
-      })
+      },
+      fail:function(){
+        toastUtil.showToast("发送失败");
+      }
     }
-
+    RequestForCemetery.SendVerificationCode(getRequest, getCallBack);
   },
   formSubmit: function (e) {
     var that = this
-    wx.showLoading({
-      title: '请稍后',
-      mask:true,
-    })
     var platform = getApp().globalData.platform
     var msgCode = that.data.msgCode
     var get_data = e.detail.value
@@ -180,63 +91,24 @@ Page({
         if (get_data.getMoney != '' || get_data.getMoney.length > 0) {
           if (get_data.bankCardId != undefined || get_data.bankCardId != undefined) {
             get_data.cashMoney = parseFloat(get_data.getMoney) * 100
-            var content = {}
-            content.content = get_data
-            wx.getStorage({
-              key: 'ptjssessionid',
-              success: function (res) {
-                wx.request({
-                  url: platform + 'api/bankcard/applyCash',
-                  // url: 'http://192.168.0.199:8080/api/credit/checkin',
-                  method: "POST",
-                  data: content,
-                  header: {
-                    'content-type': 'application/json',
-                    "Cookie": 'JSESSIONID=' + res.data
-                  },
-                  success: function (aaa) {
-                    if (aaa.data.code == 1000) {
-                      wx.hideLoading()
+            var  getRequest= get_data
+            var getCallBack={
+              success:function(opt){
                       that.setData({
                         disabled:true
                       })
-                      wx.showToast({
-                        title: '申请成功',
-                        duration: 3000,
-                      })
+                toastUtil.showToast("申请成功");
                       setTimeout(function () {
                         wx.navigateBack({
                           delta: 1
                         })
                       }, 3000)
-                    } else {
-                      wx.hideLoading()
-                      wx.showToast({
-                        title: aaa.data.message,
-                        image: '../../../images/icon_info.png',
-                        duration: 3000,
-                      })
-                    }
-                  },
-                  fail: function () {
-                    wx.hideLoading()
-                    wx.showToast({
-                      title: '网络错误',
-                      image: '../../../images/icon_info.png',
-                      duration: 3000,
-                    })
-                  }
-                })
               },
-              fail: function () {
-                wx.hideLoading()
-                wx.showToast({
-                  title: '网络忙',
-                  image: '../../../images/icon_info.png',
-                  duration: 3000,
-                })
+              fail:function(){
+                toastUtil.showToast("申请失败");
               }
-            })
+            }
+            RequestForPlatformm.getApplyCash(getRequest,getCallBack);
           } else {
             wx.hideLoading()
             wx.showToast({

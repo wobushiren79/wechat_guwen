@@ -28,11 +28,9 @@ Page({
       })
       return
     }
-
     content.setData({
       UserName: userInfo.name
     })
-
     wx.getUserInfo({
       success: function (res) {
         // success
@@ -46,7 +44,6 @@ Page({
         console.log("获取失败！")
       },
     })
-    
     getWalletInfo();
     getCreditInfo();
 

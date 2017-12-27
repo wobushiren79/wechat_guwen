@@ -44,7 +44,12 @@
             </navigator>
           </view>
         </block>
-
+          <view class="li">
+            <navigator url="../order_center/order_list_processing/order_list_processing" hover-class="active">
+              <image src="../../images/icon_order_server.png"></image>
+              <text>处理工单2</text>
+            </navigator>
+          </view>
       </view>
     </view>
 

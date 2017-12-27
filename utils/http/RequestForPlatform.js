@@ -120,7 +120,55 @@ function queryUserLevel(data, callback){
 function getWalletInfo(data, callback){
   baseRequest.sendPostHttpForContent(baseUrl + "api/wallet/getWallet", data, callback)
 }
-
+/**
+ * 获取银行卡
+ */
+function getCashingInit(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/bankcard/cashingInit", data, callback,true)
+}
+/**
+ * 提现银行卡提交
+ */
+function getApplyCash(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/bankcard/applyCash", data, callback, true)
+}
+/**
+ * 查询银行卡列表
+ */
+function queryCardInfoForList(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/bankcard/queryCardInfoForList", data, callback, true)
+}
+/**
+ * 设置默认银行卡
+ */
+function settingDefaultCard(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/bankcard/settingDefaultCard", data, callback, true)
+}
+/**
+ * 获取银行卡名称
+ */
+function queryCardBins(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/bankcard/queryCardBins", data, callback, true)
+}
+/**
+ * 添加银行卡
+ */
+function addingCard(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/bankcard/addingCard", data, callback, true)
+}
+/**
+ * 新建工单列表
+ */
+function findListByUserIdAndFinanceStatus(data, callback) {
+    baseRequest.sendPostHttpForContent(baseUrl + "api/workorder/findListByUserIdAndFinanceStatus", data, callback, true)
+}
+module.exports.findListByUserIdAndFinanceStatus = findListByUserIdAndFinanceStatus;
+module.exports.addingCard = addingCard;
+module.exports.queryCardBins = queryCardBins;
+module.exports.settingDefaultCard = settingDefaultCard;
+module.exports.queryCardInfoForList = queryCardInfoForList;
+module.exports.getApplyCash = getApplyCash;
+module.exports.getCashingInit = getCashingInit;
 module.exports.loginPlatform = loginPlatform;
 module.exports.changeForPassWord = changeForPassWord;
 module.exports.submitComplaints = submitComplaints;

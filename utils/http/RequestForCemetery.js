@@ -41,6 +41,12 @@ function payMgt(data, callback) {
 function updateOutTradeNo(data, callback) {
   baseRequest.sendPostHttpForContent(baseUrl + "marketing/fee/updateOutTradeNo", data, callback, true)
 }
+/**
+ * 发送短信验证码
+ */
+function SendVerificationCode(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "marketing/wechat/sms", data, callback, true)
+}
 
 /**
  * 待看墓列表查询
@@ -105,3 +111,4 @@ module.exports.orderListForHas = orderListForHas;
 module.exports.getOrderDetails = getOrderDetails;
 module.exports.getOrderDeadInfo = getOrderDeadInfo;
 module.exports.getOrderAgentInfo = getOrderAgentInfo;
+module.exports.SendVerificationCode = SendVerificationCode;

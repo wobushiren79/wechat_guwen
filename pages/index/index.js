@@ -30,12 +30,10 @@ Page({
     vertical: true,
     Gmlogin: 0
   },
-
   onShow: function () {
     getCreditInfo();
     var that = this
     var platform = getApp().globalData.platform
-
     //是否职业顾问
     if (wx.getStorageSync(storageKey.AMATEUR_LEVEL)) {
       content.setData({
@@ -46,15 +44,12 @@ Page({
         amateurLevel: false
       })
     };
-
     getLabelTag();
   },
-
   onLoad: function () {
     content = this;
     getAllChannel();
   },
-
   call_phone: function (e) {
     var phone = e.currentTarget.dataset.phone;
     wx.makePhoneCall({
@@ -68,14 +63,12 @@ Page({
       }
     })
   },
-
   /**
    * 签到
    */
   sign: function () {
     userSign();
   },
-
   /**
   * 新建公墓单
   */
@@ -89,7 +82,6 @@ Page({
       url: '../new_/new_',
     })
   },
-
   /**
    * 接单表
    */
@@ -103,7 +95,6 @@ Page({
       url: '../allot/order_list_wait/order_list_wait',
     })
   },
-
   /**
    *  标签切换
    */
@@ -113,9 +104,7 @@ Page({
       label_id: opt.currentTarget.dataset.label_id
     })
     getLabelGoods(content.data.channel_id, opt.currentTarget.dataset.label_id)
-
   },
-
   onShareAppMessage: function () {
     return {
       title: '圆满人生公共殡葬服务平台',
@@ -128,9 +117,7 @@ Page({
       }
     }
   }
-
 })
-
 /**
  * 获取所有渠道ID
  */
@@ -154,7 +141,6 @@ function getAllChannel() {
   }
   goodsPHPHttp.getChannel(null, getChannelCallBack);
 }
-
 /**
  * 查询用户签到情况
  */
@@ -167,12 +153,10 @@ function getCreditInfo() {
       })
     },
     fail: function (data, res) {
-
     }
   }
   platformHttp.queryCreditInfo(null, queryCreditCallBack);
 }
-
 /**
  * 获取推荐商品标签
  */
@@ -190,7 +174,6 @@ function getLabelTag() {
   }
   goodsPHPHttp.getLabelTag(null, getLabelTagCallBack);
 }
-
 /**
  * 获取推荐商品内容
  */
@@ -210,7 +193,6 @@ function getLabelGoods(channelId, labelId) {
   }
   goodsPHPHttp.getLabelGoods(getLabelGoodsRequest, getLabelGoodsCallBack);
 }
-
 /**
  * 用户签到
  */

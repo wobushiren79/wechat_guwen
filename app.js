@@ -60,7 +60,7 @@ App({
     javaApi: "https://goods.shianlife.cn/",
     //钟明
     //  javaApi:"http://192.168.0.59:8080/goods/",
-    // platform:"http://prd-platform.xicp.cn/",
+    platform:"http://prd-platform.xicp.cn/",
     // platform:"http://192.168.0.50:8100/platform/",
     // platform:"http://192.168.0.59:8099/ki4so-web/",
     //钟明
@@ -70,7 +70,7 @@ App({
     // RouteUrl:"http://192.168.0.146:8088/adviser/"
     // orderCenterUrl:'http://192.168.0.43:8085/center/'
     orderCenterUrl: 'https://order.shianlife.cn/',
-    // orderCenterUrl:'http://192.168.0.59:8085/center/'
+    // orderCenterUrl:'http://192.168.0.59:8085/center/',
 
     goodsPHPUrl: "https://goodsmgr.e-funeral.cn/",
     JavaPlatformUrl: "https://platform.shianlife.cn/",

@@ -74,7 +74,11 @@
       "pages/mystroe/service_order_list_serviceing/service_order_list_serviceing",
       "pages/mystroe/service_order_list_close/service_order_list_close",
       "pages/mystroe/edit_price/edit_price",
-      "pages/mystroe/service_order_list_pay/service_order_list_pay"
+      "pages/mystroe/service_order_list_pay/service_order_list_pay",
+      "pages/order_center/order_list_processing/order_list_processing",
+      "pages/order_center/order_list_audit/order_list_audit",
+      "pages/order_center/order_list_finish/order_list_finish",
+      "pages/order_center/order_list_wait/order_list_wait"
   
   ],
 "window": {
