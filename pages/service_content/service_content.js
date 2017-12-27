@@ -153,17 +153,17 @@ Page({
     var xuanzhedata = content.data.xuanzhedata
     xuanzhedata.number = goods_number
     var LocalUrl = getApp().globalData.LocalUrl
-    var content = {}
+    var getDetailsRequest = {}
 
-    content.channelId = xuanzhedata.channel_id
+    getDetailsRequest.channelId = xuanzhedata.channel_id
     if (xuanzhedata.goods_id) {
-      content.goodsId = xuanzhedata.goods_id
-      content.goodsSpecId = xuanzhedata.goods_spec_id
+      getDetailsRequest.goodsId = xuanzhedata.goods_id
+      getDetailsRequest.goodsSpecId = xuanzhedata.goods_spec_id
     } else {
-      content.packageId = xuanzhedata.package_id
-      content.packageSpecId = xuanzhedata.package_spec_id
+      getDetailsRequest.packageId = xuanzhedata.package_id
+      getDetailsRequest.packageSpecId = xuanzhedata.package_spec_id
     }
-    getGoodsSpecDetails(content)
+    getGoodsSpecDetails(getDetailsRequest, goods_number)
   },
   /**
    * 加入购物车
@@ -230,7 +230,7 @@ function getGoodsDetails(channelId, goodsId, packageId) {
       } else {
         var goods_cate_id = res.data.list.package_cate_id
       }
-      // WxParse.wxParse('descrip_detail', 'html', list.descrip_detail, content, );
+      WxParse.wxParse('descrip_detail', 'html', list.descrip_detail, content, );
       var hasSpec = false;
       var showData = {
         list: list,
@@ -299,11 +299,12 @@ function addGoodsShopping(addShoppingCartRequest) {
 /**
  * 获取商品规格详情
  */
-function getGoodsSpecDetails(detailsRequest) {
+function getGoodsSpecDetails(detailsRequest,goodsNumber) {
+  var totla_price=0;
   var detailsCallBack = {
     success: function (data, res) {
       for (var i in res.data.list) {
-        res.data.list[i].specNum = goods_number
+        res.data.list[i].specNum = goodsNumber
         totla_price += parseFloat(res.data.list[i].specNum) * parseFloat(res.data.list[i].spec_price)
       }
       //结算购物车数据
@@ -320,5 +321,5 @@ function getGoodsSpecDetails(detailsRequest) {
       toastUtil.showToast("直接购买失败");
     }
   }
-  goodsHttp.findGoodsDetails(detailsRequest, detailsCallBack);
+ goodsPHPHttp.findGoodsDetails(detailsRequest, detailsCallBack);
 }

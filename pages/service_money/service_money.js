@@ -107,6 +107,7 @@ Page({
     goodsOrder.levelType = that.data.levelType
     goodsOrder.levelId = that.data.levelId ? that.data.levelId : ''
     goodsOrder.orderType = that.data.orderType
+ 
     //是否需要发票
     if (fapiao) {
       goodsOrder.needInvoice = fapiao.needInvoice

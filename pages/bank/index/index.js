@@ -8,19 +8,18 @@ Page({
   data: {
     usableMoney: '0.00'
   },
-  onShow: function () {
-    this.onLoad()
-  },
+  // onShow: function () {
+  //   this.onLoad()
+  // },
   dele: function () {
     wx.clearStorageSync()
     //跳转登录页面
-    wx.reLaunch({
+    wx.navigateTo({
       url: '../../login/login',
     })
-
   },
   onLoad: function () {
-    content=this;
+    content = this;
     var userInfo = wx.getStorageSync(storageKey.PLATFORM_USER_OBJ);
     if (!userInfo) {
       wx.navigateTo({
@@ -54,15 +53,15 @@ Page({
 /**
  * 获取钱包信息
  */
-function getWalletInfo(){
-  var walletInfoCallBack={
-    success:function(data,res){
+function getWalletInfo() {
+  var walletInfoCallBack = {
+    success: function (data, res) {
       var usableMoney = data.usableMoney / 100
       content.setData({
         usableMoney: getApp().ProcessingPrice(usableMoney)
       })
     },
-    fail:function(data,res){
+    fail: function (data, res) {
       toastUtil.showToast("获取钱包失败");
     }
   }
