@@ -24,6 +24,11 @@ Page({
         content.setData({
           cemeteryAdvisor: true
         })
+        if (checkPermissions.hasOrderCenterBuilder()){
+          content.setData({
+            CenterBuilder: true
+          })
+        }
         if (checkPermissions.hasGoodsAdvisor() || checkPermissions.hasGoodsAdvisorAmateur) {
           content.setData({
             goodsAdvisor: true

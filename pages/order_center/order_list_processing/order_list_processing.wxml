@@ -34,7 +34,7 @@
                 </navigator>
               </view>
             </view>
-            <navigator class="li_body" url="/pages/allot/order_content/order_content?orderId={{item.workOrder.id}}" hover-class="active">
+            <navigator class="li_body" url="/pages/order_center/order_content/order_content?orderId={{item.workOrder.id}}" hover-class="active">
               <image src="../../../images/right.png" class="icon"></image>
               <view>
                 <view class="header">

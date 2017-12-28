@@ -4,6 +4,7 @@
      "pages/index/index",
      "pages/login/login",
 		 "pages/list/list", 
+		 "pages/new_easy/new_easy", 
 		 "pages/new/new", 
      "pages/new_/new_",
 		 "pages/demo_new/demo_new", 
@@ -78,7 +79,8 @@
       "pages/order_center/order_list_processing/order_list_processing",
       "pages/order_center/order_list_audit/order_list_audit",
       "pages/order_center/order_list_finish/order_list_finish",
-      "pages/order_center/order_list_wait/order_list_wait"
+      "pages/order_center/order_list_wait/order_list_wait",
+      "pages/order_center/order_content/order_content"
   
   ],
 "window": {

@@ -36,11 +36,12 @@ Page({
 function getOrderList(listType) {
   var listRequest = pageUtil.getPageData();
   listRequest.params = {
-    financeType: 1
+    financeType: 'wait_service'
   }
   var listCallBack = pageUtil.getPageCallBack(
     function (data, res, isLast) {
       var updateTime = []
+      console.log(data)
       for (var i in data) {
         for (var j in data[i].listOrderStatusChange) {
           if (data[i].listOrderStatusChange[j].updataStatus == 2) {
@@ -59,5 +60,5 @@ function getOrderList(listType) {
 
     }
   )
-  orderCenterHttp.findListByUserIdAndFinanceStatus(listRequest, listCallBack)
+  orderCenterHttp.getOrderCenterList(listRequest, listCallBack)
 }

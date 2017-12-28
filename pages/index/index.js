@@ -74,14 +74,23 @@ Page({
   */
   gongmu: function () {
     var hasOrderCenterAdvisor = checkPermissions.hasOrderCenterAdvisor();
-    if (!hasOrderCenterAdvisor) {
-      toastUtil.showToast("没有分单权限");
+    var hasOrderCenterBuilder = checkPermissions.hasOrderCenterBuilder();
+    if (!hasOrderCenterAdvisor && !hasOrderCenterBuilder) {
+      toastUtil.showToast("没有权限");
       return
     }
-    wx.navigateTo({
-      url: '../new_/new_',
-    })
-  },
+    if (hasOrderCenterBuilder) {
+      wx.navigateTo({
+        url: '../new_easy/new_easy',
+      })
+      return
+    }
+    if (hasOrderCenterAdvisor && hasOrderCenterBuilder) {
+      wx.navigateTo({
+        url: '../new_/new_',
+      })
+    }
+},
   /**
    * 接单表
    */

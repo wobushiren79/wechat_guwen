@@ -36,7 +36,7 @@
           </view>
         </block>
         <!-- 已接定单 -->
-        <block wx:if="{{orderCenter}}">
+        <block wx:if="{{CenterBuilder}}">
           <view class="li">
             <navigator url="../allot/order_list_processing/order_list_processing" hover-class="active">
               <image src="../../images/icon_order_server.png"></image>
@@ -44,12 +44,14 @@
             </navigator>
           </view>
         </block>
+        <block wx:if="{{orderCenter}}">
           <view class="li">
             <navigator url="../order_center/order_list_processing/order_list_processing" hover-class="active">
               <image src="../../images/icon_order_server.png"></image>
               <text>处理工单2</text>
             </navigator>
           </view>
+        </block>
       </view>
     </view>
 

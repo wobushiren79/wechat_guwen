@@ -1,0 +1,152 @@
+/* banner面板 */
+
+.banner {
+  padding: 24rpx;
+}
+
+.banner .weui-flex {
+  background: #48cfad;
+  height: 240rpx;
+  border-radius: 6rpx;
+  align-items: center;
+  text-align: center;
+  line-height: 1;
+  font-size: 28rpx;
+  color: #fff;
+}
+
+.banner .weui-flex .money {
+  margin-top: 52rpx;
+}
+
+.banner .weui-flex .money .num {
+  font-size: 36rpx;
+}
+
+.banner .weui-flex .weui-flex__item {
+  position: relative;
+}
+
+.banner .weui-flex .weui-flex__item::after {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  content: "";
+  height: 66rpx;
+  width: 0;
+  border-left: 1rpx solid rgba(255, 255, 255, 0.5);
+  transform: translateY(-50%);
+}
+
+.banner .weui-flex .weui-flex__item:last-of-type::after {
+  display: none;
+}
+
+/* 商品列表 */
+
+.weui-cells__title {
+  height: 92rpx;
+  padding-left: 54rpx;
+  padding-right: 24rpx;
+  align-items: center;
+  font-size: 32rpx;
+  color: #000;
+  display: flex;
+  background: #fff;
+  margin: 0;
+  position: relative;
+}
+
+.goods .weui-cells{
+  border-top: 1rpx solid #fafafa;
+}
+.weui-cells__title::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 24rpx;
+  transform: translateY(-50%);
+  content: "";
+  width: 12rpx;
+  height: 24rpx;
+  background: #48cfad;
+  border-radius: 20rpx;
+}
+
+.weui-cells__title .weui-cell__ft {
+  color: #8f8f8f;
+  font-size: 28rpx;
+}
+
+.goods .weui-cell {
+  padding: 13rpx 24rpx;
+  box-sizing: border-box;
+  height: 132rpx;
+  align-items: flex-start;
+  line-height: 42rpx;
+  font-size: 28rpx;
+  color: #353535;
+}
+
+.goods .weui-cell .weui-cell__hd {
+  width: 106rpx;
+  height: 106rpx;
+  background: #f8f8f8;
+  border-radius: 6rpx;
+  overflow: hidden;
+  margin-right: 22rpx;
+}
+
+.goods .weui-cell .weui-cell__hd image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.goods .weui-cell .weui-cell__ft .money {
+  color: #41b396;
+}
+
+.weui-cell::before,.weui-cells::after,.weui-cells::before {
+  display: none;
+}
+
+.weui-cells__tips {
+  font-size: 24rpx;
+  color: #737373;
+  padding: 26rpx 58rpx;
+  line-height: 1;
+}
+
+.goods .weui-cells__title .weui-cell__ft_in-access {
+  transition: all 0.3s;
+}
+
+.goods .weui-cells__title.active .weui-cell__ft_in-access {
+  transform: rotate(90deg);
+}
+
+.goods .weui-cells {
+  display: none;
+}
+.goods .weui-cell .weui-cell__bd{
+  flex-basis: 150px;
+}
+.goods .weui-cells.active {
+  display: block;
+}
+.order{
+  padding: 17rpx 0;
+  background: #fff
+}
+.order .weui-cells__title{
+  height: auto
+}
+.order .weui-cell{
+  padding: 0 24rpx 0 54rpx;
+  font-size: 20rpx;
+  color: #8f8f8f;
+}
+.order .weui-cells__title .weui-cell__ft {
+  color: #353535;
+}

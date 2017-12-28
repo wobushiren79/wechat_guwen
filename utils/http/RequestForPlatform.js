@@ -156,13 +156,7 @@ function queryCardBins(data, callback) {
 function addingCard(data, callback) {
   baseRequest.sendPostHttpForContent(baseUrl + "api/bankcard/addingCard", data, callback, true)
 }
-/**
- * 新建工单列表
- */
-function findListByUserIdAndFinanceStatus(data, callback) {
-    baseRequest.sendPostHttpForContent(baseUrl + "api/workorder/findListByUserIdAndFinanceStatus", data, callback, true)
-}
-module.exports.findListByUserIdAndFinanceStatus = findListByUserIdAndFinanceStatus;
+
 module.exports.addingCard = addingCard;
 module.exports.queryCardBins = queryCardBins;
 module.exports.settingDefaultCard = settingDefaultCard;

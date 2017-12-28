@@ -9,12 +9,12 @@ Page({
     usableMoney: '0.00'
   },
   onShow: function () {
-    this.onLoad()
+    // this.onLoad()
   },
   dele: function () {
     wx.clearStorageSync()
     //跳转登录页面
-    wx.reLaunch({
+    wx.navigateTo({
       url: '../../login/login',
     })
 

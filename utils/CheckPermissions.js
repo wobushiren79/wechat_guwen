@@ -21,9 +21,16 @@ function hasGoodsAdvisorAmateur() {
 }
 
 /**
- * 检测是否有分单系统顾问权限
+ * 检测是否有新建分单权限
  */
 function hasOrderCenterAdvisor() {
+  return baseCheckPermissions("orderc.advisor");
+}
+
+/**
+ * 检测是否有分单系统接单权限
+ */
+function hasOrderCenterBuilder() {
   return baseCheckPermissions("orderc.advisor");
 }
 
@@ -64,3 +71,4 @@ module.exports.hasGoodsAdvisorAmateur = hasGoodsAdvisorAmateur;
 module.exports.hasOrderCenterAdvisor = hasOrderCenterAdvisor;
 module.exports.hasCemeteryAdvisor = hasCemeteryAdvisor;
 module.exports.hasCemeteryTalker = hasCemeteryTalker;
+module.exports.hasOrderCenterBuilder = hasOrderCenterBuilder;
