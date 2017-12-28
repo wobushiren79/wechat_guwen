@@ -31,6 +31,7 @@ Page({
     Gmlogin: 0
   },
   onShow: function () {
+    getAllChannel();
     getCreditInfo();
     var that = this
     var platform = getApp().globalData.platform
@@ -48,7 +49,6 @@ Page({
   },
   onLoad: function () {
     content = this;
-    getAllChannel();
   },
   call_phone: function (e) {
     var phone = e.currentTarget.dataset.phone;

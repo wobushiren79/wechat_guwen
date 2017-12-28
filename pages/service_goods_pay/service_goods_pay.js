@@ -19,6 +19,7 @@ Page({
     maskHidden: true,
     imagePath: '',
     orderPrice: 0,
+    showTotalPrice:0,
     placeholder: 'http://m.e-funeral.cn'//默认二维码生成文本
   },
   onReady: function () {
@@ -143,8 +144,8 @@ function findGoodsOrderByOrderId(orderId) {
   var findCallBack = {
     success: function (data, res) {
       content.setData({
-        showTotalPrice: data.orderPrice,
-        totalPrice: data.orderPrice,
+        showTotalPrice: data.showTotalPrice,
+        totalPrice: data.showTotalPrice,
         orderNumber: data.orderNumber,
         orderId: orderId
       })

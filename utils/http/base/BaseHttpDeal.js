@@ -111,6 +111,8 @@ function respsoneSuccessDeal(res, callback) {
     } else if (res.data.code == 9999) {
       if (callback.loginAgain) {
         callback.loginAgain();
+      }else{
+        callback.success(null, res);
       }
     } else {
       if (callback.fail)
