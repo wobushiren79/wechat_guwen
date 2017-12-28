@@ -79,16 +79,19 @@ Page({
       toastUtil.showToast("没有权限");
       return
     }
-    if (hasOrderCenterBuilder) {
-      wx.navigateTo({
-        url: '../new_easy/new_easy',
-      })
-      return
-    }
     if (hasOrderCenterAdvisor && hasOrderCenterBuilder) {
       wx.navigateTo({
         url: '../new_/new_',
       })
+      return
+    } else if (hasOrderCenterBuilder && !hasOrderCenterAdvisor){
+      wx.navigateTo({
+        url: '../new_easy/new_easy',
+      })
+      return
+    }else{
+      toastUtil.showToast("没有权限");
+      return
     }
 },
   /**
@@ -96,13 +99,26 @@ Page({
    */
   order: function () {
     var hasOrderCenterAdvisor = checkPermissions.hasOrderCenterAdvisor();
-    if (!hasOrderCenterAdvisor) {
-      toastUtil.showToast("没有分单权限");
+    var hasOrderCenterBuilder = checkPermissions.hasOrderCenterBuilder();
+    if (!hasOrderCenterAdvisor && !hasOrderCenterBuilder) {
+      toastUtil.showToast("没有接单权限");
       return
     }
-    wx.navigateTo({
-      url: '../allot/order_list_wait/order_list_wait',
-    })
+    if (hasOrderCenterAdvisor && hasOrderCenterBuilder){
+      wx.navigateTo({
+        url: '../allot/order_list_wait/order_list_wait',
+      })
+      return
+    } else if (!hasOrderCenterBuilder && hasOrderCenterAdvisor){
+      wx.navigateTo({
+        url: '../order_center/order_list_wait/order_list_wait',
+      })
+      return
+    }else{
+      toastUtil.showToast("没有接单权限");
+      return
+    }
+
   },
   /**
    *  标签切换

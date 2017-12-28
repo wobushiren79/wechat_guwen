@@ -1,5 +1,5 @@
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
-  <view class="page__bd page_service_order page_allot_order_list">
+  <view class="page__bd page_service_order page_allot_order_list page_allot_order_list2">
     <!--选项卡-->
     <!--选项卡-->
     <view class="tab">
@@ -24,14 +24,37 @@
         <!-- 模板1 待接单 star-->
         <block wx:for="{{listdata}}">
           <view class="li">
-            <view class="li_header">
-              <view class="header">单号： {{item.workOrder.orderNumber}}
+            <block wx:if="{{item.workOrder.orderType==0}}">
+              <view class="li_header plan">
+                <view class="header">
+                  <image src='../../../images/icon_order_list_plan.png' mode='widthFix'></image>
+                </view>
+                <view class='body'>
+                  殡仪/{{item.workOrder.orderNumber}}
+                </view>
               </view>
-              <view class="footer">
-                <button type="primary" class="btn btn_1" bindtap="zxture" data-id="{{item.workOrder.relateOrderNo}}">关联工单</button>
+            </block>
+            <block wx:elif="{{item.workOrder.orderType==1}}">
+              <view class="li_header cem">
+                <view class="header">
+                  <image src='../../../images/icon_order_list_cem.png' mode='widthFix'></image>
+                </view>
+                <view class='body'>
+                  公墓/{{item.workOrder.orderNumber}}
+                </view>
               </view>
-            </view>
-            <navigator class="li_body" url="/pages/allot/order_content/order_content?orderId={{item.workOrder.id}}" hover-class="active">
+            </block>
+            <block wx:elif="{{item.workOrder.orderType==2}}">
+              <view class="li_header other">
+                <view class="header">
+                  <image src='../../../images/icon_order_list_other.png' mode='widthFix'></image>
+                </view>
+                <view class='body'>
+                  其它/{{item.workOrder.orderNumber}}
+                </view>
+              </view>
+            </block>
+            <navigator class="li_body" url="/pages/order_center/order_content/order_content?orderId={{item.workOrder.id}}" hover-class="active">
               <image src="../../../images/right.png" class="icon"></image>
               <view>
                 <view class="header">
@@ -83,7 +106,7 @@
                 </view>
                 <block wx:if="{{item.customerInfo.agentName !== null || item.customerInfo.agentName !== ''}}">
                   <view class="body">
-                    未分配
+                    无
                   </view>
                 </block>
                 <block wx:else>
@@ -121,39 +144,20 @@
                 </view>
               </view>
             </navigator>
-            <view class="li_footer">
-              <view class="header">
-                <view bindtap="tel" data-tel="{{item.customerInfo.contactPhone}}">
-                  <image src="../../../images/icon_call_phone.png"></image>联系人</view>
-                <block wx:if="{{item.customerInfo.agentPhone.length>0}}">
-                  <view bindtap="tel" data-tel="{{item.customerInfo.agentPhone}}">
-                    <image src="../../../images/icon_call_phone.png"></image>经办人
-                  </view>
-                </block>
-              </view>
-              <view class="footer">
-                <block wx:if="{{item.performerAssignRecord.valid == 1}}">
-                  <block wx:if="{{valid.indexOf(item.workOrder.id) != 0}}">
-                    <text type="primary" bindtap='orsers' class="btn" data-orderId='{{item.workOrder.id}}'>接单</text>
-                  </block>
-                  <block wx:else>
-                    <text type="primary" class="btn">接单</text>
-                  </block>
-                </block>
-              </view>
-            </view>
           </view>
         </block>
-      </view>
-    </view>
 
-    <navigator class='fix_new' url='../../new_/new_'>
-      <text>＋</text>
-    </navigator>
-  </view>
-  <block wx:if="{{notNumber}}">
-    <view class='prompt'>
-      <text>没有更多订单啦</text>
+
+        <navigator class='fix_new' url='../../new_easy/new_easy'>
+          <text>＋</text>
+        </navigator>
+
+      </view>
+      <block wx:if="{{notNumber}}">
+        <view class='prompt'>
+          <text>没有更多订单啦</text>
+        </view>
+      </block>
     </view>
-  </block>
+  </view>
 </view>

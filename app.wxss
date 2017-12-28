@@ -399,6 +399,32 @@ input {
   transform: translate(0, -50%);
 }
 
+.page_allot_order_list2 .list .ul .li{
+  border: 6rpx;
+  overflow: hidden;
+}
+.page_allot_order_list2 .list .ul .li .li_header{
+  align-items: center;
+  color: #fff;
+}
+.page_allot_order_list2 .list .ul .li .li_header.plan{
+ background: #48cfad;
+}
+.page_allot_order_list2 .list .ul .li .li_header.cem{
+ background: #67bedb;
+}
+.page_allot_order_list2 .list .ul .li .li_header.other{
+ background: #ffd076;
+}
+.page_allot_order_list2 .list .ul .li .li_header .header{
+  flex-basis: auto;
+  height: auto;
+  margin-right: 24rpx;
+}
+.page_allot_order_list2 .list .ul .li .li_header image{
+  display: block;
+  width: 40rpx;
+}
 /* 分单系统订单列表 end */
 .page_mystroe_service .tab wx-view{
   width: 25%

@@ -157,6 +157,13 @@ function addingCard(data, callback) {
   baseRequest.sendPostHttpForContent(baseUrl + "api/bankcard/addingCard", data, callback, true)
 }
 
+/**
+ * 获取提现记录
+ */
+function queryCashingLogs(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/wallet/queryCashingLogsForPage", data, callback, true)
+}
+
 module.exports.addingCard = addingCard;
 module.exports.queryCardBins = queryCardBins;
 module.exports.settingDefaultCard = settingDefaultCard;
@@ -180,3 +187,4 @@ module.exports.queryCreditInfo = queryCreditInfo;
 module.exports.userCreditSign = userCreditSign;
 module.exports.getWalletInfo = getWalletInfo;
 module.exports.queryUserLevel = queryUserLevel;
+module.exports.queryCashingLogs = queryCashingLogs;

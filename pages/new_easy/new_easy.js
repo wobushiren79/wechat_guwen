@@ -150,13 +150,13 @@ Page({
     } 
   },
   onLoad: function () {
-    that=this
-    var nowDate = getApp().formatData()
-    var nowTime = getApp().formatTime()
-    this.setData({
-      date: nowDate,
-      time: nowTime
-    })
+    // that=this
+    // var nowDate = getApp().formatData()
+    // var nowTime = getApp().formatTime()
+    // this.setData({
+    //   date: nowDate,
+    //   time: nowTime
+    // })
     getCemeteryList()
   }
 });

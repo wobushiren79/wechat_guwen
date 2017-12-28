@@ -21,14 +21,14 @@ function hasGoodsAdvisorAmateur() {
 }
 
 /**
- * 检测是否有新建分单权限
+ * 检测是否有接单权限
  */
 function hasOrderCenterAdvisor() {
-  return baseCheckPermissions("orderc.advisor");
+  return baseCheckPermissions("orderc.executor");
 }
 
 /**
- * 检测是否有分单系统接单权限
+ * 检测是否有简单权限
  */
 function hasOrderCenterBuilder() {
   return baseCheckPermissions("orderc.advisor");
