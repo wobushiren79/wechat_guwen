@@ -125,9 +125,6 @@ function respsoneSuccessDeal(res, callback) {
       } else {
         callback.success(null, res);
       }
-      // wx.navigateTo({
-      //   url: '../../../pages/C_user_login/C_user_login',
-      // });
     } else {
       if (callback.success)
         callback.success(res.data.content, res);

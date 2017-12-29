@@ -88,9 +88,6 @@ Page({
   },
   formSubmit: function (e) {
     var that=this
-    that.setData({
-      asda:false,
-    })
     var submitData=[]
     submitData = e.detail.value
     submitData.orderType = that.data.businessType_type-1
@@ -184,6 +181,9 @@ Page({
 function createOrder(createOrderData) {
   var createOrderCallBack = {
     success: function () {
+      content.setData({
+        asda: false,
+      })
       toastUtil.showToastReWrite('新建成功')
         wx.redirectTo({
           url: '/pages/order_center/order_list_wait/order_list_wait',
