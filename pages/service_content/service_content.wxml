@@ -29,7 +29,7 @@
       <view class="money">
         推荐价:
         <text>{{list.price}}</text>
-        <image src="../../images/icon_money.png" bindtap="popup"></image>
+        <!-- <image src="../../images/icon_money.png" bindtap="popup"></image> -->
       </view>
 
       <!-- 其他信息 -->

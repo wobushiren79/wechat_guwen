@@ -73,18 +73,18 @@ Page({
   * 新建公墓单
   */
   gongmu: function () {
-    var hasOrderCenterAdvisor = checkPermissions.hasOrderCenterAdvisor();
+    var hasOrderCenterExecutor = checkPermissions.hasOrderCenterExecutor();
     var hasOrderCenterBuilder = checkPermissions.hasOrderCenterBuilder();
-    if (!hasOrderCenterAdvisor && !hasOrderCenterBuilder) {
+    if (!hasOrderCenterExecutor && !hasOrderCenterBuilder) {
       toastUtil.showToast("没有权限");
       return
     }
-    if (hasOrderCenterAdvisor && hasOrderCenterBuilder) {
+    if (hasOrderCenterExecutor && hasOrderCenterBuilder) {
       wx.navigateTo({
         url: '../new_/new_',
       })
       return
-    } else if (hasOrderCenterBuilder && !hasOrderCenterAdvisor){
+    } else if (hasOrderCenterBuilder && !hasOrderCenterExecutor){
       wx.navigateTo({
         url: '../new_easy/new_easy',
       })
@@ -98,20 +98,20 @@ Page({
    * 接单表
    */
   order: function () {
-    var hasOrderCenterAdvisor = checkPermissions.hasOrderCenterAdvisor();
+    var hasOrderCenterExecutor = checkPermissions.hasOrderCenterExecutor();
     var hasOrderCenterBuilder = checkPermissions.hasOrderCenterBuilder();
-    if (!hasOrderCenterAdvisor && !hasOrderCenterBuilder) {
+    if (!hasOrderCenterExecutor && !hasOrderCenterBuilder) {
       toastUtil.showToast("没有接单权限");
       return
     }
-    if (hasOrderCenterAdvisor && hasOrderCenterBuilder){
+    if (hasOrderCenterExecutor && hasOrderCenterBuilder){
       wx.navigateTo({
         url: '../allot/order_list_wait/order_list_wait',
       })
       return
-    } else if (!hasOrderCenterBuilder && hasOrderCenterAdvisor){
+    } else if (!hasOrderCenterBuilder && hasOrderCenterExecutor){
       wx.navigateTo({
-        url: '../order_center/order_list_wait/order_list_wait',
+        url: '../allot/order_list_wait/order_list_wait',
       })
       return
     }else{

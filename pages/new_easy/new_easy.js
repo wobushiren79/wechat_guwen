@@ -1,7 +1,7 @@
 var platformHttp = require("../../utils/http/RequestForPlatform.js");
 var orderCenterHttp = require("../../utils/http/RequestForOrderCenter.js");
 var toastUtil = require("../../utils/ToastUtil.js");
-
+var content;
 var that
 Page({
   data: {
@@ -86,34 +86,34 @@ Page({
   },
   formSubmit: function (e) {
     var that=this
-    var content=[]
-    content = e.detail.value
-    content.orderType = that.data.businessType_type
-    content.appointmentTime = that.data.date+' '+that.data.time+':00'
-    content.createUserType = 'onlycreate'
+    var submitData=[]
+    submitData = e.detail.value
+    submitData.orderType = that.data.businessType_type
+    submitData.appointmentTime = that.data.date+' '+that.data.time+':00'
+    submitData.createUserType = 'onlycreate'
     var gmList = that.data.gmList
-    content.planCemeteryId = gmList[that.data.businessType_a].id
-    content.planCemeteryLocation = gmList[that.data.businessType_a].name
-    content.trafficWay = '自行'
+    submitData.planCemeteryId = gmList[that.data.businessType_a].id
+    submitData.planCemeteryLocation = gmList[that.data.businessType_a].name
+    submitData.trafficWay = '自行'
     var gongmId = gmList[that.data.businessType_a].id
     // console.log(content)
-    if (content.contactName.length == 0) {
+    if (submitData.contactName.length == 0) {
       toastUtil.showToast("客户姓名必填")
       return
     }
-    if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(content.contactPhone))) {
+    if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(submitData.contactPhone))) {
       toastUtil.showToast("电话不正确")
       return
     }
-    if (content.appointmentTime.length == 0) {
+    if (submitData.appointmentTime.length == 0) {
       toastUtil.showToast("没有服务日期")
       return
     }
-    if (content.address.length == 0) {
+    if (submitData.address.length == 0) {
       toastUtil.showToast("没有客户地址")
       return
     }
-    createOrder(content);
+    createOrder(submitData);
     // console.log(content)
   },
   Cname:function(e){
@@ -150,6 +150,7 @@ Page({
     } 
   },
   onLoad: function () {
+    content=this;
     // that=this
     // var nowDate = getApp().formatData()
     // var nowTime = getApp().formatTime()
@@ -168,8 +169,8 @@ function createOrder(createOrderData) {
     success: function () {
       toastUtil.showToast('新建成功')
       setTimeout(function () {
-        wx.navigateBack({
-          delta: 1
+        wx.redirectTo({
+          url: '/pages/order_center/order_list_wait/order_list_wait',
         })
       }, 2000)
     },
@@ -197,7 +198,7 @@ function getCemeteryList() {
         GmList.push(data[i].name)
         GmName: data[0]
       }
-      that.setData({
+      content.setData({
         GmList: GmList,
         gmList: data,
         GmName: GmList[0],

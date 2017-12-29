@@ -61,18 +61,7 @@
             </picker>
           </view>
         </view>
-
-        <!-- 工单描述 -->
-        <view class="weui-cell weui-cell_textarea ">
-          <view class="weui-cell__hd">
-            <!-- <view class="weui-label">工单描述</view> -->
-          </view>
-          <view class="weui-cell__bd">
-            <textarea placeholder='工单描述'  placeholder-class='placeholder'  name="orderDescribe" bindblur='notNull'></textarea>
-          </view>
-        </view>
-
-        <block wx:if="{{yuy_type}}">
+     <block wx:if="{{yuy_type}}">
           <!--参观人数-->
           <!-- <view class="weui-cell weui-cell_input required">
           <view class="weui-cell__hd">
@@ -95,6 +84,17 @@
             </view>
           </view>
         </block>
+        <!-- 工单描述 -->
+        <view class="weui-cell weui-cell_textarea ">
+          <view class="weui-cell__hd">
+            <!-- <view class="weui-label">工单描述</view> -->
+          </view>
+          <view class="weui-cell__bd">
+            <textarea placeholder='工单描述'  placeholder-class='placeholder'  name="orderDescribe" bindblur='notNull'></textarea>
+          </view>
+        </view>
+
+   
 
       </view>
 

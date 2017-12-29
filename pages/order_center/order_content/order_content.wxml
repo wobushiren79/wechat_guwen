@@ -60,7 +60,7 @@
           <view class="weui-cell__ft">
             <view class='money'>
               <text>￥</text>
-              <text>1250</text>
+              <text>{{item.specOrderedPrice?item.specOrderedPrice/100:'-'}}</text>
             </view>
             <view>
               <text>×</text>

@@ -26,12 +26,13 @@ Page({
         goodsAdvisor: true
       })
     }
-    if (checkPermissions.hasOrderCenterAdvisor() && checkPermissions.hasOrderCenterAdvisor()) {
+    if ((checkPermissions.hasOrderCenterBuilder() && checkPermissions.hasOrderCenterExecutor())
+      || (!checkPermissions.hasOrderCenterBuilder() && checkPermissions.hasOrderCenterExecutor())) {
       content.setData({
         orderCenter: true
       })
     }
-    if (checkPermissions.hasOrderCenterBuilder() && !checkPermissions.hasOrderCenterAdvisor()) {
+    if (checkPermissions.hasOrderCenterBuilder() && !checkPermissions.hasOrderCenterExecutor()) {
       content.setData({
         orderCenterBuild: true
       })

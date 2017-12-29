@@ -12,14 +12,21 @@ Page({
   //   this.onLoad()
   // },
   dele: function () {
-    wx.clearStorageSync()
-    //跳转登录页面
-    wx.navigateTo({
-      url: '../../login/login',
-    })
+    wx.showModal({
+      title: '退出',
+      content: '是否退出账号',
+      success: function (res) {
+        if (res.confirm) {
+          wx.clearStorageSync()
+          //跳转登录页面
+          wx.navigateTo({
+            url: '../../login/login',
+          })
+        }
+      }
+    })  
   },
-  onLoad: function () {
-    content = this;
+  onShow:function(){
     var userInfo = wx.getStorageSync(storageKey.PLATFORM_USER_OBJ);
     if (!userInfo) {
       wx.navigateTo({
@@ -46,6 +53,9 @@ Page({
     getWalletInfo();
     getCreditInfo();
 
+  },
+  onLoad: function () {
+    content = this;
   }
 });
 

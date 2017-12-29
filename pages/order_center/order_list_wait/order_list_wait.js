@@ -40,7 +40,7 @@ Page({
 function getOrderList(listType) {
   var listRequest = pageUtil.getPageData();
   listRequest.params = {
-    listType: listType
+    financeType: 'wait_service'
   }
   var listCallBack = pageUtil.getPageCallBack(
     function (data, res, isLast) {
@@ -63,7 +63,7 @@ function getOrderList(listType) {
 
     }
   )
-  orderCenterHttp.getOrderList(listRequest, listCallBack)
+  orderCenterHttp.getOrderCenterList(listRequest, listCallBack)
 }
 
 /**

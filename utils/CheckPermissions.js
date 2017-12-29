@@ -23,7 +23,7 @@ function hasGoodsAdvisorAmateur() {
 /**
  * 检测是否有接单权限
  */
-function hasOrderCenterAdvisor() {
+function hasOrderCenterExecutor() {
   return baseCheckPermissions("orderc.executor");
 }
 
@@ -68,7 +68,7 @@ function baseCheckPermissions(roleCode) {
 module.exports.hasPermission = hasPermission;
 module.exports.hasGoodsAdvisor = hasGoodsAdvisor;
 module.exports.hasGoodsAdvisorAmateur = hasGoodsAdvisorAmateur;
-module.exports.hasOrderCenterAdvisor = hasOrderCenterAdvisor;
+module.exports.hasOrderCenterExecutor = hasOrderCenterExecutor;
 module.exports.hasCemeteryAdvisor = hasCemeteryAdvisor;
 module.exports.hasCemeteryTalker = hasCemeteryTalker;
 module.exports.hasOrderCenterBuilder = hasOrderCenterBuilder;
