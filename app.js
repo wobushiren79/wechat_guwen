@@ -76,6 +76,7 @@ App({
     JavaPlatformUrl: "https://platform.shianlife.cn/",
     // JavaPlatformUrl: "http://192.168.0.59:8099/ki4so-web/",
     JavaGoodsUrl: "https://goods.shianlife.cn/",
+    // JavaGoodsUrl: "http://192.168.0.59:8080/goods/",
     JavaCemeteryUrl: "https://t-cemetery-api.shianlife.cn/",
     // JavaCemeteryUrl: "http://192.168.0.59:8081/app/",
     javaOrderCenterUrl: 'https://order.shianlife.cn/',
