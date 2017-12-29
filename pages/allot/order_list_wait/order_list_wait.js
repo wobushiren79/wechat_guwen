@@ -1,6 +1,7 @@
 var orderCenterHttp = require("../../../utils/http/RequestForOrderCenter.js")
 var toastUtil = require("../../../utils/ToastUtil.js");
 var pageUtil = require("../../../utils/PageUtil.js");
+var checkPermissions = require("../../../utils/CheckPermissions.js");
 var content;
 Page({
   data: {
@@ -30,7 +31,20 @@ Page({
   orsers: function (evet) {
     var orderId = evet.target.dataset.orderid
     acceptOrder(orderId)
-  }
+  },
+  //跳转新建工单页面
+  nav: function () {
+    var hasOrderCenterExecutor = checkPermissions.hasOrderCenterExecutor();
+    var hasOrderCenterBuilder = checkPermissions.hasOrderCenterBuilder();
+    if (hasOrderCenterExecutor && !hasOrderCenterBuilder) {
+      toastUtil.showToast("没有权限");
+      return
+    } else {
+      wx.navigateTo({
+        url: '../../new_/new_',
+      })
+    }
+  },
 });
 
 

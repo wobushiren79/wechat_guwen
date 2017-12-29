@@ -7,7 +7,7 @@
 
         <!-- 填写前 -->
         <black wx:if="{{!show}}">
-          <navigator url="../service_goods_address/service_goods_address">
+          <navigator url="../service_goods_address/service_goods_address" open-type='redirectTo'>
             <view class="show clearfix">
               <image src="../../images/icon_edit.png" class="img"></image>
               <view class="info">
@@ -21,7 +21,7 @@
 
         <!-- 填写后 -->
         <black wx:if="{{show}}">
-          <navigator url="../service_goods_address/service_goods_address">
+          <navigator url="../service_goods_address/service_goods_address" open-type='redirectTo'>
             <view class="hide clearfix">
               <image src="../../images/icon_money_my.png" class="img "></image>
               <!-- 信息 -->
@@ -163,7 +163,7 @@
       <!-- 购置物品 -->
       <view class="goods_other list ">
         <view class="dl ">
-          <navigator url="../service_invoice_address/service_invoice_address">
+          <navigator url="../service_invoice_address/service_invoice_address" open-type='redirectTo'>
             <view class="dd ">
               <view class="header ">
                 发票信息
@@ -218,17 +218,17 @@
         <!-- 合计 -->
         <block wx:if="{{!levelId}}">
           <view class="count" bindlongtap="price">
-            <black wx:if="{{price}}">
+            <!-- <black wx:if="{{price}}">
               应付圆满金额：
 
               <text>￥</text>
               <text>{{dviser_Price}}</text>
             </black>
-            <black wx:else>
+            <black wx:else> -->
               客户支付金额:
               <text>￥</text>
               <text>{{totla_price}}</text>
-            </black>
+            <!-- </black> -->
 
           </view>
         </block>

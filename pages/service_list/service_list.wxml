@@ -56,7 +56,7 @@
                 <text>商品更新中</text>
               </view>
               <view class="money" wx:else>
-                推荐价:<text>{{item.price}}</text>
+                ¥:<text>{{item.price}}</text>
               </view>
               <view class="num">
                 销售量<text>{{item.sale_amount}}</text>
@@ -80,7 +80,7 @@
                 <text>商品更新中</text>
               </view>
               <view class="money" wx:else>
-                推荐价:<text>{{item.price}}</text>
+                ¥:<text>{{item.price}}</text>
               </view>
               <view class="num">
                 销售量<text>{{item.sale_amount}}</text>

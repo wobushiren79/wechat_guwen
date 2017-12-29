@@ -20,11 +20,13 @@
           <navigator url="">
             <view class="dd">
               <view class="header ">
-                {{amateurLevel?'订单金额':'圆满金额'}}
+                <!-- {{amateurLevel?'订单金额':'圆满金额'}} -->
+                订单金额
               </view>
               <view class="body ">
                 ￥
-                <text>{{amateurLevel?showTotalPrice/100:totalPrice/100*1.00}}</text>
+                <!-- <text>{{amateurLevel?showTotalPrice/100:totalPrice/100*1.00}}</text> -->
+                <text>{{showTotalPrice/100}}</text>
               </view>
               <!--<view class="footer ">
                 结算明细
@@ -67,12 +69,14 @@
             </view> -->
           </view>
           <view class="dd list_footer">
-            <view class="header ">
-              {{amateurLevel?'应付订单金额':'应付圆满金额'}}
+             <view class="header "> 
+              <!-- {{amateurLevel?'应付订单金额':'应付圆满金额'}} -->
+              应付订单金额
             </view>
             <view class="footer money">
               ￥
-              <text>{{amateurLevel?showTotalPrice/100:totalPrice/100*1.00}}</text>
+              <!-- <text>{{amateurLevel?showTotalPrice/100:totalPrice/100*1.00}}</text> -->
+              <text>{{showTotalPrice/100}}</text>
             </view>
           </view>
 

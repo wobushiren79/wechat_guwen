@@ -100,7 +100,12 @@
 
       <!--提交-->
       <view class="weui-btn-area">
+      <block wx:if="{{asda}}">
         <button class="weui-btn" type="primary" formType="submit">提交</button>
+      </block>
+      <block wx:else>
+        <button class="weui-btn" type="primary" >已提交</button>
+      </block>
       </view>
     </form>
   </view>

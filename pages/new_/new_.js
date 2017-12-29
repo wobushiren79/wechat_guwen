@@ -10,6 +10,7 @@ Page({
       ' ',
     ],
     businessType_a: 0,
+    asda:true,
     businessType_chat: 0,
     ChatList: [
       '看墓',

@@ -25,7 +25,7 @@
         <block wx:for="{{listdata}}">
           <view class="li">
             <view class="li_header">
-              <view class="header">单号： {{item.workOrder.orderNumber}}
+              <view class="header">{{item.workOrder.id}}： {{item.workOrder.orderNumber}}
               </view>
               <view class="footer">
                 <button type="primary" class="btn btn_1" bindtap="zxture" data-id="{{item.workOrder.relateOrderNo}}">关联工单</button>
@@ -147,9 +147,9 @@
       </view>
     </view>
 
-    <navigator class='fix_new' url='../../new_/new_'>
+    <view class='fix_new' bindtap='nav'>
       <text>＋</text>
-    </navigator>
+    </view>
   </view>
   <block wx:if="{{notNumber}}">
     <view class='prompt'>

@@ -33,7 +33,8 @@
                 <view class="header"></view>
               </black>
               <view class="footer">￥
-                <text>{{amateurLevel?item.show_total_price/100:item.total_price/100}}</text>
+                <!-- <text>{{amateurLevel?item.show_total_price/100:item.total_price/100}}</text> -->
+                <text>{{item.show_total_price}}</text>
               </view>
             </view>
             <navigator url="../service_order_content/service_order_content?orderid={{item.id}}" class="li_body" hover-class="active">

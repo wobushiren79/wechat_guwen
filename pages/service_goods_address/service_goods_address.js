@@ -177,8 +177,8 @@ Page({
     // serviceInfo.selfDeliveryTime = ''
     //客户填写信息
     wx.setStorageSync(storageKey.GOODS_ORDER_SERVICE_INFO, serviceInfo)
-    wx.navigateBack({
-      delta: 1
+    wx.redirectTo({
+      url:'../service_money/service_money'
     })
   }
 

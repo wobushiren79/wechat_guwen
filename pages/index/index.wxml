@@ -236,14 +236,14 @@
                   </view>
                   <block wx:if="{{amateurLevel}}">
                     <view class="money">
-                      <text class="s">推荐价：</text>
+                      <text class="s">¥：</text>
                       <text class="b"></text>
                       <text class="b">{{item.price}}</text>
                     </view>
                   </block>
                   <block wx:else>
                     <view class="money">
-                      <text class="s">推荐价：</text>
+                      <text class="s">¥：</text>
                       <text class="b"></text>
                       <text class="b">{{item.price}}</text>
                     </view>

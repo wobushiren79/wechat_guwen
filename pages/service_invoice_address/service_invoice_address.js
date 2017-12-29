@@ -198,8 +198,8 @@ Page({
     }
     //客户发票信息
     wx.setStorageSync(storageKey.GOODS_ORDER_INVOICE_INFO, submitInvoice);
-    wx.navigateBack({
-      delta: 1
+    wx.redirectTo({
+      url: '../service_money/service_money'
     })
   }
 })

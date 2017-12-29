@@ -10,6 +10,7 @@ Page({
     ],
     businessType_a:0,
     businessType_type: 0,
+    asda:true,
     types:[
       '请选择服务类型',
       '殡仪',
@@ -24,15 +25,15 @@ Page({
     time:'服务时间'
   },
   //验证空选项
-  notNull:function(e){
-    if (e.detail.value == ''){
-      wx.showToast({
-        title: '不能为空',
-        image: '../../images/icon_info.png',
-        duration: 2000
-      })
-    }
-  },
+  // notNull:function(e){
+  //   if (e.detail.value == ''){
+  //     wx.showToast({
+  //       title: '不能为空',
+  //       image: '../../images/icon_info.png',
+  //       duration: 2000
+  //     })
+  //   }
+  // },
   
   // 预约日期
   bindDateChange: function (e) {
@@ -87,6 +88,9 @@ Page({
   },
   formSubmit: function (e) {
     var that=this
+    that.setData({
+      asda:false,
+    })
     var submitData=[]
     submitData = e.detail.value
     submitData.orderType = that.data.businessType_type-1
@@ -180,12 +184,10 @@ Page({
 function createOrder(createOrderData) {
   var createOrderCallBack = {
     success: function () {
-      toastUtil.showToast('新建成功')
-      setTimeout(function () {
+      toastUtil.showToastReWrite('新建成功')
         wx.redirectTo({
           url: '/pages/order_center/order_list_wait/order_list_wait',
         })
-      }, 2000)
     },
     fail: function (data, res) {
       toastUtil.showToast(data)

@@ -173,7 +173,7 @@
         </block>
 
 
-        <navigator class='fix_new' url='../../new_easy/new_easy'>
+        <navigator class='fix_new' url='../../new_easy/new_easy' open-type='redirectTo'>
           <text>＋</text>
         </navigator>
 
