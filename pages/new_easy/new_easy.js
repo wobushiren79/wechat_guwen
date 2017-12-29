@@ -11,6 +11,7 @@ Page({
     businessType_a:0,
     businessType_type: 0,
     types:[
+      '请选择服务类型',
       '殡仪',
       '公墓',
       '其他'
@@ -58,7 +59,7 @@ Page({
   //预约类型
   bindPickerChange_type: function (e) {
     var that = this
-    if (e.detail.value == 1) {
+    if (e.detail.value == 2) {
       that.setData({
         businessType_type: e.detail.value,
         typeName: that.data.types[e.detail.value],
@@ -88,7 +89,7 @@ Page({
     var that=this
     var submitData=[]
     submitData = e.detail.value
-    submitData.orderType = that.data.businessType_type
+    submitData.orderType = that.data.businessType_type-1
     submitData.appointmentTime = that.data.date+' '+that.data.time+':00'
     submitData.createUserType = 'onlycreate'
     var gmList = that.data.gmList
@@ -111,6 +112,18 @@ Page({
     }
     if (submitData.address.length == 0) {
       toastUtil.showToast("没有客户地址")
+      return
+    }
+    if (that.data.date =='服务日期') {
+      toastUtil.showToast("没有服务日期")
+      return
+    }
+    if (that.data.time == '服务时间') {
+      toastUtil.showToast("没有服务时间")
+      return
+    }
+    if (that.data.businessType_type == 0){
+      toastUtil.showToast("没有服务类型")
       return
     }
     createOrder(submitData);

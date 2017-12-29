@@ -46,7 +46,7 @@
         </block>
         <block wx:if="{{orderCenterBuild}}">
           <view class="li">
-            <navigator url="../order_center/order_list_processing/order_list_processing" hover-class="active">
+            <navigator url="../order_center/order_list_wait/order_list_wait" hover-class="active">
               <image src="../../images/icon_order_server.png"></image>
               <text>我建的单</text>
             </navigator>

@@ -40,7 +40,7 @@ Page({
 function getOrderList(listType) {
   var listRequest = pageUtil.getPageData();
   listRequest.params = {
-    financeType: 'wait_service'
+    financeType: 'order_servicing'
   }
   var listCallBack = pageUtil.getPageCallBack(
     function (data, res, isLast) {

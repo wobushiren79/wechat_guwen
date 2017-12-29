@@ -35,7 +35,7 @@ Page({
 function getOrderList(listType) {
   var listRequest = pageUtil.getPageData();
   listRequest.params = {
-    financeType: 'close'
+    financeType: 'closed'
   }
   var listCallBack = pageUtil.getPageCallBack(
     function (data, res, isLast) {

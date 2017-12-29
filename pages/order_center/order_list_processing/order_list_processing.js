@@ -36,7 +36,7 @@ Page({
 function getOrderList(listType) {
   var listRequest = pageUtil.getPageData();
   listRequest.params = {
-    financeType: 'order_servicing'
+    financeType: 'un_return_cash'
   }
   var listCallBack = pageUtil.getPageCallBack(
     function (data, res, isLast) {

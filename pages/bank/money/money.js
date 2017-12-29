@@ -54,16 +54,20 @@ Page({
   phoneData: function (e) {
     var that = this
     var getRequest = {
-      phone: that.data.mobile
+      mobile: that.data.mobile
     }
     var getCallBack={
-      success:function(res){
+      success:function(res,opt){
+        var Code = opt.data.message
+        var star = Code.indexOf(':')+1;
+        var co = Code.substring(star)
+        console.log(co)
             that.setData({
               selected: true,
               selected1: false,
               xianshi: true,
               second: 60,
-              msgCode: res
+              msgCode: co
             })
             countdown(that)
             wx.showToast({
@@ -76,7 +80,7 @@ Page({
         toastUtil.showToast("发送失败");
       }
     }
-    RequestForCemetery.SendVerificationCode(getRequest, getCallBack);
+    RequestForPlatformm.changeForPassWord(getRequest, getCallBack);
   },
   formSubmit: function (e) {
     var that = this

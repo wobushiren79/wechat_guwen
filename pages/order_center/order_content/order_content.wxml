@@ -70,7 +70,7 @@
         </view>
         </block>
       </view>
-      <view class="weui-cells__tips">备注：{{content.workOrder.orderRemark}}</view>
+      <view class="weui-cells__tips">备注：{{content.workOrder.orderDescribe}}</view>
     </view>
   </view>
 </view>

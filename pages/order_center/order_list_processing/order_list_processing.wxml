@@ -33,7 +33,7 @@
                   殡仪/{{item.workOrder.orderNumber}}
                 </view>
                  <view class='footer'>
-                {{item.workOrder.orderStatusStr}}
+                {{item.workOrderUserFinances[0].financeStatusStr}}
                 </view>
               </view>
             </block>
