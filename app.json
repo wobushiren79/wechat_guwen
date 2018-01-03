@@ -80,7 +80,9 @@
       "pages/order_center/order_list_audit/order_list_audit",
       "pages/order_center/order_list_finish/order_list_finish",
       "pages/order_center/order_list_wait/order_list_wait",
-      "pages/order_center/order_content/order_content"
+      "pages/order_center/order_content/order_content",
+      "pages/order_service_address/order_service_address",
+    "pages/user_auto_login_and_register/user_auto_login_and_register"
   
   ],
 "window": {

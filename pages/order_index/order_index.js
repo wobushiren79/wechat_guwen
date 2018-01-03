@@ -16,6 +16,12 @@ Page({
   },
 
   onShow: function () {
+    content.setData({
+      orderCenter: false,
+      cemeteryAdvisor: false,
+      goodsAdvisor: false,
+    })
+
     if (checkPermissions.hasCemeteryAdvisor()) {
       content.setData({
         cemeteryAdvisor: true
@@ -32,7 +38,7 @@ Page({
         orderCenter: true
       })
     }
-    if (checkPermissions.hasOrderCenterBuilder() && !checkPermissions.hasOrderCenterExecutor()) {
+    if (checkPermissions.hasOrderCenterBuilder() ) {
       content.setData({
         orderCenterBuild: true
       })

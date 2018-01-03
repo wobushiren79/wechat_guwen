@@ -1,4 +1,4 @@
-var goodsPHPHttp = require("../../utils/http/RequestForPHPGoods.js");
+ var goodsPHPHttp = require("../../utils/http/RequestForPHPGoods.js");
 var platformHttp = require("../../utils/http/RequestForPlatform.js");
 var toastUtil = require("../../utils/ToastUtil.js");
 var storageKey = require("../../utils/storage/StorageKey.js");
@@ -191,6 +191,7 @@ function getLabelTag() {
       if (!res.data.list || res.data.list.length == 0)
         return
       content.setData({
+        label_data: null,
         labellist: res.data.list,
         label_id: res.data.list[0].id
       })

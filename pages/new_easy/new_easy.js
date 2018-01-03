@@ -12,7 +12,7 @@ Page({
     businessType_type: 0,
     asda:true,
     types:[
-      '请选择服务类型',
+      '服务类型',
       '殡仪',
       '公墓',
       '其他'

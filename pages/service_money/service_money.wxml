@@ -3,9 +3,7 @@
     <view class="page__bd clearfix">
 
       <!-- 填写服务信息 star -->
-      <view class="goods_address ">
-
-        <!-- 填写前 -->
+      <!-- <view class="goods_address ">
         <black wx:if="{{!show}}">
           <navigator url="../service_goods_address/service_goods_address" open-type='redirectTo'>
             <view class="show clearfix">
@@ -18,27 +16,21 @@
             </view>
           </navigator>
         </black>
-
-        <!-- 填写后 -->
         <black wx:if="{{show}}">
           <navigator url="../service_goods_address/service_goods_address" open-type='redirectTo'>
             <view class="hide clearfix">
               <image src="../../images/icon_money_my.png" class="img "></image>
-              <!-- 信息 -->
               <view class="info clearfix ">
-                <!-- 姓名 -->
                 <view class="title ">
                   客户：
                   <text>{{kehu.contact}}</text>
                   <text class="phone ">{{kehu.contactPhone}}</text>
                 </view>
                 <view class="content ">
-                  <!-- 地址 -->
                   <view class=" ">
                     地址：
                     <text>{{kehu.serviceLocation}}</text>
                   </view>
-                  <!-- 服务时间 -->
                   <block wx:if="{{kehu.bookTime}}">
                     <view class=" ">
                       服务时间：
@@ -51,11 +43,36 @@
             </view>
           </navigator>
         </black>
-
-        <!-- 分割线 -->
         <image src="../../images/hr.png " class="hr "></image>
-      </view>
+      </view> -->
       <!-- 填写服务信息 end -->
+
+      <!-- 填写收件地址 -->
+      <view class="goods_address ">
+        <navigator url="../order_service_address/order_service_address">
+          <view class="hide clearfix">
+            <image src="/images/icon_money_my.png" class="img "></image>
+            <!-- 信息 -->
+            <view class="info clearfix ">
+              <!-- 姓名 -->
+              <view class="title ">
+                联系人：
+                <text>{{defaultAddress.recipientName}}</text>
+                <text class="phone ">{{defaultAddress.recipientPhone}}</text>
+              </view>
+              <view class="content ">
+                <!-- 地址 -->
+                <view class=" ">
+                  地址：
+                  <text>{{defaultAddress.address}}</text>
+                </view>
+              </view>
+            </view>
+            <image src="../../../images/right.png " class="icon "></image>
+          </view>
+        </navigator>
+        <image src="../../../images/hr.png " class="hr "></image>
+      </view>
 
       <!-- 购置物品 -->
       <view class="goods_buy list ">
@@ -163,7 +180,7 @@
       <!-- 购置物品 -->
       <view class="goods_other list ">
         <view class="dl ">
-          <navigator url="../service_invoice_address/service_invoice_address" open-type='redirectTo'>
+          <navigator url="../service_invoice_address/service_invoice_address" open-type='navigateTo'>
             <view class="dd ">
               <view class="header ">
                 发票信息
@@ -188,6 +205,7 @@
               </view>
             </block>
           </black>
+
           <view class="dd ">
             <view class="header ">
               备注
@@ -196,18 +214,48 @@
               <textarea placeholder="请填写订单备注信息 " name="orderComment" />
             </view>
           </view>
-          <view class="dd ">
-            <view class="header ">
-            </view>
-            <!-- <view class="footer ">
-              客户应付金额
-              <text> ￥</text>
-              <text>{{totla_price}}</text>
-            </view> -->
-          </view>
+
         </view>
       </view>
+      <!-- 服务方式 -->
 
+      <view class='list server_style'>
+        <view class='dl'>
+          <view class="dd">
+            <view class="header">
+              服务方式
+            </view>
+            <view class="footer">
+              <text class="btn {{btn_1?'active':''}} " bindtap="bind_btn_1">及时服务</text>
+              <text class="btn {{btn_2?'active':''}} " bindtap="bind_btn_2">预约服务</text>
+            </view>
+          </view>
+          <block wx:if="{{btn_2}}">
+            <view class="dd order_time">
+              <view class="header ">
+                预约日期
+              </view>
+              <view class="footer ">
+                <picker mode="date" value="{{date}}" start="2015-09-01" end="2037-09-01" bindchange="bindDateChange">
+                  <text>{{date}}</text>
+                </picker>
+              </view>
+              <image src="../../../images/right.png" class="icon"></image>
+            </view>
+            <view class="dd order_time">
+              <view class="header ">
+                预约时间
+              </view>
+              <view class="footer ">
+                <picker mode="time" value="{{time}}" start="00:00" end="24:00" bindchange="bindTimeChange">
+                  <text>{{time}}</text>
+                </picker>
+              </view>
+              <image src="../../../images/right.png" class="icon"></image>
+            </view>
+          </block>
+        </view>
+      </view>
       <!-- 固定底部 star -->
       <view class="footerfix clearfix">
 
@@ -225,9 +273,9 @@
               <text>{{dviser_Price}}</text>
             </black>
             <black wx:else> -->
-              客户支付金额:
-              <text>￥</text>
-              <text>{{totla_price}}</text>
+            客户支付金额:
+            <text>￥</text>
+            <text>{{totla_price}}</text>
             <!-- </black> -->
 
           </view>

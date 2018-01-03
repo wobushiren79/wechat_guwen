@@ -7,6 +7,7 @@ var pageUtil = require("../../utils/PageUtil.js");
 var checkPermissions = require("../../utils/CheckPermissions.js");
 var content;
 
+var serviceWay = 0;
 Page({
   data: {
     show: false,
@@ -15,12 +16,41 @@ Page({
     levelId: false,
     levelType: '',
     levelName: '',
-    orderType: 1
+    orderType: 1,
+    date: "请选择日期",
+    time: "请选择时间",
+    btn_1: true
   },
   bind_list: function () {
     var that = this;
     that.setData({
       list_show: (!that.data.list_show)
+    })
+  },
+  // 及时服务和预约服务
+  bind_btn_1: function () {
+    serviceWay = 0;
+    this.setData({
+      btn_1: true,
+      btn_2: false
+    })
+  },
+  bind_btn_2: function () {
+    serviceWay = 1;
+    this.setData({
+      btn_1: false,
+      btn_2: true
+    })
+  },
+  bindDateChange: function (e) {
+    console.log("1")
+    this.setData({
+      date: e.detail.value
+    })
+  },
+  bindTimeChange: function (e) {
+    this.setData({
+      time: e.detail.value
     })
   },
   onLoad: function () {
@@ -60,8 +90,10 @@ Page({
     getFormData();
   },
   onShow: function () {
+    //获取默认地址
+    findDefaultAddress();
     //取出客户信息
-    getServiceInfo();
+    // getServiceInfo();
     //取出发票信息
     getInvoiceInfo();
   },
@@ -88,10 +120,10 @@ Page({
     var totla_price = that.data.totla_price
     var levelId = that.data.levelId
     //客户信息
-    var kehu = that.data.kehu
-    if (!kehu) {
-      toastUtil.showToast("未填写服务信息")
-      return
+    var defaultAddress = that.data.defaultAddress;
+    if (defaultAddress == null || defaultAddress.length == 0) {
+      toastUtil.showToast("没有选择地址");
+      return;
     }
     //发票信息
     var fapiao = that.data.fapiao
@@ -101,8 +133,8 @@ Page({
     goodsOrder.connectId = ''
     //下单备注
     goodsOrder.orderComment = e.detail.value.orderComment
-    goodsOrder.customerName = kehu.contact
-    goodsOrder.customerPhone = kehu.contactPhone
+    goodsOrder.customerName = defaultAddress.recipientName
+    goodsOrder.customerPhone = defaultAddress.recipientPhone
     goodsOrder.levelName = that.data.levelName
     goodsOrder.levelType = that.data.levelType
     goodsOrder.levelId = that.data.levelId ? that.data.levelId : ''
@@ -317,16 +349,24 @@ Page({
       goodsInvoice.receiptLocation = fapiao.receiptLocation
     }
     getdata.goodsInvoice = goodsInvoice
-    if (kehu) {
-      goodsServiceInfo.serviceWay = kehu.serviceWay
-      goodsServiceInfo.selfDelivery = kehu.selfDelivery
-      goodsServiceInfo.selfDeliveryTime = kehu.selfDeliveryTime
-      goodsServiceInfo.bookTime = kehu.bookTime
-      goodsServiceInfo.contact = kehu.contact
-      goodsServiceInfo.contactPhone = kehu.contactPhone
-      goodsServiceInfo.serviceLocation = kehu.serviceLocation
+    if (defaultAddress) {
+      goodsServiceInfo.serviceWay = serviceWay;
+      if (serviceWay == 1) {
+        // goodsServiceInfo.selfDelivery = kehu.selfDelivery
+        // goodsServiceInfo.selfDeliveryTime = kehu.selfDeliveryTime
+        if (content.data.date.indexOf("日期") >= 0 || content.data.time.indexOf("时间") >= 0) {
+          toastUtil.showToast("没有选择时间");
+          return;
+        }
+        var bookTime = content.data.date + " " + content.data.time + ":00";
+        goodsServiceInfo.bookTime = bookTime;
+      }
+      goodsServiceInfo.contact = defaultAddress.recipientName
+      goodsServiceInfo.contactPhone = defaultAddress.recipientPhone
+      goodsServiceInfo.serviceLocation = defaultAddress.address
 
     }
+    
     getdata.goodsServiceInfo = goodsServiceInfo
 
     createGoodsOrder(getdata)
@@ -457,4 +497,21 @@ function getFormData() {
     class_name: Array.from(new Set(className)),
   })
 
+}
+
+/**
+ * 获取默认地址
+ */
+function findDefaultAddress() {
+  var findDefaultAddressCallBack = {
+    success: function (data, res) {
+      content.setData({
+        defaultAddress: data
+      })
+    },
+    fail: function () {
+      toastUtil.showToast("获取地址失败");
+    }
+  }
+  goodsHttp.findServiceInfoDefaultAddress(null, findDefaultAddressCallBack)
 }

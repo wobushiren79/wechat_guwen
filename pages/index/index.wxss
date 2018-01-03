@@ -127,7 +127,7 @@ swiper image{
 .tab_content .ul .li .li_content .money {
   color: #fc8383;
   position: absolute;
-  bottom: 50rpx;
+  bottom: 0rpx;
 }
 .tab_content .ul .li .li_content .money .s{
   font-size: 28rpx;

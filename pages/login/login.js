@@ -22,7 +22,10 @@ Page({
       "funeral.advisor",
     ],
     is_loction: 0,
-    hasDealSubSystem: 0
+    hasDealSubSystem: 0,
+    indicatorDots: false,
+    autoplay: false,
+    duration: 500
   },
   onLoad: function (e) {
     content = this;

@@ -1,5 +1,10 @@
 /**login.wxss**/
-
+page,
+.page,
+swiper,
+swiper-item{
+  height: 100%
+}
 /*logo*/
 
 .page__title image {
