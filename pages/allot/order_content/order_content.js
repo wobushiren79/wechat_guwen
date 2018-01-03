@@ -47,8 +47,11 @@ Page({
     // var that=this
     // console.log()
     if (this.data.tab_0 == e.currentTarget.dataset.index){
-      tab_0:10000
+      this.setData({
+        tab_0: 1000000
+      })
     }else{
+      // console.log(222222)
       this.setData({
         tab_0: e.currentTarget.dataset.index
       })
@@ -57,7 +60,9 @@ Page({
 
   bind_tab_1: function (e) {
     if (this.data.tab_1 == e.currentTarget.dataset.index) {
-      tab_1: 10000
+      this.setData({
+        tab_1: 1000000
+      })
     } else {
       this.setData({
         tab_1: e.currentTarget.dataset.index
@@ -66,7 +71,9 @@ Page({
   },
   bind_tab_2: function (e) {
     if (this.data.tab_2 == e.currentTarget.dataset.index) {
-      tab_2: 10000
+      this.setData({
+        tab_2: 1000000
+      })
     } else {
       this.setData({
         tab_2: e.currentTarget.dataset.index
