@@ -10,7 +10,7 @@
                 经办人
               </view>
               <view class="footer ">
-                <input type="text" placeholder="经办人姓名" name="agentName" />
+                <input type="text" placeholder="经办人姓名" name="agentName" value='{{agentName}}'/>
               </view>
             </view>
             <view class="dd required">
@@ -18,7 +18,7 @@
                 经办人电话
               </view>
               <view class="footer ">
-                <input type="number" placeholder="经办人电话" name="agentPhone" maxlength='11'   bindblur='checktel'/>
+                <input type="number" placeholder="经办人电话" name="agentPhone" maxlength='11'   bindblur='checktel' value='{{agentPhone}}'/>
               </view>
             </view>
             <view class="dd required">
@@ -26,7 +26,7 @@
                 服务对象
               </view>
               <view class="footer ">
-                <input type="text" placeholder="服务对象姓名" name="serviceTarget" />
+                <input type="text" placeholder="服务对象姓名" name="serviceTarget" value='{{serviceTarget}}'/>
               </view>
             </view>
             <view class="dd required">

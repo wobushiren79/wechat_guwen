@@ -27,7 +27,7 @@ Page({
         cemeteryAdvisor: true
       })
     }
-    if (checkPermissions.hasGoodsAdvisor() || checkPermissions.hasGoodsAdvisorAmateur) {
+    if (checkPermissions.hasGoodsAdvisor() || checkPermissions.hasGoodsAdvisorAmateur()) {
       content.setData({
         goodsAdvisor: true
       })

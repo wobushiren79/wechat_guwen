@@ -123,6 +123,7 @@ Page({
     content.setData({
       orderId: evet.orderId,
     })
+    getOrderDetails(evet.orderId)
   },
   //提交审核
   formSubmit: function (e) {
@@ -221,4 +222,26 @@ function dealOrder(dealRequest) {
     }
   }
   orderCenterHttp.dealOrder(dealRequest, dealCallBack);
+}
+
+
+/**
+ * 获取工单详情
+ */
+function getOrderDetails(orderId) {
+  var getRequest = {
+    orderId: orderId
+  }
+  var getCallBack = {
+    success: function (data, res) {
+      content.setData({
+        agentName: data.customerInfo.agentName,
+        agentPhone: data.customerInfo.agentPhone,
+        serviceTarget: data.customerInfo.serviceTarget
+      })
+    },
+    fail: function (data, res) {
+    }
+  }
+  orderCenterHttp.getOrderDetails(getRequest, getCallBack);
 }

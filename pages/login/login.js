@@ -37,6 +37,37 @@ Page({
     var Contentdata = e.detail.value
     loginPlatForm(Contentdata.username, Contentdata.password);
   },
+  formSubmitByPhone: function (e) {
+    loginByMoBile(e.detail.value.mobile, e.detail.value.msgCode) 
+  },
+  /**
+* 发送验证码
+*/
+  phoneData: function (e) {
+    if (!checkMobile(e.detail.value.mobile)) {
+      toastUtil.showToast("手机号不正确");
+      return;
+    }
+    var sendSmsCodeData = {
+      mobile: e.detail.value.mobile
+    }
+    var sendSmsCodeCallBack = {
+      success: function (data, res) {
+        content.setData({
+          selected: true,
+          selected1: false,
+          isSendMsg: true,
+          second: 60,
+        })
+        countdown(content)
+      },
+      fail: function (data, res) {
+        toastUtil.showToast("获取失败");
+      }
+    }
+    platformHttp.loginByPhone(sendSmsCodeData, sendSmsCodeCallBack);
+  },
+
   //设置页面转发功能
   onShareAppMessage: function () {
     return {
@@ -81,19 +112,7 @@ function loginPlatForm(userName, passWord) {
   var loginPlatCallBack = {
     success: function (data, res) {
       if (data) {
-        //缓存用户名和密码
-        wx.setStorageSync(storageKey.LOGIN_USER_NAME, loginPlatData.userName)
-        wx.setStorageSync(storageKey.LOGIN_USER_PASS, loginPlatData.userPwd)
-        //缓存平台登录用户ID
-        if (data.userId)
-          wx.setStorageSync(storageKey.PLATFORM_USER_ID, data.userId)
-        //缓存用户信息
-        if (data.userObj)
-          wx.setStorageSync(storageKey.PLATFORM_USER_OBJ, data.userObj)
-        //缓存用户权限
-        if (data.resourceCodes)
-          wx.setStorageSync(storageKey.PLATFORM_RESOURCE_CODES, data.resourceCodes)
-        getUserLevel();
+        loginSuccess(data, loginPlatData.userName, loginPlatData.userPwd)
       }
     },
     fail: function (data, res) {
@@ -101,6 +120,28 @@ function loginPlatForm(userName, passWord) {
     }
   }
   platformHttp.loginPlatform(loginPlatData, loginPlatCallBack);
+}
+
+/**
+ * 手机登陆
+ */
+function loginByMoBile(mobile, smsCode) {
+  //手机号登陆
+  var loginByPhoneRequest = {
+    mobile: mobile,
+    msgCode: smsCode
+  }
+  var loginByPhoneCallBack = {
+    success: function (data, res) {
+      if (data) {
+        loginSuccess(data, data.userObj.loginName, data.userObj.loginPwd)
+      }
+    },
+    fail: function (data, res) {
+      toastUtil.showToast(data);
+    }
+  }
+  platformHttp.loginByPhone(loginByPhoneRequest, loginByPhoneCallBack);
 }
 
 /**
@@ -177,3 +218,59 @@ function getUserLevel() {
   }
   loginGoods();
 }
+
+
+
+
+/**
+ * 登陆成功处理
+ */
+function loginSuccess(data, userName, userPwd) {
+  //缓存用户名和密码
+  wx.setStorageSync(storageKey.LOGIN_USER_NAME, userName)
+  wx.setStorageSync(storageKey.LOGIN_USER_PASS, userPwd)
+  //缓存平台登录用户ID
+  if (data.userId)
+    wx.setStorageSync(storageKey.PLATFORM_USER_ID, data.userId)
+  //缓存用户信息
+  if (data.userObj)
+    wx.setStorageSync(storageKey.PLATFORM_USER_OBJ, data.userObj)
+  //缓存用户权限
+  if (data.resourceCodes)
+    wx.setStorageSync(storageKey.PLATFORM_RESOURCE_CODES, data.resourceCodes)
+  getUserLevel();
+}
+
+/**
+ * 验证码倒计时
+ */
+function countdown(that) {
+  var second = that.data.second;
+  if (second == 0) {
+    // console.log("Time Out...");
+    that.setData({
+      selected: false,
+      selected1: true,
+      second: 60,
+    });
+    return;
+  }
+  var time = setTimeout(function () {
+    that.setData({
+      second: second - 1
+    });
+    countdown(that);
+  }
+    , 1000)
+}
+
+/**
+ * 检测手机号
+ */
+function checkMobile(mobile) {
+  if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(mobile))) {
+    return false;
+  } else {
+    return true;
+  }
+} 

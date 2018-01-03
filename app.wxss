@@ -219,7 +219,7 @@ input {
 /* 单项服务订单列表 star */
 
 .page_service_order .tab view {
-   width: 20%; 
+  width: 20%;
 }
 
 .page_service_order .icon {
@@ -270,12 +270,14 @@ input {
   flex: 1;
   text-align: right;
 }
-.page_service_order .list .ul .li .li_header .footer navigator image{
+
+.page_service_order .list .ul .li .li_header .footer navigator image {
   /* display: block */
   width: 60rpx;
   position: relative;
   top: 10rpx;
 }
+
 .page_service_order .list .ul .li .li_footer .footer {
   position: relative;
   z-index: 99;
@@ -388,54 +390,84 @@ input {
 }
 
 .page_allot_order_list .list .ul .li .li_header .footer,
-.page_allot_order_list .list .ul .li .li_footer .footer{
+.page_allot_order_list .list .ul .li .li_footer .footer {
   position: relative;
 }
+
 .page_allot_order_list .list .ul .li .li_header .footer .btn,
-.page_allot_order_list .list .ul .li .li_footer .footer .btn  {
+.page_allot_order_list .list .ul .li .li_footer .footer .btn {
   position: absolute;
   top: 50%;
-   right: 0; 
+  right: 0;
   transform: translate(0, -50%);
 }
 
-.page_allot_order_list2 .list .ul .li{
+.page_allot_order_list2 .list .ul .li {
   border: 6rpx;
   overflow: hidden;
 }
-.page_allot_order_list2 .list .ul .li .li_header{
+
+.page_allot_order_list2 .list .ul .li .li_header {
   align-items: center;
   color: #fff;
 }
-.page_allot_order_list2 .list .ul .li .li_header.plan{
- background: #48cfad;
+
+.page_allot_order_list2 .list .ul .li.plan .li_header {
+  background: #48cfad;
 }
-.page_allot_order_list2 .list .ul .li .li_header.cem{
- background: #67bedb;
+
+.page_allot_order_list2 .list .ul .li.cem .li_header {
+  background: #67bedb;
 }
-.page_allot_order_list2 .list .ul .li .li_header.other{
- background: #ffd076;
+
+.page_allot_order_list2 .list .ul .li.other .li_header {
+  background: #ffd076;
 }
-.page_allot_order_list2 .list .ul .li .li_header .header{
+
+.page_allot_order_list2 .list .ul .li.plan .li_footer,
+.page_allot_order_list2 .list .ul .li.plan .li_footer .footer .btn {
+  color: #48cfad;
+  border-color: #48cfad;
+}
+.page_allot_order_list2 .list .ul .li.cem .li_footer,
+.page_allot_order_list2 .list .ul .li.cem .li_footer .footer .btn {
+  color: #67bedb;
+  border-color: #67bedb;
+}
+.page_allot_order_list2 .list .ul .li.other .li_footer,
+.page_allot_order_list2 .list .ul .li.other .li_footer .footer .btn {
+  color: #ffd076;
+  border-color: #ffd076;
+}
+
+.page_allot_order_list2 .list .ul .li .li_header .header {
   flex-basis: auto;
   height: auto;
   margin-right: 24rpx;
 }
-.page_allot_order_list2 .list .ul .li .li_header image{
+
+.page_allot_order_list2 .list .ul .li .li_header image {
   display: block;
   width: 40rpx;
 }
+
+.page_allot_order_list2 .list .ul .li .li_footer .footer .btn {
+  background: transparent;
+}
+
 /* 分单系统订单列表 end */
-.page_mystroe_service .tab wx-view{
-  width: 25%
+
+.page_mystroe_service .tab wx-view {
+  width: 25%;
 }
 
 /* 我的门店 */
 
 /* 尾部警告 */
-.warning_text{
+
+.warning_text {
   text-align: center;
-  color: #888888;
+  color: #888;
   padding-bottom: 20rpx;
 }
 
@@ -457,11 +489,12 @@ input {
   background-color: rgba(72, 207, 173, 0.8);
   box-shadow: 0px 0px 5px #fff;
 }
-.fix_new text{
+
+.fix_new text {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%)
+  transform: translate(-50%, -50%);
 }
 
 /* 新建 end */
@@ -495,29 +528,32 @@ contact-button {
 }
 
 /* 提示 */
-.prompt{
-  padding:30rpx 16rpx 30rpx 30rpx!important;
+
+.prompt {
+  padding: 30rpx 16rpx 30rpx 30rpx !important;
 }
-.prompt text{
-  display: block!important;
-  width: 100%!important;
-  text-align: center!important;
-  font-size: 30rpx!important;
-  color: #bbb!important;
+
+.prompt text {
+  display: block !important;
+  width: 100% !important;
+  text-align: center !important;
+  font-size: 30rpx !important;
+  color: #bbb !important;
 }
 
 /* 购物车 */
 
-.shoppgo{
+.shoppgo {
   display: block;
   width: 130rpx;
   height: 130rpx;
   position: fixed;
   bottom: 130rpx;
   right: 50rpx;
-  z-index: 99
+  z-index: 99;
 }
-.shoppgo image{
+
+.shoppgo image {
   display: block;
   width: 100%;
   height: 100%;

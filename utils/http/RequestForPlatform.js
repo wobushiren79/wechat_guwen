@@ -11,9 +11,10 @@ function loginPlatform(data, callback){
 /**
  * 手机号登陆
  */
-function loginPlatformByPhone(data, callback) {
-  baseRequest.sendPostHttpForLogin(baseUrl + "appLoginMobileOther", data, callback, true)
+function loginByPhone(data, callback) {
+  baseRequest.sendPostHttpForLogin(baseUrl + "appLoginMobile", data, callback, true)
 }
+
 
 /**
  * 修改密码发送短信验证
@@ -164,6 +165,20 @@ function queryCashingLogs(data, callback) {
   baseRequest.sendPostHttpForContent(baseUrl + "api/wallet/queryCashingLogsForPage", data, callback, true)
 }
 
+/**
+ * 获取短信验证码
+ */
+function getMsgCode(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/usersAccount/sendSmsCode", data, callback, true)
+}
+
+/**
+ * 获取短信验证码
+ */
+function buildAccountForOrderCenterBuild(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/usersAccount/createOrderCenterBuild", data, callback, true)
+}
+
 module.exports.addingCard = addingCard;
 module.exports.queryCardBins = queryCardBins;
 module.exports.settingDefaultCard = settingDefaultCard;
@@ -182,9 +197,11 @@ module.exports.findListByEvaluateTag = findListByEvaluateTag;
 module.exports.queryCemeterySubsysListBySysEnumId = queryCemeterySubsysListBySysEnumId;
 module.exports.queryCemeterySubsysListBySysEnumIdNoLogin = queryCemeterySubsysListBySysEnumIdNoLogin;
 module.exports.queryUserInfoById = queryUserInfoById;
-module.exports.loginPlatformByPhone = loginPlatformByPhone;
+module.exports.loginByPhone = loginByPhone;
 module.exports.queryCreditInfo = queryCreditInfo;
 module.exports.userCreditSign = userCreditSign;
 module.exports.getWalletInfo = getWalletInfo;
 module.exports.queryUserLevel = queryUserLevel;
 module.exports.queryCashingLogs = queryCashingLogs;
+module.exports.getMsgCode = getMsgCode;
+module.exports.buildAccountForOrderCenterBuild = buildAccountForOrderCenterBuild;

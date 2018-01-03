@@ -59,7 +59,7 @@ Page({
         toastUtil.showToast("获取失败");
       }
     }
-    platformHttp.loginPlatformByPhone(sendSmsCodeData, sendSmsCodeCallBack);
+    platformHttp.getMsgCode(sendSmsCodeData, sendSmsCodeCallBack);
   },
 
 
@@ -73,106 +73,46 @@ Page({
       toastUtil.showToast("验证码为空");
       return;
     }
-    loginByMoBile(formValues.mobile, formValues.msgCode);
+    registeredAccount(formValues.mobile, formValues.msgCode);
   },
-
-
-
-  /**
-   * 登陆单项
-   */
-  loginGoods: function () {
-    var loginGoodsCallBack = {
-      success: function (data, res) {
-        content.loginCemetery();
-      },
-      fail: function () {
-        content.loginCemetery();
-      }
-    }
-    goodsHttp.loginGoods(null, loginGoodsCallBack);
-  },
-  /**
- * 登陆公墓
- */
-  loginCemetery: function () {
-    var loginCemeteryCallBack = {
-      success: function (data, res) {
-        wx.reLaunch({
-          url: '../../C_map/C_map',
-        })
-      },
-      fail: function (data, res) {
-        wx.reLaunch({
-          url: '../../C_map/C_map',
-        })
-      }
-    }
-    cemeteryHttp.loginCemetery(null,loginCemeteryCallBack)
-  }
 })
 
-
-
-/**
- * 手机登陆
- */
-function loginByMoBile(mobile, smsCode) {
-  //手机号登陆
-  var loginByPhoneRequest = {
-    mobile: mobile,
-    msgCode: smsCode
-  }
-  var loginByPhoneCallBack = {
-    success: function (data, res) {
-      if (data) {
-        //缓存用户名和密码
-        wx.setStorageSync(storageKey.LOGIN_USER_NAME, data.userObj.loginName)
-        wx.setStorageSync(storageKey.LOGIN_USER_PASS, data.userObj.loginPwd)
-        //缓存平台登录用户ID
-        if (data.userId)
-          wx.setStorageSync(storageKey.PLATFORM_USER_ID, data.userId)
-        //缓存用户信息
-        if (data.userObj)
-          wx.setStorageSync(storageKey.PLATFORM_USER_OBJ, data.userObj)
-        //缓存用户权限
-        if (data.resourceCodes)
-          wx.setStorageSync(storageKey.PLATFORM_RESOURCE_CODES, data.resourceCodes)
-        content.loginGoods();
-      }
-    },
-    fail: function (data, res) {
-      if (data.indexOf("没有此用户") >= 0) {
-        //没有账号注册
-        var registerPass = mobile.substr(5, 10);
-        registeredAccount(mobile, registerPass, smsCode);
-      } else {
-        //登陆失败
-        toastUtil.showToast(data);
-      }
-    }
-  }
-  platformHttp.loginPlatformByPhone(loginByPhoneRequest, loginByPhoneCallBack);
-}
 
 /**
  * 注册账号
  */
-function registeredAccount(mobile, password, msgcode) {
+function registeredAccount(mobile, msgcode) {
   var registeredAccountRequest = {
     mobile: mobile,
-    keys: password,
     msgCode: msgcode
   }
   var registeredAccountCallBack = {
     success: function (data, res) {
-      loginByMoBile(mobile, msgcode)
+      wx.clearStorageSync();
+      wx.setStorageSync(storageKey.LOGIN_USER_NAME, data.loginName)
+      wx.setStorageSync(storageKey.LOGIN_USER_PASS, data.loginPwd)
+      getCreditInfo()
     },
     fail: function (data, res) {
-      toastUtil.showToast("注册失败");
+      toastUtil.showToast(data);
     }
   }
-  platformHttp.sendVerificationCode(registeredAccountRequest, registeredAccountCallBack)
+  platformHttp.buildAccountForOrderCenterBuild(registeredAccountRequest, registeredAccountCallBack)
+}
+
+/**
+ * 查询用户签到情况
+ */
+function getCreditInfo() {
+  var queryCreditCallBack = {
+    success: function (data, res) {
+     
+    },
+    fail: function (data, res) {
+
+    }
+  }
+  platformHttp.queryCreditInfo(null, queryCreditCallBack);
 }
 
 /**
