@@ -21,6 +21,10 @@ Page({
     content=this;
     getCreditInfo();
   },
+  sign:function(){
+    content = this;
+    userSign();
+  },
 })
 
 /**
