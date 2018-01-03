@@ -47,7 +47,7 @@
         </view>
         <view class='dd'>
           <view class='dd_hd'>服务地址</view>
-          <view class='dd_bd'>这里这里是地址这里是地址这里是地址这里是地址是地址</view>
+          <view class='dd_bd'>{{content.customerInfo.address}}</view>
         </view>
         <view class='dd'>
           <view class='dd_hd'>经办人</view>
