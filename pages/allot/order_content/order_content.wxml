@@ -1,5 +1,5 @@
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
-  <view class="page__bd {{content.workOrder.orderType == 0?'plan':content.workOrder.orderType == 1?'cem':content.workOrder.orderType == 3?'other':''}} ">
+  <view class="page__bd {{content.workOrder.orderType == 0?'plan':content.workOrder.orderType == 1?'cem':content.workOrder.orderType == 2?'other':''}} ">
     <!--公墓：cem 殡仪：plan  其他：other -->
     <!-- 基本信息 -->
     <view class='section_info '>
@@ -28,7 +28,7 @@
             </view>
           </view>
         </block>
-        <block wx:if="{{content.workOrder.orderType == 3}}">
+        <block wx:if="{{content.workOrder.orderType == 2}}">
           <!-- 其他 -->
           <view class='dt'>
             <view class='dt_hd'>
