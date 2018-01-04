@@ -107,6 +107,7 @@
             <view class="weui-cell">
                 <view class="weui-cell__hd">
                   <image src="{{item.titleImg}}"></image>
+                  
                 </view>
               <view class="weui-cell__bd">{{item.specOrderedVolume}}</view>
               <view class="weui-cell__ft">
@@ -126,6 +127,7 @@
             <view class="weui-cell">
                 <view class="weui-cell__hd">
                   <image src="{{item.titleImg}}"></image>
+                  <image class='ispackage' src='../../../images/ispackage.png' mode='widthFix'></image>
                 </view>
               <view class="weui-cell__bd">{{item.specOrderedVolume}}</view>
               <view class="weui-cell__ft">

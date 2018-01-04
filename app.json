@@ -1,7 +1,8 @@
 {
   "pages": [
-       
-     "pages/index/index",
+        "pages/index/index",
+      "pages/allot/order_list_about/order_list_about",
+
      "pages/login/login",
 		 "pages/list/list", 
 		 "pages/new_easy/new_easy", 

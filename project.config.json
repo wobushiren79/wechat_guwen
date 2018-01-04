@@ -22,7 +22,29 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": []
+			"list": [
+				{
+					"id": -1,
+					"name": "结算",
+					"pathName": "pages/service_money/service_money",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": 1,
+					"name": "商品详情",
+					"pathName": "pages/service_content/service_content",
+					"query": "goods_id=86&channel_id=1",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "gongdan详情",
+					"pathName": "pages/allot/order_content/order_content",
+					"query": "orderId=424",
+					"scene": "1001"
+				}
+			]
 		}
 	}
 }

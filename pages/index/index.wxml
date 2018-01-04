@@ -48,7 +48,7 @@
     </view>
 
     <!-- swiper -->
-    <swiper indicator-dots="{{indicatorDots_banner}}" autoplay="{{autoplay}}" interval="{{interval_banner}}" duration="{{duration}}" circular="{{circular}}">
+     <swiper indicator-dots="{{indicatorDots_banner}}" autoplay="{{autoplay}}" interval="{{interval_banner}}" duration="{{duration}}" circular="{{circular}}">
       <swiper-item>
         <navigator url="" hover-class="navigator-hover">
           <image src="http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/index_swiper.png" class="slide-image" mode='widthFix' />
@@ -64,7 +64,7 @@
           <image src="http://ovjs2f1iz.bkt.clouddn.com/image/wechat/png/index_swiper.png" class="slide-image" mode='widthFix' />
         </navigator>
       </swiper-item>
-    </swiper>
+    </swiper> 
 
 
 

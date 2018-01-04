@@ -59,7 +59,7 @@ Page({
     wx.getStorage({
       key: storageKey.AMATEUR_LEVEL,
       success: function (resss) {
-        if (resss.data == null) {
+        if (resss.data == null || resss.data.resultList==null) {
           amateurLevel = 0
         } else {
           for (var i in res.data.list.commission) {
@@ -200,7 +200,7 @@ Page({
    */
   cartlist: function () {
     //頁面跳轉
-    wx.redirectTo({
+    wx.navigateTo({
       url: '../service_buy/service_buy'
     })
   }

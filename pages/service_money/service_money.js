@@ -54,6 +54,7 @@ Page({
     })
   },
   onLoad: function () {
+    serviceWay = 0;
     content = this;
     content.setData({
       channel_id: wx.getStorageSync(storageKey.GOODS_CHANNEL),
@@ -63,7 +64,7 @@ Page({
     wx.getStorage({
       key: storageKey.AMATEUR_LEVEL,
       success: function (res) {
-        if (res.data == null) {
+        if (res.data == null || res.data.resultList==null) {
           content.setData({
             levelId: 0,
             orderType: 2
@@ -464,6 +465,7 @@ function getInvoiceInfo() {
   if (invoiceInfo) {
     content.setData({
       invoiceInfo: showInvoice,
+      fapiao: invoiceInfo,
       xuyao: '需要发票'
     })
   } else {

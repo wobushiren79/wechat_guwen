@@ -50,7 +50,7 @@
         </block>
       </view>
       <view class="weui-btn-area">
-        <button class="weui-btn" type="primary" bindtap="showTopTips" formType="submit">登陆</button>
+        <button class="weui-btn" type="primary" bindtap="showTopTips" formType="submit">注册</button>
       </view>
     </form>
 

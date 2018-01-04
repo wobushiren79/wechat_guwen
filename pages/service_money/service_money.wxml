@@ -180,6 +180,17 @@
       <!-- 购置物品 -->
       <view class="goods_other list ">
         <view class="dl ">
+          <navigator class='order' url="" open-type='navigateTo'>
+            <view class="dd ">
+              <view class="header ">
+                关联工单
+              </view>
+              <view class="footer ">
+                <text>关联工单</text>
+              </view>
+              <image src="../../images/right.png " class="icon "></image>
+            </view>
+          </navigator>
           <navigator url="../service_invoice_address/service_invoice_address" open-type='navigateTo'>
             <view class="dd ">
               <view class="header ">
@@ -217,6 +228,7 @@
 
         </view>
       </view>
+
       <!-- 服务方式 -->
 
       <view class='list server_style'>

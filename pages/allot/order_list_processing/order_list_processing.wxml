@@ -74,6 +74,7 @@
                   <block wx:if="{{item.performerAssignRecord.valid == 1}}">
                     <navigator type="primary" url='../order_edit/order_edit?orderId={{item.workOrder.id}}' class="btn">处理</navigator>
                   </block>
+                  <navigator type="primary" url='' class="btn">选购商品</navigator>
                 </view>
               </view>
             </view>
@@ -130,6 +131,7 @@
                   <block wx:if="{{item.performerAssignRecord.valid == 1}}">
                     <navigator type="primary" url='../order_edit/order_edit?orderId={{item.workOrder.id}}' class="btn">处理</navigator>
                   </block>
+                  <navigator type="primary" url='' class="btn">选购商品</navigator>
                 </view>
               </view>
             </view>
@@ -183,9 +185,11 @@
               </navigator>
               <view class="li_footer">
                 <view class="footer">
+
                   <block wx:if="{{item.performerAssignRecord.valid == 1}}">
                     <navigator type="primary" url='../order_edit/order_edit?orderId={{item.workOrder.id}}' class="btn">处理</navigator>
                   </block>
+                  <navigator type="primary" url='' class="btn">选购商品</navigator>
                 </view>
               </view>
             </view>
@@ -194,9 +198,9 @@
       </view>
     </view>
 
-    <view class='fix_new' bindtap='nav'>
+    <!-- <view class='fix_new' bindtap='nav'>
       <text>＋</text>
-    </view>
+    </view> -->
   </view>
   <block wx:if="{{notNumber}}">
     <view class='prompt'>

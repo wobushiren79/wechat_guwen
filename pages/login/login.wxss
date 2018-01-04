@@ -1,10 +1,9 @@
 /**login.wxss**/
-page,
-.page,
-swiper,
-swiper-item{
-  height: 100%
+
+page, .page, swiper, swiper-item {
+  height: 100%;
 }
+
 /*logo*/
 
 .page__title image {
@@ -29,6 +28,19 @@ swiper-item{
   outline: none;
 }
 
+.phonenum button {
+  font-size: 16px;
+  border-color: #48cfad;
+  color: #48cfad;
+  width: 230rpx;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+.weui-label{
+  width: 120rpx;
+
+}
 /*下划线*/
 
 .weui-cell::before {
@@ -98,7 +110,7 @@ swiper-item{
   text-align: right;
 }
 
-.banner{
+.banner {
   display: block;
   width: 400rpx;
   margin: 70rpx auto 0 auto;

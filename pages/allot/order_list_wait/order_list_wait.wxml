@@ -252,9 +252,9 @@
       </view>
     </view>
 
-    <view class='fix_new' bindtap='nav'>
+    <!-- <view class='fix_new' bindtap='nav'>
       <text>＋</text>
-    </view>
+    </view> -->
   </view>
   <block wx:if="{{notNumber}}">
     <view class='prompt'>

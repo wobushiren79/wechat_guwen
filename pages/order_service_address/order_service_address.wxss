@@ -90,6 +90,7 @@
   text-align: center;
   background: #48cfad;
   z-index: 2;
+  border-radius: 0;
 }
 
 label:active, .li_ft .weui-cell__bd view:active, .footer:active {
@@ -122,7 +123,9 @@ form .footer {
   position: absolute;
   z-index: 9999;
 }
-
+form .footer::after {
+  display: none
+}
 form .weui-cells {
   height: 624rpx;
 }

@@ -56,7 +56,7 @@ Page({
         countdown(content)
       },
       fail: function (data, res) {
-        toastUtil.showToast("获取失败");
+        toastUtil.showToast(data);
       }
     }
     platformHttp.getMsgCode(sendSmsCodeData, sendSmsCodeCallBack);

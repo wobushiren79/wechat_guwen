@@ -1,0 +1,107 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd page_service_order page_allot_order_list page_allot_order_list2">
+    <!-- 列表 -->
+    <radio-group class="list">
+      <label class='title'>
+        <view>不关联任何工单</view>
+        <radio color='#48cfad' />
+      </label>
+      <view class="ul">
+        <label class="li plan">
+          <!-- 殡仪 plan -->
+          <!-- <radio color='#48cfad' /> -->
+
+          <!-- 公墓 cem-->
+          <!-- <radio color='#67bedb' /> -->
+
+          <!-- 其他 cem-->
+          <radio color='#ffd076' />
+
+          <view class="li_header">
+            <view class="header">
+              <image src='../../../images/icon_order_list_plan.png' mode='widthFix'></image>
+            </view>
+            <view class='body'>
+              殡仪/111111111111111111
+            </view>
+            <view class='footer'>
+              待接单
+            </view>
+          </view>
+          <view class="li_body" hover-class="active">
+            <view>
+              <view class="header">
+                治丧地址：
+              </view>
+              <view class="body">
+                治丧地址治丧地址治丧地址治丧地址治丧地址治丧地址
+              </view>
+            </view>
+            <view>
+              <view class="header">
+                客户：
+              </view>
+              <view class="body">
+                2017.12.23
+              </view>
+            </view>
+            <view>
+              <view class="header">
+                预约时间：
+              </view>
+              <view class="body">
+                2017.12.23
+              </view>
+            </view>
+          </view>
+        </label>
+        <label class="li cem">
+          <radio color='#48cfad' />
+          <view class="li_header">
+            <view class="header">
+              <image src='../../../images/icon_order_list_plan.png' mode='widthFix'></image>
+            </view>
+            <view class='body'>
+              殡仪/111111111111111111
+            </view>
+            <view class='footer'>
+              待接单
+            </view>
+          </view>
+          <view class="li_body" hover-class="active">
+            <view>
+              <view class="header">
+                治丧地址：
+              </view>
+              <view class="body">
+                治丧地址治丧地址治丧地址治丧地址治丧地址治丧地址
+              </view>
+            </view>
+            <view>
+              <view class="header">
+                客户：
+              </view>
+              <view class="body">
+                2017.12.23
+              </view>
+            </view>
+            <view>
+              <view class="header">
+                预约时间：
+              </view>
+              <view class="body">
+                2017.12.23
+              </view>
+            </view>
+          </view>
+
+        </label>
+      </view>
+    </radio-group>
+  </view>
+  <block wx:if="{{notNumber}}">
+    <view class='prompt'>
+      <text>没有更多订单啦</text>
+    </view>
+  </block>
+</view>

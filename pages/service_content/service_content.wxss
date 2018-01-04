@@ -220,6 +220,7 @@
   color: #c3c3c3;
   font-size: 24rpx;
   position: relative;
+  padding-top: 6rpx;
 }
 
 .footerfix .server text, .footerfix .shop text {
