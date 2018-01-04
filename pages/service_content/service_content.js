@@ -277,7 +277,10 @@ function getShoppingCartNumber() {
     },
 
   }
-  goodsHttp.getShoppingNumber(null, shoppingCartNumberCallBack);
+  var requestData={
+    channelId:1
+  }
+  goodsHttp.getShoppingNumber(requestData, shoppingCartNumberCallBack);
 }
 
 /**
