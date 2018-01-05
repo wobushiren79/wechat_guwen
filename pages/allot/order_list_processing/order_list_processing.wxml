@@ -72,9 +72,9 @@
               <view class="li_footer">
                 <view class="footer">
                   <block wx:if="{{item.performerAssignRecord.valid == 1}}">
-                    <navigator type="primary" url='../order_edit/order_edit?orderId={{item.workOrder.id}}' class="btn">处理</navigator>
+                    <view  data-id='{{item.workOrder.id}}'  bindtap='bindHandle'  class="btn">处理</view>
                   </block>
-                  <navigator type="primary" url='' class="btn">选购商品</navigator>
+                  <view data-id='{{item.workOrder.id}}' bindtap='bindChooseGoods' class="btn">选购商品</view>
                 </view>
               </view>
             </view>
@@ -129,9 +129,9 @@
               <view class="li_footer">
                 <view class="footer">
                   <block wx:if="{{item.performerAssignRecord.valid == 1}}">
-                    <navigator type="primary" url='../order_edit/order_edit?orderId={{item.workOrder.id}}' class="btn">处理</navigator>
+                    <view  data-id='{{item.workOrder.id}}'  bindtap='bindHandle'  class="btn">处理</view>
                   </block>
-                  <navigator type="primary" url='' class="btn">选购商品</navigator>
+                  <view data-id='{{item.workOrder.id}}' bindtap='bindChooseGoods' class="btn">选购商品</view>
                 </view>
               </view>
             </view>
@@ -187,9 +187,9 @@
                 <view class="footer">
 
                   <block wx:if="{{item.performerAssignRecord.valid == 1}}">
-                    <navigator type="primary" url='../order_edit/order_edit?orderId={{item.workOrder.id}}' class="btn">处理</navigator>
+                    <view  data-id='{{item.workOrder.id}}'  bindtap='bindHandle'  class="btn">处理</view>
                   </block>
-                  <navigator type="primary" url='' class="btn">选购商品</navigator>
+                  <view data-id='{{item.workOrder.id}}' bindtap='bindChooseGoods' class="btn">选购商品</view>
                 </view>
               </view>
             </view>

@@ -97,6 +97,8 @@ Page({
     // getServiceInfo();
     //取出发票信息
     getInvoiceInfo();
+    //取出关联工单信息
+    getOrderCenterDetail();
   },
 
 
@@ -141,6 +143,7 @@ Page({
     goodsOrder.levelId = that.data.levelId ? that.data.levelId : ''
     goodsOrder.orderType = that.data.orderType
  
+    goodsOrder.relateWorkId = that.data.orderCenterDetail.workOrder.id
     //是否需要发票
     if (fapiao) {
       goodsOrder.needInvoice = fapiao.needInvoice
@@ -516,4 +519,12 @@ function findDefaultAddress() {
     }
   }
   goodsHttp.findServiceInfoDefaultAddress(null, findDefaultAddressCallBack)
+}
+
+function getOrderCenterDetail() {
+  var orderCenterDetail = wx.getStorageSync(storageKey.ORDER_CENTER_DETAIL);
+  if (orderCenterDetail)
+    content.setData({
+      orderCenterDetail: orderCenterDetail
+    })
 }

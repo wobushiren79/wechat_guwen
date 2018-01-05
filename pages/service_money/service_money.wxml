@@ -180,10 +180,10 @@
       <!-- 购置物品 -->
       <view class="goods_other list ">
         <view class="dl ">
-          <navigator class='order' url="" open-type='navigateTo'>
+          <navigator class='order' url="../allot/order_list_about/order_list_about" open-type='navigateTo'>
             <view class="dd ">
               <view class="header ">
-                关联工单
+                关联工单:{{orderCenterDetail.customerInfo.contactName}}
               </view>
               <view class="footer ">
                 <text>关联工单</text>

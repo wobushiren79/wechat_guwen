@@ -1,101 +1,143 @@
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
   <view class="page__bd page_service_order page_allot_order_list page_allot_order_list2">
     <!-- 列表 -->
-    <radio-group class="list">
-      <label class='title'>
+    <radio-group class="list" bindchange="bindSelectTap">
+      <!-- <label class='title'>
         <view>不关联任何工单</view>
         <radio color='#48cfad' />
-      </label>
+      </label> -->
       <view class="ul">
-        <label class="li plan">
-          <!-- 殡仪 plan -->
-          <!-- <radio color='#48cfad' /> -->
+        <block wx:for="{{listDatas}}">
+          <block wx:if="{{item.workOrder.orderType == 0}}">
+            <label class="li plan">
+                <radio color='#48cfad' value='{{item.workOrder.id}}'/>
+              <view class="li_header">
+                <view class="header">
+                  <image src='../../../images/icon_order_list_plan.png' mode='widthFix'></image>
+                </view>
+                <view class='body'>
+                  殡仪/{{item.workOrder.orderNumber}}/{{item.workOrder.id == orderId}}
+                </view>
+                <view class='footer'>
+                  {{item.orderStatusStr}}
+                </view>
+              </view>
+              <view class="li_body" hover-class="active">
+                <view>
+                  <view class="header">
+                    治丧地址：
+                  </view>
+                  <view class="body">
+                    {{item.customerInfo.address}}
+                  </view>
+                </view>
+                <view>
+                  <view class="header">
+                    客户：
+                  </view>
+                  <view class="body">
+                    {{item.customerInfo.contactName}}
+                  </view>
+                </view>
+                <view>
+                  <view class="header">
+                    预约时间：
+                  </view>
+                  <view class="body">
+                    {{item.workOrder.appointmentTime}}
+                  </view>
+                </view>
+              </view>
+            </label>
+          </block>
+          <block wx:if="{{item.workOrder.orderType == 1}}">
+            <label class="li cem">
+              
+                <radio color='#67bedb' value='{{item.workOrder.id}}' />
+              <view class="li_header">
+                <view class="header">
+                  <image src='../../../images/icon_order_list_cem.png' mode='widthFix'></image>
+                </view>
+                <view class='body'>
+                  公墓/{{item.workOrder.orderNumber}}
+                </view>
+                <view class='footer'>
+                  {{item.orderStatusStr}}
+                </view>
+              </view>
+              <view class="li_body" hover-class="active">
+                <view>
+                  <view class="header">
+                    治丧地址：
+                  </view>
+                  <view class="body">
+                    {{item.customerInfo.address}}
+                  </view>
+                </view>
+                <view>
+                  <view class="header">
+                    客户：
+                  </view>
+                  <view class="body">
+                    {{item.customerInfo.contactName}}
+                  </view>
+                </view>
+                <view>
+                  <view class="header">
+                    预约时间：
+                  </view>
+                  <view class="body">
+                    {{item.workOrder.appointmentTime}}
+                  </view>
+                </view>
+              </view>
 
-          <!-- 公墓 cem-->
-          <!-- <radio color='#67bedb' /> -->
+            </label>
+          </block>
+          <block wx:if="{{item.workOrder.orderType == 2}}">
+            <label class="li other">
+                <radio color='#ffd076' value='{{item.workOrder.id}}' />
+              <view class="li_header">
+                <view class="header">
+                  <image src='../../../images/icon_order_list_other.png' mode='widthFix'></image>
+                </view>
+                <view class='body'>
+                  其他/{{item.workOrder.orderNumber}}
+                </view>
+                <view class='footer'>
+                  {{item.orderStatusStr}}
+                </view>
+              </view>
+              <view class="li_body" hover-class="active">
+                <view>
+                  <view class="header">
+                    治丧地址：
+                  </view>
+                  <view class="body">
+                    {{item.customerInfo.address}}
+                  </view>
+                </view>
+                <view>
+                  <view class="header">
+                    客户：
+                  </view>
+                  <view class="body">
+                    {{item.customerInfo.contactName}}
+                  </view>
+                </view>
+                <view>
+                  <view class="header">
+                    预约时间：
+                  </view>
+                  <view class="body">
+                    {{item.workOrder.appointmentTime}}
+                  </view>
+                </view>
+              </view>
 
-          <!-- 其他 cem-->
-          <radio color='#ffd076' />
-
-          <view class="li_header">
-            <view class="header">
-              <image src='../../../images/icon_order_list_plan.png' mode='widthFix'></image>
-            </view>
-            <view class='body'>
-              殡仪/111111111111111111
-            </view>
-            <view class='footer'>
-              待接单
-            </view>
-          </view>
-          <view class="li_body" hover-class="active">
-            <view>
-              <view class="header">
-                治丧地址：
-              </view>
-              <view class="body">
-                治丧地址治丧地址治丧地址治丧地址治丧地址治丧地址
-              </view>
-            </view>
-            <view>
-              <view class="header">
-                客户：
-              </view>
-              <view class="body">
-                2017.12.23
-              </view>
-            </view>
-            <view>
-              <view class="header">
-                预约时间：
-              </view>
-              <view class="body">
-                2017.12.23
-              </view>
-            </view>
-          </view>
-        </label>
-        <label class="li cem">
-          <radio color='#48cfad' />
-          <view class="li_header">
-            <view class="header">
-              <image src='../../../images/icon_order_list_plan.png' mode='widthFix'></image>
-            </view>
-            <view class='body'>
-              殡仪/111111111111111111
-            </view>
-            <view class='footer'>
-              待接单
-            </view>
-          </view>
-          <view class="li_body" hover-class="active">
-            <view>
-              <view class="header">
-                治丧地址：
-              </view>
-              <view class="body">
-                治丧地址治丧地址治丧地址治丧地址治丧地址治丧地址
-              </view>
-            </view>
-            <view>
-              <view class="header">
-                客户：
-              </view>
-              <view class="body">
-                2017.12.23
-              </view>
-            </view>
-            <view>
-              <view class="header">
-                预约时间：
-              </view>
-              <view class="body">
-                2017.12.23
-              </view>
-            </view>
-          </view>
-
-        </label>
+            </label>
+          </block>
+        </block>
       </view>
     </radio-group>
   </view>

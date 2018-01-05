@@ -23,7 +23,7 @@ Page({
   },
   //上拉添加记录条数
   onReachBottom() {
-    getOrderList(1)
+    getOrderList(1);// 1表示工单待接单tab页
   },
   onLoad: function () {
     content = this;

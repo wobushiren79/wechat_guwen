@@ -3,7 +3,8 @@ var orderCenterHttp = require("../../../utils/http/RequestForOrderCenter.js")
 var toastUtil = require("../../../utils/ToastUtil.js");
 var pageUtil = require("../../../utils/PageUtil.js");
 var checkPermissions = require("../../../utils/CheckPermissions.js");
-var content;
+var storageKey = require("../../../utils/storage/StorageKey.js");
+var orderData;
 Page({
   data: {
     pageSize: 2,
@@ -27,7 +28,7 @@ Page({
     getOrderList(2)
   },
   onLoad: function () {
-    content = this;
+    orderData = this;
   },
   //跳转新建工单页面
   nav: function () {
@@ -42,6 +43,25 @@ Page({
       })
     }
   },
+  bindHandle:function(e){
+    var orderId = e.target.dataset.id
+    wx.navigateTo({
+      url: '../order_edit/order_edit?orderId='+orderId,
+    })
+  },
+  bindChooseGoods: function (e){
+    var orderId = e.target.dataset.id;
+    var datas = orderData.data.listdata;
+    for (var i = 0; i < datas.length; i++) {
+      if (datas[i].workOrder != null && datas[i].workOrder.id == orderId) {
+        wx.setStorageSync(storageKey.ORDER_CENTER_DETAIL, datas[i]);
+        break;
+      }
+    }
+    wx.navigateTo({
+      url: '../../service/service',
+    })
+  }
 });
 
 
@@ -64,7 +84,7 @@ function getOrderList(listType) {
           }
         }
       }
-      content.setData({
+      orderData.setData({
         listdata: data,
         notNumber: isLast,
         updateTime: updateTime

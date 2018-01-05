@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/login/login",
+    "pages/allot/order_list_about/order_list_about",
     "pages/list/list",
     "pages/new_easy/new_easy",
     "pages/new/new",

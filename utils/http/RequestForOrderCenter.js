@@ -82,6 +82,13 @@ function getOrderCenterList(data, callback) {
 function detailsAll(data, callback) {
   baseRequest.sendPostHttpForContent(baseUrl + "api/workorder/detailsAll", data, callback, true)
 }
+
+/**
+ * 获取新建订单列表
+ */
+function getOrderListByAdvisorIdAndOrderStatus(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/workorder/getOrderListByAdvisorIdAndOrderStatus", data, callback, true)
+}
 module.exports.detailsAll = detailsAll;
 module.exports.loginOrderCenter = loginOrderCenter;
 module.exports.createOrder = createOrder;
@@ -94,3 +101,5 @@ module.exports.getOrderDetails = getOrderDetails;
 module.exports.getCarList = getCarList;
 module.exports.getCarDetails = getCarDetails;
 module.exports.getOrderCenterList = getOrderCenterList;
+module.exports.getOrderCenterList = getOrderCenterList;
+module.exports.getOrderListByAdvisorIdAndOrderStatus = getOrderListByAdvisorIdAndOrderStatus;
