@@ -1,6 +1,6 @@
 var platformHttp = require('../../utils/http/RequestForPlatform.js');
 var goodsHttp = require('../../utils/http/RequestForGoods.js')
-var cemeteryHttp=require('../../utils/http/RequestForCemetery.js');
+var cemeteryHttp = require('../../utils/http/RequestForCemetery.js');
 var storageKey = require('../../utils/storage/StorageKey.js');
 var toastUtil = require('../../utils/ToastUtil.js');
 var modalUtil = require('../../utils/ModalUtil.js');
@@ -73,18 +73,27 @@ Page({
       toastUtil.showToast("验证码为空");
       return;
     }
-    registeredAccount(formValues.mobile, formValues.msgCode);
+    if (formValues.referees != null && formValues.referees.length > 0) {
+      if (!checkMobile(formValues.referees)) {
+        toastUtil.showToast("推荐号不正确");
+        return;
+      }
+    }
+    registeredAccount(formValues.mobile, formValues.msgCode, formValues.referees);
   },
+
+
 })
 
 
 /**
  * 注册账号
  */
-function registeredAccount(mobile, msgcode) {
+function registeredAccount(mobile, msgcode, referees) {
   var registeredAccountRequest = {
     mobile: mobile,
-    msgCode: msgcode
+    msgCode: msgcode,
+    refereeMobile: referees
   }
   var registeredAccountCallBack = {
     success: function (data, res) {
@@ -106,7 +115,7 @@ function registeredAccount(mobile, msgcode) {
 function getCreditInfo() {
   var queryCreditCallBack = {
     success: function (data, res) {
-     
+
     },
     fail: function (data, res) {
 
