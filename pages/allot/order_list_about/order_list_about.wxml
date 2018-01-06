@@ -10,13 +10,13 @@
         <block wx:for="{{listDatas}}">
           <block wx:if="{{item.workOrder.orderType == 0}}">
             <label class="li plan">
-                <radio color='#48cfad' value='{{item.workOrder.id}}'/>
+              <radio color='#48cfad' value='{{item.workOrder.id}}' checked="{{item.isCheck}}"/>
               <view class="li_header">
                 <view class="header">
                   <image src='../../../images/icon_order_list_plan.png' mode='widthFix'></image>
                 </view>
                 <view class='body'>
-                  殡仪/{{item.workOrder.orderNumber}}/{{item.workOrder.id == orderId}}
+                  殡仪/{{item.workOrder.orderNumber}}
                 </view>
                 <view class='footer'>
                   {{item.orderStatusStr}}
@@ -52,8 +52,8 @@
           </block>
           <block wx:if="{{item.workOrder.orderType == 1}}">
             <label class="li cem">
-              
-                <radio color='#67bedb' value='{{item.workOrder.id}}' />
+
+              <radio color='#67bedb' value='{{item.workOrder.id}}'  checked="{{item.isCheck}}"/>
               <view class="li_header">
                 <view class="header">
                   <image src='../../../images/icon_order_list_cem.png' mode='widthFix'></image>
@@ -96,7 +96,7 @@
           </block>
           <block wx:if="{{item.workOrder.orderType == 2}}">
             <label class="li other">
-                <radio color='#ffd076' value='{{item.workOrder.id}}' />
+              <radio color='#ffd076' value='{{item.workOrder.id}}'  checked="{{item.isCheck}}"/>
               <view class="li_header">
                 <view class="header">
                   <image src='../../../images/icon_order_list_other.png' mode='widthFix'></image>

@@ -50,14 +50,14 @@ Page({
     })
   },
   bindChooseGoods: function (e){
-    var orderId = e.target.dataset.id;
-    var datas = orderData.data.listdata;
-    for (var i = 0; i < datas.length; i++) {
-      if (datas[i].workOrder != null && datas[i].workOrder.id == orderId) {
-        wx.setStorageSync(storageKey.ORDER_CENTER_DETAIL, datas[i]);
-        break;
-      }
-    }
+    // var orderId = e.target.dataset.id;
+    // var datas = orderData.data.listdata;
+    // for (var i = 0; i < datas.length; i++) {
+    //   if (datas[i].workOrder != null && datas[i].workOrder.id == orderId) {
+    //     wx.setStorageSync(storageKey.ORDER_CENTER_DETAIL, datas[i]);
+    //     break;
+    //   }
+    // }
     wx.navigateTo({
       url: '../../service/service',
     })

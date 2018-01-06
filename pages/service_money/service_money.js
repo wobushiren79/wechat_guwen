@@ -21,6 +21,9 @@ Page({
     time: "请选择时间",
     btn_1: true
   },
+  onUnload:function(){
+    wx.removeStorageSync(storageKey.ORDER_CENTER_DETAIL)
+  },
   bind_list: function () {
     var that = this;
     that.setData({
@@ -54,6 +57,7 @@ Page({
     })
   },
   onLoad: function () {
+    wx.removeStorageSync(storageKey.ORDER_CENTER_DETAIL)
     serviceWay = 0;
     content = this;
     content.setData({
