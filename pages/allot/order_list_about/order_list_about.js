@@ -6,17 +6,19 @@ var storageKey = require("../../../utils/storage/StorageKey.js");
 var orderData;
 Page({
   data: {
-
+    notNumber:0
   },
   onLoad: function (e) {
     orderData = this
     getOrderList();//待完成工单
     var datas = wx.getStorageSync(storageKey.ORDER_CENTER_DETAIL);
-    var orderId = datas.workOrder.id;
-    console.log(orderId)
-    orderData.setData({
-      orderId: orderId
-    })
+    if(datas!= null && datas != ""){
+      var orderId = datas.workOrder.id;
+      console.log(orderId)
+      orderData.setData({
+        orderId: orderId
+      })
+    }
   },
   bindSelectTap: function (e) {
     var datas = orderData.data.listDatas;
@@ -40,6 +42,7 @@ function getOrderList() {
   }
   var listCallBack = pageUtil.getPageCallBack(
     function (data, res) {
+      console.log(data)
       orderData.setData({
         listDatas: data
       })
