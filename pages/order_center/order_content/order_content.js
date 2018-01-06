@@ -36,6 +36,9 @@ function getOrderDetails(orderId) {
         for (var j in data.listGoodsDetailResponse[i].goodsOrderItemList){
           goodsList.push(data.listGoodsDetailResponse[i].goodsOrderItemList[j])
          }
+        for (var j in data.listGoodsDetailResponse[i].goodsPackages) {
+          goodsList.push(data.listGoodsDetailResponse[i].goodsPackages[j])
+        }
       }
       content.setData({
         content: data,
