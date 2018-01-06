@@ -12,7 +12,7 @@ Page({
     orderData = this
     getOrderList();//待完成工单
     var datas = wx.getStorageSync(storageKey.ORDER_CENTER_DETAIL);
-    if(datas!= null && datas != ""){
+    if(datas!= null && datas != ""){ //判断是否有缓存
       var orderId = datas.workOrder.id;
       console.log(orderId)
       orderData.setData({
@@ -43,9 +43,16 @@ function getOrderList() {
   var listCallBack = pageUtil.getPageCallBack(
     function (data, res) {
       console.log(data)
+      console.log(res)    
       orderData.setData({
-        listDatas: data
+        listDatas: data,
+        notNumber: 0
       })
+      if (res.data.content.length == 0) {
+        orderData.setData({
+          notNumber: 1
+        })
+      }  
     },
     function (data, res) {
 
