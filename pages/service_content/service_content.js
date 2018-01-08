@@ -25,7 +25,8 @@ Page({
     // 滑动动画时间
     duration: 500,
     userInfo: {},
-    isShow: false
+    isShow: false,
+    hasCommission: false
   },
   onShareAppMessage: function () {
     var pathUrl = "";
@@ -56,24 +57,7 @@ Page({
   },
 
   onShow: function (e) {
-    wx.getStorage({
-      key: storageKey.AMATEUR_LEVEL,
-      success: function (resss) {
-        if (resss.data == null || resss.data.resultList==null) {
-          amateurLevel = 0
-        } else {
-          for (var i in res.data.list.commission) {
-            if (res.data.list.commission[i].amateur_id == resss.data[0].systemLevel.id) {
-              amateurLevel = res.data.list.commission[i].commission
-            }
-          }
-        }
-      },
-      fail: function () {
-        amateurLevel = 10000
-      }
-    })
-
+    //功能显示，只有顾问和非职业顾问才能继续操作
     wx.getStorage({
       key: storageKey.PLATFORM_RESOURCE_CODES,
       success: function (res) {
@@ -225,6 +209,7 @@ function getGoodsDetails(channelId, goodsId, packageId) {
   var findGoodsInfoCallBack = {
     success: function (data, res) {
       var list = res.data.list
+      levelHandle(list.commission);
       if (list.is_package == 0) {
         var goods_cate_id = res.data.list.goods_cate_id
       } else {
@@ -277,8 +262,8 @@ function getShoppingCartNumber() {
     },
 
   }
-  var requestData={
-    channelId:1
+  var requestData = {
+    channelId: 1
   }
   goodsHttp.getShoppingNumber(requestData, shoppingCartNumberCallBack);
 }
@@ -302,8 +287,8 @@ function addGoodsShopping(addShoppingCartRequest) {
 /**
  * 获取商品规格详情
  */
-function getGoodsSpecDetails(detailsRequest,goodsNumber) {
-  var totla_price=0;
+function getGoodsSpecDetails(detailsRequest, goodsNumber) {
+  var totla_price = 0;
   var detailsCallBack = {
     success: function (data, res) {
       for (var i in res.data.list) {
@@ -324,5 +309,35 @@ function getGoodsSpecDetails(detailsRequest,goodsNumber) {
       toastUtil.showToast("直接购买失败");
     }
   }
- goodsPHPHttp.findGoodsDetails(detailsRequest, detailsCallBack);
+  goodsPHPHttp.findGoodsDetails(detailsRequest, detailsCallBack);
+}
+
+/**
+ * 级别显示处理
+ */
+function levelHandle(commission){
+  if(!commission||commission.length<=0){
+    return
+  }
+  var levelData = wx.getStorageSync(storageKey.AMATEUR_LEVEL)
+  if (levelData && levelData.length > 0) {
+    var levelList=new Array();
+    for (var i in levelData) {
+      for (var f in commission){
+        if (levelData[i].systemLevel.id == commission[f].amateur_id){
+          levelData[i].commissionRatio = commission[f].commission; 
+          levelData[i].commissionP = Math.round(levelData[i].commissionRatio * 100); 
+          levelList.push(levelData[i]);
+        }
+      }
+    }
+    content.setData({
+      hasCommission: true,
+      levelList: levelList
+    })
+  } else {
+    content.setData({
+      hasCommission: false
+    })
+  }
 }

@@ -65,31 +65,30 @@ Page({
     })
 
     //是否职业顾问
-    wx.getStorage({
-      key: storageKey.AMATEUR_LEVEL,
-      success: function (res) {
-        if (res.data == null || res.data.resultList==null) {
-          content.setData({
-            levelId: 0,
-            orderType: 2
-          })
-        } else {
-          content.setData({
-            levelId: res.data[0].systemLevel.id,
-            orderType: 2,
-            levelName: res.data[0].systemLevel.levelName,
-            levelType: res.data[0].systemLevel.levelType
-
-          })
-        }
-      },
-      fail: function () {
-        content.setData({
-          levelId: false,
-          orderType: 1
-        })
-      }
-    })
+    // wx.getStorage({
+    //   key: storageKey.AMATEUR_LEVEL,
+    //   success: function (res) {
+    //     if (res.data == null || res.data.resultList==null) {
+    //       content.setData({
+    //         levelId: 0,
+    //         orderType: 2
+    //       })
+    //     } else {
+    //       content.setData({
+    //         levelId: res.data[0].systemLevel.id,
+    //         orderType: 2,
+    //         levelName: res.data[0].systemLevel.levelName,
+    //         levelType: res.data[0].systemLevel.levelType
+    //       })
+    //     }
+    //   },
+    //   fail: function () {
+    //     content.setData({
+    //       levelId: false,
+    //       orderType: 1
+    //     })
+    //   }
+    // })
 
     // 取出购物车数据
     getFormData();
@@ -107,6 +106,10 @@ Page({
 
 
   bindFormSubmit: function (e) {
+    if (!checkPermissions.hasGoodsAdvisorAmateur()&&!checkPermissions.hasGoodsAdvisor()) {
+       toastUtil.showToast("没有权限下单");
+       return;
+    };
     var that = this
     var r = /^\+?[1-9][0-9]*$/;　　//正整数
     var orderdata = {}
@@ -145,7 +148,16 @@ Page({
     goodsOrder.levelName = that.data.levelName
     goodsOrder.levelType = that.data.levelType
     goodsOrder.levelId = that.data.levelId ? that.data.levelId : ''
-    goodsOrder.orderType = that.data.orderType
+
+    if (checkPermissions.hasGoodsAdvisorAmateur()){
+      //非职业顾问下单
+      goodsOrder.orderType = 2
+    };
+    if (checkPermissions.hasGoodsAdvisor()) {
+      //职业顾问下单
+      goodsOrder.orderType = 1
+    };
+  
  
     if (!that.data.orderCenterDetail){
       toastUtil.showToast("没有关联工单");
@@ -536,3 +548,6 @@ function getOrderCenterDetail() {
       orderCenterDetail: orderCenterDetail
     })
 }
+
+
+

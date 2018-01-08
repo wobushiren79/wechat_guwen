@@ -11,20 +11,6 @@ Page({
   },
   onShow: function () {
     pageUtil.initData();
-    //是否职业顾问
-    wx.getStorage({
-      key: storageKey.AMATEUR_LEVEL,
-      success: function (res) {
-        content.setData({
-          amateurLevel: true
-        })
-      },
-      fail: function () {
-        content.setData({
-          amateurLevel: false
-        })
-      }
-    })
     getOrderList([1, 2], null)
   },
   onLoad: function () {

@@ -275,6 +275,7 @@
   background: #fff;
   padding: 15px;
   box-sizing: border-box;
+  overflow-y: scroll;
 }
 
 .popup .dt {

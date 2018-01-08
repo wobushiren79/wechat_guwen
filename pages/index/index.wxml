@@ -234,30 +234,14 @@
                     <text>{{item.name}}</text>
                     <text> {{item.goods_slogan}}</text>
                   </view>
-                  <block wx:if="{{amateurLevel}}">
+          
                     <view class="money">
                       <text class="s">¥：</text>
                       <text class="b"></text>
                       <text class="b">{{item.price}}</text>
                     </view>
-                  </block>
-                  <block wx:else>
-                    <view class="money">
-                      <text class="s">¥：</text>
-                      <text class="b"></text>
-                      <text class="b">{{item.price}}</text>
-                    </view>
-                    <!-- <view class="num">
-                      推荐价：
-                      <text>{{item.price}}</text>
-                    </view> -->
-
-
-                    <!-- <view class="num">
-                    推荐价：
-                    <text>{{item.price}}</text>
-                  </view> -->
-                  </block>
+              
+      
                   <block wx:if="{{label_id==labellist[0].id}}">
                     <view class="btn btn2">
                       立即抢购

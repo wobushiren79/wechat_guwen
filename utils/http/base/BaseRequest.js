@@ -245,14 +245,14 @@ function loginCemetery() {
 function getUserLevel() {
   var resourceCodes = wx.getStorageSync(storageKey.PLATFORM_RESOURCE_CODES)
   var userId = wx.getStorageSync(storageKey.PLATFORM_USER_ID)
-  var hasGoodsAdvisorAmateur = checkPermissions.hasGoodsAdvisorAmateur();
-  if (hasGoodsAdvisorAmateur) {
+  // var hasGoodsAdvisorAmateur = checkPermissions.hasGoodsAdvisorAmateur();
+  // if (hasGoodsAdvisorAmateur) {
     var queryLevelRequest = {
       userIds: [userId]
     }
     var queryLevelCallBack = {
       success: function (data, res) {
-        wx.setStorageSync(storageKey.AMATEUR_LEVEL, data)
+        wx.setStorageSync(storageKey.AMATEUR_LEVEL, data.resultList)
         loginGoods();
       },
       fail: function (data, res) {
@@ -262,8 +262,8 @@ function getUserLevel() {
     sendPostHttpForContent
     (getApp().globalData.JavaPlatformUrl + "api/level/findbyuserids", queryLevelRequest, queryLevelCallBack, true)
     return;
-  }
-  loginGoods();
+  // }
+  // loginGoods();
 }
 module.exports.sendPostHttpForLogin = sendPostHttpForLogin;
 module.exports.sendPostHttp = sendPostHttp;

@@ -35,16 +35,6 @@ Page({
     getCreditInfo();
     var that = this
     var platform = getApp().globalData.platform
-    //是否职业顾问
-    if (wx.getStorageSync(storageKey.AMATEUR_LEVEL)) {
-      content.setData({
-        amateurLevel: true
-      })
-    } else {
-      content.setData({
-        amateurLevel: false
-      })
-    };
     getLabelTag();
   },
   onLoad: function () {

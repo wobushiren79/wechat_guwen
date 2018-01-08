@@ -20,6 +20,10 @@
 			"current": -1,
 			"list": []
 		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": -1,
 			"list": [
@@ -42,6 +46,13 @@
 					"name": "gongdan详情",
 					"pathName": "pages/allot/order_content/order_content",
 					"query": "orderId=424",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "哈桑片详情",
+					"pathName": "pages/service_content/service_content",
+					"query": "goods_id=1&channel_id=1",
 					"scene": "1001"
 				}
 			]
