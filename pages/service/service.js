@@ -18,6 +18,10 @@ Page({
   },
   
   onShow:function(){
+  
+  },
+  onLoad: function () {
+    content = this;
     var channelId = wx.getStorageSync(storageKey.GOODS_CHANNEL);
     var userId = wx.getStorageSync(storageKey.PLATFORM_USER_ID);
     if (!channelId || !userId) {
@@ -27,10 +31,6 @@ Page({
       return
     }
     getGoodsClass(channelId.id, userId);
-  },
-  onLoad: function () {
-    content = this;
-  
   }
 });
 

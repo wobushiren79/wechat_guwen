@@ -147,6 +147,10 @@ Page({
     goodsOrder.levelId = that.data.levelId ? that.data.levelId : ''
     goodsOrder.orderType = that.data.orderType
  
+    if (!that.data.orderCenterDetail){
+      toastUtil.showToast("没有关联工单");
+      return
+    }
     goodsOrder.relateWorkId = that.data.orderCenterDetail.workOrder.id
     //是否需要发票
     if (fapiao) {
