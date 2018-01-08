@@ -50,6 +50,7 @@
     "pages/funeral_img/funeral_img",
     "pages/search/search",
     "pages/cem/cem",
+    "pages/message/message",
     "pages/password_reset/password_reset",
     "pages/signin/signin",
     "pages/service_goods_list/service_goods_list",
@@ -110,8 +111,8 @@
         "selectedIconPath": "images/icon_tabBar_platform_1.png"
       },
       {
-        "pagePath": "pages/service_order_list_submit/service_order_list_submit",
-        "text": "订单",
+        "pagePath": "pages/message/message",
+        "text": "消息",
         "iconPath": "images/icon_tabBar_list0.png",
         "selectedIconPath": "images/icon_tabBar_list1.png"
       },
