@@ -86,8 +86,6 @@ function queryReturnCashLogs() {
   queryRequest.pageSize = 10;
   var queryCallBack = pageUtil.getPageCallBack(
     function (data, res, isLast) {
-      console.log("返现记录:")
-      console.log(data)
       for (var i in data) {
         var price = parseInt(data[i].money_amount) / 100
         data[i].amount = getApp().ProcessingPrice(price)
