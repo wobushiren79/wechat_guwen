@@ -58,11 +58,9 @@ Page({
  */
 function queryCashingLogs() {
   var queryRequest = pageUtil.getPageData();
+  queryRequest.pageSize = 10;
   var queryCallBack = pageUtil.getPageCallBack(
     function (data, res, isLast) {
-      console.log("提现记录:")
-      console.log(data)
-
       for (var i in data) {
         var price = parseInt(data[i].amount) / 100
         data[i].amount = getApp().ProcessingPrice(price)
@@ -85,6 +83,7 @@ function queryCashingLogs() {
  */
 function queryReturnCashLogs() {
   var queryRequest = pageUtil.getPageData();
+  queryRequest.pageSize = 10;
   var queryCallBack = pageUtil.getPageCallBack(
     function (data, res, isLast) {
       console.log("返现记录:")
