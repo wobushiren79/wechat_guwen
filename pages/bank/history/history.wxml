@@ -1,55 +1,90 @@
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
   <view class="page__bd clearfix">
-    <view class='section_list'>
-      <view class="weui-cells weui-cells_after-title">
-      
-      <block wx:for="{{list_data}}">
-        <view url="../goods_content/goods_content" class="weui-cell weui-cell_access">
-          <view class="weui-cell__bd">
-            <view class='name ellipsis-1'>
-              {{item.bank_name}}({{item.bank_card}})
+    <view class='section_tab'>
+      <view class='tab_item {{tab_item==0?"active":""}}' data-tab_item='0' bindtap='bind_tab'>
+        <text>返现记录</text>
+      </view>
+      <view class='tab_item {{tab_item==1?"active":""}}' data-tab_item='1' bindtap='bind_tab'>
+        <text>提现记录</text>
+      </view>
+    </view>
+    <view class='section_list ul {{tab_item==0?"active":""}}' data-tab_item='0'>
+     <block wx:for="{{fanxianList_data}}">
+      <view class='li'>
+        <view class='li_item'>
+          <view class='li_bd'>
+            <view class='name'>
+             {{item.transTypeStr}}({{item.remark}})
             </view>
-            <view class='time ellipsis-1'>
-              <text>{{item.created_at}}</text>
+
+          </view>
+          <view class='li_ft'>
+            <view class='type type1'>
+              
             </view>
           </view>
-          <view class="weui-cell__ft ">
-            <text class='num'>{{item.amount}}</text>
+        </view>
+        <view class='li_item'>
+          <view class='li_bd'>
+            <view class='time'>
+              {{item.created_at}}
+            </view>
+          </view>
+          <view class='li_ft'>
+            <view class='money'>
+              {{item.amount}}
+            </view>
+          </view>
+        </view>
+      </view>
+      </block>
+      <block wx:if="{{fanxianLast}}">
+        <view class="weui-cell weui-cell_access prompt">
+          <text>没有更多记录啦</text>
+        </view>
+      </block>
+    </view>
+    <view class='section_list ul {{tab_item==1?"active":""}}' data-tab_item='1'>
+      <block wx:for="{{tixianList_data}}">
+        <view class='li'>
+          <view class='li_item'>
+            <view class='li_bd'>
+              <view class='name'>
+                {{item.bank_name}}({{item.bank_card}})
+              </view>
 
-            <block wx:if="{{item.status  == '待处理'}}">
-            <text class='text color1'>{{item.status}}</text>
-            </block>
-
-            <block wx:if="{{item.status  == '提现成功'}}">
-            <text class='text color2'>{{item.status}}</text>
-            </block>
-            
-            <block wx:if="{{item.status  == '提现失败'}}">
-            <text class='text color3'>{{item.status}}</text>
-            </block>
+            </view>
+            <view class='li_ft'>
+              <block wx:if="{{item.status  == '待处理'}}">
+                <view class='type type1'>{{item.status}}</view>
+              </block>
+              <block wx:if="{{item.status  == '提现成功'}}">
+                <view class='type type2'>{{item.status}}</view>
+              </block>
+              <block wx:if="{{item.status  == '提现失败'}}">
+                <view class='type type3'>{{item.status}}</view>
+              </block>
+            </view>
+          </view>
+          <view class='li_item'>
+            <view class='li_bd'>
+              <view class='time'>
+                {{item.created_at}}
+              </view>
+            </view>
+            <view class='li_ft'>
+              <view class='money'>
+                {{item.amount}}
+              </view>
+            </view>
           </view>
         </view>
       </block>
-      <block wx:if="{{xianshi}}">
-      <view class="weui-cell weui-cell_access prompt">
-      <text>没有更多记录啦</text>
-      </view>
+      <block wx:if="{{tixianLast}}">
+        <view class="weui-cell weui-cell_access prompt">
+          <text>没有更多记录啦</text>
+        </view>
       </block>
-        <!-- <view url="../goods_content/goods_content" class="weui-cell weui-cell_access">
-          <view class="weui-cell__bd">
-            <view class='name ellipsis-1'>
-              中国招商银行
-            </view>
-            <view class='time ellipsis-1'>地址：
-              <text>2010-10-10</text>
-            </view>
-          </view>
-          <view class="weui-cell__ft add">
-            +
-            <text>5</text>
-          </view>
-        </view> -->
-      </view>
     </view>
   </view>
 </view>

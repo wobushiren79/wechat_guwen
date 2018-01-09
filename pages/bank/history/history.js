@@ -3,29 +3,51 @@ var pageUtil = require("../../../utils/PageUtil.js")
 var toastUtil = require("../../../utils/ToastUtil.js");
 var storageKey = require("../../../utils/storage/StorageKey.js");
 var checkPermissions = require("../../../utils/CheckPermissions.js");
-var content;
+var thisPageData;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    tab_item: 0
+  },
+  bind_tab: function (e) {
+    this.setData({
+      tab_item: e.currentTarget.dataset.tab_item
+    })
+    pageUtil.initData();
+    var currentTab = thisPageData.data.tab_item;
+    if (currentTab == 0) {
+      queryReturnCashLogs();
+    } else {
+      queryCashingLogs();
+    }
   },
   onShow: function () {
     pageUtil.initData();
-    queryCashingLogs()
+    var currentTab = thisPageData.data.tab_item;
+    if (currentTab == 0) {
+      queryReturnCashLogs();
+    } else {
+      queryCashingLogs();
+    }
   },
   //上拉刷新
   onReachBottom: function () {
-    // console.log(111111)
-    queryCashingLogs()
+    var currentTab = thisPageData.data.tab_item;
+    if (currentTab == 0) {
+      queryReturnCashLogs();
+    } else {
+      queryCashingLogs();
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    content = this;
+    thisPageData = this;
 
   },
 })
@@ -36,17 +58,19 @@ Page({
  */
 function queryCashingLogs() {
   var queryRequest = pageUtil.getPageData();
-
   var queryCallBack = pageUtil.getPageCallBack(
     function (data, res, isLast) {
+      console.log("提现记录:")
+      console.log(data)
+
       for (var i in data) {
         var price = parseInt(data[i].amount) / 100
         data[i].amount = getApp().ProcessingPrice(price)
         data[i].bank_card = data[i].bank_card.substring(data[i].bank_card.length - 4)
       }
-      content.setData({
-        list_data: data,
-        xianshi: isLast,
+      thisPageData.setData({
+        tixianList_data: data,
+        tixianLast: isLast,
       })
     },
     function (data, res) {
@@ -54,4 +78,32 @@ function queryCashingLogs() {
     }
   );
   platformHttp.queryCashingLogs(queryRequest, queryCallBack);
+}
+
+/**
+ * 查询返现记录
+ */
+function queryReturnCashLogs() {
+  var queryRequest = pageUtil.getPageData();
+  var queryCallBack = pageUtil.getPageCallBack(
+    function (data, res, isLast) {
+      console.log("返现记录:")
+      console.log(data)
+      for (var i in data) {
+        var price = parseInt(data[i].money_amount) / 100
+        data[i].amount = getApp().ProcessingPrice(price)
+        if (data[i].trans_type == null || data[i].trans_type == ""){
+          data[i].transTypeStr  = "其他";
+        }
+      }
+      thisPageData.setData({
+        fanxianList_data: data,
+        fanxianLast: isLast,
+      })
+    },
+    function (data, res) {
+      toastUtil.showToast("查询失败");
+    }
+  );
+  platformHttp.queryReturnCashLogsForPage(queryRequest, queryCallBack);
 }

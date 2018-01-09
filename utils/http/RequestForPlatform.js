@@ -179,6 +179,13 @@ function buildAccountForOrderCenterBuild(data, callback) {
   baseRequest.sendPostHttpForContent(baseUrl + "api/usersAccount/createOrderCenterBuild", data, callback, true)
 }
 
+/**
+ * 获取提现记录
+ */
+function queryReturnCashLogsForPage(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/wallet/queryReturnCashLogsForPage", data, callback, true)
+}
+
 module.exports.addingCard = addingCard;
 module.exports.queryCardBins = queryCardBins;
 module.exports.settingDefaultCard = settingDefaultCard;
@@ -205,3 +212,4 @@ module.exports.queryUserLevel = queryUserLevel;
 module.exports.queryCashingLogs = queryCashingLogs;
 module.exports.getMsgCode = getMsgCode;
 module.exports.buildAccountForOrderCenterBuild = buildAccountForOrderCenterBuild;
+module.exports.queryReturnCashLogsForPage = queryReturnCashLogsForPage;
