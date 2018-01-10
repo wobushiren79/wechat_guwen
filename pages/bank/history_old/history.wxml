@@ -1,0 +1,55 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd clearfix">
+    <view class='section_list'>
+      <view class="weui-cells weui-cells_after-title">
+      
+      <block wx:for="{{list_data}}">
+        <view url="../goods_content/goods_content" class="weui-cell weui-cell_access">
+          <view class="weui-cell__bd">
+            <view class='name ellipsis-1'>
+              {{item.bank_name}}({{item.bank_card}})
+            </view>
+            <view class='time ellipsis-1'>
+              <text>{{item.created_at}}</text>
+            </view>
+          </view>
+          <view class="weui-cell__ft ">
+            <text class='num'>{{item.amount}}</text>
+
+            <block wx:if="{{item.status  == '待处理'}}">
+            <text class='text color1'>{{item.status}}</text>
+            </block>
+
+            <block wx:if="{{item.status  == '提现成功'}}">
+            <text class='text color2'>{{item.status}}</text>
+            </block>
+            
+            <block wx:if="{{item.status  == '提现失败'}}">
+            <text class='text color3'>{{item.status}}</text>
+            </block>
+          </view>
+        </view>
+      </block>
+      <block wx:if="{{xianshi}}">
+      <view class="weui-cell weui-cell_access prompt">
+      <text>没有更多记录啦</text>
+      </view>
+      </block>
+        <!-- <view url="../goods_content/goods_content" class="weui-cell weui-cell_access">
+          <view class="weui-cell__bd">
+            <view class='name ellipsis-1'>
+              中国招商银行
+            </view>
+            <view class='time ellipsis-1'>地址：
+              <text>2010-10-10</text>
+            </view>
+          </view>
+          <view class="weui-cell__ft add">
+            +
+            <text>5</text>
+          </view>
+        </view> -->
+      </view>
+    </view>
+  </view>
+</view>

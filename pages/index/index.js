@@ -59,6 +59,23 @@ Page({
   sign: function () {
     userSign();
   },
+
+
+  // 打开C端我的门店
+  bind_go_c: function () {
+    wx.navigateToMiniProgram({
+      appId: 'wxe8c2277798630262',
+      path: '',
+      extraData: {
+        foo: 'bar'
+      },
+      envVersion: 'develop',
+      success(res) {
+        // 打开成功
+      }
+    })
+  },
+
   /**
   * 新建公墓单
   */

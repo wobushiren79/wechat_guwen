@@ -83,7 +83,8 @@
     "pages/order_center/order_list_wait/order_list_wait",
     "pages/order_center/order_content/order_content",
     "pages/order_service_address/order_service_address",
-    "pages/user_auto_login_and_register/user_auto_login_and_register"
+    "pages/user_auto_login_and_register/user_auto_login_and_register",
+    "pages/index_flex1/index_flex1"
   ],
   "window": {
     "navigationBarTextStyle": "black",
