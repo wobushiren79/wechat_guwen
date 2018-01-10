@@ -1,0 +1,95 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+
+    <view class='section_help'>
+      <view>
+        <image src='/images/icon_study_help_line.png' mode='widthFix'></image>
+        <text>在线客服</text>
+        <view class='contact_wrap'>
+          <contact-button size="27" session-from="weapp">
+          </contact-button>
+          <contact-button size="27" session-from="weapp">
+          </contact-button>
+          <contact-button size="27" session-from="weapp">
+          </contact-button>
+          <contact-button size="27" session-from="weapp">
+          </contact-button>
+          <contact-button size="27" session-from="weapp">
+          </contact-button>
+          <contact-button size="27" session-from="weapp">
+          </contact-button>
+          <contact-button size="27" session-from="weapp">
+          </contact-button>
+          <contact-button size="27" session-from="weapp">
+          </contact-button>
+          <contact-button size="27" session-from="weapp">
+          </contact-button>
+          <contact-button size="27" session-from="weapp">
+          </contact-button>
+          <contact-button size="27" session-from="weapp">
+          </contact-button>
+          <contact-button size="27" session-from="weapp">
+          </contact-button>
+          <contact-button size="27" session-from="weapp">
+          </contact-button>
+          <contact-button size="27" session-from="weapp">
+          </contact-button>
+          <contact-button size="27" session-from="weapp">
+          </contact-button>
+          <contact-button size="27" session-from="weapp">
+          </contact-button>
+          <contact-button size="27" session-from="weapp">
+          </contact-button>
+          <contact-button size="27" session-from="weapp">
+          </contact-button>
+        </view>
+      </view>
+      <view bindtap='bind_phone' data-phone='966188'>
+        <image src='/images/icon_study_help_phone.png' mode='widthFix'></image>
+        <text>电话客服</text>
+      </view>
+    </view>
+    <view class='section_grid'>
+      <navigator url='' hover-class='none'>
+        <image src='/images/icon_study_grid_money.png' mode='widthFix'></image>
+        <text>财务结算</text>
+      </navigator>
+      <navigator url='' hover-class='none'>
+        <image src='/images/icon_study_grid_systemhelp.png' mode='widthFix'></image>
+        <text>系统操作</text>
+      </navigator>
+      <navigator url='' hover-class='none'>
+        <image src='/images/icon_study_grid_projectdetails.png' mode='widthFix'></image>
+        <text>产品介绍</text>
+      </navigator>
+      <navigator url='' hover-class='none'>
+        <image src='/images/icon_study_grid_talk.png' mode='widthFix'></image>
+        <text>洽谈技巧</text>
+      </navigator>
+      <navigator url='' hover-class='none'>
+        <image src='/images/icon_study_grid_platform.png' mode='widthFix'></image>
+        <text>平台入驻</text>
+      </navigator>
+      <navigator url='' hover-class='none'>
+        <image src='/images/icon_study_grid_other.png' mode='widthFix'></image>
+        <text>其他问题</text>
+      </navigator>
+
+    </view>
+
+    <view class='section_question'>
+
+      <view class='ul'>
+        <view class='title'>
+          <view class='title_bd'>热门问题</view>
+          <!-- <view>更多</view> -->
+        </view>
+        <navigator url='' hover-class='none' class='li ellipsis-1'>热门问题一热门问题一热门问题一热门问题一热门问题一热门问题一热门问题一</navigator>
+        <navigator url='' hover-class='none' class='li ellipsis-1'>热门问题一</navigator>
+        <navigator url='' hover-class='none' class='li ellipsis-1'>热门问题一</navigator>
+        <navigator url='' hover-class='none' class='li ellipsis-1'>热门问题一</navigator>
+        <navigator url='' hover-class='none' class='li ellipsis-1'>更多</navigator>
+      </view>
+    </view>
+  </view>
+</view>

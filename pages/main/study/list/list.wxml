@@ -1,0 +1,30 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <view class='ul'>
+      <navigator class='li ellipsis-1' hover-class='none' url=''>
+        <view class='li_bd'>
+          这里是标题
+        </view>
+        <view class='li_ft'>
+          2017-08-17 18:35:06
+        </view>
+      </navigator>
+      <navigator class='li ellipsis-1' hover-class='none' url=''>
+        <view class='li_bd'>
+          这里是标题
+        </view>
+        <view class='li_ft'>
+          2017-08-17 18:35:06
+        </view>
+      </navigator>
+      <navigator class='li ellipsis-1' hover-class='none' url=''>
+        <view class='li_bd'>
+          这里是标题
+        </view>
+        <view class='li_ft'>
+          2017-08-17 18:35:06
+        </view>
+      </navigator>
+    </view>
+  </view>
+</view>

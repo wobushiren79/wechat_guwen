@@ -1,0 +1,123 @@
+.section_help, .section_grid {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+
+.section_help image {
+  width: 50rpx;
+  vertical-align: middle;
+  margin-right: 50rpx;
+}
+
+.section_help>view {
+  flex: 1;
+  padding: 50rpx 0;
+  position: relative;
+  color: #48cfad;
+  overflow: hidden;
+}
+
+.section_help>view:active, .section_grid>navigator:active,
+.section_question .li:active {
+  opacity: 0.7;
+}
+
+.section_help>view::after {
+  position: absolute;
+  content: "";
+  display: block;
+  height: 120rpx;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  border-right: 1px solid #efefef;
+}
+
+.section_help>view:last-of-type::after {
+  display: none;
+}
+
+.section_grid {
+  flex-wrap: wrap;
+}
+
+.section_grid>navigator {
+  flex-basis: 33.333%;
+  padding: 15rpx 0;
+  font-size: 26rpx;
+}
+
+.section_grid image {
+  display: block;
+  width: 66rpx;
+  margin: auto;
+}
+
+.section_grid text {
+  display: block;
+  margin-top: 5rpx;
+}
+
+.section_question {
+  background: #fff;
+}
+
+.section_question .title {
+  padding: 10rpx 24rpx 10rpx 54rpx;
+  align-items: center;
+  font-size: 32rpx;
+  color: #000;
+  display: flex;
+  background: #fff;
+  margin: 0;
+  position: relative;
+}
+
+.section_question .title .title_bd {
+  flex: 1;
+}
+
+.section_question .title::after {
+  display: block;
+  position: absolute;
+  top: 22rpx;
+  left: 24rpx;
+  content: "";
+  width: 12rpx;
+  height: 24rpx;
+  border-radius: 20rpx;
+  background: #48cfad;
+}
+
+.section_question .li {
+  padding: 10rpx 24rpx 10rpx 54rpx;
+  font-size: 28rpx;
+  position: relative;
+}
+
+.section_question .li::after {
+  position: absolute;
+  top: 0;
+  left: 54rpx;
+  content: "";
+  width: 100%;
+  border-top: 1px solid #efefef;
+}
+
+.section_question .li:last-of-type {
+  color: #666;
+}
+.contact_wrap{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+contact-button{
+  width: auto;
+  height: auto;
+  position: relative;
+  display: inline-block;
+}

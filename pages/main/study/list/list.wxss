@@ -1,0 +1,16 @@
+.ul .li{
+  padding: 20rpx 24rpx;
+  display: flex;
+  background: #fff;
+  margin-bottom: 15rpx;
+  align-items: center;
+}
+.ul .li:active{
+  opacity: 0.7
+}
+.ul .li .li_bd{
+  flex: 1;
+}
+.ul .li .li_ft{
+  font-size: 24rpx
+}

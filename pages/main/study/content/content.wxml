@@ -1,0 +1,5 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+     <web-view src='https://m.e-funeral.cn'>正在加载...</web-view>   
+  </view>
+</view>

@@ -94,8 +94,6 @@ function sendPostHttpForContent(url, data, callback, isDialog) {
  * 发送get请求
  */
 function sendGetHttp(url, data, callback, isDialog){
-  var contentData = {};
-  var baseUrl = getBaseUrl(url);
   baseHttp.createGetHttpRequest(url, contentData, callback, null, isDialog);
 }
 /**
