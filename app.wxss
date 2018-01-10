@@ -301,10 +301,12 @@ input {
 .page_service_order .list .ul .li .li_footer .footer .btn,
 .page_allot_order_list .list .ul .li .li_header .footer .btn,
 .page_allot_order_list .list .ul .li .li_footer .header .btn {
-  display: inline-block;
-  padding: 0;
-  margin: 0;
-  margin-left: 16rpx;
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(0, -50%);
+  
   width: 132rpx;
   height: 50rpx;
   text-align: center;
@@ -323,6 +325,11 @@ input {
 .page_allot_order_list .list .ul .li .li_footer .header .btn.btn_1 {
   background: transparent;
   color: #48cfad;
+}
+.page_service_order .list .ul .li .li_footer .footer .btn:nth-of-type(2),
+.page_allot_order_list .list .ul .li .li_header .footer .btn:nth-of-type(2),
+.page_allot_order_list .list .ul .li .li_footer .header .btn:nth-of-type(2),{
+  right: 148rpx;
 }
 
 .page_service_order .list .ul .li .li_footer .footer .btn::after,

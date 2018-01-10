@@ -92,7 +92,7 @@ input {
 }
 
 .tab_content .ul .li .li_content .title {
-  font-size: 30rpx;
+  font-size: 32rpx;
   color: #353535;
   height: 100rpx;
 }
@@ -101,7 +101,7 @@ input {
   font-size: 38rpx;
   color: #48cfad;
   position: absolute;
-  bottom: 70rpx;
+  bottom: 80rpx;
 }
 
 .tab_content .ul .li .li_content .num {

@@ -56,12 +56,12 @@
                 <text>商品更新中</text>
               </view>
               <view class="money" wx:else>
-                ¥:<text>{{item.price}}</text>
+                ¥<text>{{item.price}}</text>
               </view>
               <view class="num">
                 销售量<text>{{item.sale_amount}}</text>
               </view>
-              <image src="../../images/right.png"></image>
+              
             </view>
           </navigator>
         </block>
@@ -85,7 +85,6 @@
               <view class="num">
                 销售量<text>{{item.sale_amount}}</text>
               </view>
-              <image src="../../images/right.png"></image>
             </view>
           </navigator>
         </block>

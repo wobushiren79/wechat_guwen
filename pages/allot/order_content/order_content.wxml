@@ -83,7 +83,7 @@
           <view class='list_content_item'>
             <view class="weui-cells__title {{tab_0 == index?'active':''}}" bindtap='bind_tab_0' data-index="{{index}}">
               <view class="weui-cell__bd">
-                <view>订单状态</view>
+                <view>单号:{{item.relateOrderNum}}</view>
                 <view class='s'>下单时间</view>
               </view>
               <view class="weui-cell__ft">
@@ -148,9 +148,11 @@
         </block>
       </block>
       <block wx:else>
-        <text>
-       暂无数据
-      </text>
+        <view class='prompt'>
+          <text>
+            暂无数据
+          </text>
+        </view>
       </block>
       <!-- <view class="weui-cells__tips">备注：这里是备注文字</view> -->
     </view>
@@ -218,9 +220,11 @@
         </block>
       </block>
       <block wx:else>
-        <text>
-       暂无数据
-      </text>
+        <view class='prompt'>
+          <text>
+            暂无数据
+          </text>
+        </view>
       </block>
     </view>
 

@@ -256,7 +256,7 @@
                   </view>
           
                     <view class="money">
-                      <text class="s">¥：</text>
+                      <text class="s">¥</text>
                       <text class="b"></text>
                       <text class="b">{{item.price}}</text>
                     </view>
