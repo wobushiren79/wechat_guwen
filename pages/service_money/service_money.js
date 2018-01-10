@@ -21,7 +21,7 @@ Page({
     time: "请选择时间",
     btn_1: true
   },
-  onUnload:function(){
+  onUnload: function () {
     wx.removeStorageSync(storageKey.ORDER_CENTER_DETAIL)
   },
   bind_list: function () {
@@ -64,32 +64,6 @@ Page({
       channel_id: wx.getStorageSync(storageKey.GOODS_CHANNEL),
     })
 
-    //是否职业顾问
-    // wx.getStorage({
-    //   key: storageKey.AMATEUR_LEVEL,
-    //   success: function (res) {
-    //     if (res.data == null || res.data.resultList==null) {
-    //       content.setData({
-    //         levelId: 0,
-    //         orderType: 2
-    //       })
-    //     } else {
-    //       content.setData({
-    //         levelId: res.data[0].systemLevel.id,
-    //         orderType: 2,
-    //         levelName: res.data[0].systemLevel.levelName,
-    //         levelType: res.data[0].systemLevel.levelType
-    //       })
-    //     }
-    //   },
-    //   fail: function () {
-    //     content.setData({
-    //       levelId: false,
-    //       orderType: 1
-    //     })
-    //   }
-    // })
-
     // 取出购物车数据
     getFormData();
   },
@@ -106,9 +80,9 @@ Page({
 
 
   bindFormSubmit: function (e) {
-    if (!checkPermissions.hasGoodsAdvisorAmateur()&&!checkPermissions.hasGoodsAdvisor()) {
-       toastUtil.showToast("没有权限下单");
-       return;
+    if (!checkPermissions.hasGoodsAdvisorAmateur() && !checkPermissions.hasGoodsAdvisor()) {
+      toastUtil.showToast("没有权限下单");
+      return;
     };
     var that = this
     var r = /^\+?[1-9][0-9]*$/;　　//正整数
@@ -128,7 +102,6 @@ Page({
     var class_name = that.data.class_name
     //总单价
     var totla_price = that.data.totla_price
-    var levelId = that.data.levelId
     //客户信息
     var defaultAddress = that.data.defaultAddress;
     if (defaultAddress == null || defaultAddress.length == 0) {
@@ -145,11 +118,8 @@ Page({
     goodsOrder.orderComment = e.detail.value.orderComment
     goodsOrder.customerName = defaultAddress.recipientName
     goodsOrder.customerPhone = defaultAddress.recipientPhone
-    goodsOrder.levelName = that.data.levelName
-    goodsOrder.levelType = that.data.levelType
-    goodsOrder.levelId = that.data.levelId ? that.data.levelId : ''
 
-    if (checkPermissions.hasGoodsAdvisorAmateur()){
+    if (checkPermissions.hasGoodsAdvisorAmateur()) {
       //非职业顾问下单
       goodsOrder.orderType = 2
     };
@@ -157,9 +127,9 @@ Page({
       //职业顾问下单
       goodsOrder.orderType = 1
     };
-  
- 
-    if (!that.data.orderCenterDetail){
+
+
+    if (!that.data.orderCenterDetail) {
       toastUtil.showToast("没有关联工单");
       return
     }
@@ -214,23 +184,7 @@ Page({
         packagelist.goodsOrderItems = goodsOrderItemss
         packagelist.packageId = parseInt(formData[i].package_id)
         packagelist.packageSpecId = parseInt(formData[i].spec_id)
-        if (levelId != false) {
-          if (levelId == 0) {
-            packagelist.commissionRatio = 0
-          } else {
-            if (formData[i].commission == null) {
-              packagelist.commissionRatio = 0
-            } else {
-              for (var p in formData[i].commission) {
-                if (formData[i].commission[p].amateur_id == levelId) {
-                  packagelist.commissionRatio = formData[i].commission[p].commission
-                }
-              }
-            }
-          }
-        } else {
-          packagelist.commissionRatio = ''
-        }
+
         var num2 = r.test(parseFloat(formData[i].spec_price))
         if (num2) {
           packagelist.specOrderedPrice = parseFloat(formData[i].spec_price) * 100
@@ -251,6 +205,21 @@ Page({
         packagelist.titleImg = formData[i].title_img
         packagelist.unit = formData[i].unit
         packagelist.specName = formData[i].spec_name
+        //提成级别
+        var listGoodsOrderItemsLevel = new Array();
+        // var listCommission = levelHandle(formData[i].commission)
+        var listCommission = formData[i].commission
+        if (listCommission != null)
+          for (var h in listCommission) {
+            var goodsOrderItemsLevel = new Object();
+            var commissionItem = listCommission[h];
+            goodsOrderItemsLevel.levelName = commissionItem.levelName;
+            goodsOrderItemsLevel.levelType = commissionItem.type;
+            goodsOrderItemsLevel.levelId = commissionItem.amateur_id;
+            goodsOrderItemsLevel.commissionRatio = commissionItem.commission;
+            listGoodsOrderItemsLevel.push(goodsOrderItemsLevel);
+          }
+        packagelist.listGoodsOrderItemsLevel = listGoodsOrderItemsLevel
         //  goodslist.ementPrice = parseFloat(formData[i].ement_price)
         var num1 = r.test(parseFloat(formData[i].ement_price))
         if (num1) {
@@ -285,25 +254,6 @@ Page({
       } else {
         var goodslist = {}
 
-        if (levelId != false) {
-          if (levelId == 0) {
-            goodslist.commissionRatio = 0
-          } else {
-            if (formData[i].commission == null) {
-              goodslist.commissionRatio = 0
-            } else {
-              for (var o in formData[i].commission) {
-                if (formData[i].commission[o].amateur_id == levelId) {
-                  goodslist.commissionRatio = formData[i].commission[o].commission
-                }
-              }
-            }
-          }
-        } else {
-          goodslist.commissionRatio = ''
-        }
-
-
         goodslist.goodsId = parseInt(formData[i].goods_id)
         goodslist.goodsSpecId = parseInt(formData[i].spec_id)
         var num2 = r.test(parseFloat(formData[i].spec_price))
@@ -326,6 +276,21 @@ Page({
         goodslist.titleImg = formData[i].title_img
         goodslist.unit = formData[i].unit
         goodslist.specName = formData[i].spec_name
+        //提成级别
+        var listGoodsOrderItemsLevel = new Array();
+            // var listCommission = levelHandle(formData[i].commission)
+        var listCommission = formData[i].commission
+        if (listCommission != null)
+          for (var h in listCommission) {
+            var goodsOrderItemsLevel = new Object();
+            var commissionItem = listCommission[h];
+            goodsOrderItemsLevel.levelName = commissionItem.levelName;
+            goodsOrderItemsLevel.levelType = commissionItem.type;
+            goodsOrderItemsLevel.levelId = commissionItem.amateur_id;
+            goodsOrderItemsLevel.commissionRatio = commissionItem.commission;
+            listGoodsOrderItemsLevel.push(goodsOrderItemsLevel);
+          }
+        goodslist.listGoodsOrderItemsLevel = listGoodsOrderItemsLevel
         //  goodslist.ementPrice = parseFloat(formData[i].ement_price)
         var num1 = r.test(parseFloat(formData[i].ement_price))
         if (num1) {
@@ -390,7 +355,7 @@ Page({
       goodsServiceInfo.serviceLocation = defaultAddress.address
 
     }
-    
+
     getdata.goodsServiceInfo = goodsServiceInfo
 
     createGoodsOrder(getdata)
@@ -549,5 +514,24 @@ function getOrderCenterDetail() {
     })
 }
 
-
+/**
+ * 级别处理
+ */
+// function levelHandle(commission) {
+//   if (!commission || commission.length <= 0 ) {
+//     return null;
+//   }
+//   var levelData = wx.getStorageSync(storageKey.AMATEUR_LEVEL)
+//   if (levelData && levelData.length > 0) {
+//     var levelList = new Array();
+//     for (var i in levelData) {
+//       for (var f in commission) {
+//         if (levelData[i].systemLevel.id == commission[f].amateur_id) {
+//           levelList.push(commission[f]);
+//         }
+//       }
+//     }
+//     return levelList;
+//   }
+// }
 

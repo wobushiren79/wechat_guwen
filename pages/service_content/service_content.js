@@ -316,7 +316,7 @@ function getGoodsSpecDetails(detailsRequest, goodsNumber) {
  * 级别显示处理
  */
 function levelHandle(commission){
-  if(!commission||commission.length<=0){
+  if (!commission || commission.length <= 0 ){
     return
   }
   var levelData = wx.getStorageSync(storageKey.AMATEUR_LEVEL)

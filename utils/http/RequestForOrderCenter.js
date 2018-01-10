@@ -101,5 +101,4 @@ module.exports.getOrderDetails = getOrderDetails;
 module.exports.getCarList = getCarList;
 module.exports.getCarDetails = getCarDetails;
 module.exports.getOrderCenterList = getOrderCenterList;
-module.exports.getOrderCenterList = getOrderCenterList;
 module.exports.getOrderListByAdvisorIdAndOrderStatus = getOrderListByAdvisorIdAndOrderStatus;

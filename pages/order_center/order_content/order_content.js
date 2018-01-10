@@ -1,22 +1,25 @@
 var orderCenterHttp = require("../../../utils/http/RequestForOrderCenter.js")
 var toastUtil = require("../../../utils/ToastUtil.js");
+var storageKey = require("../../../utils/storage/StorageKey.js");
 var pageUtil = require("../../../utils/PageUtil.js");
 var content;
 Page({
-    data: {
-      icon:"../../images/dog_chang.jpg",
-      icon2: "../../images/dog.png",
-      goods_cells:false
-    },
-    bind_goods:function(e){
-      this.setData({
-        goods_cells: !this.data.goods_cells
-      })
-    },
-    onLoad: function (e) {
-      content = this;
-      getOrderDetails(e.orderId)
-    }
+  data: {
+    icon: "../../images/dog_chang.jpg",
+    icon2: "../../images/dog.png",
+    goods_cells: false,
+    orderTotalPrice: "-",
+    commissionTotalPrice: "-",
+  },
+  bind_goods: function (e) {
+    this.setData({
+      goods_cells: !this.data.goods_cells
+    })
+  },
+  onLoad: function (e) {
+    content = this;
+    getOrderDetails(e.orderId)
+  }
 });
 /**
  * 获取工单详情
@@ -31,20 +34,44 @@ function getOrderDetails(orderId) {
       for (var i in data.listPerformRecord) {
         get_data.push(data.listPerformRecord[i].performPic.split(","))
       }
-      var goodsList=[]
-      for (var i in data.listGoodsDetailResponse){
-        for (var j in data.listGoodsDetailResponse[i].goodsOrderItemList){
-          goodsList.push(data.listGoodsDetailResponse[i].goodsOrderItemList[j])
-         }
-        for (var j in data.listGoodsDetailResponse[i].goodsPackages) {
-          goodsList.push(data.listGoodsDetailResponse[i].goodsPackages[j])
+      var goodsList = []
+      var orderTotalPrice = 0;
+      var commissionTotalPrice = 0;
+      if (data.listGoodsDetailResponse)
+        for (var i in data.listGoodsDetailResponse) {
+          if (data.listGoodsDetailResponse[i].goodsOrderItemList)
+            for (var j in data.listGoodsDetailResponse[i].goodsOrderItemList) {
+              var goodsOrderItem = data.listGoodsDetailResponse[i].goodsOrderItemList[j];
+              var goodsOrderItemPrice = goodsOrderItem.specOrderedPrice / 100;
+              var goodsOrderItemId = goodsOrderItem.id;
+              var commissionRatio = levelHandle(data.listGoodsDetailResponse[i].goodsOrderItemLevels, goodsOrderItemId, null);
+              orderTotalPrice += goodsOrderItemPrice
+              commissionTotalPrice += goodsOrderItemPrice * commissionRatio
+              goodsOrderItem.commissionRatio = commissionRatio;
+              goodsOrderItem.commissionPrice = goodsOrderItemPrice * commissionRatio;
+              goodsList.push(goodsOrderItem)
+            }
+          if (data.listGoodsDetailResponse[i].goodsPackages)
+            for (var j in data.listGoodsDetailResponse[i].goodsPackages) {
+              var goodsPackageItem = data.listGoodsDetailResponse[i].goodsPackages[j];
+              var goodsPackagePrice = goodsPackageItem.specOrderedPrice / 100;
+              var goodsPackageId = goodsPackageItem.id;
+              var commissionRatio = levelHandle(data.listGoodsDetailResponse[i].goodsOrderItemLevels, null, goodsPackageId);
+              orderTotalPrice += goodsPackagePrice;
+              commissionTotalPrice += goodsPackagePrice * commissionRatio
+              goodsPackageItem.commissionRatio = Math.round(commissionRatio * 100);
+              goodsPackageItem.commissionPrice = goodsPackagePrice * commissionRatio;
+              goodsList.push(goodsPackageItem)
+            }
+
         }
-      }
       content.setData({
         content: data,
         get_data: get_data,
         orderId: orderId,
-        goodsList: goodsList
+        goodsList: goodsList,
+        orderTotalPrice: orderTotalPrice,
+        commissionTotalPrice: commissionTotalPrice,
       })
     },
     fail: function (data, res) {
@@ -52,4 +79,35 @@ function getOrderDetails(orderId) {
     }
   }
   orderCenterHttp.detailsAll(getRequest, getCallBack);
+}
+
+
+/**
+ * 级别显示处理
+ */
+function levelHandle(levelRq, goodsItemId, packageId) {
+  if (!levelRq || levelRq.length <= 0) {
+    return 0;
+  }
+  var levelData = wx.getStorageSync(storageKey.AMATEUR_LEVEL)
+  if (levelData && levelData.length > 0) {
+    var levelList = new Array();
+    for (var i in levelData) {
+      for (var f in levelRq) {
+        if (levelData[i].systemLevel.levelType == levelRq[f].levelType
+          && levelData[i].systemLevel.levelName == levelRq[f].levelName
+          && levelRq[f].levelType == "orderC.build") {
+          if (goodsItemId && goodsItemId == levelRq[f].goodsItemId) {
+            return levelRq[f].commissionRatio;
+          }
+          if (packageId && packageId == levelRq[f].goodsPackageId) {
+            return levelRq[f].commissionRatio;
+          }
+        } 
+      }
+    }
+    return 0;
+  } else {
+    return 0;
+  }
 }

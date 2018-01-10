@@ -130,8 +130,10 @@ function getGoodsOrderDetails(orderId) {
   }
   var getCallBack = {
     success: function (data, res) {
+      var levelList = levelHandle(data.goodsOrderItemLevels, data.goodsItemPerforms, data.goodsPackages);
       content.setData({
-        listData: data
+        listData: data,
+        levelData: levelList
       })
     },
     fail: function (data, res) {
@@ -162,4 +164,44 @@ function findPerformInfoByPerformId(performId) {
   }
 
   findPerformInfoByPerformId(findRequest, findCallBack);
+}
+
+/**
+ * 级别处理
+ */
+function levelHandle(levelRq, goodsItems, goodsPackages) {
+  if (!levelRq || levelRq.length <= 0) {
+    return null;
+  }
+  var levelData = wx.getStorageSync(storageKey.AMATEUR_LEVEL)
+  if (levelData && levelData.length > 0) {
+    var levelList = new Array();
+    for (var i in levelData) {
+      for (var f in levelRq) {
+        if (levelData[i].systemLevel.id == levelRq[f].levelId) {
+          levelList.push(levelRq[f]);
+        }
+      }
+    }
+    for (var i in levelList) {
+      var commissionPrice = 0;
+      if (goodsItems != null) {
+        for (var f in goodsItems) {
+          if (levelList[i].goodsItemId != null && levelList[i].goodsItemId == goodsItems[f].id) {
+            commissionPrice += (goodsItems[f].specOrderedPrice * levelList[i].commissionRatio);
+          }
+        }
+      }
+
+      if (goodsPackages != null) {
+        for (var f in goodsPackages) {
+          if (levelList[i].goodsPackageId != null && levelList[i].goodsPackageId == goodsPackages[f].id) {
+            commissionPrice += (goodsPackages[f].specOrderedPrice * levelList[i].commissionRatio);
+          }
+        }
+      }
+      levelList[i].commissionPrice = commissionPrice;
+    }
+    return levelList;
+  }
 }
