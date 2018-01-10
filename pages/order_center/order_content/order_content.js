@@ -2,14 +2,16 @@ var orderCenterHttp = require("../../../utils/http/RequestForOrderCenter.js")
 var toastUtil = require("../../../utils/ToastUtil.js");
 var storageKey = require("../../../utils/storage/StorageKey.js");
 var pageUtil = require("../../../utils/PageUtil.js");
+var modalUtil=require("../../../utils/ModalUtil.js");
 var content;
 Page({
   data: {
-    icon: "../../images/dog_chang.jpg",
-    icon2: "../../images/dog.png",
+    icon: "/images/dog_chang.jpg",
+    icon2: "/images/dog.png",
     goods_cells: false,
-    orderTotalPrice: "-",
-    commissionTotalPrice: "-",
+    orderTotalPrice: "0",
+    commissionTotalPrice: "0",
+    realCommissionTotalPrice: "0"
   },
   bind_goods: function (e) {
     this.setData({
@@ -19,6 +21,9 @@ Page({
   onLoad: function (e) {
     content = this;
     getOrderDetails(e.orderId)
+  },
+  commissionRemark:function(e){
+    modalUtil.showModal("提成备注", e.currentTarget.dataset.remark) 
   }
 });
 /**
@@ -47,8 +52,9 @@ function getOrderDetails(orderId) {
               var commissionRatio = levelHandle(data.listGoodsDetailResponse[i].goodsOrderItemLevels, goodsOrderItemId, null);
               orderTotalPrice += goodsOrderItemPrice
               commissionTotalPrice += goodsOrderItemPrice * commissionRatio
-              goodsOrderItem.commissionRatio = commissionRatio;
+              goodsOrderItem.commissionRatio = Math.round(commissionRatio * 100);
               goodsOrderItem.commissionPrice = goodsOrderItemPrice * commissionRatio;
+              goodsOrderItem.isPackage = 0;
               goodsList.push(goodsOrderItem)
             }
           if (data.listGoodsDetailResponse[i].goodsPackages)
@@ -61,10 +67,21 @@ function getOrderDetails(orderId) {
               commissionTotalPrice += goodsPackagePrice * commissionRatio
               goodsPackageItem.commissionRatio = Math.round(commissionRatio * 100);
               goodsPackageItem.commissionPrice = goodsPackagePrice * commissionRatio;
+              goodsPackageItem.isPackage=1;
               goodsList.push(goodsPackageItem)
             }
 
         }
+      var realCommissionTotalPrice = 0;
+      var commissionRemark;
+      if (data.workOrderUserFinances) {
+        for (var i in data.workOrderUserFinances) {
+          if (data.workOrderUserFinances[i].userId == wx.getStorageSync(storageKey.PLATFORM_USER_ID)) {
+            realCommissionTotalPrice += (data.workOrderUserFinances[i].priceReleaseReal / 100);
+            commissionRemark = data.workOrderUserFinances[i].finance_remark;
+          }
+        }
+      }
       content.setData({
         content: data,
         get_data: get_data,
@@ -72,6 +89,8 @@ function getOrderDetails(orderId) {
         goodsList: goodsList,
         orderTotalPrice: orderTotalPrice,
         commissionTotalPrice: commissionTotalPrice,
+        realCommissionTotalPrice: realCommissionTotalPrice,
+        commissionRemark: commissionRemark
       })
     },
     fail: function (data, res) {
@@ -103,7 +122,7 @@ function levelHandle(levelRq, goodsItemId, packageId) {
           if (packageId && packageId == levelRq[f].goodsPackageId) {
             return levelRq[f].commissionRatio;
           }
-        } 
+        }
       }
     }
     return 0;

@@ -110,7 +110,7 @@ function setDefaultAddress(id) {
   }
   var setDefaultAddressCallBack = {
     success: function (data, res) {
-      toastUtil.showToast("设置成功");
+      toastUtil.showToastReWrite("设置成功");
     },
     fail: function (data, res) {
       toastUtil.showToast("设置失败");

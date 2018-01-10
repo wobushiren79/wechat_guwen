@@ -4,26 +4,36 @@
     <view class='banner'>
       <view class="weui-flex">
         <view class="weui-flex__item">
-          <view class='name'>订单总金额</view>
-          <view class='money'>
-            <text>￥</text>
-            <text class='num'>{{orderTotalPrice}}</text>
-          </view>
-        </view>
-        <view class="weui-flex__item">
           <view class='name'>成交金额</view>
           <view class='money'>
             <text>￥</text>
-            <text class='num'>{{content.workOrderFinance.orderTotalPriceReal?content.workOrderFinance.orderTotalPriceReal/100:'-'}}</text>
+            <text class='num'>{{content.workOrderFinance.orderTotalPriceReal?content.workOrderFinance.orderTotalPriceReal/100:'0'}}</text>
           </view>
         </view>
         <view class="weui-flex__item">
-          <view class='name'>提成金额</view>
+          <view class='name'>应提成金额</view>
           <view class='money'>
             <text>￥</text>
             <text class='num'>{{commissionTotalPrice}}</text>
           </view>
         </view>
+        <view class="weui-flex__item">
+          <view class='name'>实际提成金额</view>
+          <view class='money'>
+            <text>￥</text>
+            <text class='num'>{{realCommissionTotalPrice}}</text>
+            <block wx:if="{{commissionRemark}}">
+              <image bindtap='commissionRemark' src='../../../images/icon_info.png' mode='widthFix' data-remark='{{commissionRemark}}'></image>
+            </block>
+          </view>
+        </view>
+        <!-- <view class="weui-flex__item">
+          <view class='name'>订单总金额</view>
+          <view class='money'>
+            <text>￥</text>
+            <text class='num'>{{orderTotalPrice}}</text>
+          </view>
+        </view> -->
       </view>
     </view>
 
@@ -51,28 +61,40 @@
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
       </view>
       <view class="weui-cells weui-cells_after-title  {{goods_cells?'active':''}}">
-      <block wx:for="{{goodsList}}">
-        <view class="weui-cell">
-          <view class="weui-cell__hd">
-            <image src="{{item.titleImg}}"></image>
-          </view>
-          <view class="weui-cell__bd">{{item.specOrderedVolume}}</view>
-          <view class="weui-cell__bd">提成比例：{{item.commissionRatio}}%</view>
-          <view class="weui-cell__bd">提成金额：{{item.commissionPrice}}￥</view>
-          <view class="weui-cell__ft">
-            <view class='money'>
-              <text>￥</text>
-              <text>{{item.specOrderedPrice?item.specOrderedPrice/100:'-'}}</text>
+        <block wx:for="{{goodsList}}">
+          <view class="weui-cell">
+
+            <view class="weui-cell__hd">
+              <image src="{{item.titleImg}}"></image>
+              <block wx:if="{{item.isPackage==1}}">
+                <image src='/images/ispackage.png' class='ispackage' mode='widthFix'></image>
+              </block>
             </view>
-            <view>
-              <text>×</text>
-              <text>{{item.specOrderedNum}}</text>
+
+
+            <view class="weui-cell__bd">
+              <view>{{item.specOrderedVolume}}</view>
+              <view>
+                <text>提成比例：{{item.commissionRatio}}%</text>
+                <text>提成金额：￥{{item.commissionPrice}}</text>
+              </view>
+            </view>
+            <view class="weui-cell__ft">
+              <view class='money'>
+                <text>￥</text>
+                <text>{{item.specOrderedPrice?item.specOrderedPrice/100:'-'}}</text>
+              </view>
+              <view>
+                <text>×</text>
+                <text>{{item.specOrderedNum}}</text>
+              </view>
             </view>
           </view>
-        </view>
         </block>
       </view>
       <view class="weui-cells__tips">备注：{{content.workOrder.orderDescribe}}</view>
     </view>
+
+
   </view>
 </view>

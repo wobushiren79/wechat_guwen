@@ -54,6 +54,13 @@
 					"pathName": "pages/service_content/service_content",
 					"query": "goods_id=1&channel_id=1",
 					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "订单详情",
+					"pathName": "pages/order_center/order_content/order_content",
+					"query": "orderId=568",
+					"scene": "1001"
 				}
 			]
 		}

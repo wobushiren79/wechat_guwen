@@ -322,17 +322,19 @@ function levelHandle(commission){
   var levelData = wx.getStorageSync(storageKey.AMATEUR_LEVEL)
   if (levelData && levelData.length > 0) {
     var levelList=new Array();
+    var hasCommission=false;
     for (var i in levelData) {
       for (var f in commission){
         if (levelData[i].systemLevel.id == commission[f].amateur_id){
           levelData[i].commissionRatio = commission[f].commission; 
           levelData[i].commissionP = Math.round(levelData[i].commissionRatio * 100); 
           levelList.push(levelData[i]);
+          hasCommission=true;
         }
       }
     }
     content.setData({
-      hasCommission: true,
+      hasCommission: hasCommission,
       levelList: levelList
     })
   } else {

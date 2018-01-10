@@ -115,7 +115,13 @@ button[type="primary"] {
 input {
   font-family: "Microsoft Yahei" !important;
 }
-
+.ellipsis-1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: nowrap;
+}
 .aui-ellipsis-1 {
   display: -webkit-box !important;
   overflow: hidden;
