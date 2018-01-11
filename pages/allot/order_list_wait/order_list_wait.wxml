@@ -33,7 +33,7 @@
                 </view>
                 <view class="footer"></view>
               </view>
-              <navigator class="li_body" url="/pages/allot/order_content/order_content?orderId={{item.workOrder.id}}" hover-class="active">
+              <navigator class="li_body" url="/pages/allot/order_content/order_content?orderId={{item.workOrder.id}}&call=1" hover-class="active">
                 <image src="../../../images/right.png" class="icon"></image>
                 <view>
                   <view class="header">
@@ -108,7 +108,7 @@
                 </view>
                 <view class="footer"></view>
               </view>
-              <navigator class="li_body" url="/pages/allot/order_content/order_content?orderId={{item.workOrder.id}}" hover-class="active">
+              <navigator class="li_body" url="/pages/allot/order_content/order_content?orderId={{item.workOrder.id}}&call=1" hover-class="active">
                 <image src="../../../images/right.png" class="icon"></image>
                 <view>
                   <view class="header">
@@ -183,7 +183,7 @@
                 </view>
                 <view class="footer"></view>
               </view>
-              <navigator class="li_body" url="/pages/allot/order_content/order_content?orderId={{item.workOrder.id}}" hover-class="active">
+              <navigator class="li_body" url="/pages/allot/order_content/order_content?orderId={{item.workOrder.id}}&call=1" hover-class="active">
                 <image src="../../../images/right.png" class="icon"></image>
                 <view>
                   <view class="header">

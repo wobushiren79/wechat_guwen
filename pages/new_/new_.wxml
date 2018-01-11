@@ -56,29 +56,7 @@
             </picker>
           </view>
         </view>
-
-       <!-- 订单描述 -->
-        <view class="weui-cell weui-cell_input ">
-          <view class="weui-cell__hd">
-            <view class="weui-label">工单描述</view>
-          </view>
-          <view class="weui-cell__bd">
-            <textarea name="orderDescribe" bindblur='notNull'>
-            </textarea>
-          </view>
-        </view>
-
         <block wx:if="{{yuy_type}}">
-        <!--参观人数-->
-        <!-- <view class="weui-cell weui-cell_input required">
-          <view class="weui-cell__hd">
-            <view class="weui-label">参观人数</view>
-          </view>
-          <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="人数" name="personNum" type='number' value='0'/>
-          </view>
-        </view> -->
-
         <!--预约参观公墓-->
         <view class="weui-cell weui-cell_input required">
           <view class="weui-cell__hd">
@@ -91,6 +69,17 @@
           </view>
         </view>
       </block>
+       <!-- 订单描述 -->
+        <view class="weui-cell weui-cell_input ">
+          <view class="weui-cell__hd">
+            <view class="weui-label">工单描述</view>
+          </view>
+          <view class="weui-cell__bd">
+            <textarea name="orderDescribe">
+            </textarea>
+          </view>
+        </view>
+
         <!--客户地址-->
         <view class="weui-cell weui-cell_input weui-cell_input_icon required">
           <view class="weui-cell__hd">

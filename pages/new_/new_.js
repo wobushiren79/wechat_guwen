@@ -218,10 +218,10 @@ Page({
       toastUtil.showToast("客户姓名必填")
       return
     }
-    if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(ContentData.contactPhone))) {
-      toastUtil.showToast("电话不正确")
-      return
-    }
+    // if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(ContentData.contactPhone))) {
+    //   toastUtil.showToast("电话不正确")
+    //   return
+    // }
     if (ContentData.appointmentTime.length == 0) {
       toastUtil.showToast("没有服务日期")
       return

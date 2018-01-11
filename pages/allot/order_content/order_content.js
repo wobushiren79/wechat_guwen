@@ -11,7 +11,9 @@ Page({
     tab_1: 0,
     tab_2: 0,
     tab: 0,
-    popup_img: false
+    popup_img: false,
+    name:[],
+    call:false
   },
   tel: function (e) {
     var tel = e.currentTarget.dataset.tel
@@ -20,6 +22,21 @@ Page({
       complete: function (res) {
         console.log(res)
       },
+    })
+  },
+  bind_tel: function () {
+    var that=this
+    var tel_call= that.data.tel_call
+    wx.showActionSheet({
+      itemList: that.data.name,
+      success: function (res) {
+        wx.makePhoneCall({
+          phoneNumber: tel_call[res.tapIndex]
+        })
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
     })
   },
   bind_popup_img: function (e) {
@@ -36,6 +53,12 @@ Page({
   },
   onLoad: function (e) {
     content = this;
+    // console.log(e.call)
+    if (e.call){
+       content.setData({
+         call:true
+       })
+    }
     getOrderDetails(e.orderId)
   },
   bind_tab:function(e){
@@ -95,28 +118,23 @@ function getOrderDetails(orderId) {
         get_data.push(data.listPerformRecord[i].performPic.split(","))
       }
       var GoodsList=[]
-      // if (data.listGoodsDetailResponse != '' || data.listGoodsDetailResponse != null || data.listGoodsDetailResponse){
-      //   for (var i in data.listGoodsDetailResponse){
-      //     if (data.listGoodsDetailResponse[i].goodsOrderItemList){
-      //       for (var j in data.listGoodsDetailResponse[i].goodsOrderItemList){
-      //         GoodsList.push(data.listGoodsDetailResponse[i].goodsOrderItemList[j])
-      //       }
-      //     } else if (data.listGoodsDetailResponse[i].goodsPackages){
-      //       for (var j in data.listGoodsDetailResponse[i].goodsPackages) {
-      //         GoodsList.push(data.listGoodsDetailResponse[i].goodsPackages[j])
-      //       }
-      //     }else{
-      //       continue
-      //     }
-
-      //   }
-      // }
-      // console.log(GoodsList)
+      var name=[]
+      var tel_call=[]
+      if (data.customerInfo.agentName && data.customerInfo.agentPhone){
+        name.push('经办人-'+data.customerInfo.agentName + ':' + data.customerInfo.agentPhone)
+        tel_call.push(data.customerInfo.agentPhone)
+      }
+      if (data.customerInfo.contactName && data.customerInfo.contactPhone){
+        name.push('联系人-'+data.customerInfo.contactName + ':' + data.customerInfo.contactPhone)
+        tel_call.push(data.customerInfo.contactPhone)
+      }
       content.setData({
         content: data,
         get_data: get_data,
         orderId: orderId,
-        GoodsList: GoodsList
+        GoodsList: GoodsList,
+        name: name,
+        tel_call: tel_call
       })
     },
     fail: function (data, res) {

@@ -11,9 +11,11 @@
               <image src='../../../images/icon_order_content_cem.png' mode='widthFix'></image>
             </view>
             <view class='dt_bd'>公墓</view>
-            <view class='dt_footer' bindtap="tel" data-tel="{{content.auditorPhone}}">
+            <block wx:if="{{call  == false}}">
+            <view class='dt_footer' bindtap="bind_tel">
               <image src='../../../images/icon_order_content_phone.png' mode='widthFix'></image>
             </view>
+            </block>
           </view>
         </block>
         <block wx:if="{{content.workOrder.orderType == 0}}">
@@ -80,6 +82,7 @@
     <view class='list_content {{tab==0?"active":""}}'>
       <block wx:if="{{content.listGoodsDetailResponse.length>0}}">
         <block wx:for="{{content.listGoodsDetailResponse}}">
+        <navigator url="/pages/service_order_content/service_order_content?orderid={{item.relateOrderId}}">
           <view class='list_content_item'>
             <view class="weui-cells__title {{tab_0 == index?'active':''}}" bindtap='bind_tab_0' data-index="{{index}}">
               <view class="weui-cell__bd">
@@ -145,6 +148,7 @@
               </block>
             </view>
           </view>
+          </navigator>
         </block>
       </block>
       <block wx:else>

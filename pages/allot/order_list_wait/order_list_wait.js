@@ -6,7 +6,7 @@ var content;
 Page({
   data: {
     pageSize: 2,
-    valid: [0]
+    valid: [0],
   },
   tel: function (e) {
     var tel = e.currentTarget.dataset.tel
@@ -89,7 +89,10 @@ function acceptOrder(orderId) {
   }
   var acceptCallBack = {
     success: function (data, res) {
-      content.onShow();
+      wx.redirectTo({
+        url:'../order_list_processing/order_list_processing'
+      })
+      // content.onShow();
     },
     fail: function (data, res) {
       toastUtil.showToast("接单失败")
