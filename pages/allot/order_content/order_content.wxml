@@ -12,9 +12,9 @@
             </view>
             <view class='dt_bd'>公墓</view>
             <block wx:if="{{call  == false}}">
-            <view class='dt_footer' bindtap="bind_tel">
-              <image src='../../../images/icon_order_content_phone.png' mode='widthFix'></image>
-            </view>
+              <view class='dt_footer' bindtap="bind_tel">
+                <image src='../../../images/icon_order_content_phone.png' mode='widthFix'></image>
+              </view>
             </block>
           </view>
         </block>
@@ -82,7 +82,6 @@
     <view class='list_content {{tab==0?"active":""}}'>
       <block wx:if="{{content.listGoodsDetailResponse.length>0}}">
         <block wx:for="{{content.listGoodsDetailResponse}}">
-        <navigator url="/pages/service_order_content/service_order_content?orderid={{item.relateOrderId}}">
           <view class='list_content_item'>
             <view class="weui-cells__title {{tab_0 == index?'active':''}}" bindtap='bind_tab_0' data-index="{{index}}">
               <view class="weui-cell__bd">
@@ -106,49 +105,50 @@
               </view>
             </view>
             <view class="weui-cells weui-cells_after-title {{tab_0 == index?'active':''}}">
-              <!-- 循环商品 -->
-              <block wx:for="{{item.goodsOrderItemList}}">
-                <view class="weui-cell">
-                  <view class="weui-cell__hd">
-                    <image src="{{item.titleImg}}"></image>
+              <navigator url="/pages/service_order_content/service_order_content?orderid={{item.relateOrderId}}">
+                <!-- 循环商品 -->
+                <block wx:for="{{item.goodsOrderItemList}}">
+                  <view class="weui-cell">
+                    <view class="weui-cell__hd">
+                      <image src="{{item.titleImg}}"></image>
 
-                  </view>
-                  <view class="weui-cell__bd">{{item.specOrderedVolume}}</view>
-                  <view class="weui-cell__ft">
-                    <view class='money'>
-                      <text>￥</text>
-                      <text>{{item.specOrderedPrice/100}}</text>
                     </view>
-                    <view>
-                      <text>×</text>
-                      <text>{{item.specOrderedNum}}</text>
-                    </view>
-                  </view>
-                </view>
-              </block>
-              <!-- 循环套餐 -->
-              <block wx:for="{{item.goodsPackages}}">
-                <view class="weui-cell">
-                  <view class="weui-cell__hd">
-                    <image src="{{item.titleImg}}"></image>
-                    <image class='ispackage' src='../../../images/ispackage.png' mode='widthFix'></image>
-                  </view>
-                  <view class="weui-cell__bd">{{item.specOrderedVolume}}</view>
-                  <view class="weui-cell__ft">
-                    <view class='money'>
-                      <text>￥</text>
-                      <text>{{item.specOrderedPrice/100}}</text>
-                    </view>
-                    <view>
-                      <text>×</text>
-                      <text>{{item.specOrderedNum}}</text>
+                    <view class="weui-cell__bd">{{item.specOrderedVolume}}</view>
+                    <view class="weui-cell__ft">
+                      <view class='money'>
+                        <text>￥</text>
+                        <text>{{item.specOrderedPrice/100}}</text>
+                      </view>
+                      <view>
+                        <text>×</text>
+                        <text>{{item.specOrderedNum}}</text>
+                      </view>
                     </view>
                   </view>
-                </view>
-              </block>
+                </block>
+                <!-- 循环套餐 -->
+                <block wx:for="{{item.goodsPackages}}">
+                  <view class="weui-cell">
+                    <view class="weui-cell__hd">
+                      <image src="{{item.titleImg}}"></image>
+                      <image class='ispackage' src='../../../images/ispackage.png' mode='widthFix'></image>
+                    </view>
+                    <view class="weui-cell__bd">{{item.specOrderedVolume}}</view>
+                    <view class="weui-cell__ft">
+                      <view class='money'>
+                        <text>￥</text>
+                        <text>{{item.specOrderedPrice/100}}</text>
+                      </view>
+                      <view>
+                        <text>×</text>
+                        <text>{{item.specOrderedNum}}</text>
+                      </view>
+                    </view>
+                  </view>
+                </block>
+              </navigator>
             </view>
           </view>
-          </navigator>
         </block>
       </block>
       <block wx:else>
