@@ -87,7 +87,8 @@
     "pages/index_flex1/index_flex1",
     "pages/main/study/content/content",
     "pages/main/study/index/index",
-    "pages/main/study/list/list"
+    "pages/main/study/list/list",
+    "pages/main/mystore/store_list/store_list"
   ],
   "window": {
     "navigationBarTextStyle": "black",

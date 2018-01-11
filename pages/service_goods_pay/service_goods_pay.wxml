@@ -43,6 +43,10 @@
             <navigator url='../index/index' open-type='reLaunch'>返回首页</navigator>
           </view> -->
         </view>
+        
+        <view class='prompt'>
+          <navigator hover-class='none' url='/pages/index/index' open-type='reLaunch'><text>暂不付款，返回首页</text></navigator>
+        </view>
       </block>
 
 

@@ -84,3 +84,10 @@ form .ewm view{
 form .ewm canvas{
   background: #f8f8f8!important;
 }
+.prompt navigator:active{
+  opacity: 0.7;
+  background: transparent!important
+}
+.prompt navigator text{
+  color: #48cfad!important
+}

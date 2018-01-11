@@ -51,7 +51,7 @@ Page({
       },
     })
     getWalletInfo();
-    getCreditInfo();
+  
 
   },
   onLoad: function () {
@@ -70,6 +70,7 @@ function getWalletInfo() {
       content.setData({
         usableMoney: getApp().ProcessingPrice(usableMoney)
       })
+      getCreditInfo();
     },
     fail: function (data, res) {
       toastUtil.showToast("获取钱包失败");
