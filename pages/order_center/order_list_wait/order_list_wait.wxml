@@ -207,9 +207,9 @@
         </block>
 
 
-        <navigator class='fix_new' url='../../new_easy/new_easy' open-type='redirectTo'>
+        <!-- <navigator class='fix_new' url='../../new_easy/new_easy' open-type='redirectTo'>
           <text>＋</text>
-        </navigator>
+        </navigator> -->
 
       </view>
       <block wx:if="{{notNumber}}">
