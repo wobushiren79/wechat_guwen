@@ -50,27 +50,27 @@
       </view>
     </view>
     <view class='section_grid'>
-      <navigator url='' hover-class='none'>
+      <navigator url='/pages/main/study/list/list?type=1' open-type='navigateTo' hover-class='none'>
         <image src='/images/icon_study_grid_money.png' mode='widthFix'></image>
         <text>财务结算</text>
       </navigator>
-      <navigator url='' hover-class='none'>
+      <navigator url='/pages/main/study/list/list?type=2' open-type='navigateTo' hover-class='none'>
         <image src='/images/icon_study_grid_systemhelp.png' mode='widthFix'></image>
         <text>系统操作</text>
       </navigator>
-      <navigator url='' hover-class='none'>
+      <navigator url='/pages/main/study/list/list?type=3' open-type='navigateTo' hover-class='none'>
         <image src='/images/icon_study_grid_projectdetails.png' mode='widthFix'></image>
         <text>产品介绍</text>
       </navigator>
-      <navigator url='' hover-class='none'>
+      <navigator url='/pages/main/study/list/list?type=4' open-type='navigateTo' hover-class='none'>
         <image src='/images/icon_study_grid_talk.png' mode='widthFix'></image>
         <text>洽谈技巧</text>
       </navigator>
-      <navigator url='' hover-class='none'>
+      <navigator url='/pages/main/study/list/list?type=5' open-type='navigateTo' hover-class='none'>
         <image src='/images/icon_study_grid_platform.png' mode='widthFix'></image>
         <text>平台入驻</text>
       </navigator>
-      <navigator url='' hover-class='none'>
+      <navigator url='/pages/main/study/list/list?type=6' open-type='navigateTo' hover-class='none'>
         <image src='/images/icon_study_grid_other.png' mode='widthFix'></image>
         <text>其他问题</text>
       </navigator>
@@ -84,11 +84,10 @@
           <view class='title_bd'>热门问题</view>
           <!-- <view>更多</view> -->
         </view>
-        <navigator url='' hover-class='none' class='li ellipsis-1'>热门问题一热门问题一热门问题一热门问题一热门问题一热门问题一热门问题一</navigator>
-        <navigator url='' hover-class='none' class='li ellipsis-1'>热门问题一</navigator>
-        <navigator url='' hover-class='none' class='li ellipsis-1'>热门问题一</navigator>
-        <navigator url='' hover-class='none' class='li ellipsis-1'>热门问题一</navigator>
-        <navigator url='' hover-class='none' class='li ellipsis-1'>更多</navigator>
+        <block wx:for="{{listHelp}}">
+                <navigator url='/pages/main/study/content/content?id={{item.id}}' open-type='navigateTo' hover-class='none' class='li ellipsis-1'>{{item.title}}</navigator>
+        </block>
+        <navigator url='/pages/main/study/list/list?type=0' open-type='navigateTo' hover-class='none' class='li ellipsis-1'>更多</navigator>
       </view>
     </view>
   </view>

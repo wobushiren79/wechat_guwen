@@ -94,7 +94,7 @@ function sendPostHttpForContent(url, data, callback, isDialog) {
  * 发送get请求
  */
 function sendGetHttp(url, data, callback, isDialog){
-  baseHttp.createGetHttpRequest(url, contentData, callback, null, isDialog);
+  baseHttp.createGetHttpRequest(url, data, callback, null, isDialog);
 }
 /**
  * 发送文件

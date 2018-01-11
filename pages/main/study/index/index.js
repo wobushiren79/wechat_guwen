@@ -34,7 +34,9 @@ function getHelpList() {
   }
   var getListCallBack={
     success:function(data,res){
-
+      content.setData({
+        listHelp: data.items
+      })
     },
     fail:function(data,res){
 
