@@ -14,7 +14,7 @@
         <view class='li_item'>
           <view class='li_bd'>
             <view class='name'>
-             {{item.transTypeStr}}{{item.remark}}
+             {{item.transTypeStr}}    {{item.remark}}
             </view>
 
           </view>

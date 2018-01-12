@@ -95,9 +95,6 @@ function queryReturnCashLogs() {
           data[i].transTypeStr = "佣金提成";
         }
 
-        if (data[i].remark != null){
-          data[i].remark = "（"+data[i].remark+"）"
-        }
       }
       thisPageData.setData({
         fanxianList_data: data,
