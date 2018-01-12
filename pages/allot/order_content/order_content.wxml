@@ -104,7 +104,7 @@
               <view class="weui-cell__bd">商品列表</view>
               <view class="weui-cell__ft">
                 <view>共
-                  <text>{{item.goodsPackages?item.goodsPackages.length:0+item.goodsOrderItemList?item.goodsOrderItemList.length:0}}</text> 件
+                  <text>{{item.goodsPackages.length && item.goodsOrderItemList.length ?item.goodsPackages.length +item.goodsOrderItemList.length:item.goodsPackages.length && !item.goodsOrderItemList.length?item.goodsPackages.length:!item.goodsPackages.length && item.goodsOrderItemList.length?item.goodsOrderItemList.length:0}}</text> 件
                 </view>
               </view>
             </view>
