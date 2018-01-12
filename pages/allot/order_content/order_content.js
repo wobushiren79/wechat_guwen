@@ -25,7 +25,6 @@ Page({
     })
   },
   bind_tel: function () {
-    console.log(1)
     var that=this
     var tel_call= that.data.tel_call
     wx.showActionSheet({
@@ -132,6 +131,8 @@ function getOrderDetails(orderId) {
         name.push('联系人-'+data.customerInfo.contactName + ':' + data.customerInfo.contactPhone)
         tel_call.push(data.customerInfo.contactPhone)
       }
+      name.push('圆满人生-客服:966188')
+      tel_call.push('966188')
       console.log(tel_call)
       console.log(name)
       content.setData({
