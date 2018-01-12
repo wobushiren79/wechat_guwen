@@ -91,7 +91,7 @@ function getOrderDetails(orderId) {
       realCommissionTotalPrice = Math.round(realCommissionTotalPrice * 100) / 100;
       //实际订单金额
       if (data.workOrderFinance != null && data.workOrderFinance.financeConfirm == 1)
-        orderTotalPriceReal = data.workOrderFinance.orderTotalPriceReal;
+        orderTotalPriceReal = Math.round(data.workOrderFinance.orderTotalPriceReal * 100) / 10000;
 
       content.setData({
         content: data,
