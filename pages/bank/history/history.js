@@ -91,6 +91,12 @@ function queryReturnCashLogs() {
         data[i].amount = getApp().ProcessingPrice(price)
         if (data[i].trans_type == null || data[i].trans_type == ""){
           data[i].transTypeStr  = "其他";
+        } else if (data[i].trans_type == "YJ_ReturnCash"){
+          data[i].transTypeStr = "佣金提成";
+        }
+
+        if (data[i].remark != null){
+          data[i].remark = "（"+data[i].remark+"）"
         }
       }
       thisPageData.setData({
