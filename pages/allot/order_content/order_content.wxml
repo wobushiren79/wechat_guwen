@@ -104,7 +104,8 @@
               <view class="weui-cell__bd">商品列表</view>
               <view class="weui-cell__ft">
                 <view>共
-                  <text>{{item.goodsPackages.length && item.goodsOrderItemList.length ?item.goodsPackages.length +item.goodsOrderItemList.length:item.goodsPackages.length && !item.goodsOrderItemList.length?item.goodsPackages.length:!item.goodsPackages.length && item.goodsOrderItemList.length?item.goodsOrderItemList.length:0}}</text> 件
+                  <text>{{item.goodsPackages.length && item.goodsOrderItemList.length ?item.goodsPackages.length +item.goodsOrderItemList.length:item.goodsPackages.length && !item.goodsOrderItemList.length?item.goodsPackages.length:!item.goodsPackages.length
+                    && item.goodsOrderItemList.length?item.goodsOrderItemList.length:0}}</text> 件
                 </view>
               </view>
             </view>
@@ -218,7 +219,7 @@
                   <view>{{item.performSummary}}</view>
                   <view>
                     <block wx:for="{{item.performPics}}">
-                      <image src="{{'http://oq6rkq859.bkt.clouddn.com/'+item}}"></image>
+                      <image bindtap='bind_popup_img' data-imgurl="{{'http://oq6rkq859.bkt.clouddn.com/'+item}}" src="{{'http://oq6rkq859.bkt.clouddn.com/'+item}}"></image>
                     </block>
                   </view>
                 </view>
@@ -289,7 +290,7 @@
                   <view>{{item.auditSummary}}</view>
                   <view>
                     <block wx:for="{{item.auditPics}}">
-                      <image src="{{'http://oq6rkq859.bkt.clouddn.com/'+item}}"></image>
+                      <image bindtap='bind_popup_img' data-imgurl="{{'http://oq6rkq859.bkt.clouddn.com/'+item}}" src="{{'http://oq6rkq859.bkt.clouddn.com/'+item}}"></image>
                     </block>
                   </view>
                 </view>
@@ -308,5 +309,14 @@
 
       </block>
     </view>
+
+    <!-- 遮罩层 -->
+    <view class='mask {{mask?"active":""}}' bindtap='bind_popup_close'></view>
+
+    <!-- 图片弹窗 -->
+    <view class='popup popup_img {{popup_img?"active":""}}' bindtap='bind_popup_close'>
+      <image src='{{imgurl}}' mode='widthFix'></image>
+    </view>
+
   </view>
 </view>

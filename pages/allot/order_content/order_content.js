@@ -43,15 +43,18 @@ Page({
   bind_popup_img: function (e) {
     var imgurl = e.currentTarget.dataset.imgurl
     this.setData({
+      mask: true,
       popup_img: true,
       imgurl: imgurl
     })
   },
   bind_popup_close: function () {
     this.setData({
+      mask: false,
       popup_img: false
     })
   },
+
   onLoad: function (e) {
     content = this;
     // console.log(e.call)
