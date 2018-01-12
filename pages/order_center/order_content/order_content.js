@@ -2,7 +2,7 @@ var orderCenterHttp = require("../../../utils/http/RequestForOrderCenter.js")
 var toastUtil = require("../../../utils/ToastUtil.js");
 var storageKey = require("../../../utils/storage/StorageKey.js");
 var pageUtil = require("../../../utils/PageUtil.js");
-var modalUtil=require("../../../utils/ModalUtil.js");
+var modalUtil = require("../../../utils/ModalUtil.js");
 var content;
 Page({
   data: {
@@ -22,8 +22,8 @@ Page({
     content = this;
     getOrderDetails(e.orderId)
   },
-  commissionRemark:function(e){
-    modalUtil.showModal("提成备注", e.currentTarget.dataset.remark) 
+  commissionRemark: function (e) {
+    modalUtil.showModal("提成备注", e.currentTarget.dataset.remark)
   }
 });
 /**
@@ -51,7 +51,7 @@ function getOrderDetails(orderId) {
               var goodsOrderItemId = goodsOrderItem.id;
               var commissionRatio = levelHandle(data.listGoodsDetailResponse[i].goodsOrderItemLevels, goodsOrderItemId, null);
               orderTotalPrice += goodsOrderItemPrice
-              commissionTotalPrice += goodsOrderItemPrice * commissionRatio
+              commissionTotalPrice += (Math.floor(goodsOrderItemPrice * commissionRatio * 100) / 100)
               goodsOrderItem.commissionRatio = Math.round(commissionRatio * 100);
               goodsOrderItem.commissionPrice = goodsOrderItemPrice * commissionRatio;
               goodsOrderItem.isPackage = 0;
@@ -64,10 +64,10 @@ function getOrderDetails(orderId) {
               var goodsPackageId = goodsPackageItem.id;
               var commissionRatio = levelHandle(data.listGoodsDetailResponse[i].goodsOrderItemLevels, null, goodsPackageId);
               orderTotalPrice += goodsPackagePrice;
-              commissionTotalPrice += goodsPackagePrice * commissionRatio
+              commissionTotalPrice += (Math.floor(goodsPackagePrice * commissionRatio * 100) / 100)
               goodsPackageItem.commissionRatio = Math.round(commissionRatio * 100);
               goodsPackageItem.commissionPrice = goodsPackagePrice * commissionRatio;
-              goodsPackageItem.isPackage=1;
+              goodsPackageItem.isPackage = 1;
               goodsList.push(goodsPackageItem)
             }
 
@@ -77,7 +77,7 @@ function getOrderDetails(orderId) {
       if (data.workOrderUserFinances) {
         for (var i in data.workOrderUserFinances) {
           if (data.workOrderUserFinances[i].userId == wx.getStorageSync(storageKey.PLATFORM_USER_ID)) {
-            realCommissionTotalPrice += (data.workOrderUserFinances[i].priceReleaseReal / 100);
+            realCommissionTotalPrice += (data.workOrderUserFinances[i].priceRelateReal / 100);
             commissionRemark = data.workOrderUserFinances[i].finance_remark;
           }
         }
@@ -108,25 +108,26 @@ function levelHandle(levelRq, goodsItemId, packageId) {
   if (!levelRq || levelRq.length <= 0) {
     return 0;
   }
-  var levelData = wx.getStorageSync(storageKey.AMATEUR_LEVEL)
-  if (levelData && levelData.length > 0) {
-    var levelList = new Array();
-    for (var i in levelData) {
-      for (var f in levelRq) {
-        if (levelData[i].systemLevel.levelType == levelRq[f].levelType
-          && levelData[i].systemLevel.levelName == levelRq[f].levelName
-          && levelRq[f].levelType == "orderC.build") {
-          if (goodsItemId && goodsItemId == levelRq[f].goodsItemId) {
-            return levelRq[f].commissionRatio;
-          }
-          if (packageId && packageId == levelRq[f].goodsPackageId) {
-            return levelRq[f].commissionRatio;
-          }
-        }
+  // var levelData = wx.getStorageSync(storageKey.AMATEUR_LEVEL)
+  // if (levelData && levelData.length > 0) {
+  var levelList = new Array();
+  // for (var i in levelData) {
+  for (var f in levelRq) {
+    if (
+      // levelData[i].systemLevel.levelType == levelRq[f].levelType
+      // && levelData[i].systemLevel.levelName == levelRq[f].levelName&&
+      levelRq[f].levelType == "orderC.build" && levelRq[f].valid == 1) {
+      if (goodsItemId && goodsItemId == levelRq[f].goodsItemId) {
+        return levelRq[f].commissionRatio;
+      }
+      if (packageId && packageId == levelRq[f].goodsPackageId) {
+        return levelRq[f].commissionRatio;
       }
     }
-    return 0;
-  } else {
-    return 0;
   }
+  // }
+  return 0;
+  // } else {
+  //   return 0;
+  // }
 }

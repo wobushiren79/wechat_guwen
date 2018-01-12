@@ -278,7 +278,7 @@ Page({
         goodslist.specName = formData[i].spec_name
         //提成级别
         var listGoodsOrderItemsLevel = new Array();
-            // var listCommission = levelHandle(formData[i].commission)
+        // var listCommission = levelHandle(formData[i].commission)
         var listCommission = formData[i].commission
         if (listCommission != null)
           for (var h in listCommission) {
@@ -355,9 +355,13 @@ Page({
       goodsServiceInfo.serviceLocation = defaultAddress.address
 
     }
-
     getdata.goodsServiceInfo = goodsServiceInfo
 
+    //关联此单的角色
+    var listUserLevel = getAllUserLevel();
+    getdata.listUserLevel = listUserLevel;
+
+    // 创建订单
     createGoodsOrder(getdata)
 
   },
@@ -508,10 +512,18 @@ function findDefaultAddress() {
 
 function getOrderCenterDetail() {
   var orderCenterDetail = wx.getStorageSync(storageKey.ORDER_CENTER_DETAIL);
-  if (orderCenterDetail)
+  if (orderCenterDetail && orderCenterDetail.workOrder) {
     content.setData({
       orderCenterDetail: orderCenterDetail
     })
+    var userBuildId;
+    if (orderCenterDetail.workOrder.orderBelongUserId != null) {
+      userBuildId = orderCenterDetail.workOrder.orderBelongUserId;
+    } else {
+      userBuildId = orderCenterDetail.workOrder.createdBy;
+    }
+    getUserLevel(userBuildId);
+  }
 }
 
 /**
@@ -535,3 +547,64 @@ function getOrderCenterDetail() {
 //   }
 // }
 
+/**
+ * 获取此下单关联的角色
+ */
+function getAllUserLevel() {
+  var listUserLevel = new Array();
+  // var userId = wx.getStorageSync(storageKey.PLATFORM_USER_ID);
+  // var levelData = wx.getStorageSync(storageKey.AMATEUR_LEVEL);
+  // if (levelData && levelData.length > 0) {
+  //   for (var i in levelData) {
+  //     var userLevel = {
+  //       levelId: levelData[i].systemLevel.id,
+  //       levelType: levelData[i].systemLevel.levelType,
+  //       levelName: levelData[i].systemLevel.levelName,
+  //       userId: userId
+  //     }
+  //     listUserLevel.push(userLevel);
+  //   }
+  // }
+
+  var buildLevelData = content.data.buildUserLevel;
+  var orderCenterDetail = content.data.orderCenterDetail;
+  if (orderCenterDetail && orderCenterDetail.workOrder) {
+    var userLevel = {
+      levelId: buildLevelData.systemLevel.id,
+      levelType: buildLevelData.systemLevel.levelType,
+      levelName: buildLevelData.systemLevel.levelName
+    }
+    if (orderCenterDetail.workOrder.orderBelongUserId != null) {
+      userLevel.userId = orderCenterDetail.workOrder.orderBelongUserId;
+    } else {
+      userLevel.userId = orderCenterDetail.workOrder.createdBy;
+    }
+    listUserLevel.push(userLevel);
+  }
+  return listUserLevel;
+}
+
+/**
+ * 查询用户级别
+ */
+function getUserLevel(userId) {
+  var queryLevelRequest = {
+    userIds: [userId]
+  }
+  var queryLevelCallBack = {
+    success: function (data, res) {
+      if (data.resultList && data.resultList.length>0)
+      for(var i in data.resultList){
+        if (data.resultList[i].systemLevel.levelType=="orderC.build"){
+          content.setData({
+            buildUserLevel: data.resultList[i]
+          })
+        }
+      }
+    },
+    fail: function (data, res) {
+      toastUtil.showToast("查询级别失败");
+    }
+  }
+  platformHttp.queryUserLevel(queryLevelRequest, queryLevelCallBack);
+}

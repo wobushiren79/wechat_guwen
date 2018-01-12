@@ -4,7 +4,7 @@ var baseUrl = getApp().globalData.JavaPlatformUrl;
 /**
  * 登陆平台
  */
-function loginPlatform(data, callback){
+function loginPlatform(data, callback) {
   baseRequest.sendPostHttpForLogin(baseUrl + "applogin", data, callback, true)
 }
 
@@ -26,8 +26,8 @@ function changeForPassWord(data, callback) {
 /**
  * 提交投诉
  */
-function submitComplaints(data,callback){
-  baseRequest.sendPostHttpForContent(baseUrl+"api/opinions/complaint", data , callback,true)
+function submitComplaints(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/opinions/complaint", data, callback, true)
 }
 
 /**
@@ -57,7 +57,7 @@ function sendVerificationCode(data, callback) {
  * 通过类型查询标签列表
  */
 function queryTagsListByType(data, callback) {
-	baseRequest.sendPostHttpForContent(baseUrl + "api/tags/listByType", data, callback)
+  baseRequest.sendPostHttpForContent(baseUrl + "api/tags/listByType", data, callback)
 }
 
 /**
@@ -78,7 +78,7 @@ function findListByEvaluateTag(data, callback) {
  * 通过系统枚举id查询公墓列表
  */
 function queryCemeterySubsysListBySysEnumId(data, callback) {
-	baseRequest.sendPostHttp(baseUrl + "api/syssystem/getSubsystemList", data, callback);
+  baseRequest.sendPostHttp(baseUrl + "api/syssystem/getSubsystemList", data, callback);
 }
 
 /**
@@ -91,7 +91,7 @@ function queryCemeterySubsysListBySysEnumIdNoLogin(data, callback) {
 /**
  * 通过用户ID查询用户资料
  */
-function queryUserInfoById(data, callback){
+function queryUserInfoById(data, callback) {
   baseRequest.sendPostHttpForContent(baseUrl + "api/usersInfo/queryById", data, callback)
 }
 
@@ -112,20 +112,27 @@ function userCreditSign(data, callback) {
 /**
  * 查询用户级别
  */
-function queryUserLevel(data, callback){
+function queryUserLevel(data, callback) {
   baseRequest.sendPostHttpForContent(baseUrl + "api/level/findbyuserids", data, callback)
 }
 /**
+ * 根据级别类型查询级别
+ */
+function queryLevelByLevelType(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/level/findbytypes", data, callback)
+}
+
+/**
  * 获取钱包
  */
-function getWalletInfo(data, callback){
+function getWalletInfo(data, callback) {
   baseRequest.sendPostHttpForContent(baseUrl + "api/wallet/getWallet", data, callback)
 }
 /**
  * 获取银行卡
  */
 function getCashingInit(data, callback) {
-  baseRequest.sendPostHttpForContent(baseUrl + "api/bankcard/cashingInit", data, callback,true)
+  baseRequest.sendPostHttpForContent(baseUrl + "api/bankcard/cashingInit", data, callback, true)
 }
 /**
  * 提现银行卡提交
@@ -213,3 +220,4 @@ module.exports.queryCashingLogs = queryCashingLogs;
 module.exports.getMsgCode = getMsgCode;
 module.exports.buildAccountForOrderCenterBuild = buildAccountForOrderCenterBuild;
 module.exports.queryReturnCashLogsForPage = queryReturnCashLogsForPage;
+module.exports.queryLevelByLevelType = queryLevelByLevelType;
