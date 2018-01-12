@@ -25,7 +25,7 @@
               <image src='../../../images/icon_order_content_plan.png' mode='widthFix'></image>
             </view>
             <view class='dt_bd'>殡仪</view>
-            <view class='dt_footer'>
+            <view class='dt_footer' bindtap="bind_tel">
               <image src='../../../images/icon_order_content_phone.png' mode='widthFix'></image>
             </view>
           </view>
@@ -37,7 +37,7 @@
               <image src='../../../images/icon_order_content_other.png' mode='widthFix'></image>
             </view>
             <view class='dt_bd'>其他</view>
-            <view class='dt_footer'>
+            <view class='dt_footer' bindtap="bind_tel">
               <image src='../../../images/icon_order_content_phone.png' mode='widthFix'></image>
             </view>
           </view>

@@ -25,6 +25,7 @@ Page({
     })
   },
   bind_tel: function () {
+    console.log(1)
     var that=this
     var tel_call= that.data.tel_call
     wx.showActionSheet({
@@ -128,6 +129,8 @@ function getOrderDetails(orderId) {
         name.push('联系人-'+data.customerInfo.contactName + ':' + data.customerInfo.contactPhone)
         tel_call.push(data.customerInfo.contactPhone)
       }
+      console.log(tel_call)
+      console.log(name)
       content.setData({
         content: data,
         get_data: get_data,
