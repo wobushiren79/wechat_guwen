@@ -42,6 +42,7 @@ function getOrderDetails(orderId) {
       var goodsList = []
       var orderTotalPrice = 0;
       var commissionTotalPrice = 0;
+      var orderTotalPriceReal = 0;
       if (data.listGoodsDetailResponse)
         for (var i in data.listGoodsDetailResponse) {
           if (data.listGoodsDetailResponse[i].goodsOrderItemList)
@@ -51,7 +52,7 @@ function getOrderDetails(orderId) {
               var goodsOrderItemId = goodsOrderItem.id;
               var commissionRatio = levelHandle(data.listGoodsDetailResponse[i].goodsOrderItemLevels, goodsOrderItemId, null);
               orderTotalPrice += goodsOrderItemPrice
-              commissionTotalPrice += (Math.floor(goodsOrderItemPrice * commissionRatio * 100) / 100)
+              commissionTotalPrice += (goodsOrderItemPrice * commissionRatio)
               goodsOrderItem.commissionRatio = Math.round(commissionRatio * 100);
               goodsOrderItem.commissionPrice = goodsOrderItemPrice * commissionRatio;
               goodsOrderItem.isPackage = 0;
@@ -64,7 +65,7 @@ function getOrderDetails(orderId) {
               var goodsPackageId = goodsPackageItem.id;
               var commissionRatio = levelHandle(data.listGoodsDetailResponse[i].goodsOrderItemLevels, null, goodsPackageId);
               orderTotalPrice += goodsPackagePrice;
-              commissionTotalPrice += (Math.floor(goodsPackagePrice * commissionRatio * 100) / 100)
+              commissionTotalPrice += (goodsPackagePrice * commissionRatio)
               goodsPackageItem.commissionRatio = Math.round(commissionRatio * 100);
               goodsPackageItem.commissionPrice = goodsPackagePrice * commissionRatio;
               goodsPackageItem.isPackage = 1;
@@ -73,7 +74,7 @@ function getOrderDetails(orderId) {
 
         }
       var realCommissionTotalPrice = 0;
-      var commissionRemark;
+      var commissionRemark=null;
       if (data.workOrderUserFinances) {
         for (var i in data.workOrderUserFinances) {
           if (data.workOrderUserFinances[i].userId == wx.getStorageSync(storageKey.PLATFORM_USER_ID)) {
@@ -82,6 +83,16 @@ function getOrderDetails(orderId) {
           }
         }
       }
+      //应提成金额
+      commissionTotalPrice = Math.round(commissionTotalPrice * 100) / 100;
+      //订单金额
+      orderTotalPrice = Math.round(orderTotalPrice * 100) / 100;
+      //实际提成金额
+      realCommissionTotalPrice = Math.round(realCommissionTotalPrice * 100) / 100;
+      //实际订单金额
+      if (data.workOrderFinance != null && data.workOrderFinance.financeConfirm == 1)
+        orderTotalPriceReal = data.workOrderFinance.orderTotalPriceReal;
+
       content.setData({
         content: data,
         get_data: get_data,
@@ -90,7 +101,8 @@ function getOrderDetails(orderId) {
         orderTotalPrice: orderTotalPrice,
         commissionTotalPrice: commissionTotalPrice,
         realCommissionTotalPrice: realCommissionTotalPrice,
-        commissionRemark: commissionRemark
+        commissionRemark: commissionRemark,
+        orderTotalPriceReal: orderTotalPriceReal
       })
     },
     fail: function (data, res) {

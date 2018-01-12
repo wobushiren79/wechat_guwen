@@ -7,7 +7,7 @@
           <view class='name'>成交金额</view>
           <view class='money'>
             <text>￥</text>
-            <text class='num'>{{content.workOrderFinance.orderTotalPriceReal?content.workOrderFinance.orderTotalPriceReal/100:'0'}}</text>
+            <text class='num'>{{orderTotalPriceReal}}</text>
           </view>
         </view>
         <view class="weui-flex__item">
