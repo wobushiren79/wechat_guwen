@@ -202,33 +202,33 @@
     </block>
     <!-- 固定底部 end -->
 
-    <black wx:if="{{popup}}">
-      <!-- 遮罩层 star -->
-      <view class="mask" bindtap="popup_close"></view>
-      <!-- 遮罩层 end -->.
 
-      <!-- 弹窗 star -->
-      <view class="popup" bindtap="popupdata">
-        <block wx:for="{{levelList}}"  wx:for-item="levelItem">
-          <view class="dl">
-            <view class="dt">{{levelItem.systemLevel.levelName}}  提成比例：{{levelItem.commissionP}}%</view>
-            <black wx:for="{{list.specprice}}">
-              <view class="dd">
-                <view class="name">
-                  <text>{{item.spec_alias}}</text>-
-                  <text>{{item.spec_name}}</text>
-                </view>
-                <view class="money">
-                  ￥
-                  <text>{{item.spec_price+'*'+levelItem.commissionRatio}}</text>
-                </view>
+    <!-- 遮罩层 star -->
+    <view class="mask {{popup?'active':''}}" bindtap="popup_close"></view>
+    <!-- 遮罩层 end -->
+
+    <!-- 弹窗 star -->
+    <view class="popup  {{popup?'active':''}}" bindtap="popup_close">
+      <block wx:for="{{levelList}}" wx:for-item="levelItem">
+        <view class="dl">
+          <view class="dt">{{levelItem.systemLevel.levelName}} 提成比例：{{levelItem.commissionP}}%</view>
+          <black wx:for="{{list.specprice}}">
+            <view class="dd">
+              <view class="name">
+                <text>{{item.spec_alias}}</text>-
+                <text>{{item.spec_name}}</text>
               </view>
-            </black>
-          </view>
-        </block>
-      </view>
-      <!-- 弹窗 end -->
-    </black>
+              <view class="money">
+                ￥
+                <text>{{item.spec_price+'*'+levelItem.commissionRatio}}</text>
+              </view>
+            </view>
+          </black>
+        </view>
+      </block>
+    </view>
+    <!-- 弹窗 end -->
+
 
   </view>
 </view>

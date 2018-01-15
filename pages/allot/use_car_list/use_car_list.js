@@ -19,7 +19,11 @@ Page({
   onReachBottom() {
     getCarList(content.data.orderId)
   },
-
+  //下拉事件
+  onPullDownRefresh: function () {
+    //关闭下拉
+    wx.stopPullDownRefresh()
+  },
   onLoad: function (e) {
     content = this;
     pageUtil.initData();

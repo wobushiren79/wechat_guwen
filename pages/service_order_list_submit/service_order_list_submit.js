@@ -29,7 +29,11 @@ Page({
   onReachBottom() {
     getOrderList([0], null);
   },
-  
+  //下拉事件
+  onPullDownRefresh: function () {
+    //关闭下拉
+    wx.stopPullDownRefresh()
+  },
   queren: function (e) {
     var orderId = e.currentTarget.dataset.orderid
     wx.navigateTo({

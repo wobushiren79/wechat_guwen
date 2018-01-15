@@ -15,6 +15,11 @@ Page({
     pageUtil.initData();
     getOrderList([3,4], null);
   },
+  //下拉事件
+  onPullDownRefresh: function () {
+    //关闭下拉
+    wx.stopPullDownRefresh()
+  },
   onLoad: function () {
     content = this;
   },

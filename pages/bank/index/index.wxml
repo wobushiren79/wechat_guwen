@@ -42,7 +42,7 @@
           </view>
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
             <view class="weui-media-box__title">
-              提现记录
+              钱包记录
             </view>
           </view>
           <image class='icon' src='../../../images/right.png'></image>

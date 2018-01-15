@@ -1,8 +1,15 @@
 .section_tab {
   display: flex;
   background: #fff;
+   position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+   z-index: 8
 }
-
+.page__bd{
+  padding-top: 96rpx;
+}
 .section_tab .tab_item {
   flex: 1;
   text-align: center;
@@ -29,9 +36,10 @@
    display: block;
 }
 .section_list {
- 
+
   background: #fff;
   padding-left: 32rpx;
+
 }
 
 .section_list .li {

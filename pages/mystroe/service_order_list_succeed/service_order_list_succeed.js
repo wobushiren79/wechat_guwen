@@ -32,6 +32,11 @@ Page({
   onReachBottom() {
     getGoodsOrderList(null, [3,4], storeId)
   },
+  //下拉事件
+  onPullDownRefresh: function () {
+    //关闭下拉
+    wx.stopPullDownRefresh()
+  },
   //评价
   appraise: function (e) {
     // wx.showLoading({
