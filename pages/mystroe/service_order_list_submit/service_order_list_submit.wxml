@@ -70,7 +70,7 @@
             </view>
             <view class="footer">
               <button type="primary" class="btn" bindtap="queren" data-orderid="{{item.id}}">提交</button>
-                            <button type="primary" class="btn" bindtap="EditPrice" data-orderid="{{item.id}}" data-price='{{item.order_price}}'>修改价格</button>
+                            <!-- <button type="primary" class="btn" bindtap="EditPrice" data-orderid="{{item.id}}" data-price='{{item.order_price}}'>修改价格</button> -->
             </view>
           </view>
         </view>

@@ -111,7 +111,7 @@
       },
       {
         "pagePath": "pages/order_index/order_index",
-        "text": "平台",
+        "text": "管理",
         "iconPath": "images/icon_tabBar_platform_0.png",
         "selectedIconPath": "images/icon_tabBar_platform_1.png"
       },
