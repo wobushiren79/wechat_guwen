@@ -290,3 +290,7 @@ font-size: 24rpx;
 .mask{
   display: none
 }
+.popup image{
+  display: block;
+  width: 100%
+}
