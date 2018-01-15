@@ -17,6 +17,11 @@ Page({
       },
     })
   },
+  //下拉事件
+  onPullDownRefresh: function () {
+    //关闭下拉
+    wx.stopPullDownRefresh()
+  },
   onShow: function () {
     pageUtil.initData();
     getOrderList(4)

@@ -11,6 +11,11 @@ Page({
     orderData = this
     getOrderList();//待完成工单
   },
+  //下拉事件
+  onPullDownRefresh: function () {
+    //关闭下拉
+    wx.stopPullDownRefresh()
+  },
   bindSelectTap: function (e) {
     var datas = orderData.data.listDatas;
     for (var i = 0; i < datas.length; i++) {

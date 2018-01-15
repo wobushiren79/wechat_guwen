@@ -33,6 +33,11 @@ Page({
       queryCashingLogs();
     }
   },
+  //下拉事件
+  onPullDownRefresh: function () {
+    //关闭下拉
+    wx.stopPullDownRefresh()
+  },
   //上拉刷新
   onReachBottom: function () {
     var currentTab = thisPageData.data.tab_item;
