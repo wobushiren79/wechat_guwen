@@ -1,3 +1,6 @@
+.page_service_order {
+  padding-top: 0;
+}
 .page_allot_order_list2 .ul label{
   display: block;
 }
