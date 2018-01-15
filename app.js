@@ -73,14 +73,16 @@ App({
     // orderCenterUrl:'http://192.168.0.59:8085/center/',
 
     goodsPHPUrl: "https://goodsmgr.e-funeral.cn/",
+    // goodsPHPUrl: "http://192.168.0.54/shian_goods/",
+    appPHPUrl: "https://app.e-funeral.cn/",
     JavaPlatformUrl: "https://platform.shianlife.cn/",
-    // JavaPlatformUrl: "http://192.168.0.59:8099/ki4so-web/",
+    // JavaPlatformUrl: "http://192.168.0.57:8080/ki4so-web/",
     JavaGoodsUrl: "https://goods.shianlife.cn/",
-    // JavaGoodsUrl: "http://192.168.0.59:8080/goods/",
+    // JavaGoodsUrl: "http://192.168.0.57:8089/goods/",
     JavaCemeteryUrl: "https://t-cemetery-api.shianlife.cn/",
     // JavaCemeteryUrl: "http://192.168.0.59:8081/app/",
     javaOrderCenterUrl: 'https://order.shianlife.cn/',
-    // javaOrderCenterUrl: "http://192.168.0.59:8085/center/",
+    // javaOrderCenterUrl: "http://192.168.0.57:8090/order/",
   },
   //网络请求超时时间1000毫秒=1秒
   "networkTimeout": {
