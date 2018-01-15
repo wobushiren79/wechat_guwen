@@ -6,6 +6,16 @@ height:2.58823529em;
 min-height:2.58823529em;
 line-height:2.58823529em;
 }
+.page__bd{
+  padding-top: 115rpx;
+}
+.tab{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 8
+}
 .weui-btn{
     margin-top: 0
 }
