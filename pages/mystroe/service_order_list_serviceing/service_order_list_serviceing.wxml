@@ -78,7 +78,7 @@
             <button type="primary" class="btn btn_1" bindtap="zxture" data-id="{{item.id}}">提醒执行</button>
             <black wx:if="{{item.payment_status == 0}}">
               <button type="primary" class="btn" bindtap="fukuang" data-orderid="{{item.id}}" data-store="{{1}}">付款</button>
-              <button type="primary" class="btn" bindtap="EditPrice" data-orderid="{{item.id}}" data-price='{{item.order_price}}'>修改价格</button>
+              <!-- <button type="primary" class="btn" bindtap="EditPrice" data-orderid="{{item.id}}" data-price='{{item.order_price}}'>修改价格</button> -->
             </black>
             </view>
           </view>
@@ -135,7 +135,7 @@
             <button type="primary" class="btn btn_1" bindtap="qrtrue" data-id="{{item.id}}">提醒确认</button>
             <black wx:if="{{item.payment_status == 0}}">
               <button type="primary" class="btn" bindtap="fukuang" data-orderid="{{item.id}}">付款</button>
-              <button type="primary" class="btn" bindtap="EditPrice" data-orderid="{{item.id}}" data-price='{{item.order_price}}'>修改价格</button>
+              <!-- <button type="primary" class="btn" bindtap="EditPrice" data-orderid="{{item.id}}" data-price='{{item.order_price}}'>修改价格</button> -->
             </black>
             </view>
           </view>

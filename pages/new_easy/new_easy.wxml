@@ -90,7 +90,7 @@
             <!-- <view class="weui-label">工单描述</view> -->
           </view>
           <view class="weui-cell__bd">
-            <textarea placeholder='工单描述'  placeholder-class='placeholder'  name="orderDescribe" bindblur='notNull'></textarea>
+            <textarea placeholder='客户需求描述'  placeholder-class='placeholder'  name="orderDescribe" bindblur='notNull'></textarea>
           </view>
         </view>
 

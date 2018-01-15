@@ -72,10 +72,10 @@
        <!-- 订单描述 -->
         <view class="weui-cell weui-cell_input ">
           <view class="weui-cell__hd">
-            <view class="weui-label">工单描述</view>
+            <view class="weui-label">需求描述</view>
           </view>
           <view class="weui-cell__bd">
-            <textarea name="orderDescribe">
+            <textarea name="orderDescribe" placeholder='客户紧急程度,需求等'>
             </textarea>
           </view>
         </view>
