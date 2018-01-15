@@ -74,11 +74,13 @@ function getOrderDetails(orderId) {
 
         }
       var realCommissionTotalPrice = 0;
-      var commissionRemark=null;
+      var commissionRemark = null;
       if (data.workOrderUserFinances) {
         for (var i in data.workOrderUserFinances) {
           if (data.workOrderUserFinances[i].userId == wx.getStorageSync(storageKey.PLATFORM_USER_ID)) {
-            realCommissionTotalPrice += (data.workOrderUserFinances[i].priceRelateReal / 100);
+            if (data.workOrderUserFinances[i].priceRelateReal != null) {
+              realCommissionTotalPrice += (data.workOrderUserFinances[i].priceRelateReal / 100);
+            }
             commissionRemark = data.workOrderUserFinances[i].finance_remark;
           }
         }
