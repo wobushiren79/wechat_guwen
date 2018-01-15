@@ -26,6 +26,11 @@ Page({
       },
     })
   },
+  //下拉事件
+  onPullDownRefresh: function () {
+    //关闭下拉
+    wx.stopPullDownRefresh()
+  },
   //下拉添加记录条数
   onReachBottom() {
     getGoodsOrderList(null, [1, 2], storeId)

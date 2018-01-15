@@ -17,6 +17,11 @@ Page({
     content = this;
     storeId = e.storeId
   },
+  //下拉事件
+  onPullDownRefresh: function () {
+    //关闭下拉
+    wx.stopPullDownRefresh()
+  },
   tel: function (e) {
     var tel = e.currentTarget.dataset.tel
     wx.makePhoneCall({

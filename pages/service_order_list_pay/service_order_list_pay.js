@@ -30,6 +30,11 @@ Page({
     onReachBottom() {
       getOrderList(null, 0);
     },
+    //下拉事件
+    onPullDownRefresh: function () {
+      //关闭下拉
+      wx.stopPullDownRefresh()
+    },
     fukuang:function(e){
       var orderId = e.currentTarget.dataset.orderid
       wx.navigateTo({

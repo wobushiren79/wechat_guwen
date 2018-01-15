@@ -62,6 +62,11 @@ Page({
   onReachBottom() {
     getOrderListForNo()
   },
+  //下拉事件
+  onPullDownRefresh: function () {
+    //关闭下拉
+    wx.stopPullDownRefresh()
+  },
   onShow() {
     pageUtil.initData();
     getOrderListForNo()

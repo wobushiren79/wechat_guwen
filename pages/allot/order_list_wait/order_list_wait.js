@@ -21,6 +21,11 @@ Page({
     pageUtil.initData();
     getOrderList(1)
   },
+  //下拉事件
+  onPullDownRefresh: function () {
+    //关闭下拉
+    wx.stopPullDownRefresh()
+  },
   //上拉添加记录条数
   onReachBottom() {
     getOrderList(1);// 1表示工单待接单tab页

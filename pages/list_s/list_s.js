@@ -67,6 +67,11 @@ Page({
   onReachBottom() {
     getOrderListForHas()
   },
+  //下拉事件
+  onPullDownRefresh: function () {
+    //关闭下拉
+    wx.stopPullDownRefresh()
+  },
   onLoad: function () {
     content = this;
   }
