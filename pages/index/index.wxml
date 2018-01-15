@@ -68,19 +68,19 @@
 
         <view class="section_flex weui-flex">
       <navigator class="weui-flex__item" url='../index_flex1/index_flex1'>
-        <image src='../../images/icon_index_flex1.png' mode='widthFix'></image>
+        <image src='../../images/icon_index_grid_1.png' mode='widthFix'></image>
         <text>公墓选购</text>
       </navigator>
       <navigator class="weui-flex__item" url='../Sift/Sift'>
-        <image src='../../images/icon_index_flex1.png' mode='widthFix'></image>
+        <image src='../../images/icon_index_grid_2.png' mode='widthFix'></image>
         <text>活动</text>
       </navigator>
       <navigator class="weui-flex__item" url='/pages/main/study/index/index'>
-        <image src='../../images/icon_index_flex3.png' mode='widthFix'></image>
+        <image src='../../images/icon_index_grid_3.png' mode='widthFix'></image>
         <text>学习中心</text>
       </navigator>
       <view class="weui-flex__item" bindtap='bind_go_c'>
-        <image src='../../images/icon_index_flex1.png' mode='widthFix'></image>
+        <image src='../../images/icon_index_grid_4.png' mode='widthFix'></image>
         <text>我的门店</text>
       </view>
     </view>
