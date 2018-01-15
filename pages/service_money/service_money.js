@@ -567,6 +567,9 @@ function getAllUserLevel() {
   // }
 
   var buildLevelData = content.data.buildUserLevel;
+  if (buildLevelData == null || buildLevelData.systemLevel==null){
+    return listUserLevel
+  }
   var orderCenterDetail = content.data.orderCenterDetail;
   if (orderCenterDetail && orderCenterDetail.workOrder) {
     var userLevel = {
