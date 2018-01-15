@@ -13,6 +13,7 @@ Page({
     orderCenter: false,
     cemeteryAdvisor: false,
     goodsAdvisor: false,
+    orderCenterBuild:false
   },
 
   onShow: function () {
