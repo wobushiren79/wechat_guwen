@@ -180,5 +180,8 @@ swiper image{
 
 .gq image {
   display: block;
-  width: 200rpx;
+  wizdth: 200rpx;
+}
+.section_flex2 image{
+  width: 40%
 }

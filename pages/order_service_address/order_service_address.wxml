@@ -78,7 +78,7 @@
               <view class="weui-label">详细地址</view>
             </view> -->
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="详细地址" name="addressDetails" value='{{submitAddressDetail}}' />
+              <input class="weui-input" placeholder="详细地址" name="addressDetails" value='{{addressInfo}}' />
             </view>
           </view>
         </view>

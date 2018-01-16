@@ -59,7 +59,7 @@ function getOrderList(listType) {
         listType: listType
     }
     var listCallBack = pageUtil.getPageCallBack(
-        function (data, res, isLast) {
+       function (data, res, isLast) {
             var updateTime = []
             for (var i in data) {
                 for (var j in data[i].listOrderStatusChange) {

@@ -123,6 +123,7 @@ function getOrderDetails(orderId) {
       var GoodsList=[]
       var name=[]
       var tel_call=[]
+      var cemetery=''
       if (data.customerInfo.agentName && data.customerInfo.agentPhone){
         name.push('经办人-'+data.customerInfo.agentName + ':' + data.customerInfo.agentPhone)
         tel_call.push(data.customerInfo.agentPhone)
@@ -133,15 +134,20 @@ function getOrderDetails(orderId) {
       }
       name.push('圆满人生-客服:966188')
       tel_call.push('966188')
-      console.log(tel_call)
-      console.log(name)
+      if (data.workOrder.orderType == 1) {
+        var orderRemark = data.workOrder.orderRemark
+        var star = orderRemark.indexOf('name":')+7
+        var end = orderRemark.indexOf(',')-1
+        cemetery = orderRemark.substring(star, end)
+      }
       content.setData({
         content: data,
         get_data: get_data,
         orderId: orderId,
         GoodsList: GoodsList,
         name: name,
-        tel_call: tel_call
+        tel_call: tel_call,
+        cemetery: cemetery
       })
     },
     fail: function (data, res) {

@@ -20,7 +20,8 @@
     </view>
     <view class="weui-panel weui-panel_access list">
       <radio-group class="weui-panel__bd">
-      <block wx:if="{{userBankCardList.length>0}}" wx:for="{{userBankCardList}}">
+      <block wx:if="{{userBankCardList.length>0}}" >
+      <block wx:for="{{userBankCardList}}">
       
         <view class="weui-media-box weui-media-box_appmsg">
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
@@ -39,18 +40,14 @@
             </block>
           </view>
         </view>
-        
-        <!-- <block wx:else>
-        <text>
-          您暂时未添加多余银行卡,如需要添加请点击上方添加银行卡
-        </text>
-        </block> -->
         </block>
-          <!-- <block wx:else>
-        <text>
-          您暂时未添加银行卡,如需要添加请点击上方添加银行卡
-        </text>
-        </block>   -->
+        </block>
+      <block wx:else>
+     <view class='prompt_img'>
+      <image src='../../../images/blank.png' mode='widthFix'></image>
+     </view>
+     </block>
+     
       </radio-group>
     </view>
   </view>

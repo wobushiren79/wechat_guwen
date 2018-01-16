@@ -10,7 +10,7 @@
             <view class='dt_hd'>
               <image src='../../../images/icon_order_content_cem.png' mode='widthFix'></image>
             </view>
-            <view class='dt_bd'>公墓</view>
+            <view class='dt_bd'>公墓({{cemetery}})</view>
             <block wx:if="{{call  == false}}">
               <view class='dt_footer' bindtap="bind_tel">
                 <image src='../../../images/icon_order_content_phone.png' mode='widthFix'></image>

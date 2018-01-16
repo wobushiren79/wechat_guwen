@@ -9,6 +9,7 @@
       </view>
     </view>
     <view class='section_list ul {{tab_item==0?"active":""}}' data-tab_item='0'>
+    <block wx:if="{{fanxianList_data.length>0}}">
      <block wx:for="{{fanxianList_data}}">
       <view class='li'>
         <view class='li_item'>
@@ -43,8 +44,15 @@
           <text>没有更多记录啦</text>
         </view>
       </block>
+      </block>
+      <block wx:else>
+     <view class='prompt_img'>
+      <image src='../../../images/blank.png' mode='widthFix'></image>
+     </view>
+     </block>
     </view>
     <view class='section_list ul {{tab_item==1?"active":""}}' data-tab_item='1'>
+    <block wx:if="{{tixianList_data.length>0}}">
       <block wx:for="{{tixianList_data}}">
         <view class='li'>
           <view class='li_item'>
@@ -85,6 +93,12 @@
           <text>没有更多记录啦</text>
         </view>
       </block>
+      </block>
+      <block wx:else>
+     <view class='prompt_img'>
+      <image src='../../../images/blank.png' mode='widthFix'></image>
+     </view>
+     </block>
     </view>
   </view>
 </view>

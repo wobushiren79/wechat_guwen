@@ -566,6 +566,7 @@ contact-button {
 /* 提示 */
 
 .prompt {
+
   padding: 30rpx 16rpx 30rpx 30rpx !important;
 }
 
@@ -576,7 +577,17 @@ contact-button {
   font-size: 30rpx !important;
   color: #bbb !important;
 }
-
+.prompt_img{
+    background: #f8f8f8;
+  padding: 30rpx 16rpx 30rpx 30rpx !important;
+}
+.prompt_img image{
+  display: block;
+  width: 50%;
+  margin: 100rpx auto 0 auto;
+  position: relative;
+  left: -10rpx;
+}
 /* 购物车 */
 
 .shoppgo {

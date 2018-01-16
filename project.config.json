@@ -68,6 +68,12 @@
 					"pathName": "pages/service_goods_pay/service_goods_pay",
 					"query": "orderId=1084",
 					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "设置提现卡",
+					"pathName": "pages/bank/card/card",
+					"query": "pid=0"
 				}
 			]
 		}
