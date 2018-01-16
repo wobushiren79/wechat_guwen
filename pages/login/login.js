@@ -1,4 +1,5 @@
-//index.js
+
+getRequest//index.js
 //获取应用实例
 var platformHttp = require("../../utils/http/RequestForPlatform.js");
 var cemeteryHttp = require("../../utils/http/RequestForCemetery.js");

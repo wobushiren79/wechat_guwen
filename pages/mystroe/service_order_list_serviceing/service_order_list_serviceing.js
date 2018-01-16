@@ -60,14 +60,14 @@ Page({
 function getGoodsOrderList(payStatus, orderStatus, storeId) {
   var getRequest = pageUtil.getPageData();
   getRequest.content = new Object();
-  if (payStatus) {
-    content.payStatus = payStatus
+  if (payStatus != null) {
+    getRequest.content.payStatus = payStatus
   }
-  if (payStatus) {
-    content.orderStatus = orderStatus
+  if (orderStatus != null) {
+    getRequest.content.orderStatus = orderStatus
   }
-  if (payStatus) {
-    content.storeId = storeId
+  if (storeId != null) {
+    getRequest.content.storeId = storeId
   }
   var getCallBack = pageUtil.getPageCallBack(
     function (data, res, isLast) {

@@ -27,13 +27,20 @@ Page({
     hasDealSubSystem: 0
   },
   validation: function (e) {
-    var mobile = e.detail.value;
-    if (!checkMobile(mobile)) {
-      toastUtil.showToast("手机号不正确");
-      return;
-    }
-    validationAccount(false,mobile)
+    // var mobile = e.detail.value;
+    // if (!checkMobile(mobile)) {
+    //   toastUtil.showToast("手机号不正确");
+    //   return;
+    // }
+    // validationAccount(false,mobile)
   },
+  refereesValidation: function (e) {
+    var mobile = e.detail.value;
+    if (mobile.length == 11) {
+      validationAccount(false, mobile)
+    }
+  },
+
   systemType: function (e) {
     this.setData({ systemType: e.detail.value })
   },
@@ -49,7 +56,7 @@ Page({
       toastUtil.showToast("手机号不正确");
       return;
     }
-    validationAccount(true,e.detail.value.mobile)
+    validationAccount(true, e.detail.value.mobile)
   },
 
 
@@ -111,9 +118,12 @@ function validationAccount(isGetSms, phone) {
     success: function (data, res) {
       if (isGetSms)
         getSmsCode(phone)
+      else 
+        toastUtil.showToast("没有此推荐人");
     },
     fail: function (data, res) {
-      toastUtil.showToast(data);
+      if (isGetSms)
+        toastUtil.showToast(data);
     }
   }
   platformHttp.validationAccount(validationRequest, validationCallBack);
