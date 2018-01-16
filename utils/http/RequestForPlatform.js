@@ -193,6 +193,14 @@ function queryReturnCashLogsForPage(data, callback) {
   baseRequest.sendPostHttpForContent(baseUrl + "api/wallet/queryReturnCashLogsForPage", data, callback, true)
 }
 
+/**
+ * 验证账号
+ */
+function validationAccount(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/usersAccount/validation", data, callback, true)
+}
+
+
 module.exports.addingCard = addingCard;
 module.exports.queryCardBins = queryCardBins;
 module.exports.settingDefaultCard = settingDefaultCard;
@@ -221,3 +229,4 @@ module.exports.getMsgCode = getMsgCode;
 module.exports.buildAccountForOrderCenterBuild = buildAccountForOrderCenterBuild;
 module.exports.queryReturnCashLogsForPage = queryReturnCashLogsForPage;
 module.exports.queryLevelByLevelType = queryLevelByLevelType;
+module.exports.validationAccount = validationAccount;

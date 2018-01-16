@@ -26,7 +26,14 @@ Page({
     is_loction: 0,
     hasDealSubSystem: 0
   },
-
+  validation: function (e) {
+    var mobile = e.detail.value;
+    if (!checkMobile(mobile)) {
+      toastUtil.showToast("手机号不正确");
+      return;
+    }
+    validationAccount(false,mobile)
+  },
   systemType: function (e) {
     this.setData({ systemType: e.detail.value })
   },
@@ -42,24 +49,7 @@ Page({
       toastUtil.showToast("手机号不正确");
       return;
     }
-    var sendSmsCodeData = {
-      mobile: e.detail.value.mobile
-    }
-    var sendSmsCodeCallBack = {
-      success: function (data, res) {
-        content.setData({
-          selected: true,
-          selected1: false,
-          isSendMsg: true,
-          second: 60,
-        })
-        countdown(content)
-      },
-      fail: function (data, res) {
-        toastUtil.showToast(data);
-      }
-    }
-    platformHttp.getMsgCode(sendSmsCodeData, sendSmsCodeCallBack);
+    validationAccount(true,e.detail.value.mobile)
   },
 
 
@@ -110,6 +100,48 @@ function registeredAccount(mobile, msgcode, referees) {
 }
 
 /**
+ * 验证手机号
+ */
+function validationAccount(isGetSms, phone) {
+  var validationRequest = {
+    loginName: phone,
+    mobile: phone
+  }
+  var validationCallBack = {
+    success: function (data, res) {
+      if (isGetSms)
+        getSmsCode(phone)
+    },
+    fail: function (data, res) {
+      toastUtil.showToast(data);
+    }
+  }
+  platformHttp.validationAccount(validationRequest, validationCallBack);
+}
+/**
+ * 获取验证码
+ */
+function getSmsCode(mobile) {
+  var sendSmsCodeData = {
+    mobile: mobile
+  }
+  var sendSmsCodeCallBack = {
+    success: function (data, res) {
+      content.setData({
+        selected: true,
+        selected1: false,
+        isSendMsg: true,
+        second: 60,
+      })
+      countdown(content)
+    },
+    fail: function (data, res) {
+      toastUtil.showToast(data);
+    }
+  }
+  platformHttp.getMsgCode(sendSmsCodeData, sendSmsCodeCallBack);
+}
+/**
  * 查询用户签到情况
  */
 function getCreditInfo() {
@@ -143,8 +175,7 @@ function countdown(that) {
       second: second - 1
     });
     countdown(that);
-  }
-    , 1000)
+  }, 1000)
 }
 
 
@@ -157,4 +188,6 @@ function checkMobile(mobile) {
   } else {
     return true;
   }
-} 
+}
+
+
