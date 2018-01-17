@@ -123,7 +123,7 @@
               </navigator>
             </view>
           </block>
-          <block wx:elif="{{item.workOrder.orderType==2}}">
+          <block wx:elif="{{item.workOrder.orderType==2||item.workOrder.orderType==null}}">
             <view class="li other">
               <view class="li_header other">
                 <view class="header">

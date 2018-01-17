@@ -94,7 +94,7 @@
 
             </label>
           </block>
-          <block wx:if="{{item.workOrder.orderType == 2}}">
+          <block wx:if="{{item.workOrder.orderType == 2||item.workOrder.orderType==null}}">
             <label class="li other">
               <radio color='#ffd076' value='{{item.workOrder.id}}'  checked="{{item.isCheck}}"/>
               <view class="li_header">
