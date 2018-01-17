@@ -6,16 +6,16 @@
         <navigator url="../service_order_list_submit/service_order_list_submit" open-type="redirect" class="active">待提交</navigator>
       </view>
       <view>
-        <navigator url="../service_order_list_pay/service_order_list_pay" open-type="redirect" >待付款</navigator>
+        <navigator url="../service_order_list_pay/service_order_list_pay" open-type="redirect">待付款</navigator>
       </view>
       <view>
-        <navigator url="../service_order_list_serviceing/service_order_list_serviceing"  open-type="redirect">服务中</navigator>
+        <navigator url="../service_order_list_serviceing/service_order_list_serviceing" open-type="redirect">服务中</navigator>
       </view>
       <view>
-        <navigator url="../service_order_list_succeed/service_order_list_succeed" open-type="redirect" >已服务</navigator>
+        <navigator url="../service_order_list_succeed/service_order_list_succeed" open-type="redirect">已服务</navigator>
       </view>
       <view>
-        <navigator url="../service_order_list_close/service_order_list_close"  open-type="redirect">已关闭</navigator>
+        <navigator url="../service_order_list_close/service_order_list_close" open-type="redirect">已关闭</navigator>
       </view>
     </view>
 
@@ -80,10 +80,14 @@
           </view>
           <!-- 模板一 待付款-待支付 end-->
         </black>
-        <block wx:if="{{xinshi}}">
-          <view class='prompt'>
-            <text>没有更多订单啦</text>
-          </view>
+        <import src="/template/template.wxml" />
+        <block wx:if="{{xinshi == true}}">
+          <block wx:if="{{list.length>0}}">
+            <template is="nonconformance" />
+          </block>
+          <block wx:else>
+            <template is="nullData" />
+          </block>
         </block>
       </view>
     </view>

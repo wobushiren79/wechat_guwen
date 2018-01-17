@@ -60,7 +60,7 @@ Page({
     userSign();
   },
 
-  bind_go_c: function () {
+  bind_go_c:function(){
     wx.navigateTo({
       url: '/pages/main/mystore/store_list/store_list',
     })

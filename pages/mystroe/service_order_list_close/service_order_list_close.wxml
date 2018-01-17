@@ -80,12 +80,15 @@
         <!-- 模板五 服务完成-服务完成 end-->
 </black>
         <!-- 模板七 交易关闭-交易关闭 end-->
-<block wx:if="{{xinshi}}">
-<view class='prompt'>
-<text>没有更多订单啦</text>
-</view>
-</block>
-
+  <import src="/template/template.wxml"/>
+  <block wx:if="{{xinshi}}">
+  <block wx:if="{{list.length>0}}" >
+  <template is="nonconformance"/>
+  </block>
+    <block wx:else>
+    <template is="nullData"/>
+    </block>
+  </block>
       </view>
     </view>
 

@@ -94,11 +94,10 @@
         </view>
       </block>
       </block>
-      <block wx:else>
-     <view class='prompt_img'>
-      <image src='../../../images/blank.png' mode='widthFix'></image>
-     </view>
-     </block>
+        <block wx:else>
+          <import src="/template/template.wxml" />
+          <template is="nullData" />
+        </block>
     </view>
   </view>
 </view>
