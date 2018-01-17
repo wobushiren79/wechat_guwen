@@ -478,6 +478,8 @@ button::after {
   top:10rpx;
 
 }
+
+
 .package_img{
   margin-top: 0rpx;
   width: 132rpx;
@@ -517,6 +519,10 @@ button::after {
 }
 .package_view_c{
   padding: 10rpx 0;
-  border-bottom: 2rpx #c3c3c3 solid;
+  /* border-bottom: 2rpx #c3c3c3 solid;s */
   display: flex;
+}
+
+.mask {
+  display: block;
 }

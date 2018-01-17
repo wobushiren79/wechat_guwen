@@ -447,7 +447,7 @@
     <black wx:if="{{package_a}}">
       <!-- 遮罩层 star -->
       <view class="mask" bindtap="package_b"></view>
-      <!-- 遮罩层 end -->.
+      <!-- 遮罩层 end -->
 
       <!-- 弹窗 star -->
       <view class="package_view" bindtap="package_b">
