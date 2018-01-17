@@ -21,6 +21,11 @@ Page({
     pageUtil.initData();
     getOrderList(2)
   },
+  //下拉事件
+  onPullDownRefresh: function () {
+    //关闭下拉
+    wx.stopPullDownRefresh()
+  },
   //上拉添加记录条数
   onReachBottom() {
     getOrderList(2)

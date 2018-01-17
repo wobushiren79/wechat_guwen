@@ -37,7 +37,10 @@
         </view>
       </block>
     </radio-group>
-
+<block wx:if="{{listAddress.length == 0}}">
+<import src="/template/template.wxml"/>
+<template is="nullData"/>
+</block>
     <view class='popup {{popup?"active":""}}'>
       <form bindsubmit="formSubmit" bindreset="formReset">
         <view class="weui-cells weui-cells_after-title">
