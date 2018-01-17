@@ -117,7 +117,10 @@
 
       </block>
     </checkbox-group>
-
+  <import src="/template/template.wxml"/>
+  <block wx:if="{{formData.length == 0}}" >
+    <template is="nullData"/>
+  </block>
     <!-- 固定底部 star -->
     <view class="footerfix clearfix">
       <!-- 全选 -->
