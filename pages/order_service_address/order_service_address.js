@@ -16,10 +16,10 @@ Page({
   bind_popup_form: function (e) {
     var submitData = e.target.dataset.updatedata;
     if (e.target.dataset.submittype == "1") {
-      setSubmitData(null,"", "", "");
+      setSubmitData(null,"", "", "","添加地址");
     }
     if (submitData != null && e.target.dataset.submittype == "2") {
-      setSubmitData(submitData.id,submitData.recipientName, submitData.recipientPhone, "");
+      setSubmitData(submitData.id,submitData.recipientName, submitData.recipientPhone, "","编辑地址");
     }
     this.setData({
       popup: !this.data.popup,
@@ -76,13 +76,14 @@ Page({
 /**
  * 设置提交数据
  */
-function setSubmitData(id,name, phone, address) {
+function setSubmitData(id,name, phone, address,title) {
   content.setData({
     submitName: name,
     submitPhone: phone,
     submitAddressDetail: address,
     addressInfo:"",
-    selectId:id
+    selectId:id,
+    addTitle:title
   })
 }
 
