@@ -15,6 +15,9 @@ Page({
   },
   onLoad: function (e) {
     content = this;
+    content.setData({
+      storeId: e.storeId
+    })
     storeId = e.storeId
   },
   tel: function (e) {

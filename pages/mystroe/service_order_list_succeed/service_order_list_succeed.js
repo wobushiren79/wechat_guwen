@@ -15,7 +15,10 @@ Page({
     getGoodsOrderList(null, [3, 4], storeId)
   },
   onLoad: function (e) {
-    content = this;
+    content = this; 
+    content.setData({
+      storeId: e.storeId
+    })
     storeId = e.storeId
   },
   tel: function (e) {
@@ -30,7 +33,7 @@ Page({
   },
   //下拉添加记录条数
   onReachBottom() {
-    getGoodsOrderList(null, [3,4], storeId)
+    getGoodsOrderList(null, [3, 4], storeId)
   },
   //下拉事件
   onPullDownRefresh: function () {

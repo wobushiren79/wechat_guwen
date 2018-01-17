@@ -16,6 +16,9 @@ Page({
   },
   onLoad: function (e) {
     content = this;
+    content.setData({
+      storeId: e.storeId
+    })
     storeId = e.storeId
   },
   //下拉事件
