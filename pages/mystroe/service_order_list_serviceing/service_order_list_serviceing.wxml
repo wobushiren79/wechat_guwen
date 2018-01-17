@@ -143,11 +143,15 @@
         <!-- 模板四 服务中-确认中 end-->
 </black>
 </black>
-<block wx:if="{{xinshi}}">
-<view class='prompt'>
-<text>没有更多订单啦</text>
-</view>
-</block>
+  <import src="/template/template.wxml"/>
+  <block wx:if="{{xinshi}}">
+  <block wx:if="{{list.length>0}}" >
+  <template is="nonconformance"/>
+  </block>
+    <block wx:else>
+    <template is="nullData"/>
+    </block>
+  </block>
     </view>
     </view>
 

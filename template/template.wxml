@@ -1,0 +1,18 @@
+
+<!--**
+数据为空的模板   nullData
+ */-->
+
+ <!--数据为空的模板 两级-->
+<template name="nullData">
+     <view class='prompt_img'>
+      <image src='/images/blank.png' mode='widthFix'></image>
+     </view>
+</template>
+
+ <!--数据和请求加载条数不符合的模板-->
+<template name="nonconformance">
+    <view class='prompt'>
+      <text>没有更多啦</text>
+    </view>
+</template>

@@ -176,9 +176,16 @@
     </view> -->
   </view>
   <block wx:if="{{notNumber}}">
+  <block wx:if="{{listdata.length>0}}" >
     <view class='prompt'>
       <text>没有更多订单啦</text>
     </view>
+  </block>
+    <block wx:else>
+     <view class='prompt_img'>
+      <image src='../../../images/blank.png' mode='widthFix'></image>
+     </view>
+    </block>
   </block>
 
 

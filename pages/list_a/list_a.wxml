@@ -105,10 +105,13 @@
     <view wx:for="{{gmList}}">
       <template is="list_b" data="{{...item}}" />
     </view>
-    <block wx:if="{{xianshi}}">
-      <view class='prompt'>
-         <text>没有更多订单啦</text>
-      </view>
+    <block wx:if="{{xianshi == true}}">
+      <block wx:if="{{gmList.length>0}}">
+        <template is="nonconformance" />
+      </block>
+      <block wx:else>
+        <template is="nullData" />
+      </block>
     </block>
   </view>
 

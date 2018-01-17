@@ -20,34 +20,33 @@
     </view>
     <view class="weui-panel weui-panel_access list">
       <radio-group class="weui-panel__bd">
-      <block wx:if="{{userBankCardList.length>0}}" >
-      <block wx:for="{{userBankCardList}}">
-      
-        <view class="weui-media-box weui-media-box_appmsg">
-          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-           <image class="weui-media-box__thumb" src="../../../images/icon_bank_index2.png" />
-          </view>
-          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <text>{{item.bankName?item.bankName:''}}</text>
-            <text>{{item.cardNo?item.cardNo:''}}</text>
-          </view>
-          <view class="weui-media-box__ft weui-media-box__bd_in-appmsg">
-          <block wx:if="{{item.isDefault == 0}}">
-            <radio value="{{item.id}}" checked="" bindtap='defaultBankCard' data-id='{{item.id}}'/>
-            </block>
-          <block wx:if="{{item.isDefault == 1}}">
-            <radio value="{{item.id}}" checked="checked" />
-            </block>
-          </view>
-        </view>
+        <block wx:if="{{userBankCardList.length>0}}">
+          <block wx:for="{{userBankCardList}}">
+
+            <view class="weui-media-box weui-media-box_appmsg">
+              <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                <image class="weui-media-box__thumb" src="../../../images/icon_bank_index2.png" />
+              </view>
+              <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                <text>{{item.bankName?item.bankName:''}}</text>
+                <text>{{item.cardNo?item.cardNo:''}}</text>
+              </view>
+              <view class="weui-media-box__ft weui-media-box__bd_in-appmsg">
+                <block wx:if="{{item.isDefault == 0}}">
+                  <radio value="{{item.id}}" checked="" bindtap='defaultBankCard' data-id='{{item.id}}' />
+                </block>
+                <block wx:if="{{item.isDefault == 1}}">
+                  <radio value="{{item.id}}" checked="checked" />
+                </block>
+              </view>
+            </view>
+          </block>
         </block>
+        <block wx:else>
+          <import src="/template/template.wxml" />
+          <template is="nullData" />
         </block>
-      <block wx:else>
-     <view class='prompt_img'>
-      <image src='../../../images/blank.png' mode='widthFix'></image>
-     </view>
-     </block>
-     
+
       </radio-group>
     </view>
   </view>

@@ -24,8 +24,14 @@
         </block>
       </view>
     </view>
+    <import src="/template/template.wxml" />
     <block wx:if="{{xianshi == true}}">
-      <view class='xianshi'>已全部加载完成</view>
+      <block wx:if="{{list.length>0}}">
+        <template is="nonconformance" />
+      </block>
+      <block wx:else>
+        <template is="nullData" />
+      </block>
     </block>
   </view>
 </view>
