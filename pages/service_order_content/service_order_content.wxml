@@ -322,7 +322,7 @@
             </view>
 
             <view class="footer ">
-              {{listData.goodsFinance.paymentTime}}
+              {{listData.goodsFinance.paymentTime == null ?'-':listData.goodsFinance.paymentTime }}
             </view>
           </view>
           <view class="dd other">
@@ -330,7 +330,7 @@
               付款流水：
             </view>
             <view class="footer ">
-              {{listData.goodsFinance.paymentNumber}}
+              {{listData.goodsFinance.paymentNumber==null ? '-':listData.goodsFinance.paymentNumber}}
             </view>
           </view>
         </black>
