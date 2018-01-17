@@ -81,6 +81,7 @@ function setSubmitData(id,name, phone, address) {
     submitName: name,
     submitPhone: phone,
     submitAddressDetail: address,
+    addressInfo:"",
     selectId:id
   })
 }
