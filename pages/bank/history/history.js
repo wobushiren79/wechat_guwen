@@ -68,8 +68,8 @@ function queryCashingLogs() {
     function (data, res, isLast) {
       for (var i in data) {
         var price = parseInt(data[i].amount) / 100
-        data[i].amount = getApp().ProcessingPrice(price)
-        data[i].bank_card = data[i].bank_card.substring(data[i].bank_card.length - 4)
+        data[i].amountOpt = getApp().ProcessingPrice(price)
+        data[i].bank_cardOpt = data[i].bank_card.substring(data[i].bank_card.length - 4)
       }
       thisPageData.setData({
         tixianList_data: data,

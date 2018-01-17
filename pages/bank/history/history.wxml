@@ -58,7 +58,7 @@
           <view class='li_item'>
             <view class='li_bd'>
               <view class='name'>
-                {{item.bank_name}}({{item.bank_card}})
+                {{item.bank_name}}({{item.bank_cardOpt}})
               </view>
 
             </view>
@@ -82,7 +82,7 @@
             </view>
             <view class='li_ft'>
               <view class='money'>
-                {{item.amount}}
+                {{item.amountOpt}}
               </view>
             </view>
           </view>
