@@ -1,0 +1,123 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <!--选项卡-->
+    <view class="tab">
+      <view>
+        <navigator url="../list_/list_" open-type="redirectTo">待看墓</navigator>
+      </view>
+      <view>
+        <navigator  url="../list_a/list_a" open-type="redirect">看墓中</navigator>
+      </view>
+      <view>
+        <navigator  url="../list_b/list_b" open-type="redirect">未定墓</navigator>
+      </view>
+      <view>
+        <navigator class="active" url="../list_s/list_s" open-type="redirect">已定墓</navigator>
+      </view>
+    </view>
+    <!--模板三-->
+    <template name="list_c">
+      <view wx:if="{{ bespeakStatus == 7 || bespeakStatus == 8 || bespeakStatus == 9}}">
+          <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+          <view class="weui-cells__title"></view>
+          <view class="weui-cells weui-cells_after-title">
+
+            <!--客户姓名-->
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__hd">
+                <view class="weui-label">客户姓名</view>
+              </view>
+              <view class="weui-cell__bd name">
+                <input class="weui-input" value="{{customerName}}" disabled="disabled" />
+                         <view wx:if="{{bespeakStatus == 9}}">
+                          <text>已安葬</text> 
+                         </view>
+              </view>
+            </view>
+
+            <!--联系电话-->
+            <view class="weui-cell weui-cell_input weui-cell_input_icon">
+              <view class="weui-cell__hd">
+                <view class="weui-label">联系电话</view>
+              </view>
+              <view class="weui-cell__bd">
+                <input class="weui-input" value="{{customerMobile}}" disabled="disabled" />
+              </view>
+               <view class="icon" bindtap="call_phone" data-phone="{{customerMobile}}">
+                <image src="../../images/phone.png"></image>
+              </view>
+            </view>
+
+            <!--客户地址-->
+            <view class="weui-cell weui-cell_input weui-cell_input_icon">
+              <view class="weui-cell__hd">
+                <view class="weui-label">客户地址</view>
+              </view>
+              <view class="weui-cell__bd">
+                <input class="weui-input" value="{{customerLocation}}" disabled="disabled" />
+              </view>
+            </view>
+
+            <!--定墓日期-->
+            <view class="weui-cell weui-cell_input weui-cell_input_icon">
+              <view class="weui-cell__hd">
+                <view class="weui-label">定墓日期</view>
+              </view>
+              <view class="weui-cell__bd">
+                <input class="weui-input" value="{{orderedTombDate}}" disabled="disabled" />
+              </view>
+            </view>
+
+            <!--完款日期-->
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__hd">
+                <view class="weui-label">完款日期</view>
+              </view>
+              <view class="weui-cell__bd">
+                <input class="weui-input" value="{{payOffTime}}" disabled="disabled" />
+              </view>
+            </view>
+
+            <!--公墓名称-->
+            <view class="weui-cell weui-cell_input">
+
+              <view class="weui-cell__hd">
+                <view class="weui-label">墓穴位置</view>
+              </view>
+              <view class="weui-cell__bd">
+                <input class="weui-input" value="{{detailsLocation}}" disabled="disabled" />
+              </view>
+            </view>
+<!--按钮-->
+            <view class="weui-cell weui-flex">
+              <view class="weui-flex__item">
+                <view class="placeholder">
+                  <navigator url="../order_info_/order_info_?bespeakId={{bespeakId}}" class="" hover-class="">
+                    <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">订单详情</button>
+                  </navigator>
+                </view>
+              </view>
+            </view>
+          </view>
+      </view>
+    </template>
+
+    <view wx:for="{{gmList}}">
+      <template is="list_c" data="{{...item}}" />
+    </view>
+    <block wx:if="{{xianshi == true}}">
+      <block wx:if="{{gmList.length>0}}">
+        <template is="nonconformance" />
+      </block>
+      <block wx:else>
+        <template is="nullData" />
+      </block>
+    </block>
+  </view>
+
+  <!--<view class="body-view">
+        <loading hidden="{{hidden}}" bindchange="loadingChange">
+            加载中...
+        </loading>
+    </view>-->
+</view>

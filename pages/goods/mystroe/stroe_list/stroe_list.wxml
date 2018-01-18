@@ -1,0 +1,37 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <view class="weui-panel weui-panel_access">
+      <view class="weui-panel__bd">
+        <block wx:for="{{list}}">
+          <navigator url="../service_order_list_pay/service_order_list_pay?storeId={{item.id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+            <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+              <image class="weui-media-box__thumb" src="{{item.shop_img}}" />
+            </view>
+            <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+              <view class="weui-media-box__title">{{item.shop_name}}</view>
+              <view class="weui-media-box__desc">
+                <view class='address'>
+                  <image src='../../../images/appraise_address.png' mode='widthFix'></image>{{item.shop_location}}
+                </view>
+                <view>
+                  <block wx:for="{{item.store_the_tag}}">
+                    <text>{{item.name}}</text>
+                  </block>
+                </view>
+              </view>
+            </view>
+          </navigator>
+        </block>
+      </view>
+    </view>
+    <import src="/template/template.wxml" />
+    <block wx:if="{{xianshi == true}}">
+      <block wx:if="{{list.length>0}}">
+        <template is="nonconformance" />
+      </block>
+      <block wx:else>
+        <template is="nullData" />
+      </block>
+    </block>
+  </view>
+</view>

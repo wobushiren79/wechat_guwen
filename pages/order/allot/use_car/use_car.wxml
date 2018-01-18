@@ -1,0 +1,108 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <form bindsubmit="formSubmit">
+      <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+      <!-- 派车 -->
+      <view class="weui-cells weui-cells_after-title paiche" >
+        <!--预约用车时间-->
+        <view class="weui-cell weui-cell_input required">
+          <view class="weui-cell__hd">
+            <view class="weui-label">用车日期</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker class="weui-btn" mode="date" value="{{date}}" start="2017-01-01" end="2100-01-01" bindchange="bindDateChanges">
+              <view class="picker">{{date}}</view>
+            </picker>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input required">
+          <view class="weui-cell__hd">
+            <view class="weui-label">用车时间</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker class="weui-btn" mode="time" value="{{time}}" start="0:00" end="24:00" bindchange="bindTimeChangess">
+              <view class="picker">{{time}}</view>
+            </picker>
+          </view>
+        </view>
+        <!--用车人-->
+        <view class="weui-cell weui-cell_input required">
+          <view class="weui-cell__hd">
+            <view class="weui-label">用车人</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="用车人" name="connecterName" value='{{web_data?web_data.connecterName:""}}' bindblur='notNull'/>
+          </view>
+        </view>
+
+        <!--用车人电话-->
+        <view class="weui-cell weui-cell_input required">
+          <view class="weui-cell__hd">
+            <view class="weui-label">用车人电话</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="用车人电话" name="connecterMobile" type='number' maxlength='11' bindblur='checktel' value='{{web_data?web_data.connecterMobile:""}}'/>
+          </view>
+        </view>
+        <!--用车理由-->
+        <view class="weui-cell weui-cell_input required">
+          <view class="weui-cell__hd">
+            <view class="weui-label">用车理由</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker bindchange="bindPickerChange_chat" value="{{businessType_chat}}" range="{{ChatList}}" data-name="{{ChatList[businessType_chat]}}">
+              <view class="picker">{{ChatList[businessType_chat]}}</view>
+            </picker>
+          </view>
+        </view>
+        <!--乘车人数-->
+        <view class="weui-cell weui-cell_input required">
+          <view class="weui-cell__hd">
+            <view class="weui-label">乘车人数</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="乘车人数" name="seats" type='number' bindblur='notNull' value='{{web_data?web_data.seats:""}}'/>
+          </view>
+        </view>
+        <!--预约上车地点-->
+        <view class="weui-cell weui-cell_input weui-cell_input_icon required">
+          <view class="weui-cell__hd">
+            <view class="weui-label">上车地点</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="地址" name="location" value="{{top_chat?top_chat:web_data?web_data.location:''}}" bindblur='notNull' />
+          </view>
+          <view class="icon" bindtap="top_chat">
+            <image src="../../../images/address.png"></image>
+          </view>
+        </view>
+        <!--前往目的地-->
+        <view class="weui-cell weui-cell_input weui-cell_input_icon required">
+          <view class="weui-cell__hd">
+            <view class="weui-label">前往目的地</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="地址" bindblur='notNull' name="targetLocation" value="{{spot?spot:web_data?web_data.targetLocation:''}}" />
+          </view>
+          <view class="icon" bindtap="spot">
+            <image src="../../../images/address.png"></image>
+          </view>
+        </view>
+        <!--备注-->
+        <view class="weui-cell weui-cell_input ">
+          <view class="weui-cell__hd">
+            <view class="weui-label">备注</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="备注" name="remark"/>
+          </view>
+        </view>
+
+      </view>
+      <!--提交-->
+      <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" formType="submit">提交</button>
+      </view>
+    </form>
+  </view>
+</view>

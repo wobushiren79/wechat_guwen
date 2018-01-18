@@ -1,0 +1,158 @@
+/**login.wxss**/
+
+.search {
+  padding: 15px 15px;
+  position: relative;
+  background: #ffffff;
+}
+
+.search image {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 60rpx;
+  width: 40rpx;
+  height: 40rpx;
+  z-index: 2;
+}
+
+input {
+  display: block;
+  float: left;
+  width: 87%;
+  background-color: #f8f8f8;
+  border-radius: 15px;
+  height: 60rpx;
+  box-sizing: border-box;
+  font-size: 24rpx;
+  color: #979797;
+  padding: 0 20rpx;
+  text-align: center;
+  padding-left: 80rpx;
+}
+.search text{
+  color: #48cfad;
+    display: block;
+  float: left;
+  width: 13%;
+  text-align: center;
+  line-height: 60rpx;
+}
+.weui-grid_active {
+  background-color: #f8f8f8 !important;
+}
+
+/* 搜索 */
+.search_content{
+  padding: 100rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+.search_content .title{
+  padding-top: 20rpx;
+}
+.search_content .weui-flex {
+  padding: 20rpx 0;
+}
+.search_content .weui-flex .weui-flex__item{
+  border-left: 1px solid #cfcfcf;
+  color: #48cfad;
+}
+.search_content .weui-flex .weui-flex__item:first-of-type{
+  border-left: none;
+}
+.tab_title {
+  background-color: #fff;
+  text-align: center;
+  font-size: 34rpx;
+  color: #5d5d5d;
+  line-height: 80rpx;
+}
+
+.tab_title>view {
+  float: left;
+  width: 33.33333%;
+  position: relative;
+  font-size: 32rpx;
+}
+
+.tab_title>view image {
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-505,-50%); */
+  display: inline-block;
+  width: 20rpx;
+  height: 10rpx;
+  vertical-align: middle;
+  margin-left: 10rpx;
+}
+
+.tab_title>view.active1 {
+  color: #48cfad;
+}
+
+.tab_title>view.active2 {
+  color: #48cfad;
+}
+
+.tab_title>view.active2 image {
+  transform: rotate(180deg);
+}
+
+.tab_content .ul .li {
+  display: flex;
+  position: relative;
+  border-top: 1px solid #fafafa;
+  background-color: #fff;
+  padding: 8rpx 0;
+}
+
+.tab_content .ul .li .li_img {
+  flex-basis: 208rpx;
+  width: 208rpx;
+  height: 208rpx;
+}
+
+.tab_content .ul .li .li_content {
+  flex: 1;
+  padding-left: 16rpx;
+  
+}
+
+.tab_content .ul .li .li_content .title {
+  font-size: 30rpx;
+  color: #353535;
+}
+
+.tab_content .ul .li .li_content .money {
+  font-size: 38rpx;
+  color: #48cfad;
+  margin-top: 10rpx;
+}
+
+.tab_content .ul .li .li_content .num {
+  font-size: 20rpx;
+  color: #989898;
+  border: 1px solid #bcbcbc;
+  width: 112rpx;
+  height: 24rpx;
+  line-height: 24rpx;
+  text-align: center;
+  margin-top: 40rpx;
+  border-radius: 5rpx;
+}
+.tab_content .ul .li .li_content image{
+  position: absolute;
+  width: 14rpx;
+  height: 24rpx;
+  bottom: 10px;
+  right: 15px;
+}
+/* 套餐iQ定位 */
+.ispackage{
+  width: 100rpx;
+  height: 50rpx;
+  position: absolute;
+  left: 104rpx;
+}

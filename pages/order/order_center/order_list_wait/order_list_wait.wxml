@@ -1,0 +1,226 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd page_service_order page_allot_order_list page_allot_order_list2">
+    <!--选项卡-->
+    <!--选项卡-->
+    <view class="tab">
+      <view>
+        <navigator url="../order_list_wait/order_list_wait" class="active" open-type="redirect">服务中</navigator>
+      </view>
+      <view>
+        <navigator url="../order_list_processing/order_list_processing" open-type="redirect">未返现</navigator>
+      </view>
+      <view>
+        <navigator url="../order_list_audit/order_list_audit" open-type="redirect">已返现</navigator>
+      </view>
+      <view>
+        <navigator url="../order_list_finish/order_list_finish" open-type="redirect">已关闭</navigator>
+      </view>
+    </view>
+    <!-- 列表 -->
+    <view class="list">
+      <view class="ul">
+
+
+        <!-- 模板1 待接单 star-->
+        <block wx:for="{{listdata}}">
+          <block wx:if="{{item.workOrder.orderType==0}}">
+            <view class="li plan">
+              <view class="li_header plan">
+                <view class="header">
+                  <image src='../../../images/icon_order_list_plan.png' mode='widthFix'></image>
+                </view>
+                <view class='body'>
+                  殡仪/{{item.workOrder.orderNumber}}
+                </view>
+                <view class='footer'>
+                  {{item.workOrder.orderStatusStr}}
+                </view>
+              </view>
+              <navigator class="li_body" url="/pages/order_center/order_content/order_content?orderId={{item.workOrder.id}}" hover-class="active">
+                <image src="../../../images/right.png" class="icon"></image>
+                <view>
+                  <view class="header">
+                    服务地址：
+                  </view>
+                  <view class="body">
+                    {{item.customerInfo.address}}
+                  </view>
+                </view>
+                <view>
+                  <view class="header">
+                    预约时间：
+                  </view>
+                  <view class="body">
+                    {{item.workOrder.appointmentTime}}
+                  </view>
+                </view>
+                <view>
+                  <view class="header">
+                    客户姓名：
+                  </view>
+                  <view class="body">
+                    {{item.customerInfo.contactName}}
+                  </view>
+                </view>
+                <view>
+                  <view class="header">
+                    客户电话：
+                  </view>
+                  <view class="body">
+                    {{item.customerInfo.contactPhone}}
+                  </view>
+                </view>
+                <block wx:if="{{item.customerInfo.serviceTarget.length>0}}">
+                  <view>
+                    <view class="header">
+                      服务对象：
+                    </view>
+                    <view class="body">
+                      {{item.customerInfo.serviceTarget}}
+                    </view>
+                  </view>
+                </block>
+              </navigator>
+            </view>
+          </block>
+          <block wx:elif="{{item.workOrder.orderType==1}}">
+            <view class="li cem">
+              <view class="li_header cem">
+                <view class="header">
+                  <image src='../../../images/icon_order_list_cem.png' mode='widthFix'></image>
+                </view>
+                <view class='body'>
+                  公墓/{{item.workOrder.orderNumber}}
+                </view>
+                <view class='footer'>
+                  {{item.workOrder.orderStatusStr}}
+                </view>
+              </view>
+              <navigator class="li_body" url="/pages/order_center/order_content/order_content?orderId={{item.workOrder.id}}" hover-class="active">
+                <image src="../../../images/right.png" class="icon"></image>
+                <view>
+                  <view class="header">
+                    服务地址：
+                  </view>
+                  <view class="body">
+                    {{item.customerInfo.address}}
+                  </view>
+                </view>
+                <view>
+                  <view class="header">
+                    预约时间：
+                  </view>
+                  <view class="body">
+                    {{item.workOrder.appointmentTime}}
+                  </view>
+                </view>
+                <view>
+                  <view class="header">
+                    客户姓名：
+                  </view>
+                  <view class="body">
+                    {{item.customerInfo.contactName}}
+                  </view>
+                </view>
+                <view>
+                  <view class="header">
+                    客户电话：
+                  </view>
+                  <view class="body">
+                    {{item.customerInfo.contactPhone}}
+                  </view>
+                </view>
+                <block wx:if="{{item.customerInfo.serviceTarget.length>0}}">
+                  <view>
+                    <view class="header">
+                      服务对象：
+                    </view>
+                    <view class="body">
+                      {{item.customerInfo.serviceTarget}}
+                    </view>
+                  </view>
+                </block>
+              </navigator>
+            </view>
+          </block>
+          <block wx:elif="{{item.workOrder.orderType==2||item.workOrder.orderType==null}}">
+            <view class="li other">
+              <view class="li_header other">
+                <view class="header">
+                  <image src='../../../images/icon_order_list_other.png' mode='widthFix'></image>
+                </view>
+                <view class='body'>
+                  其它/{{item.workOrder.orderNumber}}
+                </view>
+                <view class='footer'>
+                  {{item.workOrder.orderStatusStr}}
+                </view>
+              </view>
+              <navigator class="li_body" url="/pages/order_center/order_content/order_content?orderId={{item.workOrder.id}}" hover-class="active">
+                <image src="../../../images/right.png" class="icon"></image>
+                <view>
+                  <view class="header">
+                    服务地址：
+                  </view>
+                  <view class="body">
+                    {{item.customerInfo.address}}
+                  </view>
+                </view>
+                <view>
+                  <view class="header">
+                    预约时间：
+                  </view>
+                  <view class="body">
+                    {{item.workOrder.appointmentTime}}
+                  </view>
+                </view>
+                <view>
+                  <view class="header">
+                    客户姓名：
+                  </view>
+                  <view class="body">
+                    {{item.customerInfo.contactName}}
+                  </view>
+                </view>
+                <view>
+                  <view class="header">
+                    客户电话：
+                  </view>
+                  <view class="body">
+                    {{item.customerInfo.contactPhone}}
+                  </view>
+                </view>
+                <block wx:if="{{item.customerInfo.serviceTarget.length>0}}">
+                  <view>
+                    <view class="header">
+                      服务对象：
+                    </view>
+                    <view class="body">
+                      {{item.customerInfo.serviceTarget}}
+                    </view>
+                  </view>
+                </block>
+              </navigator>
+            </view>
+          </block>
+
+        </block>
+
+
+        <!-- <navigator class='fix_new' url='../../new_easy/new_easy' open-type='redirectTo'>
+          <text>＋</text>
+        </navigator> -->
+
+      </view>
+  <import src="/template/template.wxml"/>
+  <block wx:if="{{notNumber}}">
+  <block wx:if="{{listdata.length>0}}" >
+  <template is="nonconformance"/>
+  </block>
+    <block wx:else>
+    <template is="nullData"/>
+    </block>
+  </block>
+    </view>
+  </view>
+</view>

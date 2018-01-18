@@ -1,0 +1,94 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd clearfix">
+
+    <form bindsubmit="formSubmit">
+      <form bindsubmit="formData">
+        <view class="goods_buy list ">
+          <view class="dl ">
+            <view class="dd required">
+              <view class="header ">
+                经办人
+              </view>
+              <view class="footer ">
+                <input type="text" placeholder="经办人姓名" name="agentName" value='{{agentName}}'/>
+              </view>
+            </view>
+            <view class="dd required">
+              <view class="header ">
+                经办人电话
+              </view>
+              <view class="footer ">
+                <input type="number" placeholder="经办人电话" name="agentPhone" maxlength='11'   bindblur='checktel' value='{{agentPhone}}'/>
+              </view>
+            </view>
+            <view class="dd required">
+              <view class="header ">
+                服务对象
+              </view>
+              <view class="footer ">
+                <input type="text" placeholder="服务对象姓名" name="serviceTarget" value='{{serviceTarget}}'/>
+              </view>
+            </view>
+            <view class="dd required">
+              <view class="header ">
+                订单金额
+              </view>
+              <view class="footer ">
+                <input type="number" placeholder="金额" name="orderPrice"  maxlength='10' bindblur='orderPrice'/>
+              </view>
+            </view>
+            <view class="dd fuid note required">
+              <view class="header ">
+                处理结果
+              </view>
+              <view class="footer ">
+                <!-- <input type="text" placeholder="意见反馈" /> -->
+                <textarea maxlength='10000' name="performSummary"></textarea>
+              </view>
+            </view>
+            <view class="dd fuid note required">
+              <view class="header ">
+                服务照片上传
+              </view>
+              <view class="footer files_img clearfix">
+                <!-- <input type="text" placeholder="意见反馈" /> -->
+                <block wx:for="{{files}}">
+                  <view class='img_wrap'>
+                    <image class='close' src='../../../images/cha.png' bindtap='deleteImage' mode='widthFix' data-img='{{item}}'></image>
+                    <image src='http://oq6rkq859.bkt.clouddn.com/{{item}}'  mode='widthFix'></image>
+                  </view>
+                </block>
+                <view class='img_wrap'>
+                  <image src='../../../images/zhy_fileupload_button_normal.png' bindtap='uploadImage' mode='widthFix'></image>
+                </view>
+              </view>
+            </view>
+
+          </view>
+        </view>
+
+
+
+        <!-- 固定底部 star -->
+        <button class="footer_btn return" form-type="submit">
+          再次处理
+        </button>
+      </form>
+      <!-- 保存 -->
+      <button class="footer_btn submit" form-type="submit">
+        提交审核
+      </button>
+
+      <!-- 固定底部 end -->
+
+
+    </form>
+
+
+
+
+
+
+
+  </view>
+</view>

@@ -1,0 +1,23 @@
+.page_service_order {
+  padding-top: 0;
+}
+.page_allot_order_list2 .ul label{
+  display: block;
+}
+.page_allot_order_list2 .ul label radio{
+  position: absolute;
+  right: 16rpx;
+  bottom: 25rpx;
+}
+.page_allot_order_list2 label.title{
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding:  0 32rpx;
+  height: 96rpx;
+}
+.page_allot_order_list2 label.title view{
+  flex: 1;
+  font-size: 28rpx;
+  color: #000;
+}

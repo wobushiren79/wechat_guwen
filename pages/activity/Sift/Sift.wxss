@@ -1,0 +1,21 @@
+/**login.wxss**/
+.page__bd{
+    padding: 15px;
+    text-align: center;
+}
+.item_img image{
+    display: block;
+width:100%;
+height:500rpx;
+}
+.item_title{
+    font-size: 34rpx;
+    color: #353535
+}
+.item_info{
+    font-size: 26rpx;
+    color: #888888
+}
+.item_text{
+    padding: 15rpx 15px;
+}

@@ -1,0 +1,160 @@
+<view class="page">
+  <view class="page__bd">
+    <form bindsubmit="formSubmit">
+
+      <!--治丧主套餐-->
+      <view class="section">
+        <view class="page__title">治丧主套餐</view>
+
+        <!--套餐名称  小分类分类-->
+        <view class="weui-cells__title ">
+          {{nameTitle_a}}
+          <picker class="add" bindchange="bindPickerChange_a" value="{{businessType_a}}" range="{{MainData}}">
+            <text>></text>
+          </picker>
+        </view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell">
+            <view class="weui-cell__bd picker">{{MainData[businessType_a]}}</view>
+          </view>
+        </view>
+<template name="list_a">
+        <!--小分类分类-->
+        <view class="weui-cells__title ">
+          {{name}}
+        </view>
+    
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell">
+            <view class="weui-cell__bd picker">{{productItemsName}}</view>
+            <view class="num_wrap">
+              <text>x1{{unit}}</text>
+            </view>
+            <view class="weui-cell__ft">
+              ￥:
+              <text>{{price}}</text>
+            </view>
+          </view>
+        </view>
+</template>
+        <view wx:for="{{nameTitle_b}}">
+                <template is="list_a" data="{{...item}}"/>
+        </view>
+      </view>
+
+      <!--治丧配套商品-->
+      <view class="section">
+        <view class="page__title">治丧配套商品</view>
+
+        <!--套餐名称  小分类分类-->
+        <view class="weui-cells__title ">
+          {{nameTitle_c}}
+          <picker class="add" bindchange="bindPickerChange_c" value="{{businessType_c}}" range="{{FuneralData}}">
+            <text>></text>
+          </picker>
+        </view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell">
+            <view class="weui-cell__bd picker">{{FuneralData[businessType_c]}}</view>
+          </view>
+        </view>
+<template name="list_b">
+        <!--寿衣全套  小分类分类-->
+         <view class="weui-cells__title ">
+          <!--{{index}}: -->
+         {{name}}
+         
+          
+          <picker class="add" bindchange="bindPickerChange_c_c" value="{{businessType_c_c}}"  range="{{productItems}}" data-name="{{productItems}}">
+            <text>></text>
+          </picker>
+        </view>
+</template>
+
+        <view wx:for="{{FuneralData_a_b_c}}">
+                <template is="list_b" data="{{...item}}"/>
+        </view>
+   <!--治丧配套产品列表-->
+        <view class="weui-cells weui-cells_after-title" wx:if="{{DataName_a}}" wx:for="{{DataName_a}}">
+          <view class="weui-cell" wx:if="{{!item.skuId}}">
+            <view class="weui-cell__bd picker" bindlongtap="DataName_aDel" data-id="{{item.id}}" >{{item.name}}</view>
+            <view class="num_wrap">
+              <text>x{{item.count}}{{item.num}}</text>
+            </view>
+            <view class="weui-cell__ft">
+              ￥:
+              <text>{{item.count*item.price}}</text>
+            </view>
+          </view>
+
+          <view class="weui-cell" wx:if="{{item.skuId}}">
+            <view class="weui-cell__bd picker" bindlongtap="DataName_aDel" data-id="{{item.id}}" >{{item.name}}</view>
+            <view class="num_wrap">
+              <text>x{{item.number}}{{item.num}}</text>
+            </view>
+            <view class="weui-cell__ft">
+              ￥:
+              <text>{{item.number*item.price}}</text>
+            </view>
+          </view>
+
+        </view>  
+      </view>
+
+      <!--增值服务项目-->
+      <view class="section">
+        <view class="page__title">增值服务项目</view>
+
+        <!--寿衣全套  小分类分类-->
+        <view class="weui-cells__title ">
+          {{nameTitle_e}}
+          <picker class="add" bindchange="bindPickerChange_e" value="{{businessType_e}}" range="{{CategoryName}}">
+            <text>></text>
+          </picker>
+        </view>
+
+
+        <!--详情显示-->
+        <view class="weui-cells weui-cells_after-title" wx:if="{{DataCategory}}" wx:for="{{DataCategory}}">
+          <view class="weui-cell" wx:if="{{!item.totalPrice}}">
+            <view class="weui-cell__bd picker" bindlongtap="del" data-k="{{item.id}}">{{item.name}}</view>
+            <view class="num_wrap">
+              <text bindtap="Botton" data-id="{{item.id}}">-</text>
+              <text>{{item.count}}{{item.unit}}</text>
+              <text bindtap="Top" data-id="{{item.id}}">+</text>
+            </view>
+            <view class="weui-cell__ft">
+              ￥:
+              <text>{{item.price * item.count}}</text>
+            </view>
+          </view>
+
+
+          <view class="weui-cell" wx:if="{{item.totalPrice}}">
+            <view class="weui-cell__bd picker" bindlongtap="del" data-k="{{item.id}}">{{item.name}}</view>
+            <view class="num_wrap">
+              <text bindtap="Botton" data-id="{{item.id}}">-</text>
+              <text>{{item.number}}{{item.unit}}</text>
+              <text bindtap="Top" data-id="{{item.id}}">+</text>
+            </view>
+            <view class="weui-cell__ft">
+              ￥:
+              <text>{{item.price * item.number}}</text>
+            </view>
+          </view>
+
+
+        </view>
+      </view>
+      
+      <!--<view class="weui-btn-area">
+        <button class="weui-btn" type="primary" bindtap="showTopTips" formType="submit">下一步</button>
+      </view>-->
+      <view class="foot">
+        <view>￥<text>{{TotalPrice}}</text></view>
+        <button class="weui-btn" type="primary" formType="submit"  size="mini">确认提交</button>
+      </view>
+    </form>
+  </view>
+
+</view>

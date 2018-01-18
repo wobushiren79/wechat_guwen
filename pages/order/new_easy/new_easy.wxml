@@ -1,0 +1,112 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <form bindsubmit="formSubmit">
+      <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+      <view class="weui-cells weui-cells_after-title">
+
+        <!--客户姓名-->
+        <view class="weui-cell weui-cell_input required">
+          <view class="weui-cell__hd">
+            <!-- <view class="weui-label">客户姓名</view> -->
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="客户姓名" placeholder-class='placeholder' name="contactName" bindblur='Cname' />
+          </view>
+        </view>
+
+        <!--联系电话-->
+        <view class="weui-cell weui-cell_input ">
+          <view class="weui-cell__hd">
+            <!-- <view class="weui-label">联系电话</view> -->
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="联系电话" placeholder-class='placeholder'  name="contactPhone" type='number' maxlength='11' bindblur='checktel' />
+          </view>
+        </view>
+
+        <!--客户地址-->
+        <view class="weui-cell weui-cell_input weui-cell_input_icon required">
+          <view class="weui-cell__hd">
+            <!-- <view class="weui-label">客户地址</view> -->
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="客户地址" placeholder-class='placeholder'  name="address" value="{{customerAddressNew}}" bindblur='Clocation' />
+          </view>
+          <view class="icon" bindtap="Location">
+            <image src="../../images/address.png"></image>
+          </view>
+        </view>
+
+        <!--预约时间-->
+        <view class="weui-cell weui-cell_select required time">
+          <view class="weui-cell__bd">
+            <picker class="weui-btn" mode="date" value="{{date}}" start="1900-01-01" end="2020-01-01" bindchange="bindDateChange">
+              <view class="picker">{{date}}</view>
+            </picker>
+          </view>
+          <view class="weui-cell__bd">
+            <picker class="weui-btn" mode="time" value="{{time}}" start="0:00" end="24:00" bindchange="bindTimeChange">
+              <view class="picker">{{time}}</view>
+            </picker>
+          </view>
+        </view>
+        <!-- 预约类型 -->
+        <view class="weui-cell weui-cell_select required">
+          <view class="weui-cell__hd">
+            <!-- <view class="weui-label">服务类型</view> -->
+          </view>
+          <view class="weui-cell__bd">
+            <picker bindchange="bindPickerChange_type"  value="{{businessType_type}}" range="{{types}}" data-name="{{types[businessType_type]}}">
+              <view class="picker">{{types[businessType_type]}}</view>
+            </picker>
+          </view>
+        </view>
+     <block wx:if="{{yuy_type}}">
+          <!--参观人数-->
+          <!-- <view class="weui-cell weui-cell_input required">
+          <view class="weui-cell__hd">
+            <view class="weui-label">参观人数</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="人数" name="personNum" type='number' value='0'/>
+          </view>
+        </view> -->
+
+          <!--预约参观公墓-->
+          <view class="weui-cell weui-cell_input required">
+            <!-- <view class="weui-cell__hd">
+              <view class="weui-label">参观公墓</view>
+            </view> -->
+            <view class="weui-cell__bd">
+              <picker bindchange="bindPickerChange_a" value="{{businessType_a}}" range="{{GmList}}" data-name="{{GmList[businessType_a]}}">
+                <view class="picker">{{GmList[businessType_a]}}</view>
+              </picker>
+            </view>
+          </view>
+        </block>
+        <!-- 工单描述 -->
+        <view class="weui-cell weui-cell_textarea ">
+          <view class="weui-cell__hd">
+            <!-- <view class="weui-label">工单描述</view> -->
+          </view>
+          <view class="weui-cell__bd">
+            <textarea placeholder='客户需求描述'  placeholder-class='placeholder'  name="orderDescribe" bindblur='notNull'></textarea>
+          </view>
+        </view>
+
+   
+
+      </view>
+
+      <!--提交-->
+      <view class="weui-btn-area">
+      <block wx:if="{{asda}}">
+        <button class="weui-btn" type="primary" formType="submit">提交</button>
+      </block>
+      <block wx:else>
+        <button class="weui-btn" type="primary" >已提交</button>
+      </block>
+      </view>
+    </form>
+  </view>
+</view>

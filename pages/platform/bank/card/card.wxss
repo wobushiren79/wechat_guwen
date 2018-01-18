@@ -1,0 +1,43 @@
+.weui-panel__bd .icon {
+  width: 14rpx;
+  height: 24rpx;
+  position: absolute;
+  top: 50%;
+  right: 16rpx;
+  transform: translateY(-50%);
+  opacity: 0.5;
+  transition: all 0.3s;
+}
+.weui-media-box{
+  padding: 30rpx 16rpx 30rpx 30rpx;
+}
+.weui-flex{
+  padding: 30rpx 16rpx 30rpx 30rpx;
+  background: #fff;
+}
+.weui-flex .weui-flex__item:first-of-type{
+  color: #48cfad;
+}
+.weui-flex .weui-flex__item:last-of-type{
+  text-align: right;
+}
+/* 列表 */
+.list .weui-media-box__hd_in-appmsg{
+  width: 30rpx;
+  height: 30rpx;
+}
+.list.weui-panel::after,
+.list.weui-panel::before{
+  display: none!important;
+}
+.list .weui-media-box__bd text{
+  margin-right: 20rpx;
+  display: block;
+}
+.list .weui-media-box__ft{
+  text-align: right;
+}
+.list .weui-media-box__ft radio{
+  /* display: block; */
+  margin-right: -6rpx;
+}
