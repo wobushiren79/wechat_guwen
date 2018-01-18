@@ -15,7 +15,6 @@ function loginByPhone(data, callback) {
   baseRequest.sendPostHttpForLogin(baseUrl + "appLoginMobile", data, callback, true)
 }
 
-
 /**
  * 修改密码发送短信验证
  */
