@@ -103,12 +103,12 @@ Page({
     }
     if (hasOrderCenterExecutor && hasOrderCenterBuilder){
       wx.navigateTo({
-        url: '../allot/order_list_wait/order_list_wait',
+        url: '../service/CashBack_list_wait/CashBack_list_wait',
       })
       return
     } else if (!hasOrderCenterBuilder && hasOrderCenterExecutor){
       wx.navigateTo({
-        url: '../allot/order_list_wait/order_list_wait',
+        url: '../service/CashBack_list_wait/CashBack_list_wait',
       })
       return
     }else{

@@ -186,7 +186,7 @@ function createOrder(createOrderData) {
       })
       toastUtil.showToastReWrite('新建成功')
         wx.redirectTo({
-          url: '/pages/order_center/order_list_wait/order_list_wait',
+          url: '/pages/CashBack/CashBack_list_wait/CashBack_list_wait',
         })
     },
     fail: function (data, res) {
