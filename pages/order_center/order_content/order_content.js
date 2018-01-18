@@ -81,7 +81,7 @@ function getOrderDetails(orderId) {
             if (data.workOrderUserFinances[i].priceRelateReal != null) {
               realCommissionTotalPrice += (data.workOrderUserFinances[i].priceRelateReal / 100);
             }
-            commissionRemark = data.workOrderUserFinances[i].finance_remark;
+            commissionRemark = data.workOrderUserFinances[i].financeRemark;
           }
         }
       }

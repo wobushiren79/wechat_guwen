@@ -322,7 +322,7 @@
             </view>
 
             <view class="footer ">
-              {{listData.goodsFinance.paymentTime == null ?'-':listData.goodsFinance.paymentTime }}
+              {{listData.goodsFinance.paymentTime}}
             </view>
           </view>
           <view class="dd other">
@@ -330,7 +330,7 @@
               付款流水：
             </view>
             <view class="footer ">
-              {{listData.goodsFinance.paymentNumber==null ? '-':listData.goodsFinance.paymentNumber}}
+              {{listData.goodsFinance.paymentNumber}}
             </view>
           </view>
         </black>
@@ -447,7 +447,7 @@
     <black wx:if="{{package_a}}">
       <!-- 遮罩层 star -->
       <view class="mask" bindtap="package_b"></view>
-      <!-- 遮罩层 end -->
+      <!-- 遮罩层 end -->.
 
       <!-- 弹窗 star -->
       <view class="package_view" bindtap="package_b">
