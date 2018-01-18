@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/allot/order_list_about/order_list_about",
     "pages/list/list",
     "pages/order/new_easy/new_easy",
     "pages/new/new",
@@ -32,7 +31,10 @@
     "pages/goods/order/order_goods_address/order_goods_address",
     "pages/goods/order/order_goods_content/order_goods_content",
     "pages/goods/order/order_goods_invoice/order_goods_invoice",
-    "pages/goods/order/order_goods_list/order_goods_list",
+    "pages/goods/order/order_goods_list/order_goods_list_pay/order_goods_list_pay",
+    "pages/goods/order/order_goods_list/order_goods_list_serviceing/order_goods_list_serviceing",
+    "pages/goods/order/order_goods_list/order_goods_list_submit/order_goods_list_submit",
+    "pages/goods/order/order_goods_list/order_goods_list_succeed/order_goods_list_succeed",
     "pages/goods/order/order_goods_money/order_goods_money",
     "pages/goods/order/order_goods_package_list/order_goods_package_list",
     "pages/goods/order/order_goods_pay/order_goods_pay",
@@ -46,17 +48,6 @@
     "pages/cemetery/list_nottobuy/list_nottobuy",
     "pages/funeral_img/funeral_img",
     "pages/cem/cem",
-    "pages/order/service_goods_list/service_goods_list",
-    "pages/order/service_goods_pay_goodslist/service_goods_pay_goodslist",
-    "pages/order/service/service_list_wait/service_list_wait",
-    "pages/order/service/service_content/service_content",
-    "pages/order/service/service_edit/service_edit",
-    "pages/order/service/service_list_processing/service_list_processing",
-    "pages/order/service/service_list_about/service_list_about",
-    "pages/order/service/service_list_finish/service_list_finish",
-    "pages/order/service/use_car/use_car",
-    "pages/order/service/use_car_content/use_car_content",
-    "pages/order/service/use_car_list/use_car_list",
     "pages/goods/mystroe/store_list/store_list",
     "pages/goods/mystroe/store_order_list_submit/store_order_list_submit",
     "pages/goods/mystroe/store_order_list_succeed/store_order_list_succeed",
@@ -69,8 +60,6 @@
     "pages/order/CashBack/CashBack_list_finish/CashBack_list_finish",
     "pages/order/CashBack/CashBack_list_wait/CashBack_list_wait",
     "pages/order/CashBack/CashBack_content/CashBack_content",
-    "pages/order_service_address/order_service_address",
-    "pages/user_auto_login_and_register/user_auto_login_and_register",
     "pages/index_flex1/index_flex1",
     "pages/main/study/content/content",
     "pages/main/study/index/index",
@@ -113,13 +102,13 @@
         "selectedIconPath": "images/icon_tabBar_platform_1.png"
       },
       {
-        "pagePath": "pages/message/message",
+        "pagePath": "pages/platform/message/message",
         "text": "消息",
         "iconPath": "images/icon_tabBar_list0.png",
         "selectedIconPath": "images/icon_tabBar_list1.png"
       },
       {
-        "pagePath": "pages/bank/index/index",
+        "pagePath": "pages/platform/bank/bank_index/bank_index",
         "text": "我的",
         "iconPath": "images/icon_tabBar_me_0.png",
         "selectedIconPath": "images/icon_tabBar_me_1.png"
