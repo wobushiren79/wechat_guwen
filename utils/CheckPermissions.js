@@ -53,7 +53,7 @@ function baseCheckPermissions(roleCode) {
   var resourceCodes = wx.getStorageSync(storageKey.PLATFORM_RESOURCE_CODES)
   if (!resourceCodes) {
     wx.navigateTo({
-      url: '/pages/login/login',
+      url: '/pages/platform/user/user_login',
     })
   } else {
     for (var i in resourceCodes) {

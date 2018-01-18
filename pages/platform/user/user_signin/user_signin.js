@@ -1,6 +1,6 @@
 // pages/signin/signin.js
-var platformHttp = require("../../utils/http/RequestForPlatform.js");
-var toastUtil = require("../../utils/ToastUtil.js");
+var platformHttp = require("../../../../utils/http/RequestForPlatform.js");
+var toastUtil = require("../../../../utils/ToastUtil.js");
 var content;
 Page({
 

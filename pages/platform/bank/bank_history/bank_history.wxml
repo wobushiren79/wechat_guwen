@@ -47,7 +47,7 @@
       </block>
       <block wx:else>
      <view class='prompt_img'>
-      <image src='../../../images/blank.png' mode='widthFix'></image>
+      <image src='/images/blank.png' mode='widthFix'></image>
      </view>
      </block>
     </view>

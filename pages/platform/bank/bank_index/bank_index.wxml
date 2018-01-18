@@ -17,7 +17,7 @@
               <text>{{!usableCredit?0:usableCredit ==''?0:usableCredit}}</text>
             </view>
           </view>
-          <image class='icon' src='../../../images/right.png'></image>
+          <image class='icon' src='/images/right.png'></image>
         </view>
       </view>
     </navigator>
@@ -30,44 +30,44 @@
         <view class='num'>￥
           <text>{{usableMoney}}</text>
         </view>
-        <navigator class='go' url='../money/money'>提现</navigator>
+        <navigator class='go' url='/pages/platform/bank/bank_get_money/bank_get_money'>提现</navigator>
       </view>
     </view>
 
     <view class="weui-panel weui-panel_access list">
       <view class="weui-panel__bd">
-        <navigator class="weui-media-box weui-media-box_appmsg" url='../history/history'>
+        <navigator class="weui-media-box weui-media-box_appmsg" url='/pages/platform/bank/bank_history/bank_history'>
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="../../../images/icon_bank_index1.png" />
+            <image class="weui-media-box__thumb" src="/images/icon_bank_index1.png" />
           </view>
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
             <view class="weui-media-box__title">
               钱包明细
             </view>
           </view>
-          <image class='icon' src='../../../images/right.png'></image>
+          <image class='icon' src='/images/right.png'></image>
         </navigator>
-        <navigator class="weui-media-box weui-media-box_appmsg" url='../card/card?pid=0'>
+        <navigator class="weui-media-box weui-media-box_appmsg" url='/pages/platform/bank/bank_set_card/bank_set_card?pid=0'>
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="../../../images/icon_bank_index2.png" />
+            <image class="weui-media-box__thumb" src="/images/icon_bank_index2.png" />
           </view>
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
             <view class="weui-media-box__title">
               我的银行卡
             </view>
           </view>
-          <image class='icon' src='../../../images/right.png'></image>
+          <image class='icon' src='/images/right.png'></image>
         </navigator>
-        <navigator class="weui-media-box weui-media-box_appmsg" url='../../signin/signin'>
+        <navigator class="weui-media-box weui-media-box_appmsg" url='/pages/platform/user/user_signin/user_signin'>
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="../../../images/icon_bank_index3.png" />
+            <image class="weui-media-box__thumb" src="/images/icon_bank_index3.png" />
           </view>
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
             <view class="weui-media-box__title">
               积分记录
             </view>
           </view>
-          <image class='icon' src='../../../images/right.png'></image>
+          <image class='icon' src='/images/right.png'></image>
         </navigator>
 
         <view class="weui-media-box weui-media-box_appmsg" bindtap="dele">
@@ -78,7 +78,7 @@
               退出
             </view>
           </view>
-          <image class='icon' src='../../../images/right.png'></image>
+          <image class='icon' src='/images/right.png'></image>
         </view>
       </view>
     </view>

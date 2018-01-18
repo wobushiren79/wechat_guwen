@@ -1,7 +1,7 @@
-var RequestForPlatformm=require('../../../utils/http/RequestForPlatform.js');
-var RequestForCemetery = require('../../../utils/http/RequestForCemetery.js');
-var toastUtil = require("../../../utils/ToastUtil.js");
-var storageKey = require("../../../utils/storage/StorageKey.js");
+var RequestForPlatformm=require('../../../../utils/http/RequestForPlatform.js');
+var RequestForCemetery = require('../../../../utils/http/RequestForCemetery.js');
+var toastUtil = require("../../../../utils/ToastUtil.js");
+var storageKey = require("../../../../utils/storage/StorageKey.js");
 Page({
   data: {
     second: 60,
@@ -117,7 +117,7 @@ Page({
             wx.hideLoading()
             wx.showToast({
               title: '银行卡为空',
-              image: '../../../images/icon_info.png',
+              image: '/images/icon_info.png',
               duration: 3000,
             })
           }
@@ -125,7 +125,7 @@ Page({
           wx.hideLoading()
           wx.showToast({
             title: '金额为空',
-            image: '../../../images/icon_info.png',
+            image: '/images/icon_info.png',
             duration: 3000,
             // mask:true
           })
@@ -134,7 +134,7 @@ Page({
         wx.hideLoading()
         wx.showToast({
           title: '验证码错误',
-          image: '../../../images/icon_info.png',
+          image: '/images/icon_info.png',
           duration: 3000,
           // mask:true
         })
@@ -143,7 +143,7 @@ Page({
           wx.hideLoading()
           wx.showToast({
             title: '金额过大',
-            image: '../../../images/icon_info.png',
+            image: '/images/icon_info.png',
             duration: 3000,
             // mask:true
           })
@@ -152,7 +152,7 @@ Page({
       wx.hideLoading()
       wx.showToast({
         title: '金额错误',
-        image: '../../../images/icon_info.png',
+        image: '/images/icon_info.png',
         duration: 3000,
         // mask:true
       })
@@ -161,7 +161,7 @@ Page({
       wx.hideLoading()
       wx.showToast({
         title: '金额为空',
-        image: '../../../images/icon_info.png',
+        image: '/images/icon_info.png',
         duration: 3000,
         // mask:true
       })

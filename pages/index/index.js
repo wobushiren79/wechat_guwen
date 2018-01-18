@@ -4,7 +4,6 @@ var toastUtil = require("../../utils/ToastUtil.js");
 var storageKey = require("../../utils/storage/StorageKey.js");
 var checkPermissions = require("../../utils/CheckPermissions.js");
 var content;
-//index.js
 //获取应用实例
 var app = getApp()
 Page({

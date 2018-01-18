@@ -1,6 +1,6 @@
-var RequestForPlatformm = require('../../../utils/http/RequestForPlatform.js');
-var toastUtil = require("../../../utils/ToastUtil.js");
-var storageKey = require("../../../utils/storage/StorageKey.js");
+var RequestForPlatformm = require('../../../../utils/http/RequestForPlatform.js');
+var toastUtil = require("../../../../utils/ToastUtil.js");
+var storageKey = require("../../../../utils/storage/StorageKey.js");
 Page({
   data: {
     // bankName: ["中国银行 ", "中国工商银行 ", "中国招商银行", "中国农业银行", "中国建设银行 ", "中国光大银行 ", "中国交通银行", "中国民生银行", "中国邮政储蓄银行","其他"],

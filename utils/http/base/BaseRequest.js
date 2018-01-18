@@ -160,7 +160,7 @@ function getBaseUrl(url) {
 function loginPlatForm() {
   if (wx.getStorageSync(storageKey.LOGIN_USER_NAME) == null || wx.getStorageSync(storageKey.LOGIN_USER_NAME).length == 0) {
     wx.navigateTo({
-      url: '/pages/login/login',
+      url: '/pages/platform/user/user_login',
     });
     return
   }
@@ -188,7 +188,7 @@ function loginPlatForm() {
     },
     fail: function (data, res) {
       wx.navigateTo({
-        url: '/pages/login/login',
+        url: '/pages/platform/user/user_login',
       });
     }
   }

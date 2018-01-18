@@ -7,7 +7,7 @@ Page({
 
     value1: '殡仪服務',
     value2: "公墓服務",
-    logo_src: "../../images/logo.png",
+    logo_src: "/images/logo.png",
     systemType: 2,
     value3: '',
     value4: ''
@@ -62,14 +62,14 @@ Page({
           } else if (res.data.code == 1006) {
             wx.showToast({
               title: res.data.message,
-              image: '../../images/icon_info.png',
+              image: '/images/icon_info.png',
               duration: 3000,
               // mask:true
             })
           } else {
             wx.showToast({
               title: res.data.message,
-              image: '../../images/icon_info.png',
+              image: '/images/icon_info.png',
               duration: 3000,
               // mask:true
             })
@@ -79,7 +79,7 @@ Page({
           wx.hideLoading()
           wx.showToast({
             title: '系统错误',
-            image: '../../images/icon_info.png',
+            image: '/images/icon_info.png',
             duration: 3000,
             // mask:true
           })
@@ -88,7 +88,7 @@ Page({
     }else{
       wx.showToast({
         title: '号码不能为空',
-        image: '../../images/icon_info.png',
+        image: '/images/icon_info.png',
         duration: 3000,
         // mask:true
       })
@@ -143,7 +143,7 @@ Page({
                 }else{
                   wx.showToast({
                     title: res.data.message,
-                    image: '../../images/icon_info.png',
+                    image: '/images/icon_info.png',
                     duration: 3000,
                     // mask:true
                   })
@@ -163,21 +163,21 @@ Page({
     } else if (e.detail.value.keys == ''){
       wx.showToast({
         title: '新密码不能为空',
-        image: '../../images/icon_info.png',
+        image: '/images/icon_info.png',
         duration: 3000,
         // mask:true
       })
     } else if (e.detail.value.mobile == '') {
       wx.showToast({
         title: '手机号不能为空',
-        image: '../../images/icon_info.png',
+        image: '/images/icon_info.png',
         duration: 3000,
         // mask:true
       })
     } else if (e.detail.value.msgCode == '') {
       wx.showToast({
         title: '验证码不能为空',
-        image: '../../images/icon_info.png',
+        image: '/images/icon_info.png',
         duration: 3000,
         // mask:true
       })

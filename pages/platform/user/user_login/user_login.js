@@ -1,19 +1,19 @@
 
 //获取应用实例
-var platformHttp = require("../../utils/http/RequestForPlatform.js");
-var cemeteryHttp = require("../../utils/http/RequestForCemetery.js");
-var goodsHttp = require("../../utils/http/RequestForGoods.js")
-var orderCenterHttp = require("../../utils/http/RequestForOrderCenter.js");
-var toastUtil = require("../../utils/ToastUtil.js");
-var storageKey = require("../../utils/storage/StorageKey.js");
-var checkPermissions = require("../../utils/CheckPermissions.js");
+var platformHttp = require("../../../../utils/http/RequestForPlatform.js");
+var cemeteryHttp = require("../../../../utils/http/RequestForCemetery.js");
+var goodsHttp = require("../../../../utils/http/RequestForGoods.js")
+var orderCenterHttp = require("../../../../utils/http/RequestForOrderCenter.js");
+var toastUtil = require("../../../../utils/ToastUtil.js");
+var storageKey = require("../../../../utils/storage/StorageKey.js");
+var checkPermissions = require("../../../../utils/CheckPermissions.js");
 var content;
 var app = getApp()
 Page({
   data: {
     value1: '殡仪服務',
     value2: "公墓服務",
-    logo_src: "../../images/logo.png",
+    logo_src: "/images/logo.png",
     systemType: 2,
     value3: '',
     value4: '',
@@ -76,7 +76,6 @@ Page({
       success: function (res) {
         wx.showToast({
           title: '转发成功',
-          // image: '../../images/icon_info.png',
           duration: 3000,
         })
         // 转发成功
@@ -85,7 +84,7 @@ Page({
         // 转发失败
         wx.showToast({
           title: '转发失败',
-          image: '../../images/icon_info.png',
+          image: '/images/icon_info.png',
           duration: 3000,
         })
       }

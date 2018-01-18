@@ -17,9 +17,9 @@
     </view>
     <view class="weui-panel weui-panel_access list">
       <view class="weui-panel__bd">
-        <navigator class="weui-media-box weui-media-box_appmsg" url='../card/card?pid=1'>
+        <navigator class="weui-media-box weui-media-box_appmsg" url='/pages/platfomr/bank/bank_set_card/bank_set_card?pid=1'>
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="../../../images/icon_bank_index2.png" />
+            <image class="weui-media-box__thumb" src="/images/icon_bank_index2.png" />
           </view>
           <block wx:if="{{defaultBankCard}}">
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
@@ -34,7 +34,7 @@
             <text>点击设置银行卡</text>
           </view>
           </block>
-          <image class='icon' src='../../../images/right.png'></image>
+          <image class='icon' src='/images/right.png'></image>
         </navigator>
 
         <view class="title weui-media-box weui-media-box_appmsg">

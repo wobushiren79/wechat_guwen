@@ -1,8 +1,8 @@
 
-var platformHttp = require("../../../utils/http/RequestForPlatform.js");
-var toastUtil = require("../../../utils/ToastUtil.js");
-var storageKey = require("../../../utils/storage/StorageKey.js");
-var checkPermissions = require("../../../utils/CheckPermissions.js");
+var platformHttp = require("../../../../utils/http/RequestForPlatform.js");
+var toastUtil = require("../../../../utils/ToastUtil.js");
+var storageKey = require("../../../../utils/storage/StorageKey.js");
+var checkPermissions = require("../../../../utils/CheckPermissions.js");
 var content;
 Page({
   data: {
@@ -20,7 +20,7 @@ Page({
           wx.clearStorageSync()
           //跳转登录页面
           wx.navigateTo({
-            url: '../../login/login',
+            url: '/pages/platfomr/user/user_login/user_login',
           })
         }
       }
@@ -30,7 +30,7 @@ Page({
     var userInfo = wx.getStorageSync(storageKey.PLATFORM_USER_OBJ);
     if (!userInfo) {
       wx.navigateTo({
-        url: '/pages/login/login',
+        url: '/pages/platfomr/user/user_login/user_login',
       })
       return
     }

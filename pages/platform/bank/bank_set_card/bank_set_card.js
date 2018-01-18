@@ -1,6 +1,6 @@
-var RequestForPlatformm = require('../../../utils/http/RequestForPlatform.js');
-var toastUtil = require("../../../utils/ToastUtil.js");
-var storageKey = require("../../../utils/storage/StorageKey.js");
+var RequestForPlatformm = require('../../../../utils/http/RequestForPlatform.js');
+var toastUtil = require("../../../../utils/ToastUtil.js");
+var storageKey = require("../../../../utils/storage/StorageKey.js");
 Page({
     data: {
 

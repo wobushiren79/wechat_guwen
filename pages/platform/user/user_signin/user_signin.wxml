@@ -2,7 +2,7 @@
   <view class="page__bd">
     <view class='top'>
       <view class='btn' >
-        <image src='../../images/sign_btn.png'></image>
+        <image src='/images/sign_btn.png'></image>
         <block wx:if="{{canCheckin}}">
         <text class="" bindtap='sign'>签到</text>
         </block>

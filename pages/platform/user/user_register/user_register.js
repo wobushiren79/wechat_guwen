@@ -1,11 +1,10 @@
-var platformHttp = require('../../utils/http/RequestForPlatform.js');
-var goodsHttp = require('../../utils/http/RequestForGoods.js')
-var cemeteryHttp = require('../../utils/http/RequestForCemetery.js');
-var storageKey = require('../../utils/storage/StorageKey.js');
-var toastUtil = require('../../utils/ToastUtil.js');
-var modalUtil = require('../../utils/ModalUtil.js');
+var platformHttp = require('../../../../utils/http/RequestForPlatform.js');
+var goodsHttp = require('../../../../utils/http/RequestForGoods.js')
+var cemeteryHttp = require('../../../../utils/http/RequestForCemetery.js');
+var storageKey = require('../../../../utils/storage/StorageKey.js');
+var toastUtil = require('../../../../utils/ToastUtil.js');
+var modalUtil = require('../../../../utils/ModalUtil.js');
 var content;
-//index.js
 //获取应用实例
 var app = getApp()
 Page({

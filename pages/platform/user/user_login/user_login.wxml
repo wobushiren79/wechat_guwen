@@ -32,12 +32,12 @@
             <button class="weui-btn" type="primary" bindtap="showTopTips" formType="submit">登陆</button>
           </view>
         </form>
-        <image class='banner' src='../../images/login_banner.png' mode="widthFix"></image>
+        <image class='banner' src='/images/login_banner.png' mode="widthFix"></image>
         <view class="foot">
-          <navigator url='../password_reset/password_reset' hover-class='none'>
+          <navigator url='/pages/platform/user/user_pwd_reset/user_pwd_reset' hover-class='none'>
             忘记密码
           </navigator>
-          <navigator url="../user_auto_login_and_register/user_auto_login_and_register"  hover-class='none'>
+          <navigator url="/pages/platform/user/user_register/user_register"  hover-class='none'>
             没有账户和密码?
           </navigator>
         </view>
@@ -85,14 +85,14 @@
             <button class="weui-btn" type="primary" bindtap="showTopTips" formType="submit">短信登陆</button>
           </view>
         </form>
-        <image class='banner' src='../../images/login_banner.png' mode="widthFix"></image>
+        <image class='banner' src='/images/login_banner.png' mode="widthFix"></image>
         <view class="foot">
-        <navigator url='../password_reset/password_reset'  hover-class='none'>
-            忘记密码
-          </navigator>
-          <navigator url="../user_auto_login_and_register/user_auto_login_and_register"  hover-class='none'>
-            没有账户和密码?
-          </navigator>
+        <navigator url='/pages/platform/user/user_pwd_reset/user_pwd_reset' hover-class='none'>
+                    忘记密码
+                  </navigator>
+                  <navigator url="/pages/platform/user/user_register/user_register"  hover-class='none'>
+                    没有账户和密码?
+                  </navigator>
         </view>
       </view>
     </swiper-item>

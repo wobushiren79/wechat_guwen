@@ -42,7 +42,7 @@
                 <text>{{bankName[bankIndex]}}</text>
               </picker>
             </view>
-            <image src="../../../images/right.png" class="icon"></image>
+            <image src="/images/right.png" class="icon"></image>
           </view> -->
         </view>
 
