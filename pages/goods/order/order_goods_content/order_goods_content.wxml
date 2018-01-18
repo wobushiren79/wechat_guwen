@@ -7,7 +7,7 @@
 
 
       <view class="hide clearfix">
-        <image src="../../images/icon_money_my.png" class="img "></image>
+        <image src="/images/icon_money_my.png" class="img "></image>
 
         <!-- 信息 -->
         <view class="info clearfix ">
@@ -48,7 +48,7 @@
 
 
       <!-- 分割线 -->
-      <image src="../../images/hr.png " class="hr "></image>
+      <image src="/images/hr.png " class="hr "></image>
     </view>
     <!-- 填写服务信息 end -->
 
@@ -74,7 +74,7 @@
           <view class="header ">
             查看详细列表
           </view>
-          <image src="../../images/right.png " class="icon "></image>
+          <image src="/images/right.png " class="icon "></image>
         </view>
 
         <!-- 详情列表 star -->
@@ -126,7 +126,7 @@
                   </black>
                 </view>
                 <black wx:if="{{item.performStatu == 2 || item.performStatu == 3 || item.performStatu == 4 || item.performStatu == 5}}">
-                  <image bindtap="popup" class="info" src="../../images/icon_info.png" bindtap="zhixing" data-id="{{item.id}}"></image>
+                  <image bindtap="popup" class="info" src="/images/icon_info.png" bindtap="zhixing" data-id="{{item.id}}"></image>
                 </black>
               </view>
 
@@ -141,7 +141,7 @@
               <view class="img_wrap">
                 <image src="{{item.titleImg}}"></image>
                 <!-- 套餐IQ -->
-                <image src='../../images/ispackage.png' class='ispackage' style='width: 100rpx;height: 50rpx;'></image>
+                <image src='/images/ispackage.png' class='ispackage' style='width: 100rpx;height: 50rpx;'></image>
               </view>
               <view class="info show">
                 <view class="name">
@@ -167,7 +167,7 @@
                 </text>
                 </view>
                 <!-- <black wx:if="{{item.performStatu == 2 || item.performStatu == 3 || item.performStatu == 4 || item.performStatu == 5}}"> -->
-                <!-- <image class="info" src="../../images/icon_info.png" bindtap="packages" data-id="{{item.id}}"></image> -->
+                <!-- <image class="info" src="/images/icon_info.png" bindtap="packages" data-id="{{item.id}}"></image> -->
                 <!-- </black> -->
               </view>
 
@@ -348,12 +348,12 @@
       <!-- <contact-button size="20" session-from="WeChat">
       </contact-button> -->
       <!-- <view class="server">
-        <image src="../../images/icon_server.png"></image>
+        <image src="/images/icon_server.png"></image>
         <text>客服</text>
       </view> -->
       <!-- 购物车 -->
       <!-- <view class="shop">
-         <image src="../../images/icon_shop.png"></image> 
+         <image src="/images/icon_shop.png"></image>
         <text></text>
       </view>  -->
       <!-- 加入购物车 -->

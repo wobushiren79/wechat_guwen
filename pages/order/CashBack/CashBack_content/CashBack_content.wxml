@@ -23,7 +23,7 @@
             <text>￥</text>
             <text class='num'>{{realCommissionTotalPrice}}</text>
             <block wx:if="{{commissionRemark}}">
-              <image bindtap='commissionRemark' src='../../../images/icon_info.png' mode='widthFix' data-remark='{{commissionRemark}}'></image>
+              <image bindtap='commissionRemark' src='/images/icon_info.png' mode='widthFix' data-remark='{{commissionRemark}}'></image>
             </block>
           </view>
         </view>

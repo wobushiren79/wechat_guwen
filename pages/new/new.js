@@ -45,7 +45,7 @@ Page({
               }else{
                 wx.showToast({
                   title: res.data.message,
-                  image: '../../images/icon_info.png',
+                  image: '/images/icon_info.png',
                   
                 })
               }
@@ -56,19 +56,19 @@ Page({
     } else if (ContentData.customerName == '') {
       wx.showToast({
         title: '客户姓名不能为空',
-        image: '../../images/icon_info.png',
+        image: '/images/icon_info.png',
         
       })
     } else if (ContentData.customerMobile == '' ) {
       wx.showToast({
         title: '客户电话不能为空',
-        image: '../../images/icon_info.png',
+        image: '/images/icon_info.png',
         
       })
     } else if (ContentData.customerAddressNew == '') {
       wx.showToast({
         title: '客户地址不能为空',
-        image: '../../images/icon_info.png',
+        image: '/images/icon_info.png',
         
       })
     }
@@ -121,7 +121,7 @@ Page({
               } else {
                 wx.showToast({
                   title: res.data.message,
-                  image: '../../images/icon_info.png',
+                  image: '/images/icon_info.png',
                   
                 })
               }
@@ -132,19 +132,19 @@ Page({
     } else if (ContentData.customerName == '') {
       wx.showToast({
         title: '客户姓名不能为空',
-        image: '../../images/icon_info.png',
+        image: '/images/icon_info.png',
         
       })
     } else if (ContentData.customerMobile == '' ) {
       wx.showToast({
         title: '客户电话不能为空',
-        image: '../../images/icon_info.png',
+        image: '/images/icon_info.png',
         
       })
     } else if (ContentData.customerAddressNew == '') {
       wx.showToast({
         title: '客户地址不能为空',
-        image: '../../images/icon_info.png',
+        image: '/images/icon_info.png',
         
       })
     }

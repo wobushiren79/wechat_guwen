@@ -3,19 +3,19 @@
     <!--选项卡-->
     <view class="tab">
       <view>
-        <navigator url="../service_order_list_submit/service_order_list_submit" open-type="redirect">待提交</navigator>
+        <navigator url="/pages/goods/order/order_goods_list_submit/order_goods_list_submit" open-type="redirect">待提交</navigator>
       </view>
       <view>
-        <navigator url="../service_order_list_pay/service_order_list_pay" open-type="redirect" class="active">待付款</navigator>
+        <navigator url="/pages/goods/order/service_order_list_pay/service_order_list_pay" open-type="redirect" class="active">待付款</navigator>
       </view>
       <view>
-        <navigator url="../service_order_list_serviceing/service_order_list_serviceing" open-type="redirect">服务中</navigator>
+        <navigator url="/pages/goods/order/order_goods_list_serviceing/order_goods_list_serviceing" open-type="redirect">服务中</navigator>
       </view>
       <view>
-        <navigator url="../service_order_list_succeed/service_order_list_succeed" open-type="redirect">已服务</navigator>
+        <navigator url="/pages/goods/order/order_goods_list_succeed/order_goods_list_succeed" open-type="redirect">已服务</navigator>
       </view>
       <view>
-        <navigator url="../service_order_list_close/service_order_list_close" open-type="redirect">已关闭</navigator>
+        <navigator url="/pages/goods/order/order_goods_list_close/order_goods_list_close" open-type="redirect">已关闭</navigator>
       </view>
     </view>
 
@@ -33,8 +33,8 @@
                 <text>{{item.show_total_price/100}}</text>
               </view>
             </view>
-            <navigator url="../service_order_content/service_order_content?orderid={{item.id}}" class="li_body" hover-class="active">
-              <image src="../../images/right.png" class="icon"></image>
+            <navigator url="/pages/goods/order/order_goods_content/order_goods_content?orderid={{item.id}}" class="li_body" hover-class="active">
+              <image src="/images/right.png" class="icon"></image>
               <view class="address">
                 <view class="header">
                   治丧地址：
@@ -73,7 +73,7 @@
             </navigator>
             <view class="li_footer">
               <view class="header" bindtap="tel" data-tel="{{item.customer_phone}}">
-                <image src="../../images/icon_call_phone.png"></image>联系客户
+                <image src="/images/icon_call_phone.png"></image>联系客户
               </view>
               <view class="footer">
                 <button type="primary" class="btn" bindtap="fukuang" data-orderid="{{item.id}}">付款</button>
@@ -94,8 +94,8 @@
       </view>
     </view>
 
-    <navigator class="shoppgo" url="../service_buy/service_buy">
-      <image src="../../images/icon_shopgo.png">
+    <navigator class="shoppgo" url="/pages/goods/show/show_goods_buy/show_goods_buy">
+      <image src="/images/icon_shopgo.png">
       </image>
     </navigator>
   </view>

@@ -1,7 +1,7 @@
-var orderCenterHttp = require("../../../utils/http/RequestForOrderCenter.js")
-var toastUtil = require("../../../utils/ToastUtil.js");
-var pageUtil = require("../../../utils/PageUtil.js");
-var checkPermissions = require("../../../utils/CheckPermissions.js");
+var orderCenterHttp = require("../../../../utils/http/RequestForOrderCenter.js")
+var toastUtil = require("../../../../utils/ToastUtil.js");
+var pageUtil = require("../../../../utils/PageUtil.js");
+var checkPermissions = require("../../../../utils/CheckPermissions.js");
 var content;
 Page({
   data: {
@@ -23,7 +23,7 @@ Page({
     wx.stopPullDownRefresh()
   },
   //上拉添加记录条数
-  onReachBottom() {
+  onReachBottom:function() {
     getOrderList(3)
   },
   onShow: function () {
@@ -42,7 +42,7 @@ Page({
       return
     } else {
       wx.navigateTo({
-        url: '../../new_/new_',
+        url: '/pages/order/new_/new_',
       })
     }
   },

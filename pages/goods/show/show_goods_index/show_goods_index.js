@@ -1,6 +1,6 @@
-var goodsPHPHttp = require("../../utils/http/RequestForPHPGoods.js");
-var toastUtil = require("../../utils/ToastUtil.js");
-var storageKey = require("../../utils/storage/StorageKey.js");
+var goodsPHPHttp = require("../../../../utils/http/RequestForPHPGoods.js");
+var toastUtil = require("../../../../utils/ToastUtil.js");
+var storageKey = require("../../../../utils/storage/StorageKey.js");
 var content;
 Page({
   data: {

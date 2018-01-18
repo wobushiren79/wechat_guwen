@@ -1,8 +1,8 @@
-var orderCenterHttp = require("../../../utils/http/RequestForOrderCenter.js")
-var toastUtil = require("../../../utils/ToastUtil.js");
-var storageKey = require("../../../utils/storage/StorageKey.js");
-var pageUtil = require("../../../utils/PageUtil.js");
-var modalUtil = require("../../../utils/ModalUtil.js");
+var orderCenterHttp = require("../../../../utils/http/RequestForOrderCenter.js")
+var toastUtil = require("../../../../utils/ToastUtil.js");
+var storageKey = require("../../../../utils/storage/StorageKey.js");
+var pageUtil = require("../../../../utils/PageUtil.js");
+var modalUtil = require("../../../../utils/ModalUtil.js");
 var content;
 Page({
   data: {

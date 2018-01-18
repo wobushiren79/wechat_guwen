@@ -1,8 +1,8 @@
 //获取应用实例
-var tcity = require("../../utils/citys.js");
-var storageKey=require("../../utils/storage/StorageKey.js");
-var toastUtil=require("../../utils/ToastUtil.js");
-var checkTools=require("../../utils/CheckTools.js");
+var tcity = require("../../../../utils/citys.js");
+var storageKey=require("../../../../utils/storage/StorageKey.js");
+var toastUtil=require("../../../../utils/ToastUtil.js");
+var checkTools=require("../../../../utils/CheckTools.js");
 var content;
 var app = getApp()
 Page({
@@ -32,10 +32,10 @@ Page({
       const citys = [];
       const countys = [];
 
-      for (let i = 0; i < cityData[val[0]].sub.length; i++) {
+      for (var i = 0; i < cityData[val[0]].sub.length; i++) {
         citys.push(cityData[val[0]].sub[i].name)
       }
-      for (let i = 0; i < cityData[val[0]].sub[0].sub.length; i++) {
+      for (var i = 0; i < cityData[val[0]].sub[0].sub.length; i++) {
         countys.push(cityData[val[0]].sub[0].sub[i].name)
       }
 
@@ -54,7 +54,7 @@ Page({
       console.log('city no');
       const countys = [];
 
-      for (let i = 0; i < cityData[val[0]].sub[val[1]].sub.length; i++) {
+      for (var i = 0; i < cityData[val[0]].sub[val[1]].sub.length; i++) {
         countys.push(cityData[val[0]].sub[val[1]].sub[i].name)
       }
 
@@ -127,13 +127,13 @@ Page({
     const provinces = [];
     const citys = [];
     const countys = [];
-    for (let i = 0; i < cityData.length; i++) {
+    for (var i = 0; i < cityData.length; i++) {
       provinces.push(cityData[i].name);
     }
-    for (let i = 0; i < cityData[0].sub.length; i++) {
+    for (var i = 0; i < cityData[0].sub.length; i++) {
       citys.push(cityData[22].sub[i].name)
     }
-    for (let i = 0; i < cityData[0].sub[0].sub.length; i++) {
+    for (var i = 0; i < cityData[0].sub[0].sub.length; i++) {
       countys.push(cityData[22].sub[0].sub[i].name)
     }
 

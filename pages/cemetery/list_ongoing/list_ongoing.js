@@ -1,6 +1,6 @@
-var cemeteryHttp = require("../../utils/http/RequestForCemetery.js");
-var toastUtil = require("../../utils/ToastUtil.js");
-var pageUtil = require("../../utils/PageUtil.js")
+var cemeteryHttp = require("../../../utils/http/RequestForCemetery.js");
+var toastUtil = require("../../../utils/ToastUtil.js");
+var pageUtil = require("../../../utils/PageUtil.js")
 var content;
 Page({
     data: {
@@ -52,7 +52,7 @@ Page({
         fail: function (res) {
           wx.showToast({
             title: '拨打电话失败',
-            image: '../../images/icon_info.png',
+            image: '/images/icon_info.png',
             duration: 3000
           })
         }
@@ -64,7 +64,7 @@ Page({
       wx.stopPullDownRefresh()
     },
     //下拉添加记录条数
-    onReachBottom() {
+    onReachBottom: function (){
       getOrderListForLook();
     },
     onShow:function(){

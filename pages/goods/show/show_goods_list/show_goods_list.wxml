@@ -4,7 +4,7 @@
     <!--搜索-->
     <view class="search">
       <input type="text" placeholder="请输入您要查找的商品" name="goods_name" bindconfirm="bindKeyInput" confirm-type="search" />
-      <image src="../../images/search.png"></image>
+      <image src="/images/search.png"></image>
     </view>
 
     <!-- 筛选 -->
@@ -18,17 +18,17 @@
 
       <view class="active2" wx:if="{{jiage == 1}}" bindtap="jiage1">
         <text>价格</text>
-        <image src="../../images/down.png"></image>
+        <image src="/images/down.png"></image>
       </view>
 
       <view class="active1" wx:elif="{{jiage == 0}}" bindtap='jiage2'>
         <text>价格</text>
-        <image src="../../images/down.png"></image>
+        <image src="/images/down.png"></image>
       </view>
 
       <view class="" wx:else bindtap="jiage1">
         <text>价格</text>
-        <image src="../../images/down.png"></image>
+        <image src="/images/down.png"></image>
       </view>
 
       <view class="">
@@ -45,7 +45,7 @@
         <block wx:for="{{list}}">
         <!-- 判断如果不是套餐 -->
         <block wx:if="{{item.is_package == 0}}">
-          <navigator url="../service_content/service_content?goods_id={{item.id}}&channel_id={{channel_id}}" class="li" open-type='navigateTo'>
+          <navigator url="/page/goods/show/show_goods_content/show_goods_content?goods_id={{item.id}}&channel_id={{channel_id}}" class="li" open-type='navigateTo'>
             <image class="li_img" src="{{item.title_img}}"></image>
             <view class="li_content">
               <view class="title aui-ellipsis-2">
@@ -67,10 +67,10 @@
         </block>
         <!-- 判断如果为套餐 -->
         <block wx:elif="{{item.is_package == 1}}">
-          <navigator url="../service_content/service_content?package_id={{item.id}}&channel_id={{channel_id}}" class="li">
+          <navigator url="/page/goods/show/show_goods_content/show_goods_content?package_id={{item.id}}&channel_id={{channel_id}}" class="li">
             <image class="li_img" src="{{item.title_img}}"></image>
             <!-- 套餐IQ -->
-            <image src='../../images/ispackage.png' class='ispackage'></image>
+            <image src='/images/ispackage.png' class='ispackage'></image>
             <view class="li_content">
               <view class="title aui-ellipsis-2">
                 <text>{{item.name}}</text>
@@ -94,8 +94,8 @@
     </view>
 
     <!-- 购物车 -->
-    <navigator url="../service_buy/service_buy" class="shoppgo">
-      <image src="../../images/icon_shopgo.png"></image>
+    <navigator url="/pages/goods/show/show_goods_buy/show_goods_buy" class="shoppgo">
+      <image src="/images/icon_shopgo.png"></image>
     </navigator>
     <import src="/template/template.wxml" />
     <block wx:if="{{xianshi == true}}">

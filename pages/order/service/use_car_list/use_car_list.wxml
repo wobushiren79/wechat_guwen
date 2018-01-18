@@ -16,7 +16,7 @@
             </view>
           </view>
           <navigator class="li_body" url="../use_car_content/use_car_content?id={{item.id}}" hover-class="active">
-            <image src="../../../images/right.png" class="icon"></image>
+            <image src="/images/right.png" class="icon"></image>
             <view>
               <view class="header">
                 用车日期：
@@ -78,10 +78,10 @@
           <view class="li_footer">
             <view class="header">
               <view bindtap="tel" data-tel="{{item.connecterMobile}}">
-                <image src="../../../images/icon_call_1.png"></image>用车人</view>
+                <image src="/images/icon_call_1.png"></image>用车人</view>
                 <block wx:if="{{item.driverPhone.length>0}}">
               <view bindtap="tel" data-tel="{{item.driverPhone}}">
-                <image src="../../../images/icon_call_2.png"></image>驾驶员</view>
+                <image src="/images/icon_call_2.png"></image>驾驶员</view>
                 </block>
             </view>
             <view class="footer">
@@ -93,11 +93,13 @@
       </block>
       <block wx:else>
 
-
-    <view class='prompt'>
-      <text>没有更多记录啦</text>
-    </view>
-
+  <import src="/template/template.wxml"/>
+  <block wx:if="{{dateList.length>0}}" >
+  <template is="nonconformance"/>
+  </block>
+    <block wx:else>
+    <template is="nullData"/>
+    </block>
 
       </block>
       </view>

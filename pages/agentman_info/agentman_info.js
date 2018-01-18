@@ -122,7 +122,7 @@ Page({
             } else {
               wx.showToast({
                 title: res.data.message,
-                image: '../../images/icon_info.png',
+                image: '/images/icon_info.png',
                 duration: 2000
               })
             }
@@ -215,7 +215,7 @@ Page({
             } else {
               wx.showToast({
                 title: res.data.message,
-                image: '../../images/icon_info.png',
+                image: '/images/icon_info.png',
                 duration: 2000
               })
             }
@@ -226,31 +226,31 @@ Page({
     }else if(ContentData.name == ''){
               wx.showToast({
                 title: '姓名不能为空',
-                image: '../../images/icon_info.png',
+                image: '/images/icon_info.png',
                 duration: 2000
               })
     }else if(ContentData.linkInfo == ''){
               wx.showToast({
                 title: '电话不能为空',
-                image: '../../images/icon_info.png',
+                image: '/images/icon_info.png',
                 duration: 2000
               })
     }else if(ContentData.location == ''){
               wx.showToast({
                 title: '地址不能为空',
-                image: '../../images/icon_info.png',
+                image: '/images/icon_info.png',
                 duration: 2000
               })
     }else if(ContentData.zsLocation == ''){
               wx.showToast({
                 title: '治丧地址不能为空',
-                image: '../../images/icon_info.png',
+                image: '/images/icon_info.png',
                 duration: 2000
               })
     }else if(ContentData.cardId == ''){
               wx.showToast({
                 title: '身份证不能为空',
-                image: '../../images/icon_info.png',
+                image: '/images/icon_info.png',
                 duration: 2000
               })
     }
@@ -320,7 +320,7 @@ Page({
             } else {
               wx.showToast({
                 title: res.data.message,
-                image: '../../images/icon_info.png',
+                image: '/images/icon_info.png',
                 duration: 2000
               })
             }

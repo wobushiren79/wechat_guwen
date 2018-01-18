@@ -1,10 +1,10 @@
-var goodsPHPHttp = require("../../utils/http/RequestForPHPGoods.js");
-var goodsHttp = require("../../utils/http/RequestForGoods.js");
-var platformHttp = require("../../utils/http/RequestForPlatform.js");
-var toastUtil = require("../../utils/ToastUtil.js");
-var storageKey = require("../../utils/storage/StorageKey.js");
-var pageUtil = require("../../utils/PageUtil.js");
-var checkPermissions = require("../../utils/CheckPermissions.js");
+var goodsPHPHttp = require("../../../../utils/http/RequestForPHPGoods.js");
+var goodsHttp = require("../../../../utils/http/RequestForGoods.js");
+var platformHttp = require("../../../../utils/http/RequestForPlatform.js");
+var toastUtil = require("../../../../utils/ToastUtil.js");
+var storageKey = require("../../../../utils/storage/StorageKey.js");
+var pageUtil = require("../../../../utils/PageUtil.js");
+var checkPermissions = require("../../../../utils/CheckPermissions.js");
 var content;
 
 var serviceWay = 0;
@@ -381,7 +381,7 @@ function createGoodsOrder(createRequest) {
   var createCallBack = {
     success: function (data, res) {
       wx.redirectTo({
-        url: '../service_goods_order/service_goods_order?orderId=' + data.orderId
+        url: '/pages/goods/order/order_goods_submit/order_goods_submit?orderId=' + data.orderId
       })
     },
     fail: function (data, res) {

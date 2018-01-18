@@ -1,10 +1,10 @@
-var goodsPHPHttp = require("../../utils/http/RequestForPHPGoods.js");
-var goodsHttp = require("../../utils/http/RequestForGoods.js");
-var platformHttp = require("../../utils/http/RequestForPlatform.js");
-var toastUtil = require("../../utils/ToastUtil.js");
-var storageKey = require("../../utils/storage/StorageKey.js");
-var pageUtil = require("../../utils/PageUtil.js");
-var checkPermissions = require("../../utils/CheckPermissions.js");
+var goodsPHPHttp = require("../../../..utils/http/RequestForPHPGoods.js");
+var goodsHttp = require("../../../..utils/http/RequestForGoods.js");
+var platformHttp = require("../../../..utils/http/RequestForPlatform.js");
+var toastUtil = require("../../../..utils/ToastUtil.js");
+var storageKey = require("../../../..utils/storage/StorageKey.js");
+var pageUtil = require("../../../..utils/PageUtil.js");
+var checkPermissions = require("../../../..utils/CheckPermissions.js");
 var content;
 
 Page({
@@ -33,7 +33,7 @@ Page({
       fail: function (res) {
         wx.showToast({
           title: '拨打电话失败',
-          image: '../../images/icon_info.png',
+          image: '/images/icon_info.png',
           duration: 3000
         })
       }
@@ -45,7 +45,7 @@ Page({
       fail: function (res) {
         wx.showToast({
           title: '拨打电话失败',
-          image: '../../images/icon_info.png',
+          image: '/images/icon_info.png',
           duration: 3000
         })
       }
@@ -105,18 +105,6 @@ Page({
   zhixing: function (e) {
     var performId = e.currentTarget.dataset.id
     findPerformInfoByPerformId(performId)
-  },
-  queren: function (e) {
-    var orderId = e.currentTarget.dataset.orderid
-    wx.navigateTo({
-      url: '../service_goods_order/service_goods_order?orderId=' + orderId
-    })
-  },
-  fukuang: function (e) {
-    var orderId = e.currentTarget.dataset.orderid
-    wx.navigateTo({
-      url: '../service_goods_pay/service_goods_pay?orderId=' + orderId
-    })
   }
 });
 

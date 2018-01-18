@@ -72,11 +72,11 @@
           <view class="checkbox_wrap">
             <checkbox value="{{ite.id}}" checked="{ite.isSelect}}" bindtap="check" data-id="{{ite.id}}" data-index="{{index}}" data-select="{{ite.isSelect}}"/>
           </view>
-      <navigator url="../service_goods_pay_goodslist/service_goods_pay_goodslist?id={{ite.id}}">
+      <navigator url="/pages/goods/order/order_goods_pay_goodslist/order_goods_pay_goodslist?id={{ite.id}}">
           <view class="img_wrap">
             <image src="{{ite.title_img}}"></image>
                         <!-- 套餐IQ -->
-            <image src='../../images/ispackage.png' class='ispackage' style='width: 100rpx;height: 50rpx;'></image>
+            <image src='/images/ispackage.png' class='ispackage' style='width: 100rpx;height: 50rpx;'></image>
           </view>
           <black wx:if="{{edit}}">
             <view class="info show">
@@ -130,7 +130,7 @@
       </view> -->
 
       <!-- <view class="home">
-        <navigator url="../index/index" open-type="switchTab"><image src="../../images/right.png"></image>首页</navigator>
+        <navigator url="/pages/index/index" open-type="switchTab"><image src="/images/right.png"></image>首页</navigator>
       </view> -->
 
       <!-- 合计 -->

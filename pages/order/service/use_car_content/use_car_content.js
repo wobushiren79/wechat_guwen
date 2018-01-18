@@ -1,6 +1,6 @@
-var orderCenterHttp = require("../../../utils/http/RequestForOrderCenter.js")
-var toastUtil = require("../../../utils/ToastUtil.js");
-var pageUtil = require("../../../utils/PageUtil.js");
+var orderCenterHttp = require("../../../../utils/http/RequestForOrderCenter.js")
+var toastUtil = require("../../../../utils/ToastUtil.js");
+var pageUtil = require("../../../../utils/PageUtil.js");
 var content;
 Page({
   data: {

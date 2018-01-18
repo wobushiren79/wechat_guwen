@@ -1,9 +1,9 @@
-var goodsHttp = require("../../utils/http/RequestForGoods.js");
-var platformHttp = require("../../utils/http/RequestForPlatform.js");
-var toastUtil = require("../../utils/ToastUtil.js");
-var storageKey = require("../../utils/storage/StorageKey.js");
-var checkPermissions = require("../../utils/CheckPermissions.js");
-var pageUtil = require("../../utils/PageUtil.js");
+var goodsHttp = require("../../../../../utils/http/RequestForGoods.js");
+var platformHttp = require("../../../../../utils/http/RequestForPlatform.js");
+var toastUtil = require("../../../../../utils/ToastUtil.js");
+var storageKey = require("../../../../../utils/storage/StorageKey.js");
+var checkPermissions = require("../../../../../utils/CheckPermissions.js");
+var pageUtil = require("../../../../../utils/PageUtil.js");
 var content;
 
 Page({
@@ -27,7 +27,7 @@ Page({
       })
     },
     //下拉添加记录条数
-    onReachBottom() {
+    onReachBottom:function() {
       getOrderList(null, 0);
     },
     //下拉事件
@@ -38,7 +38,7 @@ Page({
     fukuang:function(e){
       var orderId = e.currentTarget.dataset.orderid
       wx.navigateTo({
-        url: '../service_goods_pay/service_goods_pay?orderId=' + orderId
+        url: '/pages/goods/order/order_goods_pay/order_goods_pay?orderId=' + orderId
       })
     }
 });

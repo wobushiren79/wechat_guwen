@@ -1,9 +1,9 @@
-var platformHttp = require("../../utils/http/RequestForPlatform.js");
-var orderCenterHttp = require("../../utils/http/RequestForOrderCenter.js");
-var toastUtil = require("../../utils/ToastUtil.js");
-var checkPermissions = require("../../utils/CheckPermissions.js");
+var platformHttp = require("../../../utils/http/RequestForPlatform.js");
+var orderCenterHttp = require("../../../utils/http/RequestForOrderCenter.js");
+var toastUtil = require("../../../utils/ToastUtil.js");
+var checkPermissions = require("../../../utils/CheckPermissions.js");
 var content;
-var checkTools = require("../../utils/CheckTools.js");
+var checkTools = require("../../../utils/CheckTools.js");
 Page({
   data: {
     GmList: [
@@ -50,7 +50,7 @@ Page({
     if (e.detail.value == '') {
       wx.showToast({
         title: '不能为空',
-        image: '../../images/icon_info.png',
+        image: '/images/icon_info.png',
         duration: 2000
       })
     }
@@ -323,7 +323,7 @@ function createOrder(createOrderData) {
   var createOrderCallBack = {
     success: function () {
       wx.redirectTo({
-        url: '../service/CashBack_list_wait/CashBack_list_wait',
+        url: '/pages/order/CashBack/CashBack_list_wait/CashBack_list_wait',
       })
     },
     fail: function (data, res) {

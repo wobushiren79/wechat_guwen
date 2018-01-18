@@ -1,9 +1,9 @@
-var goodsHttp = require("../../../utils/http/RequestForGoods.js");
-var platformHttp = require("../../../utils/http/RequestForPlatform.js");
-var toastUtil = require("../../../utils/ToastUtil.js");
-var storageKey = require("../../../utils/storage/StorageKey.js");
-var checkPermissions = require("../../../utils/CheckPermissions.js");
-var pageUtil = require("../../../utils/PageUtil.js");
+var goodsHttp = require("../../../../utils/http/RequestForGoods.js");
+var platformHttp = require("../../../../utils/http/RequestForPlatform.js");
+var toastUtil = require("../../../../utils/ToastUtil.js");
+var storageKey = require("../../../../utils/storage/StorageKey.js");
+var checkPermissions = require("../../../../utils/CheckPermissions.js");
+var pageUtil = require("../../../../utils/PageUtil.js");
 var content;
 var storeId;
 Page({
@@ -32,7 +32,7 @@ Page({
     })
   },
   //下拉添加记录条数
-  onReachBottom() {
+  onReachBottom: function () {
     getGoodsOrderList(null, [3, 4], storeId)
   },
   //下拉事件

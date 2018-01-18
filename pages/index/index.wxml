@@ -2,46 +2,46 @@
   <view class="page__bd">
     <!--国庆节  -->
     <!-- <navigator url='../gq/gq' class='gq'>
-      <image src='../../images/gq.png'  mode='widthFix'></image>
+      <image src='/images/gq.png'  mode='widthFix'></image>
     </navigator> -->
 
 
 
     <!-- banner -->
     <view class='section_banner'>
-      <image src='../../images/logo_0.png' mode='widthFix'></image>
+      <image src='/images/logo_0.png' mode='widthFix'></image>
       <view class='search'>
-        <image class='icon_search' src='../../images/search_icon.png' mode='widthFix'></image>
+        <image class='icon_search' src='/images/search_icon.png' mode='widthFix'></image>
         <navigator url="../search/search">
           <input type='text' placeholder='点击输入搜索商品' placeholder-class='input_placeholder'></input>
         </navigator>
-        <image class='icon_sm' src='../../images/icon_sm.png' mode='widthFix'></image>
+        <image class='icon_sm' src='/images/icon_sm.png' mode='widthFix'></image>
       </view>
     </view>
 
     <!-- flex -->
     <view class="section_flex weui-flex">
       <navigator class="weui-flex__item" url='../service/service'>
-        <image src='../../images/icon_index_flex1.png' mode='widthFix'></image>
+        <image src='/images/icon_index_flex1.png' mode='widthFix'></image>
         <text>圆满商城</text>
       </navigator>
       <view class="weui-flex__item" bindtap='gongmu'>
-        <image src='../../images/icon_index_flex2.png' mode='widthFix'></image>
+        <image src='/images/icon_index_flex2.png' mode='widthFix'></image>
         <text>新建单</text>
       </view>
       <view class="weui-flex__item" bindtap='order'>
-        <image src='../../images/icon_index_flex3.png' mode='widthFix'></image>
+        <image src='/images/icon_index_flex3.png' mode='widthFix'></image>
         <text>接单</text>
       </view>
       <block wx:if="{{canCheckin}}">
         <view class="weui-flex__item" bindtap='sign'>
-          <image src='../../images/icon_index_flex4.png' mode='widthFix'></image>
+          <image src='/images/icon_index_flex4.png' mode='widthFix'></image>
           <text>签到</text>
         </view>
       </block>
       <block wx:else>
         <navigator class="weui-flex__item" url='../signin/signin'>
-          <image src='../../images/icon_index_flex4.png' mode='widthFix'></image>
+          <image src='/images/icon_index_flex4.png' mode='widthFix'></image>
           <text>今日已签到</text>
         </navigator>
       </block>
@@ -68,19 +68,19 @@
 
         <view class="section_flex weui-flex section_flex2">
       <navigator class="weui-flex__item" url='../index_flex1/index_flex1'>
-        <image src='../../images/icon_index_grid_1.png' mode='widthFix'></image>
+        <image src='/images/icon_index_grid_1.png' mode='widthFix'></image>
         <text>公墓选购</text>
       </navigator>
       <navigator class="weui-flex__item" url='../Sift/Sift'>
-        <image src='../../images/icon_index_grid_2.png' mode='widthFix'></image>
+        <image src='/images/icon_index_grid_2.png' mode='widthFix'></image>
         <text>活动</text>
       </navigator>
       <navigator class="weui-flex__item" url='/pages/main/study/index/index'>
-        <image src='../../images/icon_index_grid_3.png' mode='widthFix'></image>
+        <image src='/images/icon_index_grid_3.png' mode='widthFix'></image>
         <text>学习中心</text>
       </navigator>
       <view class="weui-flex__item" bindtap='bind_go_c'>
-        <image src='../../images/icon_index_grid_4.png' mode='widthFix'></image>
+        <image src='/images/icon_index_grid_4.png' mode='widthFix'></image>
         <text>我的门店</text>
       </view>
     </view>
@@ -123,7 +123,7 @@
     <!-- </block> -->
     <!-- </view> -->
     <!-- <view bindtap="call_phone" class="call_phone" data-phone="966188"> -->
-    <!-- <image src="../../images/icon_call_phone.png"></image> -->
+    <!-- <image src="/images/icon_call_phone.png"></image> -->
     <!-- <text>966188</text> -->
     <!-- </view> -->
     <!-- <view class="exit" bindtap="dele"> -->
@@ -154,7 +154,7 @@
 
     <!-- 搜索 -->
     <!-- <navigator url="../search/search" class="page__bd_spacing search">
-      <image src="../../images/index_search.png" style=""></image>
+      <image src="/images/index_search.png" style=""></image>
     </navigator> -->
 
     <!--服务菜单-->
@@ -247,7 +247,7 @@
         <view class="tab_content">
           <view class="ul">
             <block wx:for="{{label_data}}">
-              <navigator url="../service_content/service_content?goods_id={{item.id}}&channel_id={{channel_id}}" class="li">
+              <navigator url="/page/goods/show/show_goods_content/show_goods_content?goods_id={{item.id}}&channel_id={{channel_id}}" class="li">
                 <image class="li_img" src="{{item.title_img}}"></image>
                 <view class="li_content">
                   <view class="title aui-ellipsis-2">

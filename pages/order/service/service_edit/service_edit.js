@@ -1,7 +1,7 @@
-var orderCenterHttp = require("../../../utils/http/RequestForOrderCenter.js")
-var toastUtil = require("../../../utils/ToastUtil.js");
-var pageUtil = require("../../../utils/PageUtil.js");
-var checkTools = require("../../../utils/CheckTools.js")
+var orderCenterHttp = require("../../../../utils/http/RequestForOrderCenter.js")
+var toastUtil = require("../../../../utils/ToastUtil.js");
+var pageUtil = require("../../../../utils/PageUtil.js");
+var checkTools = require("../../../../utils/CheckTools.js")
 var content;
 var app = getApp();
 
@@ -18,7 +18,7 @@ Page({
     if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))) {
       wx.showToast({
         title: '号码不正确',
-        image: '../../../images/icon_info.png',
+        image: '/images/icon_info.png',
         duration: 2000
       })
     } else {
@@ -40,7 +40,7 @@ Page({
     } else {
       wx.showToast({
         title: '价格不正确',
-        image: '../../../images/icon_info.png',
+        image: '/images/icon_info.png',
         duration: 2000
       })
     }
@@ -82,7 +82,7 @@ Page({
               wx.hideLoading()
               wx.showToast({
                 title: '上传失败',
-                image: '../../../images/icon_info.png',
+                image: '/images/icon_info.png',
                 duration: 3000
               })
             }
@@ -91,7 +91,7 @@ Page({
             wx.hideLoading()
             wx.showToast({
               title: '网络错误',
-              image: '../../../images/icon_info.png',
+              image: '/images/icon_info.png',
               duration: 3000
             })
           }

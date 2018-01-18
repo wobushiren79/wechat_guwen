@@ -79,7 +79,7 @@
                 <input class="weui-input" value="{{customerMobile}}" disabled="disabled" />
               </view>
               <view class="icon" bindtap="phone" data-tel="{{customerMobile}}">
-                <image src="../../images/phone.png"></image>
+                <image src="/images/phone.png"></image>
               </view>
             </view>
 

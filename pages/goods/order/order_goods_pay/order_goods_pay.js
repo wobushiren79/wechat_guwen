@@ -1,9 +1,9 @@
 //获取应用实例
-var QR = require("../../utils/qrcode.js");
-var util = require('../../utils/util.js')
-var goodsHttp = require("../../utils/http/RequestForGoods.js");
-var goodsPHPHttp = require("../../utils/http/RequestForPHPGoods.js");
-var toastUtil = require("../../utils/ToastUtil.js");
+var QR = require("../../../../utils/qrcode.js");
+var util = require('../../../../utils/util.js')
+var goodsHttp = require("../../../../utils/http/RequestForGoods.js");
+var goodsPHPHttp = require("../../../../utils/http/RequestForPHPGoods.js");
+var toastUtil = require("../../../../utils/ToastUtil.js");
 
 var PAYWAY_BY_QR_CODE = "PAYWAY_BY_QR_CODE";//二维码支付
 var PAYWAY_BY_WECHAT = "PAYWAY_BY_WECHAT";//微信支付
@@ -178,12 +178,12 @@ function payOffLine(orderId, payPrice) {
   var payCallBack = {
     success: function (data, res) {
       wx.redirectTo({
-        url: '../service_goods_pay_succeed/service_goods_pay_succeed'
+        url: '/pages/goods/order/order_goods_pay_succeed/order_goods_pay_succeed'
       })
     },
     fail: function (data, res) {
       wx.redirectTo({
-        url: '../service_goods_pay_error/service_goods_pay_error'
+        url: '/pages/goods/order/order_goods_pay_error/order_goods_pay_error'
       })
     }
   }
@@ -231,7 +231,7 @@ function updateOutTradeNo(orderId, outTradeNo, payType, payInfo) {
           'success': function (res) {
             if (res.errMsg == 'requestPayment:ok') {
               wx.redirectTo({
-                url: '../service_goods_pay_succeed/service_goods_pay_succeed'
+                url: '/pages/goods/order/order_goods_pay_succeed/order_goods_pay_succeed'
               })
             } else {
               toastUtil.showToast("系统繁忙");
@@ -240,7 +240,7 @@ function updateOutTradeNo(orderId, outTradeNo, payType, payInfo) {
           'fail': function (res) {
             if (res.errMsg == 'requestPayment:fail') {
               wx.navigateTo({
-                url: '../service_goods_pay_error/service_goods_pay_error'
+                url: '/pages/goods/order/order_goods_pay_error/order_goods_pay_error'
               })
             }
           }

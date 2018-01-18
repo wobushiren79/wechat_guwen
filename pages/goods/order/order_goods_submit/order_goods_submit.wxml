@@ -30,7 +30,7 @@
               </view>
               <!--<view class="footer ">
                 结算明细
-                <image src="../../images/right.png" class="icon"></image>
+                <image src="/images/right.png" class="icon"></image>
               </view>-->
             </view>
           </navigator>
@@ -46,7 +46,7 @@
               </view>
               <view class="footer ">
                 使用优惠券
-                <image src="../../images/right.png" class="icon"></image>
+                <image src="/images/right.png" class="icon"></image>
               </view>
             </view> -->
           </navigator>
@@ -85,7 +85,7 @@
       </view>
 
       <!-- <view class='index'>
-        <navigator url='../index/index' open-type='reLaunch'>返回首页</navigator>
+        <navigator url='/pages/index/index' open-type='reLaunch'>返回首页</navigator>
       </view> -->
 
 

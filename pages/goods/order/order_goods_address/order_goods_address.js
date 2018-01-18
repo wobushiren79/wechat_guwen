@@ -1,5 +1,5 @@
-var goodsHttp = require("../../utils/http/RequestForGoods.js");
-var toastUtil = require("../../utils/ToastUtil.js");
+var goodsHttp = require("../../../../utils/http/RequestForGoods.js");
+var toastUtil = require("../../../../utils/ToastUtil.js");
 var content;
 var listAddress = new Array();
 Page({

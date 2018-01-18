@@ -69,7 +69,7 @@
               <view class="body">
                 <view class='call clearfix' bindtap="tel" data-tel="{{content.connecterMobile}}">
                   <text>{{content.connecterName}}</text>
-                  <image src="../../../images/icon_call_phone.png" mode="widthFix"></image>
+                  <image src="/images/icon_call_phone.png" mode="widthFix"></image>
                 </view>
               </view>
             </view>
@@ -152,7 +152,7 @@
               <view class="body">
                 <view class='call clearfix' bindtap="tel" data-tel="{{content.driverPhone}}">
                   <text>{{content.driver?content.driver:'未指派'}}</text>
-                  <image src="../../../images/icon_call_phone.png" mode="widthFix"></image>
+                  <image src="/images/icon_call_phone.png" mode="widthFix"></image>
                 </view>
               </view>
             </view>

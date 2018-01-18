@@ -1,12 +1,12 @@
-var goodsPHPHttp = require("../../utils/http/RequestForPHPGoods.js");
-var goodsHttp = require("../../utils/http/RequestForGoods.js");
-var platformHttp = require("../../utils/http/RequestForPlatform.js");
-var toastUtil = require("../../utils/ToastUtil.js");
-var storageKey = require("../../utils/storage/StorageKey.js");
-var pageUtil = require("../../utils/PageUtil.js");
-var checkPermissions = require("../../utils/CheckPermissions.js");
+var goodsPHPHttp = require("../../../../utils/http/RequestForPHPGoods.js");
+var goodsHttp = require("../../../../utils/http/RequestForGoods.js");
+var platformHttp = require("../../../../utils/http/RequestForPlatform.js");
+var toastUtil = require("../../../../utils/ToastUtil.js");
+var storageKey = require("../../../../utils/storage/StorageKey.js");
+var pageUtil = require("../../../../utils/PageUtil.js");
+var checkPermissions = require("../../../../utils/CheckPermissions.js");
 var content;
-var WxParse = require('../../wxParse/wxParse.js');
+var WxParse = require('../../../../wxParse/wxParse.js');
 var app = getApp()
 var amateurLevel;
 var channelId;
@@ -31,9 +31,9 @@ Page({
   onShareAppMessage: function () {
     var pathUrl = "";
     if (goodsId) {
-      pathUrl = '/pages/service_content/service_content?goods_id=' + goodsId + "&channel_id=" + channelId
+      pathUrl = '/page/goods/order/order_goods_content/order_goods_content?goods_id=' + goodsId + "&channel_id=" + channelId
     } else if (packageId) {
-      pathUrl = '/pages/service_content/service_content?package_id=' + goodsId + "&channel_id=" + channelId
+      pathUrl = '/page/goods/order/order_goods_content/order_goods_content?package_id=' + goodsId + "&channel_id=" + channelId
     }
     return {
       title: '圆满人生公共殡葬服务平台',
@@ -48,7 +48,7 @@ Page({
       fail: function (res) {
         wx.showToast({
           title: '转发失败',
-          image: '../../images/icon_info.png',
+          image: '/images/icon_info.png',
           // mask:true,
           duration: 2000
         })
@@ -185,7 +185,7 @@ Page({
   cartlist: function () {
     //頁面跳轉
     wx.navigateTo({
-      url: '../service_buy/service_buy'
+      url: '/pages/goods/show/show_goods_buy/show_goods_buy'
     })
   }
 })
@@ -215,7 +215,7 @@ function getGoodsDetails(channelId, goodsId, packageId) {
       } else {
         var goods_cate_id = res.data.list.package_cate_id
       }
-      WxParse.wxParse('descrip_detail', 'html', list.descrip_detail, content, );
+      WxParse.wxParse('descrip_detail', 'html', list.descrip_detail, content);
       var hasSpec = false;
       var showData = {
         list: list,
@@ -302,7 +302,7 @@ function getGoodsSpecDetails(detailsRequest, goodsNumber) {
       //总价格
       wx.setStorageSync('totla_price', totla_price)
       wx.navigateTo({
-        url: '../service_money/service_money'
+        url: '/pages/goods/order/order_goods_money/order_goods_money'
       })
     },
     fail: function () {

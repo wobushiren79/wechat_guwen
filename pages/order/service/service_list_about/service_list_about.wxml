@@ -13,7 +13,7 @@
               <radio color='#48cfad' value='{{item.workOrder.id}}' checked="{{item.isCheck}}"/>
               <view class="li_header">
                 <view class="header">
-                  <image src='../../../images/icon_order_list_plan.png' mode='widthFix'></image>
+                  <image src='/images/icon_order_list_plan.png' mode='widthFix'></image>
                 </view>
                 <view class='body'>
                   殡仪/{{item.workOrder.orderNumber}}
@@ -56,7 +56,7 @@
               <radio color='#67bedb' value='{{item.workOrder.id}}'  checked="{{item.isCheck}}"/>
               <view class="li_header">
                 <view class="header">
-                  <image src='../../../images/icon_order_list_cem.png' mode='widthFix'></image>
+                  <image src='/images/icon_order_list_cem.png' mode='widthFix'></image>
                 </view>
                 <view class='body'>
                   公墓/{{item.workOrder.orderNumber}}
@@ -99,7 +99,7 @@
               <radio color='#ffd076' value='{{item.workOrder.id}}'  checked="{{item.isCheck}}"/>
               <view class="li_header">
                 <view class="header">
-                  <image src='../../../images/icon_order_list_other.png' mode='widthFix'></image>
+                  <image src='/images/icon_order_list_other.png' mode='widthFix'></image>
                 </view>
                 <view class='body'>
                   其他/{{item.workOrder.orderNumber}}

@@ -27,7 +27,7 @@ Page({
     getOrderList(4)
   },
   //上拉添加记录条数
-  onReachBottom() {
+  onReachBottom:function() {
     getOrderList(4)
   },
   onLoad: function () {
@@ -42,7 +42,7 @@ Page({
       return
     } else {
       wx.navigateTo({
-        url: '../../new_/new_',
+        url: '/pages/order/new_/new_',
       })
     }
   },

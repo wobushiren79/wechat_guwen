@@ -12,10 +12,10 @@ Page({
     service: "24",
     money: "240",
     service_num: "7.4",
-    icon_service: "../../images/index_icon_service.png",
-    icon_cem: "../../images/index_icon_cem.png",
-    icon_plan: "../../images/index_icon_plan.png",
-    icon_right: "../../images/icon_right.png",
+    icon_service: "/images/index_icon_service.png",
+    icon_cem: "/images/index_icon_cem.png",
+    icon_plan: "/images/index_icon_plan.png",
+    icon_right: "/images/icon_right.png",
     role: '',
     // 是否出现焦点
     indicatorDots_banner: true,
@@ -46,7 +46,7 @@ Page({
       fail: function (res) {
         wx.showToast({
           title: '拨打电话失败',
-          image: '../../images/icon_info.png',
+          image: '/images/icon_info.png',
           duration: 3000
         })
       }

@@ -112,7 +112,7 @@
               <view class="footer ">
                 <input placeholder="选择" value="{{province}}-{{city}}-{{county}}" focus="{{focus}}" bindfocus="open" disabled/>
               </view>
-              <image src="../../images/right.png" class="icon"></image>
+              <image src="/images/right.png" class="icon"></image>
             </view>
 
             <view class="dd radio_hide width_300 bc_dis">
@@ -240,7 +240,7 @@
               <view class="footer ">
                 <input placeholder="选择" value="{{province}}-{{city}}-{{county}}" focus="{{focus}}" bindfocus="open" name="receiptLocation"/>
               </view>
-              <image src="../../images/right.png" class="icon"></image>
+              <image src="/images/right.png" class="icon"></image>
             </view>
 
             <view class="dd radio_hide width_300">

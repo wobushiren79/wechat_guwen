@@ -89,7 +89,7 @@
             <input class="weui-input" placeholder="地址" name="address" value="{{customerAddressNew}}" bindblur='Clocation'/>
           </view>
           <view class="icon" bindtap="Location">
-            <image src="../../images/address.png"></image>
+            <image src="/images/address.png"></image>
           </view>
         </view>
         <!--交通方式-->
@@ -196,7 +196,7 @@
             <input class="weui-input" placeholder="地址" name="location" value="{{top_chat?top_chat:customerAddressNew}}" />
           </view>
           <view class="icon" bindtap="top_chat">
-            <image src="../../images/address.png"></image>
+            <image src="/images/address.png"></image>
           </view>
         </view>
         <!--前往目的地-->
@@ -208,7 +208,7 @@
             <input class="weui-input" placeholder="地址" bindblur='notNull' name="targetLocation" value="{{spot?spot:GmName}}" />
           </view>
           <view class="icon" bindtap="spot">
-            <image src="../../images/address.png"></image>
+            <image src="/images/address.png"></image>
           </view>
         </view>
         <!--备注-->

@@ -31,7 +31,7 @@ Page({
               } else {
                 wx.showToast({
                   title: res.data.message,
-                  image: '../../images/icon_info.png',
+                  image: '/images/icon_info.png',
                   duration: 2000
                 })
             }
@@ -39,7 +39,7 @@ Page({
           })
       },
   //上拉刷新
-  onPullDownRefresh() {
+  onPullDownRefresh:function() {
     wx.showNavigationBarLoading() //在标题栏中显示加载
     wx.setNavigationBarTitle({
       title: '刷新中!请稍后'
@@ -73,7 +73,7 @@ Page({
         } else {
           wx.showToast({
             title: res.data.message,
-            image: '../../images/icon_info.png',
+            image: '/images/icon_info.png',
             duration: 2000
           })
         }
@@ -91,7 +91,7 @@ Page({
     })
   },
   //下拉添加记录条数
-  onReachBottom() {
+  onReachBottom :function() {
     //console.log('--------下拉刷新-------')
     wx.showNavigationBarLoading() //在标题栏中显示加载
     wx.setNavigationBarTitle({
@@ -127,7 +127,7 @@ Page({
         } else {
           wx.showToast({
             title: res.data.message,
-            image: '../../images/icon_info.png',
+            image: '/images/icon_info.png',
             duration: 2000
           })
         }

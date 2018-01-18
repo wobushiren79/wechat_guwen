@@ -131,7 +131,7 @@ Page({
                         } else {
                             wx.showToast({
                                 title: res.data.message,
-                                image: '../../images/icon_info.png',
+                                image: '/images/icon_info.png',
                                 duration: 3000
                             })
                         }
@@ -228,37 +228,37 @@ Page({
         if (!consultId) {
             wx.showToast({
                 title: '咨询ID不能为空',
-                image: '../../images/icon_info.png',
+                image: '/images/icon_info.png',
                 duration: 3000
             })
         } else if (!e.detail.value.name) {
             wx.showToast({
                 title: '姓名不能为空',
-                image: '../../images/icon_info.png',
+                image: '/images/icon_info.png',
                 duration: 3000
             })
         } else if (!e.detail.value.cardId) {
             wx.showToast({
                 title: '身份证不能为空',
-                image: '../../images/icon_info.png',
+                image: '/images/icon_info.png',
                 duration: 3000
             })
         } else if (!e.detail.value.age) {
             wx.showToast({
                 title: '年龄不能为空',
-                image: '../../images/icon_info.png',
+                image: '/images/icon_info.png',
                 duration: 3000
             })
         } else if (!e.detail.value.shoeSize) {
             wx.showToast({
                 title: '鞋码不能为空',
-                image: '../../images/icon_info.png',
+                image: '/images/icon_info.png',
                 duration: 3000
             })
         } else if (!e.detail.value.location) {
             wx.showToast({
                 title: '地址不能为空',
-                image: '../../images/icon_info.png',
+                image: '/images/icon_info.png',
                 duration: 3000
             })
         } else if (consultId && e.detail.value.name && e.detail.value.cardId && e.detail.value.age && e.detail.value.shoeSize && e.detail.value.location) {
@@ -296,7 +296,7 @@ Page({
                             } else {
                                 wx.showToast({
                                     title: res.data.message,
-                                    image: '../../images/icon_info.png',
+                                    image: '/images/icon_info.png',
                                     duration: 3000
                                 })
                             }

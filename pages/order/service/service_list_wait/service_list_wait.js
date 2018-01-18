@@ -1,7 +1,7 @@
-var orderCenterHttp = require("../../../utils/http/RequestForOrderCenter.js")
-var toastUtil = require("../../../utils/ToastUtil.js");
-var pageUtil = require("../../../utils/PageUtil.js");
-var checkPermissions = require("../../../utils/CheckPermissions.js");
+var orderCenterHttp = require("../../../../utils/http/RequestForOrderCenter.js")
+var toastUtil = require("../../../../utils/ToastUtil.js");
+var pageUtil = require("../../../../utils/PageUtil.js");
+var checkPermissions = require("../../../../utils/CheckPermissions.js");
 var content;
 Page({
   data: {
@@ -27,7 +27,7 @@ Page({
     wx.stopPullDownRefresh()
   },
   //上拉添加记录条数
-  onReachBottom() {
+  onReachBottom:function() {
     getOrderList(1);// 1表示工单待接单tab页
   },
   onLoad: function () {
@@ -46,7 +46,7 @@ Page({
       return
     } else {
       wx.navigateTo({
-        url: '../../new_/new_',
+        url: 'pages/order/new_/new_',
       })
     }
   },
@@ -95,7 +95,7 @@ function acceptOrder(orderId) {
   var acceptCallBack = {
     success: function (data, res) {
       wx.redirectTo({
-        url:'../CashBack_list_processing/CashBack_list_processing'
+        url:'/pages/order/CashBack/CashBack_list_processing/CashBack_list_processing'
       })
       // content.onShow();
     },

@@ -16,7 +16,7 @@ Page({
     helpType = e.type;
     getHelpList(helpType)
   },
-  onReachBottom() {
+  onReachBottom :function() {
     getHelpList(helpType)
   },
 });

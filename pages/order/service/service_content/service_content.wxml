@@ -8,12 +8,12 @@
           <!-- 公墓 -->
           <view class='dt'>
             <view class='dt_hd'>
-              <image src='../../../images/icon_order_content_cem.png' mode='widthFix'></image>
+              <image src='/images/icon_order_content_cem.png' mode='widthFix'></image>
             </view>
             <view class='dt_bd'>公墓({{cemetery}})</view>
             <block wx:if="{{call  == false}}">
               <view class='dt_footer' bindtap="bind_tel">
-                <image src='../../../images/icon_order_content_phone.png' mode='widthFix'></image>
+                <image src='/images/icon_order_content_phone.png' mode='widthFix'></image>
               </view>
             </block>
           </view>
@@ -22,12 +22,12 @@
           <!-- 殡仪 -->
           <view class='dt'>
             <view class='dt_hd'>
-              <image src='../../../images/icon_order_content_plan.png' mode='widthFix'></image>
+              <image src='/images/icon_order_content_plan.png' mode='widthFix'></image>
             </view>
             <view class='dt_bd'>殡仪</view>
             <block wx:if="{{call  == false}}">
               <view class='dt_footer' bindtap="bind_tel">
-                <image src='../../../images/icon_order_content_phone.png' mode='widthFix'></image>
+                <image src='/images/icon_order_content_phone.png' mode='widthFix'></image>
               </view>
             </block>
           </view>
@@ -36,12 +36,12 @@
           <!-- 其他 -->
           <view class='dt'>
             <view class='dt_hd'>
-              <image src='../../../images/icon_order_content_other.png' mode='widthFix'></image>
+              <image src='/images/icon_order_content_other.png' mode='widthFix'></image>
             </view>
             <view class='dt_bd'>其他</view>
             <block wx:if="{{call  == false}}">
               <view class='dt_footer' bindtap="bind_tel">
-                <image src='../../../images/icon_order_content_phone.png' mode='widthFix'></image>
+                <image src='/images/icon_order_content_phone.png' mode='widthFix'></image>
               </view>
             </block>
           </view>
@@ -136,7 +136,7 @@
                   <view class="weui-cell">
                     <view class="weui-cell__hd">
                       <image src="{{item.titleImg}}"></image>
-                      <image class='ispackage' src='../../../images/ispackage.png' mode='widthFix'></image>
+                      <image class='ispackage' src='/images/ispackage.png' mode='widthFix'></image>
                     </view>
                     <view class="weui-cell__bd">{{item.specOrderedVolume}}</view>
                     <view class="weui-cell__ft">

@@ -1,7 +1,7 @@
-var orderCenterHttp = require("../../../utils/http/RequestForOrderCenter.js")
-var toastUtil = require("../../../utils/ToastUtil.js");
-var checkPermissions = require("../../../utils/CheckPermissions.js");
-var storageKey = require("../../../utils/storage/StorageKey.js");
+var orderCenterHttp = require("../../../../utils/http/RequestForOrderCenter.js")
+var toastUtil = require("../../../../utils/ToastUtil.js");
+var checkPermissions = require("../../../../utils/CheckPermissions.js");
+var storageKey = require("../../../../utils/storage/StorageKey.js");
 var orderData;
 Page({
   data: {

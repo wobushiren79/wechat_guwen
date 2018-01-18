@@ -30,7 +30,7 @@ Page({
       fail:function(){
         wx.showToast({
           title: '网络忙',
-          image: '../../images/icon_info.png',
+          image: '/images/icon_info.png',
           duration: 2000,
           // mask:true,
         })

@@ -2,19 +2,19 @@
   <view class="page__bd">
     <!--选项卡-->
     <view class="tab">
-      <view>
-        <navigator  url="../list_/list_" open-type="redirectTo">待看墓</navigator>
-      </view>
-      <view>
-        <navigator   url="../list_a/list_a" open-type="redirect">看墓中</navigator>
-      </view>
-      <view>
-        <navigator class="active"  url="../list_b/list_b" open-type="redirect">未定墓</navigator>
-      </view>
-      <view>
-        <navigator  url="../list_s/list_s" open-type="redirect">已定墓</navigator>
-      </view>
-    </view>
+              <view>
+                <navigator url="/pages/cemetery/list_notsee/list_notsee" open-type="redirectTo">待看墓</navigator>
+              </view>
+              <view>
+                <navigator  url="/pages/cemetery/list_ongoing/list_ongoing" open-type="redirect">看墓中</navigator>
+              </view>
+              <view>
+                <navigator   class="active" url="/pages/cemetery/list_nottobuy/list_nottobuy" open-type="redirect">未定墓</navigator>
+              </view>
+              <view>
+                <navigator  url="/pages/cemetery/list_havetobuy/list_havetobuy" open-type="redirect">已定墓</navigator>
+              </view>
+            </view>
 
     <!--模板2-->
     <template name="list_b">
@@ -49,7 +49,7 @@
                 <input class="weui-input" value="{{customerMobile}}" disabled="disabled" />
               </view>
                <view class="icon" bindtap="call_phone" data-phone="{{customerMobile}}">
-                <image src="../../images/phone.png"></image>
+                <image src="/images/phone.png"></image>
               </view>
             </view>
 

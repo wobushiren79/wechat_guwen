@@ -2,54 +2,9 @@
   <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
     <view class="page__bd clearfix">
 
-      <!-- 填写服务信息 star -->
-      <!-- <view class="goods_address ">
-        <black wx:if="{{!show}}">
-          <navigator url="../service_goods_address/service_goods_address" open-type='redirectTo'>
-            <view class="show clearfix">
-              <image src="../../images/icon_edit.png" class="img"></image>
-              <view class="info">
-                <view class="title">填写服务信息</view>
-                <view class="content">请根据提示依次填入客户信息</view>
-              </view>
-              <image src="../../images/right.png" class="icon"></image>
-            </view>
-          </navigator>
-        </black>
-        <black wx:if="{{show}}">
-          <navigator url="../service_goods_address/service_goods_address" open-type='redirectTo'>
-            <view class="hide clearfix">
-              <image src="../../images/icon_money_my.png" class="img "></image>
-              <view class="info clearfix ">
-                <view class="title ">
-                  客户：
-                  <text>{{kehu.contact}}</text>
-                  <text class="phone ">{{kehu.contactPhone}}</text>
-                </view>
-                <view class="content ">
-                  <view class=" ">
-                    地址：
-                    <text>{{kehu.serviceLocation}}</text>
-                  </view>
-                  <block wx:if="{{kehu.bookTime}}">
-                    <view class=" ">
-                      服务时间：
-                      <text>{{kehu.bookTime}}</text>
-                    </view>
-                  </block>
-                </view>
-              </view>
-              <image src="../../images/right.png " class="icon "></image>
-            </view>
-          </navigator>
-        </black>
-        <image src="../../images/hr.png " class="hr "></image>
-      </view> -->
-      <!-- 填写服务信息 end -->
-
       <!-- 填写收件地址 -->
       <view class="goods_address ">
-        <navigator url="../order_service_address/order_service_address">
+        <navigator url="/pages/goods/order/order_goods_address/order_goods_address">
           <view class="hide clearfix">
             <image src="/images/icon_money_my.png" class="img "></image>
             <!-- 信息 -->
@@ -68,10 +23,10 @@
                 </view>
               </view>
             </view>
-            <image src="../../../images/right.png " class="icon "></image>
+            <image src="/images/right.png " class="icon "></image>
           </view>
         </navigator>
-        <image src="../../../images/hr.png " class="hr "></image>
+        <image src="/images/hr.png " class="hr "></image>
       </view>
 
       <!-- 购置物品 -->
@@ -96,7 +51,7 @@
             <view class="header ">
               查看详细列表
             </view>
-            <image src="../../images/right.png " class="icon "></image>
+            <image src="/images/right.png " class="icon "></image>
           </view>
           <black wx:for="{{class_name}}">
             <!-- 详情列表 star -->
@@ -139,7 +94,7 @@
                   </view>
                 </block>
                 <block wx:if="{{ite.is_package == 1}}">
-                  <navigator url="../service_goods_pay_goodslist/service_goods_pay_goodslist?id={{ite.id}}">
+                  <navigator url="/pages/goods/order/order_goods_pay_goodslist/order_goods_pay_goodslist?id={{ite.id}}">
                     <view class="group_item clearfix">
                       <view class="checkbox_wrap">
                         <checkbox value="value" checked="" />
@@ -147,7 +102,7 @@
                       <view class="img_wrap">
                         <image src="{{ite.title_img}}"></image>
                         <!-- 套餐IQ -->
-                        <image src='../../images/ispackage.png' class='ispackage' style='width: 100rpx;height: 50rpx;'></image>
+                        <image src='/images/ispackage.png' class='ispackage' style='width: 100rpx;height: 50rpx;'></image>
                       </view>
                       <view class="info show">
                         <view class="name aui-ellipsis-2">
@@ -180,7 +135,7 @@
       <!-- 购置物品 -->
       <view class="goods_other list ">
         <view class="dl ">
-          <navigator class='order' url="../allot/order_list_about/order_list_about" open-type='navigateTo'>
+          <navigator class='order' url="/pages/order/service/service_list_about/service_list_about" open-type='navigateTo'>
             <view class="dd ">
               <view class="header ">
                 关联工单:{{orderCenterDetail.customerInfo.contactName}}
@@ -188,10 +143,10 @@
               <view class="footer ">
                 <text>关联工单</text>
               </view>
-              <image src="../../images/right.png " class="icon "></image>
+              <image src="/images/right.png " class="icon "></image>
             </view>
           </navigator>
-          <navigator url="../service_invoice_address/service_invoice_address" open-type='navigateTo'>
+          <navigator url="/pages/goods/order/order_goods_invoice/order_goods_invoice" open-type='navigateTo'>
             <view class="dd ">
               <view class="header ">
                 发票信息
@@ -201,7 +156,7 @@
                 <text>{{xuyao}}</text>
               </view>
 
-              <image src="../../images/right.png " class="icon "></image>
+              <image src="/images/right.png " class="icon "></image>
             </view>
           </navigator>
           <black wx:if="{{xuyao == '需要发票'}}">
@@ -252,7 +207,7 @@
                   <text>{{date}}</text>
                 </picker>
               </view>
-              <image src="../../../images/right.png" class="icon"></image>
+              <image src="/images/right.png" class="icon"></image>
             </view>
             <view class="dd order_time">
               <view class="header ">
@@ -263,7 +218,7 @@
                   <text>{{time}}</text>
                 </picker>
               </view>
-              <image src="../../../images/right.png" class="icon"></image>
+              <image src="/images/right.png" class="icon"></image>
             </view>
           </block>
         </view>
@@ -272,7 +227,7 @@
       <view class="footerfix clearfix">
 
         <!-- <view class="home">
-          <navigator url="../index/index" open-type="switchTab"><image src="../../images/right.png"></image>首页</navigator>
+          <navigator url="/pages/index/index" open-type="switchTab"><image src="/images/right.png"></image>首页</navigator>
         </view> -->
 
         <!-- 合计 -->

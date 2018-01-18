@@ -109,7 +109,7 @@
               <input class="weui-input" value="{{agentmanPhone}}" disabled="disabled" />
             </view>
              <view class="icon" bindtap="call_phone" data-phone="{{agentmanPhone}}">
-                <image src="../../images/phone.png"></image>
+                <image src="/images/phone.png"></image>
               </view>
           </view>
 

@@ -7,7 +7,7 @@
         <view class="text">
           如对价格有异议，请拨打<text bindtap="bind_call">966188</text>
         </view>
-        <image src="../../images/succeed.png"></image>
+        <image src="/images/succeed.png"></image>
       </view>
 
 
@@ -15,7 +15,7 @@
 
       <view class="footerfix clearfix">
         <!-- 保存 -->
-        <navigator url="../index/index" open-type="reLaunch">
+        <navigator url="/pages/index/index" open-type="reLaunch">
             <button class="keep">返回首页</button>
         </navigator>
         

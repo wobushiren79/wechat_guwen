@@ -75,7 +75,7 @@
               <textarea  class="weui-input" placeholder="所在地" name="location" value="{{location}}" maxlength="-1"/>
             </view>
             <view class="icon" bindtap="Location">
-                        <image src="../../images/address.png"></image>
+                        <image src="/images/address.png"></image>
                     </view>
           </view>
           <view class="weui-cell weui-cell_input">

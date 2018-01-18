@@ -34,7 +34,7 @@
                         <input class="weui-input" placeholder="地址" name="customerAddressNew" value="{{Address}}"/>
                     </view>
                     <view class="icon" bindtap="Location">
-                        <image src="../../images/address.png"></image>
+                        <image src="/images/address.png"></image>
                     </view>
                 </view>
 

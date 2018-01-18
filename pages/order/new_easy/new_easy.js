@@ -1,6 +1,6 @@
-var platformHttp = require("../../utils/http/RequestForPlatform.js");
-var orderCenterHttp = require("../../utils/http/RequestForOrderCenter.js");
-var toastUtil = require("../../utils/ToastUtil.js");
+var platformHttp = require("../../../utils/http/RequestForPlatform.js");
+var orderCenterHttp = require("../../../utils/http/RequestForOrderCenter.js");
+var toastUtil = require("../../../utils/ToastUtil.js");
 var content;
 var that
 Page({
@@ -29,7 +29,7 @@ Page({
   //   if (e.detail.value == ''){
   //     wx.showToast({
   //       title: '不能为空',
-  //       image: '../../images/icon_info.png',
+  //       image: '/images/icon_info.png',
   //       duration: 2000
   //     })
   //   }
@@ -156,7 +156,7 @@ Page({
     if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))) {
       wx.showToast({
         title: '号码不正确',
-        image: '../../images/icon_info.png',
+        image: ' /images/icon_info.png',
         duration: 2000
       })
     }else{

@@ -42,7 +42,7 @@ Page({
       fail:function(){
         wx.showToast({
           title: '网络错误',
-          image: '../../images/icon_info.png',
+          image: '/images/icon_info.png',
           duration: 2000
         })
       }

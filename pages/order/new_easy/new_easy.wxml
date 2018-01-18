@@ -33,7 +33,7 @@
             <input class="weui-input" placeholder="客户地址" placeholder-class='placeholder'  name="address" value="{{customerAddressNew}}" bindblur='Clocation' />
           </view>
           <view class="icon" bindtap="Location">
-            <image src="../../images/address.png"></image>
+            <image src="/images/address.png"></image>
           </view>
         </view>
 

@@ -3,16 +3,16 @@
     <!--选项卡-->
     <view class="tab">
       <view>
-        <navigator url="../order_list_wait/order_list_wait" open-type="redirect">待接单</navigator>
+        <navigator url="/pages/order/service/service_list_wait/service_list_wait" open-type="redirect">待接单</navigator>
       </view>
       <view>
-        <navigator url="../order_list_processing/order_list_processing" open-type="redirect">处理中</navigator>
+        <navigator url="/pages/order/service/service_list_processing/service_list_processing" open-type="redirect">处理中</navigator>
       </view>
       <view>
-        <navigator url="../order_list_audit/order_list_audit" open-type="redirect">审核中</navigator>
+        <navigator url="/pages/order/service/service_list_audit/service_list_audit" open-type="redirect">审核中</navigator>
       </view>
       <view>
-        <navigator url="../order_list_finish/order_list_finish" class="active" open-type="redirect">已完成</navigator>
+        <navigator url="/pages/order/service/service_list_finish/service_list_finish" class="active"  open-type="redirect">已完成</navigator>
       </view>
     </view>
 
@@ -24,7 +24,7 @@
             <view class="li plan">
               <view class="li_header ">
                 <view class="header">
-                  <image mode="widthFix" src="../../../images/icon_order_list_plan.png">
+                  <image mode="widthFix" src="/images/icon_order_list_plan.png">
                   </image>
                 </view>
                 <view class='body'>
@@ -32,8 +32,8 @@
                 </view>
                 <view class="footer"></view>
               </view>
-              <navigator class="li_body" url="/pages/allot/order_content/order_content?orderId={{item.workOrder.id}}" hover-class="active">
-                <image src="../../../images/right.png" class="icon"></image>
+              <navigator class="li_body" url="/pages/order/service/service_content/service_content?orderId={{item.workOrder.id}}" hover-class="active">
+                <image src="/images/right.png" class="icon"></image>
                 <view>
                   <view class="header">
                     服务地址：
@@ -73,7 +73,7 @@
             <view class="li cem">
               <view class="li_header ">
                 <view class="header">
-                  <image mode="widthFix" src="../../../images/icon_order_list_plan.png">
+                  <image mode="widthFix" src="/images/icon_order_list_plan.png">
                   </image>
                 </view>
                 <view class='body'>
@@ -81,8 +81,8 @@
                 </view>
                 <view class="footer"></view>
               </view>
-              <navigator class="li_body" url="/pages/allot/order_content/order_content?orderId={{item.workOrder.id}}" hover-class="active">
-                <image src="../../../images/right.png" class="icon"></image>
+              <navigator class="li_body" url="/pages/order/service/service_content/service_content?orderId={{item.workOrder.id}}" hover-class="active">
+                <image src="/images/right.png" class="icon"></image>
                 <view>
                   <view class="header">
                     服务地址：
@@ -122,7 +122,7 @@
             <view class="li other">
               <view class="li_header ">
                 <view class="header">
-                  <image mode="widthFix" src="../../../images/icon_order_list_other.png">
+                  <image mode="widthFix" src="/images/icon_order_list_other.png">
                   </image>
                 </view>
                 <view class='body'>
@@ -130,8 +130,8 @@
                 </view>
                 <view class="footer"></view>
               </view>
-              <navigator class="li_body" url="/pages/allot/order_content/order_content?orderId={{item.workOrder.id}}" hover-class="active">
-                <image src="../../../images/right.png" class="icon"></image>
+              <navigator class="li_body" url="/pages/order/service/service_content/service_content?orderId={{item.workOrder.id}}" hover-class="active">
+                <image src="/images/right.png" class="icon"></image>
                 <view>
                   <view class="header">
                     服务地址：
@@ -183,7 +183,7 @@
   </block>
     <block wx:else>
      <view class='prompt_img'>
-      <image src='../../../images/blank.png' mode='widthFix'></image>
+      <image src='/images/blank.png' mode='widthFix'></image>
      </view>
     </block>
   </block>

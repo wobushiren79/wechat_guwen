@@ -7,7 +7,7 @@
         <block wx:if="{{cemeteryAdvisor}}">
           <view class="li">
             <navigator url="../list_/list_" hover-class="active">
-              <image src="../../images/icon_order_cem.png"></image>
+              <image src="/images/icon_order_cem.png"></image>
               <text>看墓订单</text>
             </navigator>
           </view>
@@ -15,7 +15,7 @@
         <!-- 殡仪服务 -->
         <!-- <view class="li">
           <navigator url="../list/list" hover-class="active">
-            <image src="../../images/icon_order_plan.png"></image>
+            <image src="/images/icon_order_plan.png"></image>
             <text>白事订单</text>
           </navigator>
         </view> -->
@@ -23,14 +23,14 @@
         <!-- 单项服务 -->
          <view class="li">
           <navigator url="../service_order_list_submit/service_order_list_submit" hover-class="active">
-            <image src="../../images/icon_order_server.png"></image>
+            <image src="/images/icon_order_server.png"></image>
             <text>商城订单</text>
           </navigator>
         </view> 
         <block wx:if="{{goodsAdvisor}}">
           <view class="li">
             <navigator url="../mystroe/stroe_list/stroe_list" hover-class="active">
-              <image src="../../images/icon_order_server.png"></image>
+              <image src="/images/icon_order_server.png"></image>
               <text>门店订单</text>
             </navigator>
           </view>
@@ -39,7 +39,7 @@
         <block wx:if="{{orderCenter}}">
           <view class="li">
             <navigator url="../allot/order_list_processing/order_list_processing" hover-class="active">
-              <image src="../../images/icon_order_server.png"></image>
+              <image src="/images/icon_order_server.png"></image>
               <text>服务单</text>
             </navigator>
           </view>
@@ -47,7 +47,7 @@
         <block wx:if="{{orderCenterBuild}}">
           <view class="li">
             <navigator url="../order_center/order_list_wait/order_list_wait" hover-class="active">
-              <image src="../../images/icon_order_server.png"></image>
+              <image src="/images/icon_order_server.png"></image>
               <text>返现单</text>
             </navigator>
           </view>

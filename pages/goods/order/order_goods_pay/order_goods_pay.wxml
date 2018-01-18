@@ -20,7 +20,7 @@
       <block wx:else>
 
         <view class="content">
-          <image src="../../images/service_goods_pay.png"></image>
+          <image src="/images/service_goods_pay.png"></image>
           <view class="text">
 
 
@@ -40,7 +40,7 @@
           </view>
 
           <!-- <view class='index'>
-            <navigator url='../index/index' open-type='reLaunch'>返回首页</navigator>
+            <navigator url='/pages/index/index' open-type='reLaunch'>返回首页</navigator>
           </view> -->
         </view>
         

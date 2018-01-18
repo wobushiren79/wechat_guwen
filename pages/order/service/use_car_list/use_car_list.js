@@ -1,6 +1,6 @@
-var orderCenterHttp = require("../../../utils/http/RequestForOrderCenter.js")
-var toastUtil = require("../../../utils/ToastUtil.js");
-var pageUtil = require("../../../utils/PageUtil.js");
+var orderCenterHttp = require("../../../../utils/http/RequestForOrderCenter.js")
+var toastUtil = require("../../../../utils/ToastUtil.js");
+var pageUtil = require("../../../../utils/PageUtil.js");
 var content;
 
 Page({
@@ -16,7 +16,7 @@ Page({
     })
   },
   //上拉添加记录条数
-  onReachBottom() {
+  onReachBottom:function() {
     getCarList(content.data.orderId)
   },
   //下拉事件

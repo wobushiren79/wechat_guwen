@@ -3,16 +3,16 @@
     <!--选项卡-->
     <view class="tab">
       <view>
-        <navigator url="../order_list_wait/order_list_wait" open-type="redirect">服务中</navigator>
+        <navigator url="/pages/order/CashBack/CashBack_list_wait/CashBack_list_wait" open-type="redirect">服务中</navigator>
       </view>
       <view>
-        <navigator url="../order_list_processing/order_list_processing" open-type="redirect">未返现</navigator>
+        <navigator url="/pages/order/CashBack/CashBack_list_processing/CashBack_list_processing"  open-type="redirect">未返现</navigator>
       </view>
       <view>
-        <navigator url="../order_list_audit/order_list_audit" open-type="redirect">已返现</navigator>
+        <navigator url="/pages/order/CashBack/CashBack_list_audit/CashBack_list_audit" open-type="redirect">已返现</navigator>
       </view>
       <view>
-        <navigator url="../order_list_finish/order_list_finish" class="active" open-type="redirect">已关闭</navigator>
+        <navigator url="/pages/order/CashBack/CashBack_list_finish/CashBack_list_finish" open-type="redirect" class="active" >已关闭</navigator>
       </view>
     </view>
     <!-- 列表 -->
@@ -27,7 +27,7 @@
             <view class="li plan">
               <view class="li_header plan">
                 <view class="header">
-                  <image src='../../../images/icon_order_list_plan.png' mode='widthFix'></image>
+                  <image src='/images/icon_order_list_plan.png' mode='widthFix'></image>
                 </view>
                 <view class='body'>
                   殡仪/{{item.workOrder.orderNumber}}
@@ -36,8 +36,8 @@
                   {{item.workOrder.orderStatusStr}}
                 </view>
               </view>
-              <navigator class="li_body" url="/pages/order_center/order_content/order_content?orderId={{item.workOrder.id}}" hover-class="active">
-                <image src="../../../images/right.png" class="icon"></image>
+              <navigator class="li_body" url="/pages/CashBack/CashBack_content/CashBack_content?orderId={{item.workOrder.id}}" hover-class="active">
+                <image src="/images/right.png" class="icon"></image>
                 <view>
                   <view class="header">
                     服务地址：
@@ -77,7 +77,7 @@
             <view class="li cem">
               <view class="li_header cem">
                 <view class="header">
-                  <image src='../../../images/icon_order_list_cem.png' mode='widthFix'></image>
+                  <image src='/images/icon_order_list_cem.png' mode='widthFix'></image>
                 </view>
                 <view class='body'>
                   公墓/{{item.workOrder.orderNumber}}
@@ -86,8 +86,8 @@
                   {{item.workOrder.orderStatusStr}}
                 </view>
               </view>
-              <navigator class="li_body" url="/pages/order_center/order_content/order_content?orderId={{item.workOrder.id}}" hover-class="active">
-                <image src="../../../images/right.png" class="icon"></image>
+              <navigator class="li_body" url="/pages/CashBack/CashBack_content/CashBack_content?orderId={{item.workOrder.id}}" hover-class="active">
+                <image src="/images/right.png" class="icon"></image>
                 <view>
                   <view class="header">
                     服务地址：
@@ -127,7 +127,7 @@
             <view class="li other">
               <view class="li_header other">
                 <view class="header">
-                  <image src='../../../images/icon_order_list_other.png' mode='widthFix'></image>
+                  <image src='/images/icon_order_list_other.png' mode='widthFix'></image>
                 </view>
                 <view class='body'>
                   其它/{{item.workOrder.orderNumber}}
@@ -136,8 +136,8 @@
                   {{item.workOrder.orderStatusStr}}
                 </view>
               </view>
-              <navigator class="li_body" url="/pages/order_center/order_content/order_content?orderId={{item.workOrder.id}}" hover-class="active">
-                <image src="../../../images/right.png" class="icon"></image>
+              <navigator class="li_body" url="/pages/CashBack/CashBack_content/CashBack_content?orderId={{item.workOrder.id}}" hover-class="active">
+                <image src="/images/right.png" class="icon"></image>
                 <view>
                   <view class="header">
                     服务地址：

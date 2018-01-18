@@ -4,7 +4,7 @@
     <!--搜索-->
     <view class="search clearfix">
       <input type="text" placeholder="请输入您要查找的商品" name="search" bindconfirm="bindKeyInput" confirm-type="search"/>
-      <image src="../../images/search_icon.png"></image>
+      <image src="/images/search_icon.png"></image>
       <text bindtap="quxiao">{{puxiao}}</text>
     </view>
 
@@ -15,7 +15,7 @@
       <view class="ul">
 <block wx:for="{{search_data}}">
 <block wx:if="{{item.is_package == 0}}">
-        <navigator url="../service_content/service_content?goods_id={{item.id}}&channel_id={{channel_id}}" class="li">
+        <navigator url="/page/goods/show/show_goods_content/show_goods_content?goods_id={{item.id}}&channel_id={{channel_id}}" class="li">
           <image class="li_img" src="{{item.title_img}}"></image>
           <view class="li_content">
             <view class="title aui-ellipsis-1">
@@ -31,15 +31,15 @@
             <view class="num">
               销售量<text>{{item.sale_amount}}</text>
             </view>
-            <image src="../../images/right.png"></image>
+            <image src="/images/right.png"></image>
           </view>
         </navigator>
 </block>
 <block wx:if="{{item.is_package == 1}}">
-        <navigator url="../service_content/service_content?package_id={{item.id}}&channel_id={{channel_id}}" class="li">
+        <navigator url="/page/goods/show/show_goods_content/show_goods_content?package_id={{item.id}}&channel_id={{channel_id}}" class="li">
           <image class="li_img" src="{{item.title_img}}"></image>
             <!-- 套餐IQ -->
-          <image src='../../images/ispackage.png' class='ispackage'></image>
+          <image src='/images/ispackage.png' class='ispackage'></image>
           <view class="li_content">
             <view class="title aui-ellipsis-1">
               <text>{{item.name}}</text>
@@ -54,7 +54,7 @@
             <view class="num">
               销售量<text>{{item.sale_amount}}</text>
             </view>
-            <image src="../../images/right.png"></image>
+            <image src="/images/right.png"></image>
           </view>
         </navigator>
 </block>

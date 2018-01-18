@@ -16,7 +16,7 @@
               {{item.spec_alias}}     {{item.spec_name}}
             </view>
             <view class='footer'>{{item.spec_price}}</view>
-            <image src="../../images/right.png " class="icon "></image>
+            <image src="/images/right.png " class="icon "></image>
           </view>
           <block wx:for="{{item.spec_goods}}" wx:for-item="ite">
           <view class="group">

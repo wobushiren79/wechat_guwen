@@ -1,12 +1,12 @@
-var orderCenterHttp = require("../../../utils/http/RequestForOrderCenter.js")
-var toastUtil = require("../../../utils/ToastUtil.js");
-var pageUtil = require("../../../utils/PageUtil.js");
-var checkTools = require("../../../utils/CheckTools.js")
+var orderCenterHttp = require("../../../../utils/http/RequestForOrderCenter.js")
+var toastUtil = require("../../../../utils/ToastUtil.js");
+var pageUtil = require("../../../../utils/PageUtil.js");
+var checkTools = require("../../../../utils/CheckTools.js")
 var content;
 Page({
   data: {
-    icon: "../../../images/dog_chang.jpg",
-    icon2: "../../../images/dog.png",
+    icon: "/images/dog_chang.jpg",
+    icon2: "/images/dog.png",
     tab_0: 0,
     tab_1: 0,
     tab_2: 0,

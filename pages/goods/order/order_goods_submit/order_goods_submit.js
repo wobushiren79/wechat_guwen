@@ -1,6 +1,6 @@
-var goodsHttp = require("../../utils/http/RequestForGoods.js")
-var toastUtil = require("../../utils/ToastUtil.js");
-var storageKey = require("../../utils/storage/StorageKey.js");
+var goodsHttp = require("../../../../utils/http/RequestForGoods.js")
+var toastUtil = require("../../../../utils/ToastUtil.js");
+var storageKey = require("../../../../utils/storage/StorageKey.js");
 var content;
 Page({
   data: {
@@ -55,7 +55,7 @@ function submitOrder(orderId) {
   var submitCallBack = {
     success: function (data, res) {
       wx.redirectTo({
-        url: '../service_goods_pay/service_goods_pay?orderId=' + orderId
+        url: '/pages/goods/order/order_goods_pay/order_goods/pay?orderId=' + orderId
       })
     },
     fail: function (data, res) {
