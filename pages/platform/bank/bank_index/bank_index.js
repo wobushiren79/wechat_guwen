@@ -20,7 +20,7 @@ Page({
           wx.clearStorageSync()
           //跳转登录页面
           wx.navigateTo({
-            url: '/pages/platfomr/user/user_login/user_login',
+            url: '/pages/platform/user/user_login/user_login',
           })
         }
       }
@@ -30,7 +30,7 @@ Page({
     var userInfo = wx.getStorageSync(storageKey.PLATFORM_USER_OBJ);
     if (!userInfo) {
       wx.navigateTo({
-        url: '/pages/platfomr/user/user_login/user_login',
+        url: '/pages/platform/user/user_login/user_login',
       })
       return
     }

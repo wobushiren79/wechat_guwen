@@ -67,7 +67,7 @@
     </swiper> 
 
         <view class="section_flex weui-flex section_flex2">
-      <navigator class="weui-flex__item" url='/pages/main/cemetery_select'>
+      <navigator class="weui-flex__item" url='/pages/main/cemetery_select/cemetery_select'>
         <image src='/images/icon_index_grid_1.png' mode='widthFix'></image>
         <text>公墓选购</text>
       </navigator>
@@ -247,7 +247,7 @@
         <view class="tab_content">
           <view class="ul">
             <block wx:for="{{label_data}}">
-              <navigator url="/page/goods/show/show_goods_content/show_goods_content?goods_id={{item.id}}&channel_id={{channel_id}}" class="li">
+              <navigator url="/pages/goods/show/show_goods_content/show_goods_content?goods_id={{item.id}}&channel_id={{channel_id}}" class="li">
                 <image class="li_img" src="{{item.title_img}}"></image>
                 <view class="li_content">
                   <view class="title aui-ellipsis-2">

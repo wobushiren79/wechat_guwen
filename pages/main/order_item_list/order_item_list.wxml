@@ -22,7 +22,7 @@
 
         <!-- 单项服务 -->
          <view class="li">
-          <navigator url="/pages/goods/order/order_goods_submit/order_goods_submit" hover-class="active">
+          <navigator url="/pages/goods/order/order_goods_list/order_goods_list_submit/order_goods_list_submit" hover-class="active">
             <image src="/images/icon_order_server.png"></image>
             <text>商城订单</text>
           </navigator>

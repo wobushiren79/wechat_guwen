@@ -3,19 +3,19 @@
     <!--选项卡-->
     <view class="tab">
       <view>
-        <navigator url="/pages/goods/order/order_goods_list_submit/order_goods_list_submit" open-type="redirect">待提交</navigator>
+        <navigator url="/pages/goods/order/order_goods_list/order_goods_list_submit/order_goods_list_submit" open-type="redirect">待提交</navigator>
       </view>
       <view>
-        <navigator url="/pages/goods/order/service_order_list_pay/service_order_list_pay" open-type="redirect" >待付款</navigator>
+        <navigator url="/pages/goods/order/order_goods_list/order_goods_list_pay/order_goods_list_pay" open-type="redirect">待付款</navigator>
       </view>
       <view>
-        <navigator url="/pages/goods/order/order_goods_list_serviceing/order_goods_list_serviceing" open-type="redirect" class="active">服务中</navigator>
+        <navigator url="/pages/goods/order/order_goods_list/order_goods_list_serviceing/order_goods_list_serviceing" open-type="redirect" class="active">服务中</navigator>
       </view>
       <view>
-        <navigator url="/pages/goods/order/order_goods_list_succeed/order_goods_list_succeed" open-type="redirect">已服务</navigator>
+        <navigator url="/pages/goods/order/order_goods_list/order_goods_list_succeed/order_goods_list_succeed" open-type="redirect">已服务</navigator>
       </view>
       <view>
-        <navigator url="/pages/goods/order/order_goods_list_close/order_goods_list_close" open-type="redirect">已关闭</navigator>
+        <navigator url="/pages/goods/order/order_goods_list/order_goods_list_close/order_goods_list_close" open-type="redirect">已关闭</navigator>
       </view>
     </view>
 

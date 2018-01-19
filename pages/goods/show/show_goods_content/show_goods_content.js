@@ -31,9 +31,9 @@ Page({
   onShareAppMessage: function () {
     var pathUrl = "";
     if (goodsId) {
-      pathUrl = '/page/goods/order/order_goods_content/order_goods_content?goods_id=' + goodsId + "&channel_id=" + channelId
+      pathUrl = '/pages/goods/order/order_goods_content/order_goods_content?goods_id=' + goodsId + "&channel_id=" + channelId
     } else if (packageId) {
-      pathUrl = '/page/goods/order/order_goods_content/order_goods_content?package_id=' + goodsId + "&channel_id=" + channelId
+      pathUrl = '/pages/goods/order/order_goods_content/order_goods_content?package_id=' + goodsId + "&channel_id=" + channelId
     }
     return {
       title: '圆满人生公共殡葬服务平台',
