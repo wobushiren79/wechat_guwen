@@ -40,22 +40,6 @@
                 <image src="/images/right.png" class="icon"></image>
                 <view>
                   <view class="header">
-                    服务地址：
-                  </view>
-                  <view class="body">
-                    {{item.customerInfo.address}}
-                  </view>
-                </view>
-                <view>
-                  <view class="header">
-                    预约时间：
-                  </view>
-                  <view class="body">
-                    {{item.workOrder.appointmentTime}}
-                  </view>
-                </view>
-                <view>
-                  <view class="header">
                     客户姓名：
                   </view>
                   <view class="body">
@@ -68,6 +52,22 @@
                   </view>
                   <view class="body">
                     {{item.customerInfo.contactPhone}}
+                  </view>
+                </view>
+                <view>
+                  <view class="header">
+                    服务地址：
+                  </view>
+                  <view class="body">
+                    {{item.customerInfo.address}}
+                  </view>
+                </view>
+                <view>
+                  <view class="header">
+                    预约时间：
+                  </view>
+                  <view class="body">
+                    {{item.workOrder.appointmentTime}}
                   </view>
                 </view>
                 <block wx:if="{{item.customerInfo.serviceTarget.length>0}}">
@@ -212,15 +212,15 @@
         </navigator> -->
 
       </view>
-  <import src="/template/template.wxml"/>
-  <block wx:if="{{notNumber}}">
-  <block wx:if="{{listdata.length>0}}" >
-  <template is="nonconformance"/>
-  </block>
-    <block wx:else>
-    <template is="nullData"/>
-    </block>
-  </block>
+      <import src="/template/template.wxml" />
+      <block wx:if="{{notNumber}}">
+        <block wx:if="{{listdata.length>0}}">
+          <template is="nonconformance" />
+        </block>
+        <block wx:else>
+          <template is="nullData" />
+        </block>
+      </block>
     </view>
   </view>
 </view>

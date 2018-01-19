@@ -101,7 +101,7 @@ Page({
                       that.setData({
                         disabled:true
                       })
-                toastUtil.showToast("申请成功");
+                      toastUtil.showToastReWrite("申请成功");
                       setTimeout(function () {
                         wx.navigateBack({
                           delta: 1

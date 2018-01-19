@@ -60,7 +60,7 @@
 </block>
 </block>
 <block wx:if="{{search_data.length==0}}">
-<view>暂无此搜索相关商品!我们正在努力更新商品中!</view>
+<view class='prompt'><text>暂无此搜索相关商品!\n我们正在努力更新商品中!</text></view>
 </block>
       </view>
     </view>

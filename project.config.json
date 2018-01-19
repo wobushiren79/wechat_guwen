@@ -74,6 +74,12 @@
 					"name": "设置提现卡",
 					"pathName": "pages/bank/card/card",
 					"query": "pid=0"
+				},
+				{
+					"id": -1,
+					"name": "sousuo ",
+					"pathName": "pages/goods/show/show_goods_search/show_goods_search",
+					"query": ""
 				}
 			]
 		}

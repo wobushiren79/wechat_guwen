@@ -59,7 +59,7 @@
                 ¥<text>{{item.price}}</text>
               </view>
               <view class="num">
-                销售量<text>{{item.sale_amount}}</text>
+                销量<text>{{item.sale_amount}}</text>
               </view>
               
             </view>
@@ -83,7 +83,7 @@
                 ¥:<text>{{item.price}}</text>
               </view>
               <view class="num">
-                销售量<text>{{item.sale_amount}}</text>
+                销量<text>{{item.sale_amount}}</text>
               </view>
             </view>
           </navigator>

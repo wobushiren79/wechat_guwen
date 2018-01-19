@@ -156,7 +156,7 @@ Page({
     if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))) {
       wx.showToast({
         title: '号码不正确',
-        image: ' /images/icon_info.png',
+        image: '/images/icon_info.png',
         duration: 2000
       })
     }else{
@@ -186,7 +186,7 @@ function createOrder(createOrderData) {
       })
       toastUtil.showToastReWrite('新建成功')
         wx.redirectTo({
-          url: '/pages/cashback/cashback_list_wait/cashback_list_wait',
+          url: '/pages/order/cashback/cashback_list_wait/cashback_list_wait',
         })
     },
     fail: function (data, res) {
