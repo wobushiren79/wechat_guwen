@@ -104,7 +104,7 @@
                     服务类型：
                   </view>
                   <view class="body">
-                    公墓
+                    公墓({{item.workOrder.cemeteryName}})
                   </view>
                 </view>
                 <view>

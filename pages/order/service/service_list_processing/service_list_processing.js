@@ -68,6 +68,12 @@ function getOrderList(listType) {
                         break;
                     }
                 }
+                if (data[i].workOrder.orderType == 1){
+                  var orderRemark = data[i].workOrder.orderRemark
+                  var star = orderRemark.indexOf('name":') + 7
+                  var end = orderRemark.indexOf(',') - 1
+                  data[i].workOrder.cemeteryName = orderRemark.substring(star, end)
+                }
             }
             content.setData({
                 listdata: data,
