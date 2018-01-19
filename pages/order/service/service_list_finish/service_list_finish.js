@@ -42,7 +42,7 @@ Page({
       return
     } else {
       wx.navigateTo({
-        url: '/pages/order/new_/new_',
+        url: '/pages/order/order_create/order_create',
       })
     }
   },

@@ -17,7 +17,7 @@
       <view class="content">
         <view class="ul clearfix">
         <black wx:for="{{attrlist}}">
-          <navigator url="/page/goods/show/show_goods_list/show_goods_list?id={{item.id}}" class="li" hover-class="weui-grid_active" open-type='navigateTo'>
+          <navigator url="/pages/goods/show/show_goods_list/show_goods_list?id={{item.id}}" class="li" hover-class="weui-grid_active" open-type='navigateTo'>
             <image src="{{item.title_img}}"></image>
             <text>{{item.name}}</text>
           </navigator>

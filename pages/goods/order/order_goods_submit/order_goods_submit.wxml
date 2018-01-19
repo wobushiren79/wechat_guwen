@@ -85,7 +85,7 @@
       </view>
 
       <!-- <view class='index'>
-        <navigator url='/pages/index/index' open-type='reLaunch'>返回首页</navigator>
+        <navigator url='/pages/main/index/index' open-type='reLaunch'>返回首页</navigator>
       </view> -->
 
 

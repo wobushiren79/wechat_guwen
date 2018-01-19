@@ -55,7 +55,7 @@ function submitOrder(orderId) {
   var submitCallBack = {
     success: function (data, res) {
       wx.redirectTo({
-        url: '/pages/goods/order/order_goods_pay/order_goods/pay?orderId=' + orderId
+        url: '/pages/goods/order/order_goods_pay/order_goods_pay?orderId=' + orderId
       })
     },
     fail: function (data, res) {

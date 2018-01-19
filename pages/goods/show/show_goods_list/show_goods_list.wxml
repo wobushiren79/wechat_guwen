@@ -32,7 +32,7 @@
       </view>
 
       <view class="">
-        <navigator url="../service/service" open-type="redirect">
+        <navigator url="/pages/goods/show/show_goods_index/show_goods_index" open-type="redirect">
           筛选
         </navigator>
       </view>
@@ -45,7 +45,7 @@
         <block wx:for="{{list}}">
         <!-- 判断如果不是套餐 -->
         <block wx:if="{{item.is_package == 0}}">
-          <navigator url="/page/goods/show/show_goods_content/show_goods_content?goods_id={{item.id}}&channel_id={{channel_id}}" class="li" open-type='navigateTo'>
+          <navigator url="/pages/goods/show/show_goods_content/show_goods_content?goods_id={{item.id}}&channel_id={{channel_id}}" class="li" open-type='navigateTo'>
             <image class="li_img" src="{{item.title_img}}"></image>
             <view class="li_content">
               <view class="title aui-ellipsis-2">
@@ -67,7 +67,7 @@
         </block>
         <!-- 判断如果为套餐 -->
         <block wx:elif="{{item.is_package == 1}}">
-          <navigator url="/page/goods/show/show_goods_content/show_goods_content?package_id={{item.id}}&channel_id={{channel_id}}" class="li">
+          <navigator url="/pages/goods/show/show_goods_content/show_goods_content?package_id={{item.id}}&channel_id={{channel_id}}" class="li">
             <image class="li_img" src="{{item.title_img}}"></image>
             <!-- 套餐IQ -->
             <image src='/images/ispackage.png' class='ispackage'></image>

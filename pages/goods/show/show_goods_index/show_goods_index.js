@@ -26,7 +26,7 @@ Page({
     var userId = wx.getStorageSync(storageKey.PLATFORM_USER_ID);
     if (!channelId || !userId) {
       wx.navigateTo({
-        url: '/pages/login/login',
+        url: '/pages/platform/user/user_login/user_login',
       })
       return
     }

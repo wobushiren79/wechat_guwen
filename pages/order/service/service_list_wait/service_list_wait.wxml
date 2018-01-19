@@ -1,8 +1,6 @@
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
   <view class="page__bd page_service_order page_allot_order_list page_allot_order_list2">
     <!--选项卡-->
-    <!--选项卡-->
-    <view class="tab">
     <view class="tab">
       <view>
         <navigator url="/pages/order/service/service_list_wait/service_list_wait" class="active" open-type="redirect">待接单</navigator>

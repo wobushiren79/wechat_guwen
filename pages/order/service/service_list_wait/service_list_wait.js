@@ -46,7 +46,7 @@ Page({
       return
     } else {
       wx.navigateTo({
-        url: 'pages/order/new_/new_',
+        url: '/pages/order/order_create/order_create',
       })
     }
   },
@@ -95,7 +95,7 @@ function acceptOrder(orderId) {
   var acceptCallBack = {
     success: function (data, res) {
       wx.redirectTo({
-        url:'/pages/order/CashBack/CashBack_list_processing/CashBack_list_processing'
+        url:'/pages/order/service/service_list_processing/service_list_processing'
       })
       // content.onShow();
     },

@@ -72,7 +72,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title: '圆满人生公共殡葬服务平台',
-      path: '/pages/login/login',
+      path: '/pages/platform/user/user_login/user_login',
       success: function (res) {
         wx.showToast({
           title: '转发成功',

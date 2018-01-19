@@ -1,0 +1,59 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd clearfix">
+
+    <view class="content">
+      <view class="ul clearfix">
+        <!-- 公墓服务 -->
+        <block wx:if="{{cemeteryAdvisor}}">
+          <view class="li">
+            <navigator url="/pages/cemetery/list_notsee/list_notsee" hover-class="active">
+              <image src="/images/icon_order_cem.png"></image>
+              <text>看墓订单</text>
+            </navigator>
+          </view>
+        </block>
+        <!-- 殡仪服务 -->
+        <!-- <view class="li">
+          <navigator url="../list/list" hover-class="active">
+            <image src="/images/icon_order_plan.png"></image>
+            <text>白事订单</text>
+          </navigator>
+        </view> -->
+
+        <!-- 单项服务 -->
+         <view class="li">
+          <navigator url="/pages/goods/order/order_goods_submit/order_goods_submit" hover-class="active">
+            <image src="/images/icon_order_server.png"></image>
+            <text>商城订单</text>
+          </navigator>
+        </view> 
+        <block wx:if="{{goodsAdvisor}}">
+          <view class="li">
+            <navigator url="/pages/goods/mystore/store_list/store_list" hover-class="active">
+              <image src="/images/icon_order_server.png"></image>
+              <text>门店订单</text>
+            </navigator>
+          </view>
+        </block>
+        <!-- 已接定单 -->
+        <block wx:if="{{orderCenter}}">
+          <view class="li">
+            <navigator url="/pages/order/service/service_list_processing/service_list_processing" hover-class="active">
+              <image src="/images/icon_order_server.png"></image>
+              <text>服务单</text>
+            </navigator>
+          </view>
+        </block>
+        <block wx:if="{{orderCenterBuild}}">
+          <view class="li">
+            <navigator url="/pages/order/cashback/cashback_list_wait/cashback_list_wait" hover-class="active">
+              <image src="/images/icon_order_server.png"></image>
+              <text>返现单</text>
+            </navigator>
+          </view>
+        </block>
+      </view>
+    </view>
+
+  </view>
+</view>

@@ -110,7 +110,7 @@
               </view>
             </view>
             <view class="weui-cells weui-cells_after-title {{tab_0 == index?'active':''}}">
-              <navigator url="/pages/service_order_content/service_order_content?orderid={{item.relateOrderId}}">
+              <navigator url="/pages/goods/order/order_goods_content/order_goods_content?orderid={{item.relateOrderId}}">
                 <!-- 循环商品 -->
                 <block wx:for="{{item.goodsOrderItemList}}">
                   <view class="weui-cell">

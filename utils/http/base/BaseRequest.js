@@ -232,12 +232,12 @@ function loginCemetery() {
   var loginCemeteryCallBack = {
     success: function (data, res) {
       wx.reLaunch({
-        url: '/pages/index/index',
+        url: '/pages/main/index/index',
       })
     },
     fail: function (data, res) {
       wx.reLaunch({
-        url: '/pages/index/index',
+        url: '/pages/main/index/index',
       })
     }
   }

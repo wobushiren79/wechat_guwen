@@ -9,7 +9,7 @@
         <navigator class="active" url="../list/list" open-type="redirectTo" >殡仪洽谈</navigator>
       </view>
       <!-- <view>
-        <navigator url="../list_/list_" open-type="redirectTo">选墓洽谈</navigator>
+        <navigator url="/pages/cemetery/list_notsee/list_notsee" open-type="redirectTo">选墓洽谈</navigator>
       </view>
       <view>
         <navigator url="../list_s/list_s" open-type="switchTab">成功服务</navigator>

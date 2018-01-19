@@ -227,7 +227,7 @@
       <view class="footerfix clearfix">
 
         <!-- <view class="home">
-          <navigator url="/pages/index/index" open-type="switchTab"><image src="/images/right.png"></image>首页</navigator>
+          <navigator url="/pages/main/index/index" open-type="switchTab"><image src="/images/right.png"></image>首页</navigator>
         </view> -->
 
         <!-- 合计 -->

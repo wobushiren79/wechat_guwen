@@ -1,6 +1,6 @@
-var cemeteryHttp = require("../../utils/http/RequestForCemetery.js");
-var toastUtil = require("../../utils/ToastUtil.js");
-var pageUtil = require("../../utils/PageUtil.js")
+var cemeteryHttp = require("../../../utils/http/RequestForCemetery.js");
+var toastUtil = require("../../../utils/ToastUtil.js");
+var pageUtil = require("../../../utils/PageUtil.js")
 var content;
 Page({
   data: {

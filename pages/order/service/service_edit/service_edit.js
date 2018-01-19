@@ -213,9 +213,17 @@ function dealOrder(dealRequest) {
 
   var dealCallBack = {
     success: function (data, res) {
-      wx.navigateBack({
-        delta: 1
-      })
+      if (dealRequest.performStatus==0){
+
+        wx.navigateBack({
+          delta: 1
+        })
+      } else if (dealRequest.performStatus == 1) {
+       wx.redirectTo({
+         url: '/pages/order/service/service_list_audit/service_list_audit',
+       })
+      }
+   
     },
     fail: function (data, res) {
       toastUtil.showToast("提交失败");
@@ -234,9 +242,16 @@ function getOrderDetails(orderId) {
   }
   var getCallBack = {
     success: function (data, res) {
+      if (data.customerInfo.agentName!=null)
       content.setData({
-        agentName: data.customerInfo.agentName,
-        agentPhone: data.customerInfo.agentPhone,
+        agentName: data.customerInfo.agentName
+      })
+      if (data.customerInfo.agentPhone != null)
+      content.setData({
+        agentPhone: data.customerInfo.agentPhone
+      })
+      if (data.customerInfo.serviceTarget != null)
+      content.setData({
         serviceTarget: data.customerInfo.serviceTarget
       })
     },
