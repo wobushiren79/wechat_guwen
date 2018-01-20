@@ -12,8 +12,8 @@ Page({
     tab_2: 0,
     tab: 0,
     popup_img: false,
-    name:[],
-    call:false,
+    name: [],
+    call: false,
     right_nav: 0,
     mystroe_right_nav_btn: '/images/mystroe_right_nav_btn.png'
   },
@@ -27,8 +27,8 @@ Page({
     })
   },
   bind_tel: function () {
-    var that=this
-    var tel_call= that.data.tel_call
+    var that = this
+    var tel_call = that.data.tel_call
     wx.showActionSheet({
       itemList: that.data.name,
       success: function (res) {
@@ -55,31 +55,45 @@ Page({
       popup_img: false
     })
   },
-
+  /**
+    * 滚动监听
+    */
+  onPageScroll: function (e) {
+    content.setData({
+      right_nav: 0,
+      mystroe_right_nav_btn: '/images/mystroe_right_nav_btn.png'
+    })
+  },
+  onShow: function (e) {
+    content.setData({
+      right_nav: 0,
+      mystroe_right_nav_btn: '/images/mystroe_right_nav_btn.png'
+    })
+  },
   onLoad: function (e) {
     content = this;
     // console.log(e.call)
-    if (e.call){
-       content.setData({
-         call:true,
-         orderId: e.orderId
-       })
+    if (e.call) {
+      content.setData({
+        call: true,
+        orderId: e.orderId
+      })
     }
     getOrderDetails(e.orderId)
   },
-  bind_tab:function(e){
+  bind_tab: function (e) {
     this.setData({
-      tab: e.currentTarget.dataset.tab 
+      tab: e.currentTarget.dataset.tab
     })
   },
   bind_tab_0: function (e) {
     // var that=this
     // console.log()
-    if (this.data.tab_0 == e.currentTarget.dataset.index){
+    if (this.data.tab_0 == e.currentTarget.dataset.index) {
       this.setData({
         tab_0: 1000000
       })
-    }else{
+    } else {
       // console.log(222222)
       this.setData({
         tab_0: e.currentTarget.dataset.index
@@ -137,24 +151,24 @@ function getOrderDetails(orderId) {
       for (var i in data.listPerformRecord) {
         get_data.push(data.listPerformRecord[i].performPic.split(","))
       }
-      var GoodsList=[]
-      var name=[]
-      var tel_call=[]
-      var cemetery=''
-      if (data.customerInfo.agentName && data.customerInfo.agentPhone){
-        name.push('经办人-'+data.customerInfo.agentName + ':' + data.customerInfo.agentPhone)
+      var GoodsList = []
+      var name = []
+      var tel_call = []
+      var cemetery = ''
+      if (data.customerInfo.agentName && data.customerInfo.agentPhone) {
+        name.push('经办人-' + data.customerInfo.agentName + ':' + data.customerInfo.agentPhone)
         tel_call.push(data.customerInfo.agentPhone)
       }
-      if (data.customerInfo.contactName && data.customerInfo.contactPhone){
-        name.push('联系人-'+data.customerInfo.contactName + ':' + data.customerInfo.contactPhone)
+      if (data.customerInfo.contactName && data.customerInfo.contactPhone) {
+        name.push('联系人-' + data.customerInfo.contactName + ':' + data.customerInfo.contactPhone)
         tel_call.push(data.customerInfo.contactPhone)
       }
       name.push('圆满人生-客服:966188')
       tel_call.push('966188')
       if (data.workOrder.orderType == 1) {
         var orderRemark = data.workOrder.orderRemark
-        var star = orderRemark.indexOf('name":')+7
-        var end = orderRemark.indexOf(',')-1
+        var star = orderRemark.indexOf('name":') + 7
+        var end = orderRemark.indexOf(',') - 1
         cemetery = orderRemark.substring(star, end)
       }
       content.setData({

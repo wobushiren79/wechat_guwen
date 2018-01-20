@@ -237,11 +237,11 @@ input {
 /* 省市区下拉 end */
 
 /* 单项服务订单列表 star */
-.page_list_noheader{
-   padding-top: 0rpx; 
-}
 .page_service_order{
    padding-top: 115rpx; 
+}
+.page_list_noheader{
+   padding-top: 0rpx; 
 }
 .page_service_order .tab{
   width: 100%;
