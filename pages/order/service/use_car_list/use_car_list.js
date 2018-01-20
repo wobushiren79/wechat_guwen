@@ -44,7 +44,8 @@ function getCarList(orderId) {
     function (data, res, isLast) {
       content.setData({
         dateList: res.data.content.listCarApplyLog,
-        orderId: orderId
+        orderId: orderId,
+        notNumber:isLast
       })
 
     },

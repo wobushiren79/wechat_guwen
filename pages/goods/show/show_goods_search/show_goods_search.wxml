@@ -29,7 +29,7 @@
               推荐价:<text>{{item.price}}</text>
             </view>
             <view class="num">
-              销售量<text>{{item.sale_amount}}</text>
+              销量<text>{{item.sale_amount}}</text>
             </view>
             <image src="/images/right.png"></image>
           </view>
@@ -52,7 +52,7 @@
               推荐价:<text>{{item.price}}</text>
             </view>
             <view class="num">
-              销售量<text>{{item.sale_amount}}</text>
+              销量<text>{{item.sale_amount}}</text>
             </view>
             <image src="/images/right.png"></image>
           </view>

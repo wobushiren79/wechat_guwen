@@ -1,64 +1,63 @@
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
-  <view class="page__bd page_service_order page_allot_order_list">
+  <view class="page__bd page_service_order page_allot_order_list page_list_noheader">
     <!--选项卡-->
 
     <!-- 列表 -->
     <view class="list">
       <view class="ul">
-      <block wx:if="{{dateList}}">
-      <block wx:for="{{dateList}}">
-        <view class="li">
-          <view class="li_header">
-            <view class="header">用车单号：{{item.no}}
-            </view>
-            <view class="footer">
-             {{item.orderStatus==0?'待派车':item.orderStatus==1?'已分配':item.orderStatus==2?'待取车':item.orderStatus==3?'待出发':item.orderStatus==4?'去接人':item.orderStatus== 5?'等上车':item.orderStatus==6?'已上车':item.orderStatus==7?'已送达':item.orderStatus==8?'成功服务':item.orderStatus==9?'已取消':'服务状态'}}
-            </view>
-          </view>
-          <navigator class="li_body" url="../use_car_content/use_car_content?id={{item.id}}" hover-class="active">
-            <image src="/images/right.png" class="icon"></image>
-            <view>
-              <view class="header">
-                用车日期：
+        <block wx:for="{{dateList}}">
+          <view class="li">
+            <view class="li_header">
+              <view class="header">用车单号：{{item.no}}
               </view>
-              <view class="body">
-                {{item.preDate}}
+              <view class="footer">
+                {{item.orderStatus==0?'待派车':item.orderStatus==1?'已分配':item.orderStatus==2?'待取车':item.orderStatus==3?'待出发':item.orderStatus==4?'去接人':item.orderStatus== 5?'等上车':item.orderStatus==6?'已上车':item.orderStatus==7?'已送达':item.orderStatus==8?'成功服务':item.orderStatus==9?'已取消':'服务状态'}}
               </view>
             </view>
-            <view>
-              <view class="header">
-                用车人：
+            <navigator class="li_body" url="/pages/order/service/use_car_content/use_car_content?id={{item.id}}" hover-class="active">
+              <image src="/images/right.png" class="icon"></image>
+              <view>
+                <view class="header">
+                  用车日期：
+                </view>
+                <view class="body">
+                  {{item.preDate}}
+                </view>
               </view>
-              <view class="body">
-                {{item.connecterName}}
+              <view>
+                <view class="header">
+                  用车人：
+                </view>
+                <view class="body">
+                  {{item.connecterName}}
+                </view>
               </view>
-            </view>
-            <view>
-              <view class="header">
-                驾驶员：
+              <view>
+                <view class="header">
+                  驾驶员：
+                </view>
+                <view class="body">
+                  {{item.driver?item.driver:'未指派'}}
+                </view>
               </view>
-              <view class="body">
-                {{item.driver?item.driver:'未指派'}}
+              <view>
+                <view class="header">
+                  用车理由：
+                </view>
+                <view class="body">
+                  {{item.reason}}
+                </view>
               </view>
-            </view>
-            <view>
-              <view class="header">
-                用车理由：
+              <view>
+                <view class="header">
+                  目的地：
+                </view>
+                <view class="body">
+                  {{item.targetLocation}}
+                </view>
               </view>
-              <view class="body">
-                {{item.reason}}
-              </view>
-            </view>
-            <view>
-              <view class="header">
-                目的地：
-              </view>
-              <view class="body">
-                {{item.targetLocation}}
-              </view>
-            </view>
 
-            <!-- <view>
+              <!-- <view>
               <view class="header">
                 服务状态：
               </view>
@@ -66,7 +65,7 @@
 
               </view>
             </view> -->
-             <!-- <view>
+              <!-- <view>
               <view class="header">
                 车辆信息：
               </view>
@@ -74,34 +73,31 @@
               xxx-xxx-xx
               </view>
             </view>  -->
-          </navigator>
-          <view class="li_footer">
-            <view class="header">
-              <view bindtap="tel" data-tel="{{item.connecterMobile}}">
-                <image src="/images/icon_call_1.png"></image>用车人</view>
+            </navigator>
+            <view class="li_footer">
+              <view class="header">
+                <view bindtap="tel" data-tel="{{item.connecterMobile}}">
+                  <image src="/images/icon_call_1.png"></image>用车人</view>
                 <block wx:if="{{item.driverPhone.length>0}}">
-              <view bindtap="tel" data-tel="{{item.driverPhone}}">
-                <image src="/images/icon_call_2.png"></image>驾驶员</view>
+                  <view bindtap="tel" data-tel="{{item.driverPhone}}">
+                    <image src="/images/icon_call_2.png"></image>驾驶员</view>
                 </block>
-            </view>
-            <view class="footer">
-              
+              </view>
+              <view class="footer">
+
+              </view>
             </view>
           </view>
-        </view>
-      </block>
-      </block>
-      <block wx:else>
-
-  <import src="/template/template.wxml"/>
-  <block wx:if="{{dateList.length>0}}" >
-  <template is="nonconformance"/>
-  </block>
-    <block wx:else>
-    <template is="nullData"/>
-    </block>
-
-      </block>
+        </block>
+        <import src="/template/template.wxml" />
+        <block wx:if="{{notNumber}}">
+          <block wx:if="{{dateList.length>0}}">
+            <template is="nonconformance" />
+          </block>
+          <block wx:else>
+            <template is="nullData" />
+          </block>
+        </block>
       </view>
     </view>
   </view>
