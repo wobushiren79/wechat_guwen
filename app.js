@@ -60,7 +60,7 @@ App({
     javaApi: "https://goods.shianlife.cn/",
     //钟明
     //  javaApi:"http://192.168.0.59:8080/goods/",
-    platform:"http://prd-platform.xicp.cn/",
+    platform: "http://prd-platform.xicp.cn/",
     // platform:"http://192.168.0.50:8100/platform/",
     // platform:"http://192.168.0.59:8099/ki4so-web/",
     //钟明
