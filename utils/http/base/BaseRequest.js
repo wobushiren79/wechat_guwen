@@ -189,7 +189,7 @@ function loginPlatForm(tempData) {
     },
     fail: function (data, res) {
       wx.navigateTo({
-        url: '/pages/platform/user/user_login/user_login',
+        url: '/pages/platform/login/login',
       });
     }
   }
@@ -257,8 +257,8 @@ function loginCemetery(tempData) {
 function httpAgain(tempData, loginUrl) {
   if (tempData == null || loginUrl == null)
     return;
-  if (tempData.httpData.url.indexOf(loginUrl) >= 0){
-    var httpData=tempData.httpData;
+  if (tempData.httpData.url.indexOf(loginUrl) >= 0) {
+    var httpData = tempData.httpData;
     var callback = tempData.callback;
     var isDialog = tempData.isDialog;
 
@@ -268,9 +268,9 @@ function httpAgain(tempData, loginUrl) {
     httpData.header.Cookie = cookies;
 
     //是否是文件上传
-    if (tempData.isUpFile){
+    if (tempData.isUpFile) {
       baseHttp.sendBaseFileHttp(httpData, callback, isDialog);
-    }else{
+    } else {
       baseHttp.sendBaseHttp(httpData, callback, isDialog);
     }
   }
