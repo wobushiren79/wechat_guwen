@@ -1,0 +1,14 @@
+/* pages/funeral_img/funeral_img.wxss */
+/* view{
+  width: 100%;
+  height: 100%;
+  background-image: 'http://ovjs2f1iz.bkt.clouddn.com/ymbs10_app.png'
+} */
+page{
+  height: 100%;
+}
+image{
+  display: block;
+  width: 100%;
+  height: 100%;
+}

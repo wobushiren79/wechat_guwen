@@ -11,7 +11,7 @@ Page({
       getAdvistorStores(userId)
     else
       wx.navigateTo({
-        url: '/pages/platform/user/user_login/user_login',
+        url: '/pages/platform/login/login',
       })
   },
   onLoad: function (e) {

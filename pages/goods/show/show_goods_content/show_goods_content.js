@@ -185,7 +185,7 @@ Page({
   cartlist: function () {
     //頁面跳轉
     wx.navigateTo({
-      url: '/pages/goods/show/show_goods_buy/show_goods_buy'
+      url: '/pages/goods/show/show_goods_cart/show_goods_cart'
     })
   }
 })
@@ -302,7 +302,7 @@ function getGoodsSpecDetails(detailsRequest, goodsNumber) {
       //总价格
       wx.setStorageSync('totla_price', totla_price)
       wx.navigateTo({
-        url: '/pages/goods/order/order_goods_money/order_goods_money'
+        url: '/pages/goods/order/order_goods_write_orderinfo/order_goods_write_orderinfo'
       })
     },
     fail: function () {

@@ -1,4 +1,0 @@
-/* example/input/input.wxss */
-.weui-cell__ft{
-    color: #e64340;
-}

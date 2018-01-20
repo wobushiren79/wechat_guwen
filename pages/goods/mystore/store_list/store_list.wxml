@@ -3,7 +3,7 @@
     <view class="weui-panel weui-panel_access">
       <view class="weui-panel__bd">
         <block wx:for="{{list}}">
-          <navigator url="/pages/goods/mystore/store_order_list_pay/store_order_list_pay?storeId={{item.id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+          <navigator url="/pages/goods/mystore/store_order_list_wait_pay/store_order_list_wait_pay?storeId={{item.id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
             <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
               <image class="weui-media-box__thumb" src="{{item.shop_img}}" />
             </view>

@@ -92,7 +92,7 @@
       </view>
     </view>
 
-    <navigator class="shoppgo" url="/pages/goods/show/show_goods_buy/show_goods_buy">
+    <navigator class="shoppgo" url="/pages/goods/show/show_goods_cart/show_goods_cart">
       <image src="/images/icon_shopgo.png">
       </image>
     </navigator>

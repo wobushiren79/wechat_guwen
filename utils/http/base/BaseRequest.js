@@ -160,7 +160,7 @@ function getBaseUrl(url) {
 function loginPlatForm() {
   if (wx.getStorageSync(storageKey.LOGIN_USER_NAME) == null || wx.getStorageSync(storageKey.LOGIN_USER_NAME).length == 0) {
     wx.navigateTo({
-      url: '/pages/platform/user/user_login',
+      url: '/pages/platform/user/login',
     });
     return
   }
@@ -188,7 +188,7 @@ function loginPlatForm() {
     },
     fail: function (data, res) {
       wx.navigateTo({
-        url: '/pages/platform/user/user_login',
+        url: '/pages/platform/user/login',
       });
     }
   }
@@ -232,12 +232,12 @@ function loginCemetery() {
   var loginCemeteryCallBack = {
     success: function (data, res) {
       wx.reLaunch({
-        url: '/pages/main/index/index',
+        url: '/pages/index/index',
       })
     },
     fail: function (data, res) {
       wx.reLaunch({
-        url: '/pages/main/index/index',
+        url: '/pages/index/index',
       })
     }
   }

@@ -32,7 +32,7 @@
       </view>
 
       <view class="">
-        <navigator url="/pages/goods/show/show_goods_index/show_goods_index" open-type="redirect">
+        <navigator url="/pages/goods/show/show_goods_class/show_goods_class" open-type="redirect">
           筛选
         </navigator>
       </view>
@@ -94,7 +94,7 @@
     </view>
 
     <!-- 购物车 -->
-    <navigator url="/pages/goods/show/show_goods_buy/show_goods_buy" class="shoppgo">
+    <navigator url="/pages/goods/show/show_goods_cart/show_goods_cart" class="shoppgo">
       <image src="/images/icon_shopgo.png"></image>
     </navigator>
     <import src="/template/template.wxml" />

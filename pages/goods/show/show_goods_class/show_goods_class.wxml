@@ -1,0 +1,35 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd clearfix">
+    <!--一级分类-->
+    <view class="tab_title">
+      <view class="ul">
+      <black wx:for="{{list}}">
+        <view class="li active" wx:if="{{index == active}}">{{item.name}}</view>
+        <view class="li" wx:if="{{index != active}}" bindtap="goodsclass" data-index="{{index}}" data-name="{{item.name}}" data-id="{{item.id}}">{{item.name}}</view>
+      </black>
+      </view>
+    </view>
+
+    <!--二级分类-->
+    <view class="tab_content">
+     <image src="http://otbf0sqcs.bkt.clouddn.com/wechat_app/service_banner.png"></image>
+      <view class="title">{{name}}</view>
+      <view class="content">
+        <view class="ul clearfix">
+        <black wx:for="{{attrlist}}">
+          <navigator url="/pages/goods/show/show_goods_list/show_goods_list?id={{item.id}}" class="li" hover-class="weui-grid_active" open-type='navigateTo'>
+            <image src="{{item.title_img}}"></image>
+            <text>{{item.name}}</text>
+          </navigator>
+        </black>
+        </view>
+      </view>
+    </view>
+
+
+    <!-- 购物车 -->
+    <navigator url="/pages/goods/show/show_goods_cart/show_goods_cart" class="shoppgo">
+      <image src="/images/icon_shopgo.png"></image>
+    </navigator>
+  </view>
+</view>

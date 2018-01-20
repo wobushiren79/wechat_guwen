@@ -1,8 +1,0 @@
-<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
-  <image src="http://ovjs2f1iz.bkt.clouddn.com/cem1.jpg"></image>
-  <image src="http://ovjs2f1iz.bkt.clouddn.com/cem2.jpg"></image>
-  <image src="http://ovjs2f1iz.bkt.clouddn.com/cem3.jpg"></image>
-  <image src="http://ovjs2f1iz.bkt.clouddn.com/cem4.png"></image>
-  <image src="http://ovjs2f1iz.bkt.clouddn.com/cem5.png"></image>
-   <image src="http://ovjs2f1iz.bkt.clouddn.com/cem6.jpg"></image> 
-</view>

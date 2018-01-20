@@ -1,0 +1,329 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <!--选项卡-->
+    <view class="tab">
+      <!-- <view>
+        <navigator url="../blank/blank" open-type="redirectTo">单项服务</navigator>
+      </view> -->
+      <view>
+        <navigator class="active" url="../list/list" open-type="redirectTo" >殡仪洽谈</navigator>
+      </view>
+      <!-- <view>
+        <navigator url="/pages/cemetery/list_notsee/list_notsee" open-type="redirectTo">选墓洽谈</navigator>
+      </view>
+      <view>
+        <navigator url="../list_s/list_s" open-type="switchTab">成功服务</navigator>
+      </view> -->
+    </view>
+    <template name="list_a">
+      <view wx:if="{{orderStatus != 2 || orderStatus !=3 || orderStatus !=4}}">
+        <form bindsubmit="formSubmit">
+          <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+          <view class="weui-cells__title"></view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__hd">
+                <view class="weui-label">客户姓名:</view>
+              </view>
+              <view class="weui-cell__bd name">
+                <input class="weui-input" value="{{customerName}}" disabled="disabled" />
+                <view wx:if="{{orderStatus == 1}}">
+                  <text>未处理</text>
+                </view>
+                <view wx:elif="{{orderStatus==2}}">
+                  <text>待服务</text>
+                </view>
+                <view wx:elif="{{orderStatus==3}}">
+                  <text>已接受</text>
+                </view>
+                <view wx:elif="{{orderStatus==4}}">
+                  <text>服务派单中</text>
+                </view>
+                <view wx:elif="{{orderStatus==5}}">
+                  <text>结束派单</text>
+                </view>
+                <view wx:elif="{{orderStatus==6}}">
+                  <text>已确认</text>
+                </view>
+                <view wx:elif="{{orderStatus==7}}">
+                  <text>已接单</text>
+                </view>
+
+              </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__hd">
+                <view class="weui-label">洽谈时间:</view>
+              </view>
+              <view class="weui-cell__bd">
+                <!--<text>{{time}}</text>-->
+                <input class="weui-input" value="{{promiseTime}}" disabled="disabled" />
+              </view>
+            </view>
+
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__hd">
+                <view class="weui-label">客户地址:</view>
+              </view>
+              <view class="weui-cell__bd text_address">
+                <text class="weui-input ">{{customerAddress}}</text>
+                <!--<text class="weui-input" value="{{customerAddress}}" disabled="disabled" maxlength="-1">-->
+              </view>
+            </view>
+
+            <view class="weui-cell weui-cell_input weui-cell_input_icon">
+              <view class="weui-cell__hd">
+                <view class="weui-label">客户电话:</view>
+              </view>
+              <view class="weui-cell__bd">
+                <input class="weui-input" value="{{customerMobile}}" disabled="disabled" />
+              </view>
+              <view class="icon" bindtap="phone" data-tel="{{customerMobile}}">
+                <image src="/images/phone.png"></image>
+              </view>
+            </view>
+
+
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__hd">
+                <view class="weui-label">备注:</view>
+              </view>
+              <view class="weui-cell__bd">
+                <input class="weui-input" value="{{description}}" disabled="disabled" />
+              </view>
+            </view>
+
+            <view class="weui-cell weui-flex">
+              <!--洽谈成功-->
+              <view class="weui-flex__item" wx:if="{{!orderId}}">
+                <view class="placeholder">
+                  <navigator url="../order/order?consultId={{consultId}}" class="" hover-class="" open-type="redirect">
+                    <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">洽谈成功</button>
+                  </navigator>
+                </view>
+              </view>
+              <!--洽谈失败-->
+              <view class="weui-flex__item" wx:if="{{!orderId}}">
+                <view class="placeholder">
+                  <navigator url="../order_info/order_info?consultId={{consultId}}" class="" hover-class="" open-type="redirect">
+                    <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">洽谈失败</button>
+                  </navigator>
+                </view>
+              </view>
+              <!--编辑订单-->
+              <view class="weui-flex__item" wx:if="{{showEditOrder}}">
+                <view class="placeholder">
+                  <navigator url="../order/order?consultId={{consultId}}&orderId={{orderId}}" class="" hover-class="" open-type="redirect">
+                    <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">编辑订单</button>
+                  </navigator>
+                </view>
+              </view>
+
+
+              <!--支付定金-->
+              <view class="weui-flex__item" wx:if="{{orderId && !hasPrepay && consultStatus==3}}">
+                <view class="placeholder">
+                  <navigator url="../pay_a/pay_a?consultId={{consultId}}&orderId={{orderId}}" class="" hover-class="" open-type="redirect">
+                    <button class="weui-btn mini-btn money" type="primary" size="mini" form-type="submit">支付定金</button>
+                  </navigator>
+                </view>
+              </view>
+
+
+              <!--定金已付-->
+              <view class="weui-flex__item" wx:if="{{orderId && hasPrepay && showFinishTalk}}">
+                <view class="placeholder">
+                  <navigator url="../list/list" class="" hover-class="false" open-type="redirect">
+                    <button class="weui-btn mini-btn money" type="primary" size="mini" form-type="submit" disabled="true">定金已付</button>
+                  </navigator>
+                </view>
+              </view>
+              <!--结束洽谈-->
+              <view class="weui-flex__item" wx:if="{{showFinishTalk  && orderId}}">
+                <view class="placeholder">
+                  <navigator url="../deadman_info/deadman_info?consultId={{consultId}}&orderId={{orderId}}" class="" hover-class="" open-type="redirect">
+                    <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">结束洽谈</button>
+                  </navigator>
+                </view>
+              </view>
+
+              <!--订单详情-->
+              <view class="weui-flex__item" wx:if="{{showOrderDetail}}">
+                <view class="placeholder">
+                  <navigator url="../compactinfo/compactinfo?orderId={{orderId}}&consultId={{consultId}}" class="" hover-class="" open-type="redirect">
+                    <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">订单详情</button>
+                  </navigator>
+                </view>
+              </view>
+              <!--及时服务-->
+              <view class="weui-flex__item" wx:if="{{showSwitch2waitService && orderStatus != 2}}">
+                <view class="placeholder">
+                  <navigator url="../jsfu/jsfu?consultId={{consultId}}&orderId={{orderId}}" class="" hover-class="" open-type="redirect">
+                    <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">及时服务</button>
+                  </navigator>
+                </view>
+              </view>
+            </view>
+          </view>
+        </form>
+      </view>
+      <view wx:elif="{{orderStatus == 2 || orderStatus ==3 || orderStatus ==4}}">
+        <form bindsubmit="formSubmit">
+          <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+          <view class="weui-cells__title"></view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__hd">
+                <view class="weui-label">订单编号</view>
+              </view>
+              <view class="weui-cell__bd name">
+                <input class="weui-input" value="{{orderNum}}" disabled="disabled" />
+                <view wx:if="{{orderStatus == 1}}">
+                  <text>未处理</text>
+                </view>
+                <view wx:elif="{{orderStatus==2}}">
+                  <text>待服务</text>
+                </view>
+                <view wx:elif="{{orderStatus==3}}">
+                  <text>已接受</text>
+                </view>
+                <view wx:elif="{{orderStatus==4}}">
+                  <text>服务派单中</text>
+                </view>
+                <view wx:elif="{{orderStatus==5}}">
+                  <text>结束派单</text>
+                </view>
+                <view wx:elif="{{orderStatus==6}}">
+                  <text>已确认</text>
+                </view>
+                <view wx:elif="{{orderStatus==7}}">
+                  <text>已接单</text>
+                </view>
+              </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__hd">
+                <view class="weui-label">经办人</view>
+              </view>
+              <view class="weui-cell__bd">
+                <!--<text>{{time}}</text>-->
+                <input class="weui-input" value="{{agentmanName}}" disabled="disabled" />
+              </view>
+            </view>
+
+            <!--<view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">客户地址</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" value="{{customerAddress}}" disabled="disabled"/>
+                    </view>
+                </view>-->
+
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__hd">
+                <view class="weui-label">客户姓名</view>
+              </view>
+              <view class="weui-cell__bd">
+                <input class="weui-input" value="{{customerName}}" disabled="disabled" />
+              </view>
+            </view>
+
+
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__hd">
+                <view class="weui-label">治丧指导</view>
+              </view>
+              <view class="weui-cell__bd">
+                <input class="weui-input" value="{{performerName}}" disabled="disabled" />
+              </view>
+            </view>
+
+            <view class="weui-cell weui-flex">
+              <!--洽谈成功-->
+              <view class="weui-flex__item" wx:if="{{!orderId}}">
+                <view class="placeholder">
+                  <navigator url="../list/list" class="" hover-class="" open-type="redirect">
+                    <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">洽谈成功</button>
+                  </navigator>
+                </view>
+              </view>
+              <!--洽谈失败-->
+              <view class="weui-flex__item" wx:if="{{!orderId}}">
+                <view class="placeholder">
+                  <navigator url="../order_info/order_info?consultId={{consultId}}" class="" hover-class="" open-type="redirect">
+                    <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">洽谈失败</button>
+                  </navigator>
+                </view>
+              </view>
+              <!--编辑订单-->
+              <view class="weui-flex__item" wx:if="{{showEditOrder}}">
+                <view class="placeholder">
+                  <navigator url="../order/order?consultId={{consultId}}&orderId={{orderId}}" class="" hover-class="" open-type="redirect">
+                    <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">编辑订单</button>
+                  </navigator>
+                </view>
+              </view>
+
+
+              <!--支付定金-->
+              <view class="weui-flex__item" wx:if="{{orderId && !hasPrepay && consultStatus==3}}">
+                <view class="placeholder">
+                  <navigator url="../pay_a/pay_a?consultId={{consultId}}&orderId={{orderId}}" class="" hover-class="" open-type="redirect">
+                    <button class="weui-btn mini-btn money" type="primary" size="mini" form-type="submit">支付定金</button>
+                  </navigator>
+                </view>
+              </view>
+
+
+              <!--定金已付-->
+              <view class="weui-flex__item" wx:if="{{orderId && hasPrepay && showFinishTalk}}">
+                <view class="placeholder">
+                  <navigator url="../list/list" class="" hover-class="false" open-type="redirect">
+                    <button class="weui-btn mini-btn money" type="primary" size="mini" form-type="submit" disabled="true">定金已付</button>
+                  </navigator>
+                </view>
+              </view>
+              <!--结束洽谈-->
+              <view class="weui-flex__item" wx:if="{{showFinishTalk&& orderId}}">
+                <view class="placeholder">
+                  <navigator url="../deadman_info/deadman_info?orderId={{orderId}}&consultId={{consultId}}" class="" hover-class="" open-type="redirect">
+                    <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">结束洽谈</button>
+                  </navigator>
+                </view>
+              </view>
+
+              <!--订单详情-->
+              <view class="weui-flex__item" wx:if="{{showOrderDetail}}">
+                <view class="placeholder">
+                  <navigator url="../compactinfo/compactinfo?orderId={{orderId}}&consultId={{consultId}}" class="" hover-class="" open-type="redirect">
+                    <button class="weui-btn mini-btn" type="primary" size="mini" plain="true" form-type="submit">订单详情</button>
+                  </navigator>
+                </view>
+              </view>
+              <!--及时服务-->
+              <view class="weui-flex__item" wx:if="{{showSwitch2waitService  && orderStatus != 2}}">
+                <view class="placeholder">
+                  <navigator url="../jsfu/jsfu?consultId={{consultId}}&orderId={{orderId}}" class="" hover-class="" open-type="redirect">
+                    <button class="weui-btn mini-btn" type="primary" size="mini" form-type="submit">及时服务</button>
+                  </navigator>
+                </view>
+              </view>
+            </view>
+          </view>
+        </form>
+      </view>
+    </template>
+    <view wx:if="{{array}}" wx:for="{{array}}">
+      <template is="list_a" data="{{...item}}" />
+    </view>
+  </view>
+
+  
+  <!--<loading hidden="{{hidden}}" wx:if="{{hidden}}" bindchange="loadingChange">
+            加载中...
+        </loading>-->
+  <!--<view class="body-view">
+
+    </view>-->
+</view>

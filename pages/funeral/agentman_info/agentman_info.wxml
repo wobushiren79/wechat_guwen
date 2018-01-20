@@ -1,0 +1,91 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <form bindsubmit="formData">
+      <form bindsubmit="formSubmit">
+        <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+
+        <!--<view class="weui-cells__title"></view>-->
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">*姓名</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" placeholder="姓名" name="name" value="{{name}}"/>
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">*电话</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" placeholder="电话" name="linkInfo" value="{{linkInfo}}" type="number"/>
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">*是逝者的</view>
+            </view>
+            <view class="weui-cell__bd">
+              <picker bindchange="bindPickerChange" value="{{businessType}}" range="{{array}}">
+                <view class="picker">{{array[businessType]}}</view>
+              </picker>
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input weui-cell_input_icon">
+            <view class="weui-cell__hd">
+              <view class="weui-label">*地址</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" placeholder="地址" name="location" value="{{location}}" maxlength="-1"/>
+            </view>
+            <view class="icon" bindtap="Location">
+                        <image src="/images/address.png"></image>
+                    </view>
+          </view>
+          <view class="weui-cell weui-cell_input  weui-cell_input_icon">
+            <view class="weui-cell__hd">
+              <view class="weui-label">*治丧地址</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" placeholder="治丧地址" name="zsLocation" value="{{zsLocation}}" maxlength="-1"/>
+            </view>
+            <view class="icon" bindtap="zsLocation">
+                        <image src="/images/address.png"></image>
+                    </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">*身份证号</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" placeholder="身份证号" name="cardId" value="{{cardId}}" type="idcard"/>
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">*邮箱</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" placeholder="邮箱" name="email" value="{{email}}"/>
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">备注:</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" name="remark" value="{{remark}}"/>
+            </view>
+          </view>
+        </view>
+        <view class="weui-btn-area">
+          <button class="weui-btn" type="primary" bindtap="showTopTips" formType="submit">查看合同信息</button>
+        </view>
+      </form>
+      <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" bindtap="showTopTips" plain="true" formType="submit">返回往生者信息</button>
+      </view>
+    </form>
+  </view>
+</view>

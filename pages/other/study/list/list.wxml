@@ -1,0 +1,18 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+
+    <view class='ul'>
+      <block wx:for="{{listHelp}}">
+        <navigator class='li ellipsis-1' hover-class='none' url='/pages/other/study/content/content?id={{item.id}}' open-type='navigateTo'>
+          <view class='li_bd'>
+            {{item.title}}
+          </view>
+          <view class='li_ft'>
+            {{item.time}}
+          </view>
+        </navigator>
+      </block>
+    </view>
+
+  </view>
+</view>

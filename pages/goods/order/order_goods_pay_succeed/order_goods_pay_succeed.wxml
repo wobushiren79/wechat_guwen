@@ -15,7 +15,7 @@
 
       <view class="footerfix clearfix">
         <!-- 保存 -->
-        <navigator url="/pages/main/index/index" open-type="reLaunch">
+        <navigator url="/pages/index/index" open-type="reLaunch">
             <button class="keep">返回首页</button>
         </navigator>
         

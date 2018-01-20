@@ -1,0 +1,20 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+
+  <view class="" wx:if="{{siftdata}}">
+    <block wx:for="{{siftdata}}">
+      <navigator url="/pages/other/activity/activity_content/activity_content?id={{item.id}}&title={{item.title}}" class="list_item">
+        <view class="item_img">
+          <image src="https://app.e-funeral.cn{{item.img}}"></image>
+        </view>
+        <view class="item_text">
+          <view class="item_title">
+            {{item.title}}
+          </view>
+          <view class="item_info">
+            {{item.time}}
+          </view>
+        </view>
+      </navigator>
+    </block>
+  </view>
+</view>

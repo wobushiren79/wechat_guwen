@@ -1,0 +1,36 @@
+.ul{
+  padding-left: 15px;
+  box-sizing: border-box;
+
+  
+}
+.ul .li{
+  float: left;
+  width: 50%;
+  box-sizing: border-box;
+  padding: 15px 15px 0 0;
+}
+.ul .li navigator{
+  background: #ffffff;
+  display: block;
+  padding: 30rpx 0;
+  border-radius: 5rpx;
+}
+.ul .li navigator image{
+  display: block;
+  width: 115rpx;
+  height: 95rpx;
+  margin: 0 auto 20rpx auto;
+  transition: all 1s
+}
+.ul .li navigator text{
+  display: block;
+  text-align: center;
+  font-size: 28rpx;
+  color: #657470;
+}
+navigator.active{
+  transform:scale(0.95);
+   opacity: 0.7;
+  background: rgba(0,0,0,0.1) 
+}

@@ -72,9 +72,9 @@
               <view class="li_footer">
                 <view class="footer">
                   <block wx:if="{{item.performerAssignRecord.valid == 1}}">
-                    <navigator type="primary" url='/pages/order/service/service_edit/service_edit?orderId={{item.workOrder.id}}' class="btn">处理</navigator>
+                    <navigator type="primary" url='/pages/order/service/service_handle/service_handle?orderId={{item.workOrder.id}}' class="btn">处理</navigator>
                   </block>
-                  <navigator type="primary" url='/pages/goods/show/show_goods_index/show_goods_index' class="btn">选购商品</navigator>
+                  <navigator type="primary" url='/pages/goods/show/show_goods_class/show_goods_class' class="btn">选购商品</navigator>
                 </view>
               </view>
             </view>
@@ -129,9 +129,9 @@
               <view class="li_footer">
                 <view class="footer">
                   <block wx:if="{{item.performerAssignRecord.valid == 1}}">
-                    <navigator type="primary" url='/pages/order/service/service_edit/service_edit?orderId={{item.workOrder.id}}' class="btn">处理</navigator>
+                    <navigator type="primary" url='/pages/order/service/service_handle/service_handle?orderId={{item.workOrder.id}}' class="btn">处理</navigator>
                   </block>
-                  <navigator type="primary" url='/pages/goods/show/show_goods_index/show_goods_index' class="btn">选购商品</navigator>
+                  <navigator type="primary" url='/pages/goods/show/show_goods_class/show_goods_class' class="btn">选购商品</navigator>
                 </view>
               </view>
             </view>
@@ -187,9 +187,9 @@
                 <view class="footer">
 
                   <block wx:if="{{item.performerAssignRecord.valid == 1}}">
-                    <navigator type="primary" url='/pages/order/service/service_edit/service_edit?orderId={{item.workOrder.id}}' class="btn">处理</navigator>
+                    <navigator type="primary" url='/pages/order/service/service_handle/service_handle?orderId={{item.workOrder.id}}' class="btn">处理</navigator>
                   </block>
-                  <navigator type="primary" url='/pages/goods/show/show_goods_index/show_goods_index' class="btn">选购商品</navigator>
+                  <navigator type="primary" url='/pages/goods/show/show_goods_class/show_goods_class' class="btn">选购商品</navigator>
                 </view>
               </view>
             </view>

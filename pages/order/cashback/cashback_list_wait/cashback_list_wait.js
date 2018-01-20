@@ -1,3 +1,4 @@
+
 var orderCenterHttp = require("../../../../utils/http/RequestForOrderCenter.js")
 var toastUtil = require("../../../../utils/ToastUtil.js");
 var pageUtil = require("../../../../utils/PageUtil.js");
@@ -5,7 +6,7 @@ var content;
 Page({
   data: {
     pageSize: 2,
-    valid: [0]
+
   },
   tel: function (e) {
     var tel = e.currentTarget.dataset.tel
@@ -18,7 +19,7 @@ Page({
   },
   onShow: function () {
     pageUtil.initData();
-    getOrderList(1)
+    getOrderList(2)
   },
   //下拉事件
   onPullDownRefresh: function () {
@@ -26,18 +27,13 @@ Page({
     wx.stopPullDownRefresh()
   },
   //上拉添加记录条数
-  onReachBottom: function () {
-    getOrderList(1)
+  onReachBottom:function() {
+    getOrderList(2)
   },
   onLoad: function () {
     content = this;
-  },
-  orsers: function (evet) {
-    var orderId = evet.target.dataset.orderid
-    acceptOrder(orderId)
   }
 });
-
 
 /**
  * 获取列表
@@ -45,11 +41,12 @@ Page({
 function getOrderList(listType) {
   var listRequest = pageUtil.getPageData();
   listRequest.params = {
-    financeType: 'order_servicing'
+    financeType: 'un_return_cash'
   }
   var listCallBack = pageUtil.getPageCallBack(
     function (data, res, isLast) {
       var updateTime = []
+      console.log(data)
       for (var i in data) {
         for (var j in data[i].listOrderStatusChange) {
           if (data[i].listOrderStatusChange[j].updataStatus == 2) {
@@ -69,22 +66,4 @@ function getOrderList(listType) {
     }
   )
   orderCenterHttp.getOrderCenterList(listRequest, listCallBack)
-}
-
-/**
- * 接单
- */
-function acceptOrder(orderId) {
-  var acceptReqeust = {
-    orderId: orderId
-  }
-  var acceptCallBack = {
-    success: function (data, res) {
-      content.onShow();
-    },
-    fail: function (data, res) {
-      toastUtil.showToast("接单失败")
-    }
-  }
-  orderCenterHttp.acceptOrder(acceptReqeust, acceptCallBack)
 }
