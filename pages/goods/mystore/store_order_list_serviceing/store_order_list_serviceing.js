@@ -41,7 +41,7 @@ Page({
   fukuang: function (e) {
     var orderId = e.currentTarget.dataset.orderid
     wx.navigateTo({
-      url: '/pages/goods/mystore/store_order_list_wait_pay/store_order_list_wait_pay?orderId=' + orderId + '&store=1'
+      url: '/pages/goods/order/order_goods_paying/order_goods_paying?orderId=' + orderId + '&store=1'
     })
   },
   //修改价格

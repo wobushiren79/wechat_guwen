@@ -74,9 +74,9 @@
             <view class="header"  bindtap="tel" data-tel="{{item.customer_phone}}">
               <image src="/images/icon_call_phone.png"></image>联系客户
             </view>
-            <view class="footer">
+            <!-- <view class="footer">
 <button type="primary" class="btn" bindtap="appraise" data-orderid="{{item.id}}">评价</button>
-            </view>
+            </view> -->
           </view>
         </view>
         <!-- 模板五 服务完成-服务完成 end-->
