@@ -579,9 +579,9 @@ contact-button {
   font-size: 30rpx !important;
   color: #bbb !important;
 }
-.prompt_img{
+/* .prompt_img{
     background: #f8f8f8;
-  padding: 30rpx 16rpx 30rpx 30rpx !important;
+    padding: 30rpx 16rpx 30rpx 30rpx !important;
 }
 .prompt_img image{
   display: block;
@@ -589,6 +589,19 @@ contact-button {
   margin: 100rpx auto 0 auto;
   position: relative;
   left: -10rpx;
+} */
+
+.prompt_img{
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+width: 50%;
+}
+.prompt_img image{
+  display: block;
+  width: 100%;
+
 }
 /* 购物车 */
 
