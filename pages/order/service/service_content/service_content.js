@@ -13,7 +13,9 @@ Page({
     tab: 0,
     popup_img: false,
     name:[],
-    call:false
+    call:false,
+    right_nav: 0,
+    mystroe_right_nav_btn: '/images/mystroe_right_nav_btn.png'
   },
   tel: function (e) {
     var tel = e.currentTarget.dataset.tel
@@ -59,7 +61,8 @@ Page({
     // console.log(e.call)
     if (e.call){
        content.setData({
-         call:true
+         call:true,
+         orderId: e.orderId
        })
     }
     getOrderDetails(e.orderId)
@@ -105,7 +108,21 @@ Page({
         tab_2: e.currentTarget.dataset.index
       })
     }
-  }
+  },
+  // 快捷导航
+  bind_right_nav: function (e) {
+    if (content.data.right_nav == 1) {
+      content.setData({
+        right_nav: 0,
+        mystroe_right_nav_btn: '/images/mystroe_right_nav_btn.png'
+      });
+    } else {
+      content.setData({
+        right_nav: 1,
+        mystroe_right_nav_btn: '/images/mystroe_right_nav_btn_close.png'
+      });
+    }
+  },
 });
 /**
  * 获取工单详情

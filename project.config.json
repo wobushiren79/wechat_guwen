@@ -80,6 +80,12 @@
 					"name": "sousuo ",
 					"pathName": "pages/goods/show/show_goods_search/show_goods_search",
 					"query": ""
+				},
+				{
+					"id": 8,
+					"name": "工单详情",
+					"pathName": "pages/order/service/service_content/service_content",
+					"query": "orderId=640"
 				}
 			]
 		}

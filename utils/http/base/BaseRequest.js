@@ -50,8 +50,8 @@ function sendPostHttp(url, data, callback, isDialog) {
     "Cookie": cookies,
     'content-type': 'application/json',
   };
-  callback.loginAgain = function () {
-    loginPlatForm();
+  callback.loginAgain = function (tempData) {
+    loginPlatForm(tempData);
   }
   baseHttp.createPostHttpRequest(url, data, callback, header, isDialog);
 }
@@ -65,8 +65,8 @@ function sendPostHttpForForm(url, data, callback, isDialog) {
     "Cookie": cookies,
     "content-type": "application/x-www-form-urlencoded"
   };
-  callback.loginAgain = function () {
-    loginPlatForm();
+  callback.loginAgain = function (tempData) {
+    loginPlatForm(tempData);
   }
   baseHttp.createPostHttpRequestForFormData(url, data, callback, header, isDialog);
 }
@@ -84,8 +84,8 @@ function sendPostHttpForContent(url, data, callback, isDialog) {
   };
   if (data)
     contentData = { content: data };
-  callback.loginAgain = function () {
-    loginPlatForm();
+  callback.loginAgain = function (tempData) {
+    loginPlatForm(tempData);
   }
   baseHttp.createPostHttpRequest(url, contentData, callback, header, isDialog);
 }
@@ -93,15 +93,15 @@ function sendPostHttpForContent(url, data, callback, isDialog) {
 /**
  * 发送get请求
  */
-function sendGetHttp(url, data, callback, isDialog){
+function sendGetHttp(url, data, callback, isDialog) {
   baseHttp.createGetHttpRequest(url, data, callback, null, isDialog);
 }
 /**
  * 发送文件
  */
 function sendFileHttpForContent(url, filePath, fileName, callback, isDialog) {
-  callback.loginAgain = function () {
-    loginPlatForm();
+  callback.loginAgain = function (tempData) {
+    loginPlatForm(tempData);
   }
   baseHttp.createFileHttpRequest(url, filePath, fileName, callback, null, isDialog);
 }
@@ -157,10 +157,10 @@ function getBaseUrl(url) {
 /**
  * 登陆平台
  */
-function loginPlatForm() {
+function loginPlatForm(tempData) {
   if (wx.getStorageSync(storageKey.LOGIN_USER_NAME) == null || wx.getStorageSync(storageKey.LOGIN_USER_NAME).length == 0) {
     wx.navigateTo({
-      url: '/pages/platform/user/login',
+      url: '/pages/platform/login/login',
     });
     return
   }
@@ -183,12 +183,13 @@ function loginPlatForm() {
         //缓存用户权限
         if (data.resourceCodes)
           wx.setStorageSync(storageKey.PLATFORM_RESOURCE_CODES, data.resourceCodes)
-        getUserLevel();
+        getUserLevel(tempData);
+        httpAgain(tempData, getApp().globalData.JavaPlatformUrl)
       }
     },
     fail: function (data, res) {
       wx.navigateTo({
-        url: '/pages/platform/user/login',
+        url: '/pages/platform/user/user_login/user_login',
       });
     }
   }
@@ -198,28 +199,30 @@ function loginPlatForm() {
 /**
  * 登陆单项
  */
-function loginGoods() {
+function loginGoods(tempData) {
   var loginGoodsCallBack = {
     success: function (data, res) {
-      loginOrderCenter();
+      loginOrderCenter(tempData);
+      httpAgain(tempData, getApp().globalData.JavaGoodsUrl)
     },
     fail: function (data, res) {
-      loginOrderCenter();
+      loginOrderCenter(tempData);
     }
   }
   sendPostHttpForLogin
-  (getApp().globalData.JavaGoodsUrl + "login_sys_api", null, loginGoodsCallBack, true)
+    (getApp().globalData.JavaGoodsUrl + "login_sys_api", null, loginGoodsCallBack, true)
 }
 /**
  * 登陆工单系统
  */
-function loginOrderCenter() {
+function loginOrderCenter(tempData) {
   var loginOrderCenterCallBack = {
     success: function (data, res) {
-      loginCemetery();
+      loginCemetery(tempData);
+      httpAgain(tempData, getApp().globalData.javaOrderCenterUrl)
     },
     fail: function (data, res) {
-      loginCemetery();
+      loginCemetery(tempData);
     }
   }
   sendPostHttpForLogin
@@ -228,46 +231,74 @@ function loginOrderCenter() {
 /**
  * 登陆公墓
  */
-function loginCemetery() {
+function loginCemetery(tempData) {
   var loginCemeteryCallBack = {
     success: function (data, res) {
-      wx.reLaunch({
-        url: '/pages/index/index',
-      })
+      // wx.reLaunch({
+      //   url: '/pages/index/index',
+      // })
+      httpAgain(tempData, getApp().globalData.JavaCemeteryUrl)
     },
     fail: function (data, res) {
-      wx.reLaunch({
-        url: '/pages/index/index',
-      })
+      // wx.reLaunch({
+      //   url: '/pages/index/index',
+      // })
+      // httpAgain(tempData)
     }
   }
   sendPostHttpForLogin
-  (getApp().globalData.JavaCemeteryUrl + "login_subsystem_api", null, loginCemeteryCallBack, true)
+    (getApp().globalData.JavaCemeteryUrl + "login_subsystem_api", null, loginCemeteryCallBack, true)
+}
+
+
+/**
+ * 重新再登陆
+ */
+function httpAgain(tempData, loginUrl) {
+  if (tempData == null || loginUrl == null)
+    return;
+  if (tempData.httpData.url.indexOf(loginUrl) >= 0){
+    var httpData=tempData.httpData;
+    var callback = tempData.callback;
+    var isDialog = tempData.isDialog;
+
+    //重新设置cookies
+    var baseUrl = getBaseUrl(httpData.url);
+    var cookies = wx.getStorageSync(baseUrl);
+    httpData.header.Cookie = cookies;
+
+    //是否是文件上传
+    if (tempData.isUpFile){
+      baseHttp.sendBaseFileHttp(httpData, callback, isDialog);
+    }else{
+      baseHttp.sendBaseHttp(httpData, callback, isDialog);
+    }
+  }
 }
 
 /**
  * 查询用户级别
  */
-function getUserLevel() {
+function getUserLevel(tempData) {
   var resourceCodes = wx.getStorageSync(storageKey.PLATFORM_RESOURCE_CODES)
   var userId = wx.getStorageSync(storageKey.PLATFORM_USER_ID)
   // var hasGoodsAdvisorAmateur = checkPermissions.hasGoodsAdvisorAmateur();
   // if (hasGoodsAdvisorAmateur) {
-    var queryLevelRequest = {
-      userIds: [userId]
+  var queryLevelRequest = {
+    userIds: [userId]
+  }
+  var queryLevelCallBack = {
+    success: function (data, res) {
+      wx.setStorageSync(storageKey.AMATEUR_LEVEL, data.resultList)
+      loginGoods(tempData);
+    },
+    fail: function (data, res) {
+      loginGoods(tempData);
     }
-    var queryLevelCallBack = {
-      success: function (data, res) {
-        wx.setStorageSync(storageKey.AMATEUR_LEVEL, data.resultList)
-        loginGoods();
-      },
-      fail: function (data, res) {
-        loginGoods();
-      }
-    }
-    sendPostHttpForContent
+  }
+  sendPostHttpForContent
     (getApp().globalData.JavaPlatformUrl + "api/level/findbyuserids", queryLevelRequest, queryLevelCallBack, true)
-    return;
+  return;
   // }
   // loginGoods();
 }

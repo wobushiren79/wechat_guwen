@@ -238,7 +238,7 @@ input {
 
 /* 单项服务订单列表 star */
 .page_service_order{
-  padding-top: 115rpx;
+  /* padding-top: 115rpx; */
 }
 .page_service_order .tab{
   width: 100%;
@@ -603,4 +603,58 @@ contact-button {
   display: block;
   width: 100%;
   height: 100%;
+}
+
+
+/* 快捷导航 star */
+.right_nav {
+  position: fixed;
+  bottom: 150rpx;
+  right: 40rpx;
+  z-index: 99;
+}
+
+.right_nav .btn,
+.right_nav .btn1,
+.right_nav .btn2,
+.right_nav .btn3,
+.right_nav .btn4{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80rpx;
+  height: 80rpx;
+  transition: all 0.3s;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.right_nav image{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.right_nav .img_wrap {
+  position: relative;
+  width: 80rpx;
+  height: 80rpx;
+}
+.right_nav .btn4 contact-button{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80rpx;
+  height: 80rpx;
+  z-index: 99!important;
+}
+
+.right_nav .btn{
+  z-index: 999;
+}
+.right_nav.active .btn1{
+  top: -166.298rpx;
+  left: -68.88rpx;
+}
+.right_nav.active .btn2{
+    top: -68.88rpx;
+  left: -166.298rpx;
 }
