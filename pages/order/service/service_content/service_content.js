@@ -166,7 +166,7 @@ function getOrderDetails(orderId) {
       }
       name.push('圆满人生-客服:966188')
       tel_call.push('966188')
-      if (data.workOrder.orderType == 1 && data[i].workOrder.orderRemark) {
+      if (data.workOrder.orderType == 1 && data.workOrder.orderRemark) {
         var orderRemark = data.workOrder.orderRemark
         var star = orderRemark.indexOf('name":') + 7
         var end = orderRemark.indexOf(',') - 1
