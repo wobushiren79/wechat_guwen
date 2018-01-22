@@ -71,7 +71,7 @@ App({
     // orderCenterUrl:'http://192.168.0.43:8085/center/'
     orderCenterUrl: 'https://order.shianlife.cn/',
     // orderCenterUrl:'http://192.168.0.59:8085/center/',
-
+//------------------------------------------------------------------------------
     goodsPHPUrl: "https://goodsmgr.e-funeral.cn/",
     // goodsPHPUrl: "http://192.168.0.54/shian_goods/",
     appPHPUrl: "https://app.e-funeral.cn/",
