@@ -15,7 +15,8 @@ Page({
     name: [],
     call: false,
     right_nav: 0,
-    mystroe_right_nav_btn: '/images/mystroe_right_nav_btn.png'
+    mystroe_right_nav_btn: '/images/mystroe_right_nav_btn.png',
+    cemetery:''
   },
   tel: function (e) {
     var tel = e.currentTarget.dataset.tel
@@ -154,7 +155,7 @@ function getOrderDetails(orderId) {
       var GoodsList = []
       var name = []
       var tel_call = []
-      var cemetery = ''
+      var cemetery = '未备注所属公墓'
       if (data.customerInfo.agentName && data.customerInfo.agentPhone) {
         name.push('经办人-' + data.customerInfo.agentName + ':' + data.customerInfo.agentPhone)
         tel_call.push(data.customerInfo.agentPhone)
