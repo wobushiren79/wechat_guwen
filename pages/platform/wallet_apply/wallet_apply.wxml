@@ -59,16 +59,16 @@
                 </block>
               </view>
              </form> 
-            <block wx:if="{{xianshi}}">
+            <!-- <block wx:if="{{xianshi}}"> -->
               <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__bd">
                   <input class="weui-input" type="text" placeholder="请输入验证码" name="msgCode" value="{{value4}}" />
                 </view>
               </view>
-            </block>
+            <!-- </block> -->
           </view>
 
-          <block wx:if="{{xianshi}}">
+          <!-- <block wx:if="{{xianshi}}"> -->
             <view class="weui-btn-area">
               <block wx:if="{{!disabled}}">
               <button class="weui-btn" type="primary" formType="submit">申请提现</button>
@@ -77,7 +77,7 @@
               <button class="weui-btn" type="primary" formType="submit" disabled='disabled'>申请提现</button>
               </block>
             </view>
-          </block>
+          <!-- </block> -->
 
         
       </view>
