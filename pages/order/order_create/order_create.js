@@ -323,7 +323,7 @@ function createOrder(createOrderData) {
   var createOrderCallBack = {
     success: function () {
       wx.redirectTo({
-        url: '/pages/order/cashback/cashback_list_serviceing/cashback_list_serviceing',
+        url: '/pages/order/service/service_list_wait/service_list_wait',
       })
     },
     fail: function (data, res) {

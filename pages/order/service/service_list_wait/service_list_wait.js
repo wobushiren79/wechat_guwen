@@ -71,7 +71,7 @@ function getOrderList(listType) {
             break;
           }
         }
-        if (data[i].workOrder.orderType == 1) {
+        if (data[i].workOrder.orderType == 1 && data[i].workOrder.orderRemark) {
           var orderRemark = data[i].workOrder.orderRemark
           var star = orderRemark.indexOf('name":') + 7
           var end = orderRemark.indexOf(',') - 1
