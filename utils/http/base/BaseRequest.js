@@ -1,6 +1,7 @@
 var baseHttp = require('BaseHttpDeal.js')
 var storageKey = require('../../storage/StorageKey.js');
 var checkPermissions = require("../../CheckPermissions.js");
+var safeJump=require("../../SafeJump.js")
 
 //-------------------------------------------------------------------------------------------------------------------
 /**
@@ -159,9 +160,7 @@ function getBaseUrl(url) {
  */
 function loginPlatForm(tempData) {
   if (wx.getStorageSync(storageKey.LOGIN_USER_NAME) == null || wx.getStorageSync(storageKey.LOGIN_USER_NAME).length == 0) {
-    wx.navigateTo({
-      url: '/pages/platform/login/login',
-    });
+    safeJump.startNavigate('/pages/platform/login/login');
     return
   }
   var loginPlatData = {
@@ -188,9 +187,7 @@ function loginPlatForm(tempData) {
       }
     },
     fail: function (data, res) {
-      wx.navigateTo({
-        url: '/pages/platform/login/login',
-      });
+      safeJump.startNavigate('/pages/platform/login/login');
     }
   }
   sendPostHttpForLogin(getApp().globalData.JavaPlatformUrl + "applogin", loginPlatData, loginPlatCallBack, true)

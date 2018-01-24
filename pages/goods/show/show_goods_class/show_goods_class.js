@@ -1,6 +1,7 @@
 var goodsPHPHttp = require("../../../../utils/http/RequestForPHPGoods.js");
 var toastUtil = require("../../../../utils/ToastUtil.js");
 var storageKey = require("../../../../utils/storage/StorageKey.js");
+var safeJump=require("../../../../utils/SafeJump.js")
 var content;
 Page({
   data: {
@@ -25,9 +26,7 @@ Page({
     var channelId = wx.getStorageSync(storageKey.GOODS_CHANNEL);
     var userId = wx.getStorageSync(storageKey.PLATFORM_USER_ID);
     if (!channelId || !userId) {
-      wx.navigateTo({
-        url: '/pages/platform/login/login',
-      })
+      safeJump.startNavigate('/pages/platform/login/login') ;
       return
     }
     getGoodsClass(channelId.id, userId);

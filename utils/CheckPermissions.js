@@ -1,4 +1,5 @@
 var storageKey = require("../utils/storage/StorageKey.js");
+var safeJump=require("../utils/SafeJump.js")
 
 /**
  * 检测是否有相应权限
@@ -52,9 +53,7 @@ function hasCemeteryTalker() {
 function baseCheckPermissions(roleCode) {
   var resourceCodes = wx.getStorageSync(storageKey.PLATFORM_RESOURCE_CODES)
   if (!resourceCodes) {
-    wx.navigateTo({
-      url: '/pages/platform/login/login/',
-    })
+    safeJump.startNavigate('/pages/platform/login/login');
   } else {
     for (var i in resourceCodes) {
       if (resourceCodes[i] == roleCode) {

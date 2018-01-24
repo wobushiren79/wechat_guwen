@@ -1,6 +1,7 @@
 var goodsPHPHttp = require("../../../../utils/http/RequestForPHPGoods.js");
 var toastUtil = require("../../../../utils/ToastUtil.js");
 var storageKey = require("../../../../utils/storage/StorageKey.js");
+var safeJump=require("../../../../utils/SafeJump.js")
 var content;
 Page({
   data: {
@@ -10,9 +11,7 @@ Page({
     if (userId)
       getAdvistorStores(userId)
     else
-      wx.navigateTo({
-        url: '/pages/platform/login/login',
-      })
+      safeJump.startNavigate('/pages/platform/login/login');
   },
   onLoad: function (e) {
     content = this;

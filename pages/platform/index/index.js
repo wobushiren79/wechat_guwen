@@ -3,6 +3,7 @@ var platformHttp = require("../../../utils/http/RequestForPlatform.js");
 var toastUtil = require("../../../utils/ToastUtil.js");
 var storageKey = require("../../../utils/storage/StorageKey.js");
 var checkPermissions = require("../../../utils/CheckPermissions.js");
+var safeJump = require("../../../utils/SafeJump.js");
 var content;
 Page({
   data: {
@@ -18,20 +19,15 @@ Page({
       success: function (res) {
         if (res.confirm) {
           wx.clearStorageSync()
-          //跳转登录页面
-          wx.navigateTo({
-            url: '/pages/platform/login/login',
-          })
+          safeJump.startNavigate('/pages/platform/login/login');
         }
       }
-    })  
+    })
   },
-  onShow:function(){
+  onShow: function () {
     var userInfo = wx.getStorageSync(storageKey.PLATFORM_USER_OBJ);
     if (!userInfo) {
-      wx.navigateTo({
-        url: '/pages/platform/login/login',
-      })
+      safeJump.startNavigate('/pages/platform/login/login');
       return
     }
     content.setData({
@@ -51,8 +47,7 @@ Page({
       },
     })
     getWalletInfo();
-  
-
+    getCreditInfo();
   },
   onLoad: function () {
     content = this;
@@ -70,7 +65,6 @@ function getWalletInfo() {
       content.setData({
         usableMoney: getApp().ProcessingPrice(usableMoney)
       })
-      getCreditInfo();
     },
     fail: function (data, res) {
       toastUtil.showToast("获取钱包失败");
