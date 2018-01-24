@@ -1,23 +1,23 @@
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
   <view class="page__bd page_service_order">
     <!--选项卡-->
-   <view class="tab">
-         <view>
-           <navigator url="/pages/goods/order/order_goods_list/order_goods_list_submit/order_goods_list_submit" open-type="redirect">待提交</navigator>
-         </view>
-         <view>
-           <navigator url="/pages/goods/order/order_goods_list/order_goods_list_pay/order_goods_list_pay" open-type="redirect">待付款</navigator>
-         </view>
-         <view>
-           <navigator url="/pages/goods/order/order_goods_list/order_goods_list_serviceing/order_goods_list_serviceing" open-type="redirect">服务中</navigator>
-         </view>
-         <view>
-           <navigator url="/pages/goods/order/order_goods_list/order_goods_list_succeed/order_goods_list_succeed" open-type="redirect">已服务</navigator>
-         </view>
-         <view>
-           <navigator url="/pages/goods/order/order_goods_list/order_goods_list_close/order_goods_list_close" open-type="redirect"  class="active">已关闭</navigator>
-         </view>
-       </view>
+    <view class="tab">
+      <view>
+        <navigator url="/pages/goods/order/order_goods_list/order_goods_list_submit/order_goods_list_submit" open-type="redirect">待提交</navigator>
+      </view>
+      <view>
+        <navigator url="/pages/goods/order/order_goods_list/order_goods_list_pay/order_goods_list_pay" open-type="redirect">待付款</navigator>
+      </view>
+      <view>
+        <navigator url="/pages/goods/order/order_goods_list/order_goods_list_serviceing/order_goods_list_serviceing" open-type="redirect">服务中</navigator>
+      </view>
+      <view>
+        <navigator url="/pages/goods/order/order_goods_list/order_goods_list_succeed/order_goods_list_succeed" open-type="redirect">已服务</navigator>
+      </view>
+      <view>
+        <navigator url="/pages/goods/order/order_goods_list/order_goods_list_close/order_goods_list_close" open-type="redirect" class="active">已关闭</navigator>
+      </view>
+    </view>
 
     <!-- 列表 -->
     <view class="list">
@@ -34,7 +34,12 @@
               </black>
               <view class="footer">￥
                 <!-- <text>{{amateurLevel?item.show_total_price/100:item.total_price/100}}</text> -->
-                <text>{{item.show_total_price}}</text>
+                <block wx:if="{{item.order_price}}">
+                  <text>{{item.order_price}}</text>
+                </block>
+                <block wx:else>
+                  <text>-</text>
+                </block>
               </view>
             </view>
             <navigator url="/pages/goods/order/order_goods_content/order_goods_content?orderid={{item.id}}" class="li_body" hover-class="active">
