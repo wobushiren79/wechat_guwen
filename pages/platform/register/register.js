@@ -4,6 +4,7 @@ var cemeteryHttp = require('../../../utils/http/RequestForCemetery.js');
 var storageKey = require('../../../utils/storage/StorageKey.js');
 var toastUtil = require('../../../utils/ToastUtil.js');
 var modalUtil = require('../../../utils/ModalUtil.js');
+var safeJump=require("../../../utils/SafeJump.js");
 var content;
 //获取应用实例
 var app = getApp()
@@ -156,7 +157,9 @@ function getSmsCode(mobile) {
 function getCreditInfo() {
   var queryCreditCallBack = {
     success: function (data, res) {
-
+      wx.reLaunch({
+        url: '/pages/index/index',
+      })
     },
     fail: function (data, res) {
 

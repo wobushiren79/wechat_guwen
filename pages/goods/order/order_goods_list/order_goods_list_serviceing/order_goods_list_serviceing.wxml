@@ -35,7 +35,12 @@
                 </black>
                 <view class="footer">￥
                   <!-- <text>{{amateurLevel?item.show_total_price/100:item.total_price/100}}</text> -->
-                  <text>{{item.show_total_price/100}}</text>
+                  <block wx:if="{{item.order_price}}">
+                    <text>{{item.order_price/100}}</text>
+                  </block>
+                  <block wx:else>
+                    <text>-</text>
+                  </block>
                 </view>
               </view>
               <navigator url="/pages/goods/order/order_goods_content/order_goods_content?orderid={{item.id}}" class="li_body" hover-class="active">
