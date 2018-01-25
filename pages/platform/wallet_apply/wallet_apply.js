@@ -18,7 +18,6 @@ Page({
     })
   },
   onShow: function () {
-    this.onLoad()
   },
   onLoad: function () {
     var that = this
@@ -43,8 +42,8 @@ Page({
           })
         }
       },
-      fail: function () {
-        toastUtil.showToast("获取银行卡失败");
+      fail: function (data,res) {
+        toastUtil.showToast(data);
       }
     }
     RequestForPlatformm.getCashingInit(null, getCallBack);

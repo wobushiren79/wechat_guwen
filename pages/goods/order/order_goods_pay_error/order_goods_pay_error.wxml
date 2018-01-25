@@ -15,7 +15,7 @@
 
       <view class="footerfix clearfix">
         <!-- 保存 -->
-        <navigator url="/pages/goods/order/order_goods_pay/order_goods/pay" open-type="navigateBack" delta="1">
+        <navigator url="/pages/goods/order/order_goods_pay/order_goods_pay" open-type="navigateBack" delta="1">
             <button class="keep">返回支付页面</button>
         </navigator>
       </view>

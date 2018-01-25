@@ -14,7 +14,7 @@ Page({
     var getRequest = content
     var getCallBack = {
       seccuss: function (opt) {
-        toastUtil.showToast("设置成功");
+        toastUtil.showToastReWrite("设置成功");
         if (pid == 1) {
           setTimeout(function () {
             wx.navigateBack({

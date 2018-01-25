@@ -30,7 +30,9 @@
         <view class='num'>￥
           <text>{{usableMoney}}</text>
         </view>
+        <block wx:if="{{usableMoney>0}}">
         <navigator class='go' url='/pages/platform/wallet_apply/wallet_apply'>提现</navigator>
+        </block>
       </view>
     </view>
 

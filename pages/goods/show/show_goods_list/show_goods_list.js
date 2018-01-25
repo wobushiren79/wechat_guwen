@@ -10,7 +10,7 @@ Page({
     goods_name: '',
     pageNumber: 0,
     pageSize: 4,
-    order: 'sort desc'
+    order: 'total desc'
   },
   onLoad: function (e) {
     content = this;
@@ -27,7 +27,7 @@ Page({
   },
 
   jiage1: function () {
-    var orderBy = 'sort asc'
+    var orderBy = 'total asc'
     var channelId = content.data.channel_id
     var classAttId = content.data.id
 

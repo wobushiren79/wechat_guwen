@@ -37,7 +37,7 @@ Page({
   fukuang: function (e) {
     var orderId = e.currentTarget.dataset.orderid
     wx.navigateTo({
-      url: '/pages/goods/order/order_goods_paying/order_goods/pay?orderId=' + orderId
+      url: '/pages/goods/order/order_goods_paying/order_goods_paying?orderId=' + orderId
     })
   }
 });

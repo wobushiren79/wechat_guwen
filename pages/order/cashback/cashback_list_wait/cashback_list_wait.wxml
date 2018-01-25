@@ -34,7 +34,8 @@
                   殡仪/{{item.workOrder.orderNumber}}
                 </view>
                 <view class='footer'>
-                  {{item.workOrderUserFinances[0].financeStatusStr}}
+                  {{item.workOrderUserFinances[0].financeStatusStr}}  ¥{{item.workOrderUserFinances[0].commissionPrice?item.workOrderUserFinances[0].commissionPrice/100:'-'}}
+            
                 </view>
               </view>
               <navigator class="li_body" url="/pages/order/cashback/cashback_content/cashback_content?orderId={{item.workOrder.id}}" hover-class="active">
@@ -85,7 +86,8 @@
                   公墓/{{item.workOrder.orderNumber}}
                 </view>
                 <view class='footer'>
-                  {{item.workOrder.orderStatusStr}}
+                     {{item.workOrderUserFinances[0].financeStatusStr}}  ¥{{item.workOrderUserFinances[0].commissionPrice?item.workOrderUserFinances[0].commissionPrice/100:'-'}}
+            
                 </view>
               </view>
               <navigator class="li_body" url="/pages/order/cashback/cashback_content/cashback_content?orderId={{item.workOrder.id}}" hover-class="active">
@@ -135,7 +137,8 @@
                   其它/{{item.workOrder.orderNumber}}
                 </view>
                 <view class='footer'>
-                  {{item.workOrder.orderStatusStr}}
+                     {{item.workOrderUserFinances[0].financeStatusStr}}  ¥{{item.workOrderUserFinances[0].commissionPrice?item.workOrderUserFinances[0].commissionPrice/100:'-'}}
+            
                 </view>
               </view>
               <navigator class="li_body" url="/pages/order/cashback/cashback_content/cashback_content?orderId={{item.workOrder.id}}" hover-class="active">

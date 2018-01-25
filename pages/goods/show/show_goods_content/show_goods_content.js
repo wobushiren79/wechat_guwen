@@ -73,8 +73,6 @@ Page({
           }
       },
     })
-
-    getGoodsDetails(channelId, goodsId, packageId);
   },
 
   onLoad: function (e) {
@@ -83,6 +81,7 @@ Page({
     channelId = e.channel_id
     goodsId = e.goods_id
     packageId = e.package_id
+    getGoodsDetails(channelId, goodsId, packageId);
   },
   popup: function () {
     content.setData({
@@ -315,21 +314,21 @@ function getGoodsSpecDetails(detailsRequest, goodsNumber) {
 /**
  * 级别显示处理
  */
-function levelHandle(commission){
-  if (!commission || commission.length <= 0 ){
+function levelHandle(commission) {
+  if (!commission || commission.length <= 0) {
     return
   }
   var levelData = wx.getStorageSync(storageKey.AMATEUR_LEVEL)
   if (levelData && levelData.length > 0) {
-    var levelList=new Array();
-    var hasCommission=false;
+    var levelList = new Array();
+    var hasCommission = false;
     for (var i in levelData) {
-      for (var f in commission){
-        if (levelData[i].systemLevel.id == commission[f].amateur_id){
-          levelData[i].commissionRatio = commission[f].commission; 
-          levelData[i].commissionP = Math.round(levelData[i].commissionRatio * 100); 
+      for (var f in commission) {
+        if (levelData[i].systemLevel.id == commission[f].amateur_id) {
+          levelData[i].commissionRatio = commission[f].commission;
+          levelData[i].commissionP = Math.round(levelData[i].commissionRatio * 100);
           levelList.push(levelData[i]);
-          hasCommission=true;
+          hasCommission = true;
         }
       }
     }

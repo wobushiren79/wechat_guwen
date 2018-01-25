@@ -179,7 +179,7 @@ function getMsgCode(data, callback) {
 }
 
 /**
- * 获取短信验证码
+ * 组册建单员
  */
 function buildAccountForOrderCenterBuild(data, callback) {
   baseRequest.sendPostHttpForContent(baseUrl + "api/usersAccount/createOrderCenterBuild", data, callback, true)

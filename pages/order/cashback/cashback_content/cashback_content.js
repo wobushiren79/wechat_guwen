@@ -50,11 +50,12 @@ function getOrderDetails(orderId) {
               var goodsOrderItem = data.listGoodsDetailResponse[i].goodsOrderItemList[j];
               var goodsOrderItemPrice = goodsOrderItem.specOrderedPrice / 100;
               var goodsOrderItemId = goodsOrderItem.id;
+              var goodsItemNum = goodsOrderItem.specOrderedNum;
               var commissionRatio = levelHandle(data.listGoodsDetailResponse[i].goodsOrderItemLevels, goodsOrderItemId, null);
               orderTotalPrice += goodsOrderItemPrice
-              commissionTotalPrice += (goodsOrderItemPrice * commissionRatio)
+              commissionTotalPrice += (goodsOrderItemPrice * commissionRatio * goodsItemNum)
               goodsOrderItem.commissionRatio = Math.round(commissionRatio * 100);
-              goodsOrderItem.commissionPrice = goodsOrderItemPrice * commissionRatio;
+              goodsOrderItem.commissionPrice = goodsOrderItemPrice * goodsOrderItem.commissionRatio/100;
               goodsOrderItem.isPackage = 0;
               goodsList.push(goodsOrderItem)
             }
@@ -63,11 +64,12 @@ function getOrderDetails(orderId) {
               var goodsPackageItem = data.listGoodsDetailResponse[i].goodsPackages[j];
               var goodsPackagePrice = goodsPackageItem.specOrderedPrice / 100;
               var goodsPackageId = goodsPackageItem.id;
+              var goodsPackageNum = goodsPackageItem.specOrderedNum;
               var commissionRatio = levelHandle(data.listGoodsDetailResponse[i].goodsOrderItemLevels, null, goodsPackageId);
               orderTotalPrice += goodsPackagePrice;
-              commissionTotalPrice += (goodsPackagePrice * commissionRatio)
+              commissionTotalPrice += (goodsPackagePrice * commissionRatio * goodsPackageNum)
               goodsPackageItem.commissionRatio = Math.round(commissionRatio * 100);
-              goodsPackageItem.commissionPrice = goodsPackagePrice * commissionRatio;
+              goodsPackageItem.commissionPrice = goodsPackagePrice * goodsPackageItem.commissionRatio / 100;
               goodsPackageItem.isPackage = 1;
               goodsList.push(goodsPackageItem)
             }
