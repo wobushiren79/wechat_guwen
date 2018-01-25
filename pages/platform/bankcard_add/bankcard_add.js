@@ -13,44 +13,44 @@ Page({
       bankIndex: e.detail.value
     })
   },
-  bankName:function(e){
-    var that=this
-    var content={}
+  bankName: function (e) {
+    var that = this
+    var content = {}
     content.cardNo = e.detail.value
     var getRequest = content
-    var getCallBack={
-      success:function(opt){
-              var bankName = opt.bankName
-              that.setData({
-                bankName: bankName
-              })
+    var getCallBack = {
+      success: function (opt) {
+        var bankName = opt.bankName
+        that.setData({
+          bankName: bankName
+        })
       },
-      fail:function(){
-        toastUtil.showToast("获取失败");
+      fail: function (data,res) {
+        toastUtil.showToast(data);
       }
     }
     RequestForPlatformm.queryCardBins(getRequest, getCallBack)
   },
-  formSubmit:function(e){
-    var that=this
+  formSubmit: function (e) {
+    var that = this
     var get_data = e.detail.value
     get_data.isDefault = 0
     var platform = getApp().globalData.platform
-    if (get_data.accountName.length == 0 || get_data.cardNo.length == 0 || get_data.bankName == undefined || get_data.bankName.length == 0){
+    if (get_data.accountName.length == 0 || get_data.cardNo.length == 0 || get_data.bankName == undefined || get_data.bankName.length == 0) {
       toastUtil.showToast("不能为空");
-    }else{
+    } else {
       var getRequest = get_data
-      var getCallBack={
-        success:function(opt){
-          toastUtil.showToast("添加成功");
-                setTimeout(function () {
-                  wx.navigateBack({
-                    delta: 1
-                  })
-                }, 3000)
+      var getCallBack = {
+        success: function (opt) {
+          toastUtil.showToastReWrite("添加成功");
+          setTimeout(function () {
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 3000)
         },
-        fail:function(){
-          toastUtil.showToast("获取失败");
+        fail: function (data,res) {
+          toastUtil.showToast(data);
         }
       }
       RequestForPlatformm.addingCard(getRequest, getCallBack);
