@@ -16,7 +16,7 @@
           <view class="title ">
             客户：
             <text>{{listData.goodsServiceInfo.contact}}</text>
-            <text class="phone" bindtap="call_phone" data-phone="{{listData.goodsServiceInfo.contactPhone}}">{{listData.goodsServiceInfo.contactPhone}}</text>
+            <text class="phone" bindtap="makePhone" data-phone="{{listData.goodsServiceInfo.contactPhone}}">{{listData.goodsServiceInfo.contactPhone}}</text>
           </view>
           <view class="content ">
 
@@ -100,6 +100,15 @@
                   ￥
                   <!-- <text>{{amateurLevel?item.specOrderedPrice/100:item.adviserPrice/100}}</text> -->
                   <text>{{item.specOrderedPrice/100}}</text>
+                </view>
+                <view class='name'>
+                  <block wx:if="{{item.goodsPerform.performUserName}}">
+                    执行人员：
+                    <text>{{item.goodsPerform.performUserName}}</text>
+                  </block>
+                  <block wx:if="{{item.goodsPerform.performUserPhone}}">
+                    <text class='phone'  bindtap='makePhone' data-phone="{{item.goodsPerform.performUserPhone}}">{{item.goodsPerform.performUserPhone}}</text>
+                  </block>
                 </view>
                 <view class="num">
                   x
@@ -372,13 +381,13 @@
 
 
     <!-- 隐藏部分 star -->
-    <black wx:if="{{popup}}">
+
       <!-- 遮罩层 star -->
-      <view class="mask" bindtap="popup_close"></view>
+      <view class="mask {{mask?'active':''}}" bindtap="popup_close"></view>
       <!-- 遮罩层 end -->.
 
       <!-- 弹窗 star -->
-      <view class="popup" bindtap="popup_close">
+      <view class="popup {{popup?'active':''}}" bindtap="popup_close">
         <view class="dl">
           <view class="dt">详情信息</view>
           <view class="dd">
@@ -442,7 +451,7 @@
         </view>
       </view>
       <!-- 弹窗 end -->
-    </black>
+  
     <!-- 隐藏部分 end -->
     <black wx:if="{{package_a}}">
       <!-- 遮罩层 star -->
@@ -526,6 +535,15 @@
                 <text>{{item.specName}}</text>
 
               </view>
+              <view class='name'>
+                <block wx:if="{{item.goodsPerform.performUserName}}">
+                  执行人员：
+                  <text>{{item.goodsPerform.performUserName}}</text>
+                </block>
+                <block wx:if="{{item.goodsPerform.performUserPhone}}">
+                  <text class='phone' bindtap='makePhone' data-phone='{{item.goodsPerform.performUserPhone}}'>{{item.goodsPerform.performUserPhone}}</text>
+                </block>
+              </view>
               <view>
                 <text>数量:</text>\r\n\r\n\r\n\r\n
                 <text>{{item.specOrderedNum}}</text>
@@ -551,8 +569,6 @@
                 </black>
               </view>
               <!-- <view>
-                
-
               </view> -->
             </view>
           </view>

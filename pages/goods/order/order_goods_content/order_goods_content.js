@@ -12,7 +12,8 @@ Page({
     list_show: true,
     img_wrap: false,
     popup: false,
-    package_a: false
+    package_a: false,
+    mask:false
   },
   bind_list: function () {
     var that = this;
@@ -26,34 +27,18 @@ Page({
       img_wrap: (!that.data.img_wrap)
     })
   },
-  call_phone: function (e) {
-    var phone = e.currentTarget.dataset.phone;
-    wx.makePhoneCall({
-      phoneNumber: phone,
-      fail: function (res) {
-        wx.showToast({
-          title: '拨打电话失败',
-          image: '/images/icon_info.png',
-          duration: 3000
-        })
-      }
-    })
-  },
   kehuphone: function () {
-    wx.makePhoneCall({
-      phoneNumber: '966188',
-      fail: function (res) {
-        wx.showToast({
-          title: '拨打电话失败',
-          image: '/images/icon_info.png',
-          duration: 3000
-        })
-      }
-    })
+    callPhone('966188')
+  },
+  makePhone: function (e) {
+    var phone = e.currentTarget.dataset.phone;
+    callPhone(phone)
   },
   popup_close: function () {
     this.setData({
-      popup: false
+      popup: false,
+      mask:false,
+      package_a: false,
     })
   },
   package_b: function () {
@@ -143,7 +128,8 @@ function findPerformInfoByPerformId(performId) {
     success: function (data, res) {
       content.setData({
         zhixing: data,
-        popup: true
+        popup: true,
+        mask:true
       })
     },
     fail: function (data, res) {
@@ -151,7 +137,7 @@ function findPerformInfoByPerformId(performId) {
     }
   }
 
-  findPerformInfoByPerformId(findRequest, findCallBack);
+ goodsHttp.findPerformInfoByPerformId(findRequest, findCallBack);
 }
 
 /**
@@ -176,7 +162,7 @@ function levelHandle(levelRq, goodsItems, goodsPackages) {
       if (goodsItems != null) {
         for (var f in goodsItems) {
           if (levelList[i].goodsItemId != null && levelList[i].goodsItemId == goodsItems[f].id) {
-            commissionPrice += (goodsItems[f].specOrderedPrice * levelList[i].commissionRatio);
+            commissionPrice += (goodsItems[f].specOrderedPrice * goodsItems[f].specOrderedNum * levelList[i].commissionRatio);
           }
         }
       }
@@ -184,7 +170,7 @@ function levelHandle(levelRq, goodsItems, goodsPackages) {
       if (goodsPackages != null) {
         for (var f in goodsPackages) {
           if (levelList[i].goodsPackageId != null && levelList[i].goodsPackageId == goodsPackages[f].id) {
-            commissionPrice += (goodsPackages[f].specOrderedPrice * levelList[i].commissionRatio);
+            commissionPrice += (goodsPackages[f].specOrderedPrice * goodsPackages[f].specOrderedNum * levelList[i].commissionRatio);
           }
         }
       }
@@ -192,4 +178,15 @@ function levelHandle(levelRq, goodsItems, goodsPackages) {
     }
     return levelList;
   }
+}
+
+/**
+ * 打电话
+ */
+function callPhone(phone) {
+  if (phone == null)
+    return
+  wx.makePhoneCall({
+    phoneNumber: phone,
+  })
 }

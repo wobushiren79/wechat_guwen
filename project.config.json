@@ -56,10 +56,10 @@
 					"scene": "1001"
 				},
 				{
-					"id": -1,
+					"id": 4,
 					"name": "订单详情",
-					"pathName": "pages/order_center/order_content/order_content",
-					"query": "orderId=568",
+					"pathName": "pages/goods/order/order_goods_content/order_goods_content",
+					"query": "orderid=1180",
 					"scene": "1001"
 				},
 				{
