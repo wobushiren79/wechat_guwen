@@ -9,7 +9,7 @@
             <view class='weui-cell__bd'>{{item.recipientPhone}}</view>
           </view>
           <view class='li_bd weui-cell'>
-            {{item.address}}
+            {{item.addressStr}}
           </view>
           <view class='li_ft weui-cell'>
             <label class='weui-cell__hd'>
@@ -24,9 +24,9 @@
               </block>
             </label>
             <view class='weui-cell__bd'>
-              <view bindtap='bind_popup_form' data-submittype="2">
+              <view bindtap='bind_popup_form' data-submittype="2" data-updatedata="{{item}}">
                 <image src='/images/icon_cddress_edit.png' mode='widthFix'></image>
-                <text data-submittype="2" data-updatedata="{{item}}">编辑</text>
+                <text  >编辑</text>
               </view>
               <view bindtap='deleteAddress' data-addressid="{{item.id}}">
                 <image src='/images/icon_address_close.png' mode='widthFix'></image>

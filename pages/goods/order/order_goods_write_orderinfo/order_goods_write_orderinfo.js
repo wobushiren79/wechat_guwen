@@ -499,6 +499,7 @@ function getFormData() {
 function findDefaultAddress() {
   var findDefaultAddressCallBack = {
     success: function (data, res) {
+      data.addressStr = data.address.split(",").join("");
       content.setData({
         defaultAddress: data
       })
@@ -567,7 +568,7 @@ function getAllUserLevel() {
   // }
 
   var buildLevelData = content.data.buildUserLevel;
-  if (buildLevelData == null || buildLevelData.systemLevel==null){
+  if (buildLevelData == null || buildLevelData.systemLevel == null) {
     return listUserLevel
   }
   var orderCenterDetail = content.data.orderCenterDetail;
@@ -596,14 +597,14 @@ function getUserLevel(userId) {
   }
   var queryLevelCallBack = {
     success: function (data, res) {
-      if (data.resultList && data.resultList.length>0)
-      for(var i in data.resultList){
-        if (data.resultList[i].systemLevel.levelType=="orderC.build"){
-          content.setData({
-            buildUserLevel: data.resultList[i]
-          })
+      if (data.resultList && data.resultList.length > 0)
+        for (var i in data.resultList) {
+          if (data.resultList[i].systemLevel.levelType == "orderC.build") {
+            content.setData({
+              buildUserLevel: data.resultList[i]
+            })
+          }
         }
-      }
     },
     fail: function (data, res) {
       toastUtil.showToast("查询级别失败");

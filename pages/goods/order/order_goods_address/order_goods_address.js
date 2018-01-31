@@ -9,21 +9,28 @@ Page({
     customItem: '全部'
   },
   bindRegionChange: function (e) {
-    this.setData({
+    content.setData({
       region: e.detail.value
     })
   },
   bind_popup_form: function (e) {
-    var submitData = e.target.dataset.updatedata;
-    if (e.target.dataset.submittype == "1") {
+    var submitData = e.currentTarget.dataset.updatedata;
+    var submitType = e.currentTarget.dataset.submittype;
+
+    if (submitType != undefined) {
+      content.setData({
+        submitType: submitType
+      })
+    }
+
+    if (submitType == "1") {
       setSubmitData(null, "", "", "", "添加地址");
+    } else if (submitType == "2") {
+      setSubmitData(submitData.id, submitData.recipientName, submitData.recipientPhone, submitData.address, "编辑地址");
     }
-    if (submitData != null && e.target.dataset.submittype == "2") {
-      setSubmitData(submitData.id, submitData.recipientName, submitData.recipientPhone, "", "编辑地址");
-    }
-    this.setData({
-      popup: !this.data.popup,
-      submitType: e.target.dataset.submittype
+
+    content.setData({
+      popup: !content.data.popup
     })
   },
   /**
@@ -77,11 +84,28 @@ Page({
  * 设置提交数据
  */
 function setSubmitData(id, name, phone, address, title) {
+  var addressArray;
+  if (address == null || address.length == 0) {
+    addressArray = ['四川省', '成都市', '全部', ""];
+  } else {
+    var addressArrayTemp = address.split(",");
+    if (addressArrayTemp.length < 4) {
+      addressArray = ['', '', '', addressArrayTemp[0]];
+    } else {
+      addressArray = addressArrayTemp;
+    }
+  }
+  var addressDetails = "";
+  for (var i in addressArray) {
+    if (i >= 3) {
+      addressDetails += addressArray[i];
+    }
+  }
   content.setData({
     submitName: name,
     submitPhone: phone,
-    submitAddressDetail: address,
-    addressInfo: "",
+    region: [addressArray[0], addressArray[1], addressArray[2]],
+    addressInfo: addressDetails,
     selectId: id,
     addTitle: title
   })
@@ -94,8 +118,11 @@ function getAddressList() {
   var addressListCallBack = {
     success: function (data, res) {
       listAddress = data;
+      for (var i in listAddress) {
+        listAddress[i].addressStr = listAddress[i].address.split(",").join("");;
+      }
       content.setData({
-        listAddress: data
+        listAddress: data,
       })
     },
     fail: function (data, res) {
@@ -142,7 +169,11 @@ function addAddress(addressCity, addressDetails, recipientName, recipientPhone) 
 
   var address = "";
   for (var i in addressCity) {
-    address += addressCity[i];
+    if (addressCity[i].indexOf("全部") >= 0 || addressCity[i].length == 0) {
+      toastUtil.showToast("还未选择城市");
+      return;
+    }
+    address += addressCity[i] + ",";
   }
   address += addressDetails
 
@@ -210,7 +241,11 @@ function updateServiceInfoAddress(id, addressCity, addressDetails, recipientName
 
   var address = "";
   for (var i in addressCity) {
-    address += addressCity[i];
+    if (addressCity[i].indexOf("全部") >= 0 || addressCity[i].length == 0) {
+      toastUtil.showToast("还未选择城市");
+      return;
+    }
+    address += addressCity[i] + ",";
   }
   address += addressDetails
 

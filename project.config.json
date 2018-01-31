@@ -25,7 +25,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 11,
 			"list": [
 				{
 					"id": -1,
@@ -86,6 +86,24 @@
 					"name": "工单详情",
 					"pathName": "pages/order/service/service_content/service_content",
 					"query": "orderId=640"
+				},
+				{
+					"id": -1,
+					"name": "订单详情",
+					"pathName": "pages/goods/order/order_goods_address/order_goods_address",
+					"query": "orderid=1180",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "321",
+					"pathName": "pages/goods/order/order_goods_address/order_goods_address",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "321",
+					"pathName": "pages/goods/order/order_goods_write_orderinfo/order_goods_write_orderinfo"
 				}
 			]
 		}
