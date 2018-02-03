@@ -28,3 +28,14 @@
     margin-right: 20rpx;
     border-radius: 5rpx;
 }
+.page__bd{
+   
+    text-align: center;
+}
+
+.page__bd text{
+  display: block;
+  text-align: center;
+  padding: 20px;
+    font-size: 30rpx;
+}
