@@ -4,7 +4,7 @@
     <block wx:for="{{siftdata}}">
       <navigator url="/pages/other/activity/activity_content/activity_content?id={{item.id}}&title={{item.title}}" class="list_item">
         <view class="item_img">
-          <image src="https://app.e-funeral.cn{{item.img}}"></image>
+          <image src="{{item.img}}"></image>
         </view>
         <view class="item_text">
           <view class="item_title">

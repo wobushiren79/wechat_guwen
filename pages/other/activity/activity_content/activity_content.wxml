@@ -1,28 +1,5 @@
-
-<span style="font-size:18px;"><import src="/wxParse/wxParse.wxml"/>
-  
-<!--<loading hidden = "{{hide}}">加载中...</loading>  -->
-  
-<view class="wxParse">  
-        <template is="wxParse" data="{{wxParseData:article.nodes}}"/>  
-</view></span> 
-<!--<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
   <view class="page__bd">
-    <view class="content_hd">
-      <view class="title">
-        {{title}}
-      </view>
-      <view class="info">
-        <text>{{time}}</text><text>{{author}}</text>
-        </view>
-        <view class="keyword">
-          <text>{{keyword[num]}}</text><text>{{keyword[num]}}</text>
-        </view>
-    </view>
-    <view class="content_bd">
-      <view>
-        {{content_bd_text}}
-      </view>
-    </view>
+     <web-view src='{{url}}'>正在加载...</web-view>   
   </view>
-</view>-->
+</view>

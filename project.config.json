@@ -25,7 +25,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 11,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -103,7 +103,8 @@
 				{
 					"id": -1,
 					"name": "321",
-					"pathName": "pages/goods/order/order_goods_write_orderinfo/order_goods_write_orderinfo"
+					"pathName": "pages/goods/order/order_goods_write_orderinfo/order_goods_write_orderinfo",
+					"query": ""
 				}
 			]
 		}
