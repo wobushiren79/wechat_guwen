@@ -15,15 +15,13 @@ Page({
   },
   //手机号码验证
   checkMobile: function (sMobile) {
-    if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))) {
+    if (!checkTools.checkMobile(sMobile)) {
       wx.showToast({
         title: '号码不正确',
         image: '/images/icon_info.png',
         duration: 2000
       })
-    } else {
-
-    }
+    } 
   },
   //验证价格
   orderPrice: function (e) {
@@ -193,14 +191,14 @@ function dealOrder(dealRequest) {
     toastUtil.showToast("没有服务对象");
     return
   }
-  if (!dealRequest.orderPrice) {
-    toastUtil.showToast("没有订单金额");
-    return
-  }
-  if (!checkTools.checkMoney(dealRequest.orderPrice)) {
-    toastUtil.showToast("金额格式错误");
-    return
-  }
+  // if (!dealRequest.orderPrice) {
+  //   toastUtil.showToast("没有订单金额");
+  //   return
+  // }
+  // if (!checkTools.checkMoney(dealRequest.orderPrice)) {
+  //   toastUtil.showToast("金额格式错误");
+  //   return
+  // }
   if (!dealRequest.performSummary || dealRequest.performSummary.length == 0) {
     toastUtil.showToast("没有处理结果");
     return

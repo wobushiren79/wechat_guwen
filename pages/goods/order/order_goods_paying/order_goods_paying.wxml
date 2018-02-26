@@ -29,12 +29,11 @@
               <text>{{orderNumber}}</text>
             </view>
             <view class="pay">
-
-              {{amateurLevel?'支付订单金额':'顾问支付圆满金额'}}
+支付订单金额
             </view>
             <view class="money">
               ￥
-              <text>{{amateurLevel?showTotalPrice/100:totalPrice/100*1.00}}</text>
+              <text>{{orderPrice/100}}</text>
             </view>
 
           </view>

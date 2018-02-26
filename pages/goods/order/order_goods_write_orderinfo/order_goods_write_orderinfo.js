@@ -499,7 +499,7 @@ function getFormData() {
 function findDefaultAddress() {
   var findDefaultAddressCallBack = {
     success: function (data, res) {
-      data.addressStr = data.address.split(",").join("");
+      data.address = data.address.split(",").join("");
       content.setData({
         defaultAddress: data
       })

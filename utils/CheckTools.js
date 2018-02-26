@@ -1,7 +1,7 @@
 
 //手机号码验证
 function checkMobile(input) {
-  if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(input))) {
+  if (!(/^1[3|4|5|7|8][0-9]\d{4,8}$/.test(input))) {
     return false;
   } else {
     return true;

@@ -73,8 +73,9 @@
                 <view class="footer">
                   <block wx:if="{{item.performerAssignRecord.valid == 1}}">
                     <navigator type="primary" url='/pages/order/service/service_handle/service_handle?orderId={{item.workOrder.id}}' class="btn">处理</navigator>
+
+                    <navigator type="primary" url='/pages/goods/show/show_goods_class/show_goods_class' class="btn">选购商品</navigator>
                   </block>
-                  <navigator type="primary" url='/pages/goods/show/show_goods_class/show_goods_class' class="btn">选购商品</navigator>
                 </view>
               </view>
             </view>
@@ -202,13 +203,13 @@
       <text>＋</text>
     </view> -->
   </view>
-  <import src="/template/template.wxml"/>
+  <import src="/template/template.wxml" />
   <block wx:if="{{notNumber}}">
-  <block wx:if="{{listdata.length>0}}" >
-  <template is="nonconformance"/>
-  </block>
+    <block wx:if="{{listdata.length>0}}">
+      <template is="nonconformance" />
+    </block>
     <block wx:else>
-    <template is="nullData"/>
+      <template is="nullData" />
     </block>
   </block>
 

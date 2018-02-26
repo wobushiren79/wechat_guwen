@@ -181,10 +181,10 @@
                 <view class='s'>{{item.performerName}}</view>
               </view>
               <view class="weui-cell__ft">
-                <view class='money'>
+                <!-- <view class='money'>
                   <text>￥</text>
                   <text>{{item.orderPrice?item.orderPrice/100:'-'}}</text>
-                </view>
+                </view> -->
                 <view class='s visible'>站位 被删</view>
               </view>
               <view class="weui-cell__ft weui-cell__ft_in-access"></view>
@@ -202,13 +202,13 @@
                   <!-- <text>11:33:35</text> -->
                 </view>
               </view>
-              <view class='dd'>
+              <!-- <view class='dd'>
                 <view class='dd_hd'>金额</view>
                 <view class='dd_bd'>
                   <text>￥</text>
                   <text>{{item.orderPrice?item.orderPrice/100:'-'}}</text>
                 </view>
-              </view>
+              </view> -->
               <view class='dd'>
                 <view class='dd_hd'>处理人员</view>
                 <view class='dd_bd'>{{item.performerName}}</view>

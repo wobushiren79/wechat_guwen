@@ -130,7 +130,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title: '圆满人生公共殡葬服务平台',
-      path: '/pages/platform/login/login',
+      path: '/pages/index/index',
       success: function (res) {
         // 转发成功
       },

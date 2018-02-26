@@ -29,14 +29,14 @@
                 <input type="text" placeholder="服务对象姓名" name="serviceTarget" value='{{serviceTarget}}'/>
               </view>
             </view>
-            <view class="dd required">
+            <!-- <view class="dd required">
               <view class="header ">
                 订单金额
               </view>
               <view class="footer ">
                 <input type="number" placeholder="金额" name="orderPrice"  maxlength='10' bindblur='orderPrice'/>
               </view>
-            </view>
+            </view> -->
             <view class="dd fuid note required">
               <view class="header ">
                 处理结果

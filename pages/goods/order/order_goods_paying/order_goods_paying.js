@@ -77,14 +77,14 @@ Page({
    * 线下支付
    */
   bind_moda: function () {
-    payOffLine(content.data.orderId, content.data.totalPrice);
+    payOffLine(content.data.orderId, content.data.orderPrice);
   },
   /**
    * 微信二维码支付
    */
   wechats: function () {
     var orderId = content.data.orderId
-    var payPrice = content.data.totalPrice
+    var payPrice = content.data.orderPrice
     wx.login({
       success: function (e) {
         wechatPay(orderId, payPrice, e.code, PAYWAY_BY_QR_CODE)
@@ -97,7 +97,7 @@ Page({
    */
   wechat: function () {
     var orderId = content.data.orderId
-    var payPrice = content.data.totalPrice
+    var payPrice = content.data.orderPrice
     wx.login({
       success: function (e) {
         wechatPay(orderId, payPrice, e.code, PAYWAY_BY_WECHAT)
@@ -146,6 +146,7 @@ function findGoodsOrderByOrderId(orderId) {
       content.setData({
         showTotalPrice: data.showTotalPrice,
         totalPrice: data.showTotalPrice,
+        orderPrice:data.orderPrice,
         orderNumber: data.orderNumber,
         orderId: orderId
       })
