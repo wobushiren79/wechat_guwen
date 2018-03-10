@@ -1,5 +1,23 @@
-
-//app.js
+// var urlType = "local"
+var urlType = "remote"
+var urlData = (urlType == "local") ?
+  {
+    goodsPHPUrl: "https://goodsmgr.e-funeral.cn/",
+    appPHPUrl: "https://app.e-funeral.cn/",
+    JavaPlatformUrl: "http://192.168.0.66:8080/ki4so-web/",
+    JavaGoodsUrl: "http://192.168.0.57:8089/goods/",
+    JavaCemeteryUrl: "http://192.168.0.66:8088/cemetery/",
+    javaOrderCenterUrl: "http://192.168.0.57:8090/order/"
+  }
+  :
+  {
+    goodsPHPUrl: "https://goodsmgr.e-funeral.cn/",
+    appPHPUrl: "https://app.e-funeral.cn/",
+    JavaPlatformUrl: "https://platform.shianlife.cn/",
+    JavaGoodsUrl: "https://goods.shianlife.cn/",
+    JavaCemeteryUrl: "https://t-cemetery-api.shianlife.cn/",
+    javaOrderCenterUrl: 'https://order.shianlife.cn/'
+  };
 App({
   onLaunch: function () {
     //调用API从本地缓存中获取数据
@@ -25,52 +43,7 @@ App({
       })
     }
   },
-  globalData: {
-    userInfo: null,
-    //图片地址前缀
-    // ImgUrl: 'https://goodsmgr.e-funeral.cn/Public/Uploads/',
-    // LocalUrl:"http://192.168.0.54/shian_goods/Api/",
-    LocalUrl: "https://goodsmgr.e-funeral.cn/Api/",
-    RouteUrl: "https://web.shianlife.cn/shianlife-adviser-1.0-SNAPSHOT/",
-    //殡仪
-    ByUrl: "https://t-cemetery-api.shianlife.cn/shianlife-adviser-1.0-SNAPSHOT/",
-    // ByUrl: "http://192.168.0.37:8088/app/", 
-    //公墓
-    GmUrl: "https://t-cemetery-api.shianlife.cn/",
-    // GmUrl: "http://192.168.0.43:8084/app/",
-    // GmUrl: "http://192.168.0.59:8081/app/",
-    AppUrl: "https://app.e-funeral.cn/",
-    // javaApi:"http://192.168.0.199:8299/goods/"   权哥
-    //小慌
-    // javaApi: "http://192.168.0.43:8080/goods/", 
-    // javaApi: "http://prd-goods.xicp.cn/", 
-    javaApi: "https://goods.shianlife.cn/",
-    //钟明
-    //  javaApi:"http://192.168.0.59:8080/goods/",
-    platform: "http://prd-platform.xicp.cn/",
-    // platform:"http://192.168.0.50:8100/platform/",
-    // platform:"http://192.168.0.59:8099/ki4so-web/",
-    //钟明
-    // platform:"http://192.168.0.59:8099/ki4so-web/",
-    platform: "https://platform.shianlife.cn/",
-    // javaApi: "http://192.168.0.75:8299/goods/"
-    // RouteUrl:"http://192.168.0.146:8088/adviser/"
-    // orderCenterUrl:'http://192.168.0.43:8085/center/'
-    orderCenterUrl: 'https://order.shianlife.cn/',
-    // orderCenterUrl:'http://192.168.0.59:8085/center/',
-//------------------------------------------------------------------------------
-    goodsPHPUrl: "https://goodsmgr.e-funeral.cn/",
-    // goodsPHPUrl: "http://192.168.0.54/shian_goods/",
-    appPHPUrl: "https://app.e-funeral.cn/",
-    JavaPlatformUrl: "https://platform.shianlife.cn/",
-    // JavaPlatformUrl: "http://192.168.0.57:8080/ki4so-web/",
-    JavaGoodsUrl: "https://goods.shianlife.cn/",
-    // JavaGoodsUrl: "http://192.168.0.57:8089/goods/",
-    JavaCemeteryUrl: "https://t-cemetery-api.shianlife.cn/",
-    // JavaCemeteryUrl: "http://192.168.0.59:8081/app/",
-    javaOrderCenterUrl: 'https://order.shianlife.cn/',
-    // javaOrderCenterUrl: "http://192.168.0.57:8090/order/",
-  },
+  globalData: urlData,
   //网络请求超时时间1000毫秒=1秒
   "networkTimeout": {
     "request": 30000,

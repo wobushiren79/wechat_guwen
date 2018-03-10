@@ -44,9 +44,9 @@ Page({
 function getOrderList(orderStatus, payStatus) {
   var getListRequest = pageUtil.getPageData();
   getListRequest.content = new Object();
-  if (orderStatus)
+  if (orderStatus != null)
     getListRequest.content.orderStatus = orderStatus;
-  if (payStatus)
+  if (payStatus != null)
     getListRequest.content.payStatus = payStatus;
 
   var getListCallBack = pageUtil.getPageCallBack(
