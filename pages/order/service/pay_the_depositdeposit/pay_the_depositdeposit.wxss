@@ -4,13 +4,7 @@
   font-size: 32rpx;
   position: relative;
 }
-.dep{
-    /* background:red;   */
-  width:35%;
-  margin-left:36%;
-  text-align: left;
 
-}
 .content image {
   height: 680rpx;
   width: 620rpx;
@@ -18,7 +12,7 @@
 
 .content .text {
   position: absolute;
-  top: 180rpx;
+  top: 300rpx;
   width: 100%;
 }
 

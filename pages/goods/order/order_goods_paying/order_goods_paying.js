@@ -4,12 +4,12 @@ var util = require('../../../../utils/util.js')
 var goodsHttp = require("../../../../utils/http/RequestForGoods.js");
 var goodsPHPHttp = require("../../../../utils/http/RequestForPHPGoods.js");
 var toastUtil = require("../../../../utils/ToastUtil.js");
-
+var orderCenterHttp = require("../../../../utils/http/RequestForOrderCenter.js")
 var PAYWAY_BY_QR_CODE = "PAYWAY_BY_QR_CODE";//二维码支付
 var PAYWAY_BY_WECHAT = "PAYWAY_BY_WECHAT";//微信支付
-
 var content;
 var app = getApp()
+var addPrice=0;
 Page({
   data: {
     chaxun: false,
@@ -20,6 +20,8 @@ Page({
     imagePath: '',
     orderPrice: 0,
     showTotalPrice:0,
+    deposit_price:0.00,
+    getDeposit:0.00,
     placeholder: 'http://m.e-funeral.cn'//默认二维码生成文本
   },
   onReady: function () {
@@ -74,10 +76,55 @@ Page({
     findFinanceDetailByOrderId(orderId);
   },
   /**
+   * 抵扣定金计算改变支付订单金额
+   */
+  inpu:function(e){
+    content=this
+    if (e.detail.value > content.data.deposit_price){
+      content.setData({
+        price: content.data.totalPrice / 100,
+      })
+      toastUtil.showToast("定金过大");
+      return ''
+      // setTimeout(function () {
+      //   //要延时执行的代码  
+      // }, 1000) //延迟时间 这里是1秒
+    }
+    if (content.data.totalPrice / 100 < e.detail.value){
+      content.setData({
+        price: content.data.totalPrice / 100
+      })
+      toastUtil.showToast("定金过大");
+      return ''
+    }
+    if (!e.detail.value == ''){
+      var price = content.data.totalPrice/100 - e.detail.value
+      content.setData({
+        price: price,
+        getDeposit: e.detail.value
+      })
+    }else{
+      content.setData({
+        price: content.data.totalPrice/100
+      })
+    }
+  },
+  /**
    * 线下支付
    */
   bind_moda: function () {
-    payOffLine(content.data.orderId, content.data.orderPrice);
+    content=this
+    var requestData={}
+    requestData.orderId = content.data.centerOrderId
+    requestData.deposit = content.data.getDeposit*100
+    requestData.paymentWay = 'offlinePay'
+    requestData.relateType = 1
+    requestData.relateId = content.data.orderId
+    var aaa=lockDeposit(requestData)
+    // debugger
+    // if (lockDeposit(requestData)){
+    //   payOffLine(content.data.orderId, content.data.orderPrice);
+    // }
   },
   /**
    * 微信二维码支付
@@ -129,6 +176,7 @@ Page({
       }
     })
     findGoodsOrderByOrderId(evet.orderId);
+    detailsByRelateid(evet.orderId)
 
   }
 })
@@ -144,6 +192,7 @@ function findGoodsOrderByOrderId(orderId) {
   var findCallBack = {
     success: function (data, res) {
       content.setData({
+        price: data.showTotalPrice/100,
         showTotalPrice: data.showTotalPrice,
         totalPrice: data.showTotalPrice,
         orderPrice:data.orderPrice,
@@ -311,4 +360,53 @@ function findFinanceDetailByOrderId(orderId) {
     }
   }
   goodsHttp.findFinanceDetailByOrderId(findRequest, findCallBack)
+}
+/**
+ * 查询定金详情
+ */
+function detailsByRelateid(orderId) {
+  var order_id = {}
+  order_id.relateId = orderId
+  order_id.relateType=1
+  var createOrderCallBack = {
+    success: function (data) {
+      // debugger
+      if (data.depositPaymentRecordList.length>0){
+        content.setData({
+          deposit_price: (data.depositSummary.availableDeposit + data.depositPaymentRecordList[0].deposit)/100,  
+          centerOrderId: data.depositSummary.orderId,
+          depositPaymentRecord: data.depositPaymentRecordList[0].deposit/ 100
+        })
+      }else{
+        if (data.depositSummary.availableDeposit){
+          content.setData({
+            deposit_price: data.depositSummary.availableDeposit / 100,
+            centerOrderId: data.depositSummary.orderId
+          })
+        }
+      }
+
+    },
+    fail: function (data, res) {
+      toastUtil.showToast(data)
+    }
+  }
+  orderCenterHttp.detailsByRelateid(order_id, createOrderCallBack);
+}
+/**
+ * 使用定金(绑定)
+ */
+function lockDeposit(orderId) {
+  var createOrderCallBack = {
+    success: function (data) {
+      debugger
+       return true;
+    },
+    fail: function (data, res) {
+      debugger
+      toastUtil.showToast(data)
+      return false;
+    }
+  }
+  goodsHttp.lockDeposit(orderId, createOrderCallBack);
 }

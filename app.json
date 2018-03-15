@@ -4,6 +4,8 @@
     "pages/order/order_create_easy/order_create_easy",
     "pages/order/order_create/order_create",
     "pages/order/service/service_content/service_content",
+    "pages/order/service/service_deposit/service_deposit",
+    "pages/order/service/pay_the_depositdeposit/pay_the_depositdeposit",
     "pages/order/service/service_handle/service_handle",
     "pages/order/service/service_list_relate/service_list_relate",
     "pages/order/service/service_list_audit/service_list_audit",

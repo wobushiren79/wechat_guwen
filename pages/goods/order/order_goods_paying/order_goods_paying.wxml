@@ -33,9 +33,19 @@
             </view>
             <view class="money">
               ￥
-              <text>{{orderPrice/100}}</text>
+              <text>{{price}}</text>
             </view>
-
+            <view class="pay">
+可用定金¥{{deposit_price}}
+            </view>
+            <!-- <block wx:if="{{depositPaymentRecord}}">
+            <view class='pay'>
+            已锁定定金{{depositPaymentRecord?depositPaymentRecord:''}}
+            </view>
+            </block> -->
+            <view class='dep'>
+            <input name='deposit' bindinput='inpu' type='digit'placeholder-style="" placeholder='点击输入抵扣定金' ></input>
+            </view>
           </view>
 
           <!-- <view class='index'>

@@ -82,12 +82,41 @@ function getOrderCenterList(data, callback) {
 function detailsAll(data, callback) {
   baseRequest.sendPostHttpForContent(baseUrl + "api/workorder/detailsAll", data, callback, true)
 }
-
+/**
+ * 定金缴纳
+ */
+function PayTheDepositdeposit(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/deposit/paydeposit", data, callback, true)
+}
 /**
  * 获取新建订单列表
  */
 function getOrderListByAdvisorIdAndOrderStatus(data, callback) {
   baseRequest.sendPostHttpForContent(baseUrl + "api/workorder/getOrderListByAdvisorIdAndOrderStatus", data, callback, true)
+}
+/**
+ * 查询定金缴费记录
+ */
+function payList(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/deposit/pay_list", data, callback, true)
+}
+/**
+ * 查询定金缴费记录
+ */
+function useList(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/deposit/use_list", data, callback, true)
+}
+/**
+ * 查询定金缴费记录
+ */
+function depositDetails(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/deposit/details", data, callback, true)
+}
+/**
+ * 查询可用定金
+ */
+function detailsByRelateid(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/deposit/details_by_relateid", data, callback, true)
 }
 module.exports.detailsAll = detailsAll;
 module.exports.loginOrderCenter = loginOrderCenter;
@@ -101,4 +130,9 @@ module.exports.getOrderDetails = getOrderDetails;
 module.exports.getCarList = getCarList;
 module.exports.getCarDetails = getCarDetails;
 module.exports.getOrderCenterList = getOrderCenterList;
+module.exports.PayTheDepositdeposit = PayTheDepositdeposit;
 module.exports.getOrderListByAdvisorIdAndOrderStatus = getOrderListByAdvisorIdAndOrderStatus;
+module.exports.payList = payList;
+module.exports.useList = useList;
+module.exports.depositDetails = depositDetails;
+module.exports.detailsByRelateid = detailsByRelateid;

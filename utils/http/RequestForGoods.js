@@ -154,7 +154,12 @@ function findServiceInfoDefaultAddress(data, callback) {
 function changeOrderPrice(data, callback) {
   baseRequest.sendPostHttpForContent(baseUrl + 'api/goods/order/updateOrderPrice', data, callback, true)
 }
-
+/**
+ * 使用定金
+ */
+function lockDeposit(data, callback) {
+  baseRequest.sendPostHttpForContent(baseUrl + "api/goods/order/lockDeposit", data, callback, true)
+}
 
 module.exports.loginGoods = loginGoods;
 module.exports.getGoodsOrderList = getGoodsOrderList;
@@ -178,3 +183,4 @@ module.exports.updateServiceInfoAddress = updateServiceInfoAddress;
 module.exports.deleteServiceInfoAddress = deleteServiceInfoAddress;
 module.exports.findServiceInfoDefaultAddress = findServiceInfoDefaultAddress;
 module.exports.changeOrderPrice = changeOrderPrice;
+module.exports.lockDeposit = lockDeposit;

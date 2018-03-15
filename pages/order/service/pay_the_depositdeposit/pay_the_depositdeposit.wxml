@@ -1,0 +1,56 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd clearfix">
+
+    <form bindsubmit='bind_moda'>
+
+        <view class="content">
+          <image src="/images/service_goods_pay.png"></image>
+          <view class="text">
+
+
+            <!-- <view class="num">
+              订单编号：
+              <text>{{orderNumber}}</text>
+            </view> -->
+            <view class="pay">
+              定金缴纳
+            </view>
+            <view class="money">
+              
+              <input type='digit' name='deposit' placeholder-style="font-size:25rpx;color: #bbbbbb" placeholder="点击请输入定金金额" ></input>
+            </view>
+
+          </view>
+
+          <!-- <view class='index'>
+            <navigator url='/pages/index/index' open-type='reLaunch'>返回首页</navigator>
+          </view> -->
+        </view>
+
+        <view class='prompt'>
+          <navigator hover-class='none' open-type='navigateBack' delta='1'>
+            <text>
+             暂不付款，返回上页
+            </text>
+          </navigator>
+        </view>
+
+
+
+      <!-- 固定底部 star -->
+      <view class="footerfix clearfix">
+          <button style='background:#696969' class="keep pay_up 1" bindtap="wechat" disabled="true">微信支付</button>
+          <button form-type='submit' class="keep pay_down">线下支付</button>
+      </view>
+      <!-- 固定底部 end -->
+
+    </form>
+
+
+
+
+
+
+
+  </view>
+</view>

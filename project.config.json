@@ -25,7 +25,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 16,
 			"list": [
 				{
 					"id": -1,
@@ -105,6 +105,36 @@
 					"name": "321",
 					"pathName": "pages/goods/order/order_goods_write_orderinfo/order_goods_write_orderinfo",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "定金",
+					"pathName": "pages/order/service/service_list_processing/service_list_processing",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "定金详情",
+					"pathName": "pages/order/service/service_deposit/service_deposit",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "q",
+					"pathName": "pages/goods/order/order_goods_submit/order_goods_submit",
+					"query": "orderId=1393"
+				},
+				{
+					"id": -1,
+					"name": "支付定金",
+					"pathName": "pages/order/service/pay_the_depositdeposit/pay_the_depositdeposit",
+					"query": "orderId=312"
+				},
+				{
+					"id": 16,
+					"name": "单项支付",
+					"pathName": "pages/goods/order/order_goods_paying/order_goods_paying",
+					"query": "orderId=138"
 				}
 			]
 		}

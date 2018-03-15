@@ -1,0 +1,209 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd plan ">
+    <!--公墓：cem 殡仪：plan  其他：other -->
+    <!-- 基本信息 -->
+    <view class='section_info '>
+      <view class='dl'>
+          <!-- 公墓 -->
+          <view class='dt'>
+            <view class='dt_hd'>
+              <image src='/images/icon_order_content_cem.png' mode='widthFix'></image>
+            </view>
+            <view class='dt_bd'>定金详情</view>
+            <!-- <block wx:if="{{call  == false}}"> -->
+              <!-- <view class='dt_footer' bindtap="bind_tel">
+                <navigator class='pay_the_depositdeposit'>缴纳定金</navigator>
+              </view> -->
+            <!-- </block> -->
+          </view>
+
+        <view class='dd'>
+          <view class='dd_hd'>总金额</view>
+          <view class='dd_bd'> ¥{{details.totalDeposit?details.totalDeposit/100:'0.00'}}</view>
+        </view>
+        <view class='dd'>
+          <view class='dd_hd'>已使用</view>
+          <view class='dd_bd'>¥{{details.usedDeposit?details.usedDeposit/100:'0.00'}}</view>
+        </view>
+        <view class='dd'>
+          <view class='dd_hd'>未使用</view>
+          <view class='dd_bd'>¥{{details.availableDeposit?details.availableDeposit/100:'0.00'}}</view>
+        </view>
+        <view class='dd'>
+          <view class='dd_hd'>抵扣中</view>
+          <view class='dd_bd'>¥{{details.lockDeposit?details.lockDeposit/100:'0.00'}}</view>
+          <navigator url='/pages/order/service/pay_the_depositdeposit/pay_the_depositdeposit?orderId={{orderId}}' class='pay_the_depositdeposit'>缴纳定金</navigator>
+        </view>
+      </view>
+    </view>
+    <!-- 选项卡导航 -->
+    <view class='section_tab_hd'>
+      <view class='{{tab==0?"active":""}}' data-tab='0' bindtap='bind_tab'>
+        <text>定金缴纳记录</text>
+      </view>
+      <view class='{{tab==1?"active":""}}' data-tab='1' bindtap='bind_tab'>
+        <text>定金使用记录</text>
+      </view>
+    </view>
+    <!-- 列表 -->
+    <!-- 列表-定金缴纳记录 -->
+
+    <view class='list_content {{tab==0?"active":""}}'>
+          <view class='list_content_item'>
+            <view class="weui-cells__title  {{tab_0 == index?'active':''}}">
+              <view class="weui-cell__bd">
+                <view class='time'>
+                  <text>定金缴纳记录</text>
+                  <!-- <text>11:33:35</text>  -->
+                </view>
+                <view class='s'>{{item.performerName}}</view>
+              </view>
+              <view class="weui-cell__ft">
+                <!-- <view class='money'>
+                  <text>￥</text>
+                  <text>{{item.orderPrice?item.orderPrice/100:'-'}}</text>
+                </view> -->
+                <view class='s visible'>站位 被删</view>
+              </view>
+              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </view>
+            <view class="weui-cell__info  {{tab_1 == index?'active':''}}">
+              <view class="weui-cell__bd">处理记录详情</view>
+              <view class="weui-cell__ft">
+              </view>
+            </view>
+            <block wx:for="{{pay_list}}">
+            <view class="dl active">
+              <view class='dd time'>
+                <view class='dd_hd'>缴纳时间</view>
+                <view class='dd_bd'>
+                  <text>{{item.occur_date}}</text>
+                  <!-- <text>11:33:35</text> -->
+                </view>
+              </view>
+               <view class='dd'>
+                <view class='dd_hd'>缴纳金额</view>
+                <view class='dd_bd'>
+                  <text>￥</text>
+                  <text>{{item.deposit?item.deposit/100:'-'}}</text>
+                </view>
+              </view> 
+              <view class='dd'>
+                <view class='dd_hd'>缴纳方式</view>
+                <view class='dd_bd'>{{item.payment_way=='offlinePay'?'线下支付':'微信支付'}}</view>
+              </view>
+              <!-- <view class='dd'>
+                <view class='dd_hd'>处理反馈</view>
+                <view class='dd_bd'>
+                  <view>{{item.performSummary}}</view>
+                  <view>
+
+                  </view>
+                </view>
+              </view> -->
+            </view>
+            </block>
+       <block wx:if="{{pay_list.length==0}}">
+        <view class='prompt'>
+          <text>
+            暂无数据
+          </text>
+        </view>
+      </block>
+          </view>
+    </view>
+
+    <!-- 列表-定金使用记录 -->
+
+    <view class='list_content {{tab==1?"active":""}}'>
+          <view class='list_content_item'>
+            <view class="weui-cells__title  {{tab_1 == index?'active':''}}" bindtap='bind_tab_1' data-index="{{index}}">
+              <view class="weui-cell__bd">
+                <view class='time'>
+                  <text>定金使用记录</text>
+                  <!-- <text>11:33:35</text>  -->
+                </view>
+                <view class='s'>{{item.performerName}}</view>
+              </view>
+              <view class="weui-cell__ft">
+                <!-- <view class='money'>
+                  <text>￥</text>
+                  <text>{{item.orderPrice?item.orderPrice/100:'-'}}</text>
+                </view> -->
+                <view class='s visible'>站位 被删</view>
+              </view>
+              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </view>
+            <view class="weui-cell__info  {{tab_1 == index?'active':''}}">
+              <view class="weui-cell__bd">定金使用记录</view>
+              <view class="weui-cell__ft">
+              </view>
+            </view>
+            <block wx:for="{{use_list}}">
+            <view class="dl active">
+              <view class='dd time'>
+                <view class='dd_hd'>使用时间</view>
+                <view class='dd_bd'>
+                  <text>{{item.handle_date}}</text>
+                  <!-- <text>11:33:35</text> -->
+                </view>
+              </view>
+               <view class='dd'>
+                <view class='dd_hd'>使用金额</view>
+                <view class='dd_bd'>
+                  <text>￥</text>
+                  <text>{{item.deposit?item.deposit/100:'-'}}</text>
+                </view>
+              </view> 
+              <view class='dd'>
+                <view class='dd_hd'>使用方式</view>
+                <view class='dd_bd'>{{item.relate_business_type == 'goods'?'购买单项商品':''}}</view>
+              </view>
+              <!-- <view class='dd'>
+                <view class='dd_hd'>处理反馈</view>
+                <view class='dd_bd'>
+                  <view>{{item.performSummary}}</view>
+                  <view>
+
+                  </view>
+                </view>
+              </view> -->
+            </view>
+            </block>
+       <block wx:if="{{use_list.length==0}}">
+        <view class='prompt'>
+          <text>
+            暂无数据
+          </text>
+        </view>
+      </block>
+          </view>
+    </view>
+
+    <!-- 遮罩层 -->
+    <view class='mask {{mask?"active":""}}' bindtap='bind_popup_close'></view>
+
+    <!-- 图片弹窗 -->
+    <view class='popup popup_img {{popup_img?"active":""}}' bindtap='bind_popup_close'>
+      <image src='{{imgurl}}' mode='widthFix'></image>
+    </view>
+
+    <!-- 快捷导航 -->
+    <view class='right_nav {{right_nav==1?"active":""}}'>
+      <view class='img_wrap'>
+        <view class='btn' bindtap='bind_right_nav'>
+          <image src='{{mystroe_right_nav_btn}}'></image>
+        </view>
+        <navigator class='btn1' url="/pages/order/service/use_car/use_car?orderId={{orderId}}" open-type="navigateTo">
+          <image src='/images/mystroe_right_nav_btn_1.png'></image>
+        </navigator>
+        <navigator class='btn2' url="/pages/order/service/use_car_list/use_car_list?orderId={{orderId}}" open-type="navigateTo">
+          <image src='/images/mystroe_right_nav_btn_2.png'></image>
+        </navigator>
+
+        <!-- <image src='../../../images/dog_chang.jpg' class='btn5'></image> -->
+      </view>
+    </view>
+
+  </view>
+</view>

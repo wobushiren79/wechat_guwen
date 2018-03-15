@@ -1,13 +1,13 @@
-// var urlType = "local"
-var urlType = "remote"
+var urlType = "local"
+// var urlType = "remote"
 var urlData = (urlType == "local") ?
   {
     goodsPHPUrl: "https://goodsmgr.e-funeral.cn/",
     appPHPUrl: "https://app.e-funeral.cn/",
     JavaPlatformUrl: "http://192.168.0.66:8080/ki4so-web/",
-    JavaGoodsUrl: "http://192.168.0.57:8089/goods/",
+    JavaGoodsUrl: "http://192.168.0.66:8089/goods/",
     JavaCemeteryUrl: "http://192.168.0.66:8088/cemetery/",
-    javaOrderCenterUrl: "http://192.168.0.57:8090/order/"
+    javaOrderCenterUrl: "http://192.168.0.66:8090/order/"
   }
   :
   {
