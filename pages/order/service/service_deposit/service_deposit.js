@@ -63,6 +63,7 @@ Page({
     }
   },
   onShow:function(){
+    pageUtil.initData();
     depositDetails(orderId)
     payList(orderId)
     useList(orderId)
