@@ -130,7 +130,7 @@
               </navigator>
               <view class="li_footer">
                 <view class="footer">
-                <navigator type="primary" url='/pages/order/service/service_deposit/service_deposit' class="btn">定金</navigator>
+                <navigator type="primary" url='/pages/order/service/service_deposit/service_deposit?orderId={{item.workOrder.id}}' class="btn" >定金</navigator>
                   <block wx:if="{{item.performerAssignRecord.valid == 1}}">
                     <navigator type="primary" url='/pages/order/service/service_handle/service_handle?orderId={{item.workOrder.id}}' class="btn">处理</navigator>
                   </block>
@@ -188,7 +188,7 @@
               </navigator>
               <view class="li_footer">
                 <view class="footer">
-                <navigator type="primary" url='/pages/order/service/service_deposit/service_deposit' class="btn">定金</navigator>
+                <navigator type="primary" url='/pages/order/service/service_deposit/service_deposit?orderId={{item.workOrder.id}}' class="btn">定金</navigator>
                   <block wx:if="{{item.performerAssignRecord.valid == 1}}">
                     <navigator type="primary" url='/pages/order/service/service_handle/service_handle?orderId={{item.workOrder.id}}' class="btn">处理</navigator>
                   </block>
