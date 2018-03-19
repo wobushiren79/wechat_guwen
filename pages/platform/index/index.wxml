@@ -10,7 +10,10 @@
           </view>
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
             <view class="weui-media-box__title">
-              {{UserName}}
+              <text class='weui-media-box_title_username'>{{UserName}}</text>
+		    <block wx:if="{{isDreamMaster}}">
+		    	<text class='weui-media-box_title_userclass'>{{"("+dreamMasterClass+"级圆梦师)"}}</text>
+		    </block>
             </view>
             <view class="weui-media-box__desc">
               账户积分

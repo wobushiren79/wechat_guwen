@@ -7,7 +7,9 @@ var safeJump = require("../../../utils/SafeJump.js");
 var content;
 Page({
   data: {
-    usableMoney: '0.00'
+    usableMoney: '0.00',
+    isDreamMaster: false,
+    dreamMasterClassKey: "dreamMaster"
   },
   // onShow: function () {
   //   this.onLoad()
@@ -48,6 +50,8 @@ Page({
     })
     getWalletInfo();
     getCreditInfo();
+//     用户圆梦师级别
+    getDreamMasterClass();
   },
   onLoad: function () {
     content = this;
@@ -89,4 +93,31 @@ function getCreditInfo() {
     }
   }
   platformHttp.queryCreditInfo(null, queryCreditCallBack);
+}
+
+/**
+ * 用户圆梦师级别
+ */
+function getDreamMasterClass(){
+	var userLevelData = wx.getStorageSync(storageKey.AMATEUR_LEVEL);
+	var isDreamMasterClass = false;
+	var dreamMasterClass = "";
+	if (userLevelData != null && userLevelData.length != 0) {
+		var classKey = content.data.dreamMasterClassKey;		
+		for (var i in userLevelData){
+			var levelObj = userLevelData[i];
+			if (levelObj == null || levelObj.systemLevel == null || 
+				classKey != levelObj.systemLevel.levelType){
+				continue;
+			} else if (levelObj.systemLevel.levelType == classKey){
+				dreamMasterClass = levelObj.systemLevel.levelName;
+				isDreamMasterClass = true;
+				break;
+			}
+		}
+	}
+	content.setData({
+		isDreamMaster: isDreamMasterClass,
+		dreamMasterClass: dreamMasterClass
+	});
 }
