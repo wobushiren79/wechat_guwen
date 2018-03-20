@@ -86,3 +86,9 @@
 .list.weui-panel::before{
   display: none!important;
 }
+.weui-media-box_title_username{
+ font-size: 40rpx; font-weight: bold;
+}
+.weui-media-box_title_userclass{
+ font-size: 26rpx; margin-left: 10rpx;
+}
