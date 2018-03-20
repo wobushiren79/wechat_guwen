@@ -80,9 +80,13 @@ Page({
    */
   inpu:function(e){
     content=this
+    if (content.data.deposit_price == 0){
+      toastUtil.showToast("无可用定金");
+      return ''
+    }
     if (e.detail.value > content.data.deposit_price){
       content.setData({
-        price: content.data.totalPrice / 100,
+        price: content.data.orderPrice,
       })
       toastUtil.showToast("定金过大");
       return ''
@@ -90,22 +94,22 @@ Page({
       //   //要延时执行的代码  
       // }, 1000) //延迟时间 这里是1秒
     }
-    if (content.data.totalPrice / 100 < e.detail.value){
+    if (content.data.orderPrice < e.detail.value){
       content.setData({
-        price: content.data.totalPrice / 100
+        price: content.data.orderPrice 
       })
       toastUtil.showToast("定金过大");
       return ''
     }
     if (!e.detail.value == ''){
-      var price = content.data.totalPrice/100 - e.detail.value
+      var price = app.accuracyCalculation('-', 2, content.data.orderPrice , e.detail.value) 
       content.setData({
         price: price,
         getDeposit: e.detail.value
       })
     }else{
       content.setData({
-        price: content.data.totalPrice/100
+        price: content.data.orderPrice,
       })
     }
   },
@@ -114,42 +118,51 @@ Page({
    */
   bind_moda: function () {
     content=this
-    var requestData={}
-    requestData.orderId = content.data.centerOrderId
-    requestData.deposit = content.data.getDeposit*100
-    requestData.paymentWay = 'offlinePay'
-    requestData.relateType = 1
-    requestData.relateId = content.data.orderId
-    var aaa=lockDeposit(requestData)
-    // debugger
-    // if (lockDeposit(requestData)){
-    //   payOffLine(content.data.orderId, content.data.orderPrice);
-    // }
+    wx.showModal({
+      title: '确认线下支付',
+      content: '点击确认后，使用线下支付方式，包括现金刷卡收取等',
+      success: function (res) {
+        if (res.confirm) {
+          var requestData = {}
+          requestData.orderId = content.data.centerOrderId
+          requestData.deposit = app.accuracyCalculation('*', 2, content.data.getDeposit, 100)
+          requestData.paymentWay = 'offlinePay'
+          requestData.relateType = 1
+          requestData.relateId = content.data.orderId
+          var price = app.accuracyCalculation('*', 2, content.data.price, 100)
+          lockDeposit(requestData, price, 0)
+        }
+      }
+    })
   },
   /**
    * 微信二维码支付
    */
   wechats: function () {
-    var orderId = content.data.orderId
-    var payPrice = content.data.orderPrice
-    wx.login({
-      success: function (e) {
-        wechatPay(orderId, payPrice, e.code, PAYWAY_BY_QR_CODE)
-      }
-    })
+    content = this
+    var requestData = {}
+    requestData.orderId = content.data.centerOrderId
+    requestData.deposit = app.accuracyCalculation('*', 2, content.data.getDeposit, 100)
+    requestData.paymentWay = 'wechatPay'
+    requestData.relateType = 1
+    requestData.relateId = content.data.orderId
+    var price = app.accuracyCalculation('*', 2, content.data.price, 100)
+    lockDeposit(requestData, price,1)
   },
 
   /**
    *  调用微信自己的支付
    */
   wechat: function () {
-    var orderId = content.data.orderId
-    var payPrice = content.data.orderPrice
-    wx.login({
-      success: function (e) {
-        wechatPay(orderId, payPrice, e.code, PAYWAY_BY_WECHAT)
-      }
-    })
+    content = this
+    var requestData = {}
+    requestData.orderId = content.data.centerOrderId
+    requestData.deposit = app.accuracyCalculation('*', 2, content.data.getDeposit, 100)
+    requestData.paymentWay = 'wechatPay'
+    requestData.relateType = 1
+    requestData.relateId = content.data.orderId
+    var price = app.accuracyCalculation('*', 2, content.data.price, 100)
+    lockDeposit(requestData, price, 1)
   },
 
 
@@ -191,13 +204,16 @@ function findGoodsOrderByOrderId(orderId) {
   }
   var findCallBack = {
     success: function (data, res) {
+      var orderPrice = app.accuracyCalculation('/', 2, data.orderPrice, 100)
+      // debugger
       content.setData({
-        price: data.showTotalPrice/100,
+        price: orderPrice,
         showTotalPrice: data.showTotalPrice,
         totalPrice: data.showTotalPrice,
-        orderPrice:data.orderPrice,
+        orderPrice: orderPrice,
         orderNumber: data.orderNumber,
-        orderId: orderId
+        orderId: orderId,
+        relateWorkId: data.relateWorkId
       })
     },
     fail: function (data, res) {
@@ -237,15 +253,8 @@ function payOffLine(orderId, payPrice) {
       })
     }
   }
-  wx.showModal({
-    title: '确认线下支付',
-    content: '点击确认后，使用线下支付方式，包括现金刷卡收取等',
-    success: function (res) {
-      if (res.confirm) {
-        goodsHttp.payOffLine(payRequest, payCallBack);
-      }
-    }
-  })
+  goodsHttp.payOffLine(payRequest, payCallBack);
+
 }
 
 
@@ -309,21 +318,28 @@ function updateOutTradeNo(orderId, outTradeNo, payType, payInfo) {
  * 统一下单
  */
 function wechatPay(orderId, payPrice, code, payType) {
-  var payRequest = {
-    orderId: orderId,
-    total_fee: payPrice,
-    code: code
-  }
-  var payCallBack = {
-    success: function (data, res) {
-      var outTradeNo = res.data.out_trade_no;
-      updateOutTradeNo(orderId, outTradeNo, payType, res)
-    },
-    fail: function (data, res) {
-      toastUtil.showToast("统一下单失败");
+  if (payPrice !=0){
+    var payRequest = {
+      orderId: orderId,
+      total_fee: payPrice,
+      code: code
     }
+    var payCallBack = {
+      success: function (data, res) {
+        var outTradeNo = res.data.out_trade_no;
+        updateOutTradeNo(orderId, outTradeNo, payType, res)
+      },
+      fail: function (data, res) {
+        toastUtil.showToast("统一下单失败");
+      }
+    }
+    goodsPHPHttp.wechatPay(payRequest, payCallBack);
+  }else{
+    toastUtil.showToast("支付为0");
+    setTimeout(function () {
+      toastUtil.showToast("请在线下");
+    }, 1000) //延迟时间 这里是1秒 
   }
-  goodsPHPHttp.wechatPay(payRequest, payCallBack);
 }
 
 /**
@@ -371,16 +387,18 @@ function detailsByRelateid(orderId) {
   var createOrderCallBack = {
     success: function (data) {
       // debugger
-      if (data.depositPaymentRecordList.length>0){
+      if (data.depositPaymentRecordList != undefined && data.depositPaymentRecordList.length > 0 && data.depositPaymentRecordList[0].relateBusinessId == orderId && data.depositPaymentRecordList[0].relateBusinessType == 'goods'){
+        var deposit_price = app.accuracyCalculation('/', 2, data.depositSummary.availableDeposit, 100) + app.accuracyCalculation('/', 2, data.depositPaymentRecordList[0].deposit, 100)
+        // debugger
         content.setData({
-          deposit_price: (data.depositSummary.availableDeposit + data.depositPaymentRecordList[0].deposit)/100,  
+          deposit_price: deposit_price,  
           centerOrderId: data.depositSummary.orderId,
-          depositPaymentRecord: data.depositPaymentRecordList[0].deposit/ 100
         })
       }else{
         if (data.depositSummary.availableDeposit){
+          var deposit_price = app.accuracyCalculation('/', 2, data.depositSummary.availableDeposit, 100)
           content.setData({
-            deposit_price: data.depositSummary.availableDeposit / 100,
+            deposit_price: deposit_price,
             centerOrderId: data.depositSummary.orderId
           })
         }
@@ -396,16 +414,28 @@ function detailsByRelateid(orderId) {
 /**
  * 使用定金(绑定)
  */
-function lockDeposit(orderId) {
+function lockDeposit(orderId, payPrice,code) {
   var createOrderCallBack = {
     success: function (data) {
-      debugger
-       return true;
+      // console.log(data)
+      if (data == '锁定成功'){
+        if (code  == 0){
+          payOffLine(orderId.relateId, payPrice)
+        }
+        if (code == 1){
+          wx.login({
+            success: function (e) {
+              wechatPay(orderId.relateId, payPrice, e.code, PAYWAY_BY_QR_CODE)
+            }
+          })
+        }
+      }else{
+        toastUtil.showToast(data)
+      }
+       
     },
     fail: function (data, res) {
-      debugger
       toastUtil.showToast(data)
-      return false;
     }
   }
   goodsHttp.lockDeposit(orderId, createOrderCallBack);

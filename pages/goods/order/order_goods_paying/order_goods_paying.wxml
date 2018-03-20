@@ -43,9 +43,11 @@
             已锁定定金{{depositPaymentRecord?depositPaymentRecord:''}}
             </view>
             </block> -->
+            <block wx:if="{{deposit_price != 0}}">
             <view class='dep'>
             <input name='deposit' bindinput='inpu' type='digit'placeholder-style="" placeholder='点击输入抵扣定金' ></input>
             </view>
+            </block>
           </view>
 
           <!-- <view class='index'>
@@ -55,6 +57,7 @@
         
         <view class='prompt'>
           <navigator hover-class='none' url='/pages/index/index' open-type='reLaunch'><text>暂不付款，返回首页</text></navigator>
+                      <!-- <navigator url="/pages/order/service/service_deposit/service_deposit?orderId={{relateWorkId}}"><button class='buttons'>点击缴纳定金</button></navigator> -->
         </view>
       </block>
 

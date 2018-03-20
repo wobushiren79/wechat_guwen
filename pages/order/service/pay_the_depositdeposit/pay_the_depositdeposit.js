@@ -86,14 +86,14 @@ Page({
       toastUtil.showToast("金额不正确")
        return false
     }
-    if (e.detail.value.deposit * 100 == 0) {
+    if (e.detail.value.deposit == 0) {
       toastUtil.showToast("定金不能为0")
       return false
     }
     var getData={}
     getData.orderId = content.data.orderId;
     getData.paymentWay ='offlinePay';
-    getData.deposit = e.detail.value.deposit * 100;
+    getData.deposit = app.accuracyCalculation('*', 2, e.detail.value.deposit, 100);
     PayTheDepositdeposit(getData)
   },
   /**
@@ -190,7 +190,7 @@ function PayTheDepositdeposit(createOrderData) {
         wx.navigateBack({
           delta: 1
         }) 
-      }, 2000) //延迟时间 这里是1秒 
+      }, 1000) //延迟时间 这里是1秒 
     },
     fail: function (data, res) {
       toastUtil.showToast(data)

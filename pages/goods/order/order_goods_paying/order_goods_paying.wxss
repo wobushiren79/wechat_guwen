@@ -4,6 +4,9 @@
   font-size: 32rpx;
   position: relative;
 }
+.buttons{
+  width: 50%;
+}
 .dep{
     /* background:red;   */
   width:35%;

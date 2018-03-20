@@ -28,6 +28,7 @@
           <view class="li">
             <view class="li_header">
               <view class="header">已确认</view>
+              <view style='  margin-left: 20rpx'>{{item.order_number}}</view>
               <view class="footer">￥
                 <!-- <text>{{amateurLevel?item.show_total_price/100:item.total_price/100}}</text> -->
                 <block wx:if="{{item.order_price}}">

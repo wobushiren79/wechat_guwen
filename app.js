@@ -1,5 +1,6 @@
-var urlType = "local"
+// var urlType = "local"
 // var urlType = "remote"
+var urlType = 'xiaofang'
 var urlData = (urlType == "local") ?
   {
     goodsPHPUrl: "https://goodsmgr.e-funeral.cn/",
@@ -9,15 +10,23 @@ var urlData = (urlType == "local") ?
     JavaCemeteryUrl: "http://192.168.0.66:8088/cemetery/",
     javaOrderCenterUrl: "http://192.168.0.66:8090/order/"
   }
-  :
+  : (urlType = 'xiaofang')?
   {
-    goodsPHPUrl: "https://goodsmgr.e-funeral.cn/",
-    appPHPUrl: "https://app.e-funeral.cn/",
-    JavaPlatformUrl: "https://platform.shianlife.cn/",
-    JavaGoodsUrl: "https://goods.shianlife.cn/",
-    JavaCemeteryUrl: "https://t-cemetery-api.shianlife.cn/",
-    javaOrderCenterUrl: 'https://order.shianlife.cn/'
-  };
+      goodsPHPUrl: "https://goodsmgr.e-funeral.cn/",
+      appPHPUrl: "https://app.e-funeral.cn/",
+      JavaPlatformUrl: "http://192.168.0.57:8099/ki4so-web/",
+      JavaGoodsUrl: "http://192.168.0.57:8299/goods/",
+      JavaCemeteryUrl: "http://192.168.0.66:8088/cemetery/",
+      javaOrderCenterUrl: "http://192.168.0.57:8399/center/"
+  }:
+    {
+      goodsPHPUrl: "https://goodsmgr.e-funeral.cn/",
+      appPHPUrl: "https://app.e-funeral.cn/",
+      JavaPlatformUrl: "https://platform.shianlife.cn/",
+      JavaGoodsUrl: "https://goods.shianlife.cn/",
+      JavaCemeteryUrl: "https://t-cemetery-api.shianlife.cn/",
+      javaOrderCenterUrl: 'https://order.shianlife.cn/'
+    };
 App({
   onLaunch: function () {
     //调用API从本地缓存中获取数据
@@ -101,5 +110,25 @@ App({
     var minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
     // var sec = date.getSeconds();
     return hour + ":" + minutes
+  },
+  /**
+   * 处理小程序计算数字精度问题
+   */
+  accuracyCalculation: function (method,length,data_a,data_b){
+    if (method == '+'){
+      return parseFloat((data_a + data_b).toFixed(length))
+    }
+    if (method == '-') {
+      return parseFloat((data_a - data_b).toFixed(length))
+    }
+    if (method == '*') {
+      return parseFloat((data_a * data_b).toFixed(length))
+    }
+    if (method == '/') {
+      return  parseFloat((data_a /data_b).toFixed(length))
+    }
+    if (method == '' && data_b=='') {
+      return parseFloat(data_a.toFixed(length))
+    }
   }
 })

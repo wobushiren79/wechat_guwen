@@ -34,7 +34,8 @@ Page({
   //下拉事件
   onPullDownRefresh: function () {
     //关闭下拉
-    wx.stopPullDownRefresh()
+    this.onShow();
+    wx.stopPullDownRefresh();
   },
   bind_tab: function (e) {
     pageUtil.initData();
@@ -65,8 +66,12 @@ Page({
   onShow:function(){
     pageUtil.initData();
     depositDetails(orderId)
-    payList(orderId)
-    useList(orderId)
+    if (content.data.tab == 0) {
+      payList(orderId)
+    }
+    if (content.data.tab == 1) {
+      useList(orderId)
+    }
   },
   onLoad:function(evet){
     content=this
