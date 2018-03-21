@@ -10,7 +10,7 @@ var urlData = (urlType == "local") ?
     JavaCemeteryUrl: "http://192.168.0.66:8088/cemetery/",
     javaOrderCenterUrl: "http://192.168.0.66:8090/order/"
   }
-  : (urlType = 'xiaofang')?
+  : (urlType == 'xiaofang')?
   {
       goodsPHPUrl: "https://goodsmgr.e-funeral.cn/",
       appPHPUrl: "https://app.e-funeral.cn/",
@@ -18,7 +18,7 @@ var urlData = (urlType == "local") ?
       JavaGoodsUrl: "http://192.168.0.57:8299/goods/",
       JavaCemeteryUrl: "http://192.168.0.66:8088/cemetery/",
       javaOrderCenterUrl: "http://192.168.0.57:8399/center/"
-  }:
+    } :
     {
       goodsPHPUrl: "https://goodsmgr.e-funeral.cn/",
       appPHPUrl: "https://app.e-funeral.cn/",

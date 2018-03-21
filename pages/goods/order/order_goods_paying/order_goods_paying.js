@@ -124,7 +124,7 @@ Page({
       success: function (res) {
         if (res.confirm) {
           var requestData = {}
-          requestData.orderId = content.data.centerOrderId
+          requestData.orderId = content.data.relateWorkId
           requestData.deposit = app.accuracyCalculation('*', 2, content.data.getDeposit, 100)
           requestData.paymentWay = 'offlinePay'
           requestData.relateType = 1
@@ -141,7 +141,7 @@ Page({
   wechats: function () {
     content = this
     var requestData = {}
-    requestData.orderId = content.data.centerOrderId
+    requestData.orderId = content.data.relateWorkId
     requestData.deposit = app.accuracyCalculation('*', 2, content.data.getDeposit, 100)
     requestData.paymentWay = 'wechatPay'
     requestData.relateType = 1
@@ -156,7 +156,7 @@ Page({
   wechat: function () {
     content = this
     var requestData = {}
-    requestData.orderId = content.data.centerOrderId
+    requestData.orderId = content.data.relateWorkId
     requestData.deposit = app.accuracyCalculation('*', 2, content.data.getDeposit, 100)
     requestData.paymentWay = 'wechatPay'
     requestData.relateType = 1
@@ -232,11 +232,6 @@ function payOffLine(orderId, payPrice) {
     toastUtil.showToast("没有orderId")
     return
   }
-  if (!payPrice) {
-    toastUtil.showToast("没有payPrice")
-    return
-  }
-
   var payRequest = {
     orderId: orderId,
     actualPayment: payPrice,
