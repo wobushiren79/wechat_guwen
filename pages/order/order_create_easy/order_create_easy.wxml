@@ -20,7 +20,7 @@
             <!-- <view class="weui-label">联系电话</view> -->
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="联系电话" placeholder-class='placeholder'  name="contactPhone" type='number' maxlength='11' bindblur='checktel' />
+            <input class="weui-input" placeholder="联系电话" placeholder-class='placeholder'  name="contactPhone" type='number'  bindblur='checktel' value='{{contactPhone}}' />
           </view>
         </view>
 

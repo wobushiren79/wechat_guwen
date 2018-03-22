@@ -1,6 +1,7 @@
 var orderCenterHttp = require("../../../../utils/http/RequestForOrderCenter.js")
 var toastUtil = require("../../../../utils/ToastUtil.js");
 var pageUtil = require("../../../../utils/PageUtil.js");
+var checkTools = require("../../../../utils/CheckTools.js")
 var content;
 Page({
   data: {
@@ -77,7 +78,7 @@ Page({
     // get_data.proposerName = e.detail.value.proposerName
     // get_data.proposerMobile = e.detail.value.proposerMobile
     ContentData.connecterName = e.detail.value.connecterName
-    ContentData.connecterMobile = e.detail.value.connecterMobile
+    ContentData.connecterMobile = checkTools.checkMobile(e.detail.value.connecterMobile) 
     ContentData.remark = e.detail.value.remark
     if (content.data.date && content.data.time){
       ContentData.preDate = content.data.date + ' ' + content.data.time + ':00'
@@ -104,21 +105,22 @@ Page({
   },
   //调用手机号码方法验证手机号码
   checktel: function (e) {
-    this.checkMobile(e.detail.value)
+   var str= this.checkMobile(e.detail.value)
     this.setData({
-      checkMobile: e.detail.value
+      checkMobile: str
     })
   },
   //手机号码验证
   checkMobile: function (sMobile) {
-    if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))) {
+    var str = checkTools.checkMobile(sMobile)
+    if (!str) {
       wx.showToast({
         title: '号码不正确',
         image: '/images/icon_info.png',
         duration: 2000
       })
     } else {
-
+        return str
     }
   },
   onShow: function () {

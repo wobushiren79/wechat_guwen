@@ -18,7 +18,7 @@
                 经办人电话
               </view>
               <view class="footer ">
-                <input type="number" placeholder="经办人电话" name="agentPhone" maxlength='11'   bindblur='checktel' value='{{agentPhone}}'/>
+                <input type="number" placeholder="经办人电话" name="agentPhone"    bindblur='checktel' value='{{agentPhone}}'/>
               </view>
             </view>
             <view class="dd required">

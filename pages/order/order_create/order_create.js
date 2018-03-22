@@ -4,6 +4,7 @@ var toastUtil = require("../../../utils/ToastUtil.js");
 var checkPermissions = require("../../../utils/CheckPermissions.js");
 var content;
 var checkTools = require("../../../utils/CheckTools.js");
+var app = getApp();
 Page({
   data: {
     GmList: [
@@ -183,7 +184,7 @@ Page({
     var ContentData = {}
     // ContentData.personNum = e.detail.value.personNum ? e.detail.value.personNum:0
     ContentData.contactName = e.detail.value.contactName
-    ContentData.contactPhone = e.detail.value.contactPhone
+    ContentData.contactPhone = that.checkMobile(e.detail.value.contactPhone)
     ContentData.orderDescribe = e.detail.value.orderDescribe
     ContentData.address = e.detail.value.address
     var businessType_b = that.data.businessType_b
@@ -205,7 +206,7 @@ Page({
     // get_data.proposerName = e.detail.value.proposerName
     // get_data.proposerMobile = e.detail.value.proposerMobile
     get_data.connecterName = e.detail.value.connecterName
-    get_data.connecterMobile = e.detail.value.connecterMobile
+    get_data.connecterMobile = that.checkMobile(e.detail.value.connecterMobile)
     get_data.remark = e.detail.value.remark
     var nweData = that.data.dates == undefined ? that.data.date : that.data.dates
     var nweTime = that.data.datess == undefined ? that.data.time : that.data.datess
@@ -240,8 +241,8 @@ Page({
         toastUtil.showToast("没有用车人")
         return
       }
-      if (!get_data.connecterMobile || !(/^1[3|4|5|8][0-9]\d{4,8}$/.test(get_data.connecterMobile))) {
-        toastUtil.showToast("电话不正确")
+      if (!get_data.connecterMobile) {
+        toastUtil.showToast("电话不能空")
         return
       }
       if (!get_data.seats || get_data.seats.length == 0) {
@@ -271,15 +272,19 @@ Page({
   },
   //调用手机号码方法验证手机号码
   checktel: function (e) {
-    this.checkMobile(e.detail.value)
+    var str= this.checkMobile(e.detail.value)
     this.setData({
-      checkMobile: e.detail.value
+      checkMobile: str,
+      contactPhone:str
     })
   },
   //手机号码验证
   checkMobile: function (sMobile) {
-    if (!checkTools.checkMobile(sMobile)) {
+    var str = checkTools.checkMobile(sMobile)
+    if (!str) {
       toastUtil.showToast('号码不正确');
+    }else{
+      return str
     }
   }
 });

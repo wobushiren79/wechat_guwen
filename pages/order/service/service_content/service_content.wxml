@@ -93,7 +93,9 @@
                 <view class='s'>下单时间</view>
               </view>
               <view class="weui-cell__ft">
+              
                 <view>
+                <view class='view_pay'>{{item.payTime == '未付款'?'(未付款)':''}}</view>
                   {{item.orderStatusStr}}
                 </view>
                 <view class='s'>{{item.orderTime}}</view>

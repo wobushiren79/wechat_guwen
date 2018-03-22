@@ -1,7 +1,11 @@
 .page__bd {
   padding-bottom: 67px;
-
-  
+}
+.nav_paying{
+  border: 1rpx #fc8383 solid;
+}
+.navi_paying{
+  display: inline-block
 }
 .goods_address {
   height: 210rpx;

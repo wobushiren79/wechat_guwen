@@ -1,5 +1,8 @@
 /* 基本信息 */
-
+.view_pay{
+  display: inline-block;
+  color: red
+}
 .section_info .dl {
   padding: 54rpx;
   color: #fff;

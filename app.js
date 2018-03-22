@@ -1,6 +1,6 @@
 // var urlType = "local"
-// var urlType = "remote"
-var urlType = 'xiaofang'
+var urlType = "remote"
+// var urlType = 'xiaofang'
 var urlData = (urlType == "local") ?
   {
     goodsPHPUrl: "https://goodsmgr.e-funeral.cn/",
@@ -59,6 +59,13 @@ App({
     "connectSocket": 10000,
     "uploadFile": 50000,
     "downloadFile": 10000
+  },
+  /**
+   * 字符串去除所有空格
+   */
+  trim:function(str){
+    var strs =str.replace(/\s+/g, "")
+    return strs
   },
   //根据价格(price)追加后两位小数
   ProcessingPrice: function (price) {

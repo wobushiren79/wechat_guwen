@@ -1,10 +1,11 @@
 
-//手机号码验证
+//手机号码验证并且去空格
 function checkMobile(input) {
-  if (!(/^1[3|4|5|7|8][0-9]\d{4,8}$/.test(input))) {
+  var str = input.replace(/\s+/g, "")
+  if (!(/^1[3|4|5|7|8][0-9]\d{4,8}$/.test(str))) {
     return false;
   } else {
-    return true;
+    return str;
   }
 }
 

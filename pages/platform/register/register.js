@@ -7,7 +7,7 @@ var modalUtil = require('../../../utils/ModalUtil.js');
 var safeJump=require("../../../utils/SafeJump.js");
 var content;
 //获取应用实例
-var app = getApp()
+var app = getApp() 
 Page({
   data: {
     value1: '殡仪服務',
@@ -27,12 +27,15 @@ Page({
     hasDealSubSystem: 0
   },
   validation: function (e) {
-    // var mobile = e.detail.value;
-    // if (!checkMobile(mobile)) {
-    //   toastUtil.showToast("手机号不正确");
-    //   return;
-    // }
-    // validationAccount(false,mobile)
+    var str = checkMobile(e.detail.value.mobile)
+    if (!str) {
+      toastUtil.showToast("手机号不正确");
+      return;
+    } else {
+      this.setData({
+        value3: str
+      })
+    }
   },
   refereesValidation: function (e) {
     var mobile = e.detail.value;
@@ -52,7 +55,8 @@ Page({
  * 发送验证码
  */
   phoneData: function (e) {
-    if (!checkMobile(e.detail.value.mobile)) {
+    var str = checkMobile(e.detail.value.mobile)
+    if (!str) {
       toastUtil.showToast("手机号不正确");
       return;
     }

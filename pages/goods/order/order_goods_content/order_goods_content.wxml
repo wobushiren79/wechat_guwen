@@ -267,6 +267,17 @@
             </view>
           </black>
         </view> -->
+        <block wx:if="{{listData.goodsFinance.actualPayment  != null}}">
+         <view class="dd width">
+          <view class="header ">
+            抵扣定金
+          </view>
+          <view class="footer ">
+            ￥
+            <text>{{listData.goodsOrder.depositUse/100}}</text>
+          </view>
+        </view>
+        </block>
         <view class="dd width">
           <view class="header ">
             运费
@@ -289,7 +300,10 @@
                 </block>
               </view> 实付订单金额
               <black wx:if="{{listData.goodsFinance.actualPayment  == null}}">
-                <text> 订单未支付</text>
+             <!-- <text>订单未支付</text>  -->
+<navigator class='navi_paying'  url='/pages/goods/order/order_goods_paying/order_goods_paying?orderId={{orderId}}'>
+<text class='nav_paying'>点击支付</text>
+</navigator>
               </black>
               <black wx:if="{{listData.goodsFinance.actualPayment  != null}}">
                 <text> ￥{{listData.goodsFinance.actualPayment/100}}</text>
@@ -300,7 +314,10 @@
             <view class="footer ">
               实付圆满金额
               <black wx:if="{{listData.goodsFinance.actualPayment  == null}}">
-                <text> 订单未支付</text>
+             <!-- <text>订单未支付</text>  -->
+<navigator class='navi_paying'  url='/pages/goods/order/order_goods_paying/order_goods_paying?orderId={{orderId}}'>
+<text class='nav_paying'>点击支付</text>
+</navigator>
               </black>
               <black wx:if="{{listData.goodsFinance.actualPayment  != null}}">
                 <text> ￥{{listData.goodsFinance.actualPayment/100}}</text>
@@ -331,7 +348,7 @@
             </view>
 
             <view class="footer ">
-              {{listData.goodsFinance.paymentTime}}
+              {{!listData.goodsFinance.paymentTime || listData.goodsFinance.paymentTime == null ?'':listData.goodsFinance.paymentTime}}
             </view>
           </view>
           <view class="dd other">
@@ -339,7 +356,7 @@
               付款流水：
             </view>
             <view class="footer ">
-              {{listData.goodsFinance.paymentNumber}}
+{{!listData.goodsFinance.paymentNumber || listData.goodsFinance.paymentNumber == null ?'':listData.goodsFinance.paymentNumber}}
             </view>
           </view>
         </black>

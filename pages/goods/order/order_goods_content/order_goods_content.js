@@ -106,7 +106,8 @@ function getGoodsOrderDetails(orderId) {
       var levelList = levelHandle(data.goodsOrderItemLevels, data.goodsItemPerforms, data.goodsPackages);
       content.setData({
         listData: data,
-        levelData: levelList
+        levelData: levelList,
+        orderId: orderId
       })
     },
     fail: function (data, res) {
