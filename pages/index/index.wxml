@@ -73,7 +73,7 @@
       </navigator>
       <navigator class="weui-flex__item" url='/pages/other/activity/activity_list/activity_list'>
         <image src='/images/icon_index_grid_2.png' mode='widthFix'></image>
-        <text>活动</text>
+        <text>案例</text>
       </navigator>
       <navigator class="weui-flex__item" url='/pages/other/study/index/index'>
         <image src='/images/icon_index_grid_3.png' mode='widthFix'></image>
