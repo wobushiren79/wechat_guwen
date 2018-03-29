@@ -18,6 +18,7 @@ Page({
     })
   },
   onShow: function () {
+    this.onLoad();
   },
   onLoad: function () {
     var that = this

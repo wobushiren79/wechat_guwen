@@ -52,11 +52,11 @@
                 <text>{{item.name}}</text>
                 <text> {{item.goods_slogan}}</text>
               </view>
-              <view class="money" wx:if="{{item.price == null}}">
+              <view class="money" wx:if="{{item.total == null}}">
                 <text>商品更新中</text>
               </view>
               <view class="money" wx:else>
-                ¥<text>{{item.price}}</text>
+                ¥<text>{{item.total}}</text>
               </view>
               <view class="num">
                 销量<text>{{item.sale_amount}}</text>
@@ -76,11 +76,11 @@
                 <text>{{item.name}}</text>
                 <text> {{item.goods_slogan}}</text>
               </view>
-              <view class="money" wx:if="{{item.price == null}}">
+              <view class="money" wx:if="{{item.total == null}}">
                 <text>商品更新中</text>
               </view>
               <view class="money" wx:else>
-                ¥:<text>{{item.price}}</text>
+                ¥:<text>{{item.total}}</text>
               </view>
               <view class="num">
                 销量<text>{{item.sale_amount}}</text>
