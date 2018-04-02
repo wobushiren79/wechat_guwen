@@ -93,7 +93,9 @@
                 <view class='s'>下单时间</view>
               </view>
               <view class="weui-cell__ft">
+              
                 <view>
+                <view class='view_pay'>{{item.payTime == '未付款'?'(未付款)':''}}</view>
                   {{item.orderStatusStr}}
                 </view>
                 <view class='s'>{{item.orderTime}}</view>
@@ -319,7 +321,7 @@
     </view>
 
     <!-- 快捷导航 -->
-    <view class='right_nav {{right_nav==1?"active":""}}'>
+     <view class='right_nav {{right_nav==1?"active":""}}'>
       <view class='img_wrap'>
         <view class='btn' bindtap='bind_right_nav'>
           <image src='{{mystroe_right_nav_btn}}'></image>
@@ -332,8 +334,8 @@
         </navigator>
 
         <!-- <image src='../../../images/dog_chang.jpg' class='btn5'></image> -->
-      </view>
-    </view>
+      </view> 
+    </view>  
 
   </view>
 </view>

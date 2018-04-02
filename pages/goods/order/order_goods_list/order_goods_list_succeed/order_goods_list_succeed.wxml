@@ -32,6 +32,7 @@
               <black wx:if="{{item.order_status ==4 }}">
                 <view class="header">成功服务</view>
               </black>
+              <view style='  margin-left: 20rpx'>{{item.order_number}}</view>
               <view class="footer">￥
                 <block wx:if="{{item.order_price}}">
                   <text>{{item.order_price/100}}</text>

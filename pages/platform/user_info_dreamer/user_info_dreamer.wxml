@@ -1,0 +1,14 @@
+<!--pages/platform/user_info_dreamer/user_info_dreamer.wxml-->
+<view class='page'>
+	<view class='info'>
+		<view class='info-prompt'>
+			<text class='info-prompt-title'>圆梦师级别证书</text>
+		</view>
+		<view class='info-status'>
+			<image mode='aspectFit' class='info-img' src='{{dreamerImgUrl}}'></image>
+		</view>
+	</view>
+	<view class='info-operate'>
+		<button class='info-back' bindtap='dreamerBack'>返回</button>
+	</view>
+</view>

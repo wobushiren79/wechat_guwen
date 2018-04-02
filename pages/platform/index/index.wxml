@@ -2,7 +2,7 @@
   <view class="page__bd">
 
     <!-- 个人信息 -->
-    <navigator class="weui-panel weui-panel_access userinfo">
+    <navigator class="weui-panel weui-panel_access userinfo" url='/pages/platform/user_info/user_info'>
       <view class="weui-panel__bd">
         <view class="weui-media-box weui-media-box_appmsg">
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">

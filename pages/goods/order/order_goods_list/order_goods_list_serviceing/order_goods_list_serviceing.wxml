@@ -33,6 +33,7 @@
                 <black wx:if="{{item.order_status == 2}}">
                   <view class="header">正在服务</view>
                 </black>
+                <view style='  margin-left: 20rpx'>{{item.order_number}}</view>
                 <view class="footer">￥
                   <!-- <text>{{amateurLevel?item.show_total_price/100:item.total_price/100}}</text> -->
                   <block wx:if="{{item.order_price}}">
@@ -99,6 +100,7 @@
             <view class="li">
               <view class="li_header">
                 <view class="header">确认中</view>
+                <view style='  margin-left: 20rpx'>{{item.order_number}}</view>
                 <view class="footer">￥
                   <!-- <text>{{amateurLevel?item.show_total_price/100:item.total_price/100}}</text> -->
                   <text>{{item.show_total_price/100}}</text>

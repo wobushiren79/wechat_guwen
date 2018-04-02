@@ -15,11 +15,16 @@ Page({
   },
   //手机号码验证
   checkMobile: function (sMobile) {
-    if (!checkTools.checkMobile(sMobile)) {
+    var str = checkTools.checkMobile(sMobile)
+    if (!str) {
       wx.showToast({
         title: '号码不正确',
         image: '/images/icon_info.png',
         duration: 2000
+      })
+    }else{
+      this.setData({
+        agentPhone:str
       })
     } 
   },

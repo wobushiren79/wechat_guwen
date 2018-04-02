@@ -1,0 +1,156 @@
+/* pages/platform/user_info/user_info.wxss */
+.page,.info-base,.info-item,.info-operate{
+	width: 100%;
+	float: left; 
+}
+.page{
+	position: fixed; 
+	height: 100%;
+	background-color: #ffffff;
+}
+/* 信息-编辑 */
+.info-base{
+	margin-top: 20rpx;	
+}
+.info-item{
+	height: 70rpx;
+	margin-top: 10rpx;
+	border-bottom: 1rpx solid #d9d9d9; 
+}
+.info-label,.info-input,.info-img{
+	float: left; 
+}
+.info-label{
+	width: 26%; 
+	text-align: left;
+	margin-left: 30rpx; 
+}
+.info-input{
+	 width: 100%; 
+	text-align: right;
+	 /* margin-left: 30rpx;  */
+	position: absolute;  
+	right: 60rpx; 
+}
+.info-input-no-img{
+	right: 30rpx;
+}
+.info-readonly{
+	color: #cfcfcf;
+}
+.info-img{
+	width: 20rpx;
+	height: 10rpx;
+	position: absolute;
+	opacity: 0.5;
+	right: 0;
+	/* bottom: 0; */
+	margin-right: 30rpx;
+	margin-top: 10rpx;
+}
+.info-single-label{
+	width: 100%;	 
+}
+.info-chose{
+	width: 100%;
+	text-align: right;
+	right: 30rpx;
+	position: absolute;
+}
+/* 双列图片区  */
+.info-idcard{
+	width: 100%;
+	height: 430rpx;
+	float: left;
+	border-bottom: 1rpx solid #d9d9d9;
+}
+.info-double{
+	border-bottom: none;
+}
+.info-double-label{
+	width: 100%;
+	display: inline-block;	 
+}
+.info-double-img{
+	width: 45%;
+	height: 250rpx;
+	margin-top:2%;
+	margin-left:3%;
+	display: inline-block;
+}
+.info-double-img-item{
+	width: 100%; 
+	height: 250rpx;
+	position: relative;
+	z-index: 1;
+}
+.info-double-img-delete{
+	width: 50rpx;
+	height: 50rpx;
+	position: absolute;
+	z-index: 2;
+	margin-top: 10rpx;
+	margin-left: 275rpx;
+}
+/* 信息-提交 */
+.info-operate{	
+	width: 100%;
+	position: absolute; 
+	bottom: 0; 
+}
+.info-sub{	 
+	margin: 2% 1%;
+	color: #fff;
+	background-color: #48cfad;
+}
+/* 信息-性别 */
+.info-background{
+	width: 100%;
+	height: 100%;
+	opacity: 0.2;
+	position: absolute;
+	z-index: 3;
+	background-color: #cfcfcf;
+}
+.info-gender{
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 50%;
+	position: absolute;
+	z-index: 4;
+	background-color: #ffffff;
+}
+.info-gender-label,.info-gender-radio-item{
+	width: 100%;
+	margin-top: 10rpx;
+	margin-left: 30rpx;
+}
+.info-gender-label{
+	color: #cfcfcf;
+}
+.info-gender-radio-item:first-child{
+	margin-top: 5rpx;
+}
+.info-gender-radio-item:last-child{
+	margin-bottom: 30rpx;
+}
+.info-back{
+	float: right;
+	color: #0000ff;
+	margin-right: 5%;
+	margin-top: 20rpx;
+	margin-bottom: 30rpx;
+}
+/* 信息-圆梦师 */
+.info-dreamMaster{
+	width: 90%;
+	position: absolute;
+	z-index: 4;
+	margin-top: 5%;
+	margin-left: 5%;
+	background-color: #ffffff;
+}
+.info-dreamMaster-img{
+	widows: 96%;
+	margin-left: 2%;
+}

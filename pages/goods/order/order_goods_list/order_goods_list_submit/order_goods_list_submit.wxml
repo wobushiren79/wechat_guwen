@@ -27,6 +27,7 @@
           <view class="li">
             <view class="li_header">
               <view class="header">待提交</view>
+              <view>{{item.order_number}}</view>
               <view class="footer">￥
                 <block wx:if="{{item.order_price}}">
                   <text>{{item.order_price/100}}</text>

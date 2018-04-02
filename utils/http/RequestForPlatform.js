@@ -199,6 +199,18 @@ function validationAccount(data, callback) {
   baseRequest.sendPostHttpForContent(baseUrl + "api/usersAccount/validation", data, callback, true)
 }
 
+/**
+ * 查询用户信息-附加
+ */
+function queryUserInfoForExtraByUserId(data, callback) {
+	baseRequest.sendPostHttpForContent(baseUrl + "api/usersInfo/queryForExtraByUserId", data, callback, true)
+}
+/**
+ * 保存用户信息-附加
+ */
+function storeUserInfoForExtraByUserId(data, callback) {
+	baseRequest.sendPostHttpForContent(baseUrl + "api/usersInfo/storeForExtraByUserId", data, callback, true)
+}
 
 module.exports.addingCard = addingCard;
 module.exports.queryCardBins = queryCardBins;
@@ -229,3 +241,5 @@ module.exports.buildAccountForOrderCenterBuild = buildAccountForOrderCenterBuild
 module.exports.queryReturnCashLogsForPage = queryReturnCashLogsForPage;
 module.exports.queryLevelByLevelType = queryLevelByLevelType;
 module.exports.validationAccount = validationAccount;
+module.exports.queryUserInfoForExtraByUserId = queryUserInfoForExtraByUserId;
+module.exports.storeUserInfoForExtraByUserId = storeUserInfoForExtraByUserId;

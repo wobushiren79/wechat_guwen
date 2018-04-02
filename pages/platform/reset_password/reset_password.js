@@ -1,5 +1,6 @@
 var platformHttp = require("../../../utils/http/RequestForPlatform.js");
 var toastUtil = require("../../../utils/ToastUtil.js");
+var checkTools = require("../../../utils/CheckTools.js");
 var content;
 Page({
   data: {
@@ -17,8 +18,20 @@ Page({
   onLoad: function () {
     content = this;
   },
+  validation: function (e) {
+    var str = checkMobile(e.detail.value)
+    if (!str) {
+      toastUtil.showToast("手机号不正确");
+      return;
+    } else {
+      this.setData({
+        value3: str
+      })
+    }
+  },
   phoneData: function (e) {
-    if (e.detail.value.mobile == "") {
+    var str = checkMobile(e.detail.value.mobile)
+    if (!str) {
       toastUtil.showToast("手机号不能为空");
       return
     }
@@ -117,4 +130,15 @@ function countdown() {
     countdown(content);
   }
     , 1000)
+}
+/**
+ * 检测手机号
+ */
+function checkMobile(mobile) {
+  var str = checkTools.checkMobile(mobile)
+  if (!str) {
+    return false;
+  } else {
+    return str;
+  }
 }

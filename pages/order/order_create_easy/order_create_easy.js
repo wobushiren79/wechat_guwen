@@ -1,6 +1,7 @@
 var platformHttp = require("../../../utils/http/RequestForPlatform.js");
 var orderCenterHttp = require("../../../utils/http/RequestForOrderCenter.js");
 var toastUtil = require("../../../utils/ToastUtil.js");
+var checkTools = require("../../../utils/CheckTools.js");
 var content;
 var that
 Page({
@@ -103,16 +104,16 @@ Page({
       toastUtil.showToast("客户姓名必填")
       return
     }
-    if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(submitData.contactPhone))) {
-      toastUtil.showToast("电话不正确")
-      return
-    }
     if (submitData.appointmentTime.length == 0) {
       toastUtil.showToast("没有服务日期")
       return
     }
     if (submitData.address.length == 0) {
       toastUtil.showToast("没有客户地址")
+      return
+    }
+    if (that.checkMobile(submitData.contactPhone)){
+      toastUtil.showToast("号码不正确")
       return
     }
     if (that.data.date =='服务日期') {
@@ -146,32 +147,25 @@ Page({
   },
   //调用手机号码方法验证手机号码
   checktel:function(e){
-    this.checkMobile(e.detail.value)
+    var str = this.checkMobile(e.detail.value)
     this.setData({
-      checkMobile: e.detail.value
+      checkMobile: str,
+      contactPhone:str
     })
   },
-  //手机号码验证
-  checkMobile: function (sMobile){
-    if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))) {
-      wx.showToast({
-        title: '号码不正确',
-        image: '/images/icon_info.png',
-        duration: 2000
-      })
-    }else{
 
-    } 
+  //手机号码验证
+  checkMobile: function (sMobile) {
+    var str = checkTools.checkMobile(sMobile)
+    if (!str) {
+      toastUtil.showToast('号码不正确');
+    }else{
+      return str
+    }
   },
+
   onLoad: function () {
     content=this;
-    // that=this
-    // var nowDate = getApp().formatData()
-    // var nowTime = getApp().formatTime()
-    // this.setData({
-    //   date: nowDate,
-    //   time: nowTime
-    // })
     getCemeteryList()
   }
 });

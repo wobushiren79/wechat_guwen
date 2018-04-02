@@ -41,7 +41,7 @@
             <view class="weui-label">用车人电话</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="用车人电话" name="connecterMobile" type='number' maxlength='11' bindblur='checktel' value='{{web_data?web_data.connecterMobile:""}}'/>
+            <input class="weui-input" placeholder="用车人电话" name="connecterMobile" type='number' maxlength='11' bindblur='checktel' value='{{web_data?web_data.connecterMobile:checkMobile?checkMobile:""}}'/>
           </view>
         </view>
         <!--用车理由-->
