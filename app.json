@@ -69,7 +69,10 @@
     "pages/platform/login/login",
     "pages/platform/reset_password/reset_password",
     "pages/platform/register/register",
-    "pages/platform/signin/signin"
+    "pages/platform/signin/signin",
+    "pages/platform/user_info/user_info",
+    "pages/platform/user_info_idcard/user_info_idcard",
+    "pages/platform/user_info_dreamer/user_info_dreamer"
   ],
   "window": {
     "navigationBarTextStyle": "black",
