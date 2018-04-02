@@ -15,7 +15,20 @@ function formatNumber(n) {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
-
+/**
+ * 图片路径前缀
+ */
+function imgUrlPrefixSpell(imgUrl) {
+	var fileRemotePrefix = getApp().globalData.qiniuFilePathPrefix;
+	if (imgUrl == null || imgUrl.length == 0) {
+		return null;
+	}
+	if (imgUrl.indexOf(fileRemotePrefix.substr(0, 7)) == -1) {
+		imgUrl = fileRemotePrefix.concat(imgUrl);
+	}
+	return imgUrl;
+}
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  imgUrlPrefixSpell: imgUrlPrefixSpell
 }
