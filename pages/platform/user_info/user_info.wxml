@@ -1,0 +1,110 @@
+<!--pages/platform/user_info/user_info.wxml-->
+<view class='page'>
+	<form bindsubmit='formSub'>
+		<view class='info-base'>
+			<!-- <view class='info-item'>
+				<text class='info-label'></text>
+				<input type='text' class='info-input' value=''/>
+				<image class='info-img' mode="widthFix" src='/images/right.png'></image>
+			</view>			 -->
+			<view class='info-item'>
+				<text class='info-label'>姓名</text>
+				<input type='text' class='info-input info-input-no-img' name="name" value='{{userBaseInfoObj==null? "":userBaseInfoObj.name}}'/>
+			</view>
+			<view class='info-item'>
+				<text class='info-label'>性别</text>
+				<picker bindchange="genderChange" value="{{genderIndex}}" range="{{genderArray}}" range-key='txt'>
+					<view class='info-chose'>{{genderArray[genderIndex].txt}}</view>
+				</picker>
+				<!-- bindtap='genderChanging' <input type='text' class='info-input' value='{{genderTxt}}' disabled/> 
+				<image class='info-img' mode="widthFix" src='/images/right.png'></image> -->
+			</view>			
+			<view class='info-item'>
+				<text class='info-label'>电子邮箱</text>
+				<input type='text' class='info-input info-input-no-img' maxlength="25" name="email" value='{{userBaseInfoObj==null? "":userBaseInfoObj.email}}'/>				
+			</view>						
+			<view class='info-item'>
+				<text class='info-label'>手机号</text>
+				<input type='text' class='info-input info-input-no-img info-readonly' value='{{userBaseInfoObj==null? "":userBaseInfoObj.phone}}' disabled/>
+			</view>			
+			<view class='info-item' bindtap='idCardSee' style="display: {{isIdCardAuth? 'display':'none'}};">
+				<text class='info-label'>个人实名认证</text>
+				<input type='text' class='info-input info-readonly' value='{{!isIdCardAuth? "未实名":"已实名"}}' disabled/>
+				<image class='info-img' mode="widthFix" src='/images/right.png'></image>
+			</view>			
+			<view class='info-item' style='display:{{userBaseInfoObj==null? "none":userBaseInfoObj.refereeName==null? "none":"display"}};'>
+				<text class='info-label'>推荐人</text>
+				<input type='text' class='info-input info-input-no-img info-readonly' value='{{userBaseInfoObj==null? "":userBaseInfoObj.refereeName}}' disabled/>
+			</view>
+			<view class='info-item' style='display:block;'>
+				<text class='info-label'>注册日期</text>
+				<input type='text' class='info-input info-input-no-img info-readonly' value='{{userBaseInfoObj==null? "":userBaseInfoObj.registerDateStr}}' disabled/>
+			</view>			
+			<view class='info-item' style="display: {{isDreamMaster? 'display':'none'}};" bindtap='dreamMasterSee'>
+				<text class='info-label'>圆梦师</text>
+				 <input type='text' class='info-input' value='{{dreamMasterClass==null? "":dreamMasterClass}}' disabled/> 
+				<image class='info-img' mode="widthFix" src='/images/right.png'></image>
+			</view>
+			<view class='info-item' style="display:{{isDreamMaster? 'display':'none'}};">
+				<text class='info-label'>圆梦师管理员</text>
+				<input type='text' class='info-input info-input-no-img info-readonly' value='{{userExtraInfoObj==null ||userExtraInfoObj.dreamerManagerName==null ||userExtraInfoObj.dreamerManagerName.length==0? "未匹配人员":userExtraInfoObj.dreamerManagerName}}' disabled/>
+			</view>
+			<view class='info-idcard' style="display: {{!isIdCardAuth? 'display':'none'}};">
+				<view class='info-item'>
+					<text class='info-label'>身份证号</text>
+					<input type='idcard' class='info-input info-input-no-img' maxlength='18' name="identityCardNumber" value='{{userExtraInfoObj==null? "":userExtraInfoObj.identityCardNumber}}'/>
+				</view>
+				<view class='info-item info-double'>
+					<text class='info-label info-double-label'>身份证正反面照片</text>				
+					<view class='info-double-img'>
+						<view style="display: {{idCardPositiveImgUrl==null? 'display':'none'}};">
+							<image mode='aspectFill' class='info-double-img-item' src='/images/zhy_fileupload_button_normal.png' bindtap='choseImg' data-imgpos='{{idCardPositiveKey}}'></image>
+						</view>
+						<view style="display: {{idCardPositiveImgUrl!=null? 'display':'none'}};">
+							<image mode='aspectFit' class='info-double-img-delete' src='/images/cha.png' bindtap='deleImg' data-imgpos='{{idCardPositiveKey}}'></image>
+							<image mode='scaleToFill'  class='info-double-img-item' src='{{idCardPositiveImgTmpPath!=null? idCardPositiveImgTmpPath:idCardPositiveImgUrl}}'></image>
+						</view>						
+					</view>
+					<view class='info-double-img'>
+						<view style="display: {{idCardSideImgUrl==null? 'display':'none'}};">
+							<image mode='aspectFill' class='info-double-img-item' src='/images/zhy_fileupload_button_normal.png' bindtap='choseImg' data-imgpos='{{idCardSideKey}}'></image>
+						</view>
+						<view style="display: {{idCardSideImgUrl!=null? 'display':'none'}};">
+							<image mode='aspectFit' class='info-double-img-delete' src='/images/cha.png' bindtap='deleImg' data-imgpos='{{idCardSideKey}}'></image>
+							<image mode='scaleToFill'  class='info-double-img-item' src='{{idCardSideImgTmpPath!=null? idCardSideImgTmpPath:idCardSideImgUrl}}'></image>
+						</view>						
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class='info-operate'>
+			<!-- <button class='info-sub' form-type="submit">保存</button> -->
+			<button class='info-sub' form-type="submit"  style="display: {{!isFormContentSub? 'display':'none'}};">保存</button>
+			<button class='info-sub' style="display: {{isFormContentSub? 'display':'none'}};">保存</button> 
+		</view>
+	</form>
+	<!-- <view class='info-background' style="display: {{itemChosing? 'display':'none'}};"></view>
+	<view class='info-gender' style="display: {{genderChosing? 'display':'none'}};">
+		<text class='info-gender-label'>性别</text>
+		 <radio-group class="radio-group" bindchange="genderSelect" bindtap='genderBack'> 
+			<label class="radio" wx:for="{{genderArray}}">
+				<view class='info-gender-radio-item'>
+					<radio value="{{item.code}}" checked="{{item.isCheck}}"/>
+					<text>{{item.txt}}</text>
+				</view>
+			</label>
+		 </radio-group>
+		 <text class='info-back' bindtap='genderBack'>返 回</text> 
+	</view>
+	<view class="info-dreamMaster" style="display: {{dreamMasterSeeing? 'display':'none'}};">
+		<text class='info-gender-label'>圆梦师</text>
+		 <view class='info-item'>
+			<text class='info-label'>级别</text>
+			<input type='text' class='info-input info-input-no-img' value='{{"R级"}}' disabled/>
+		</view> 
+		<view class='info-dreamMaster-img'>
+			<image mode='scaleToFill' src='/images/succeed.png'></image>
+		</view>
+		<text class='info-back' bindtap='dreamMasterBack'>返 回</text>
+	</view> -->
+</view>

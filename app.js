@@ -1,5 +1,5 @@
-// var urlType = "local"
-var urlType = "remote"
+var urlType = "local";
+// var urlType = "remote"
 // var urlType = 'xiaofang'
 var urlData = (urlType == "local") ?
   {
@@ -8,7 +8,9 @@ var urlData = (urlType == "local") ?
     JavaPlatformUrl: "http://192.168.0.66:8080/ki4so-web/",
     JavaGoodsUrl: "http://192.168.0.66:8089/goods/",
     JavaCemeteryUrl: "http://192.168.0.66:8088/cemetery/",
-    javaOrderCenterUrl: "http://192.168.0.66:8090/order/"
+    javaOrderCenterUrl: "http://192.168.0.66:8090/order/",
+    qiniuFilePathPrefix: "http://oq6rkq859.bkt.clouddn.com/",
+    uploadFileNamePrefix: "guwen_wechatSmallApp"
   }
   : (urlType == 'xiaofang')?
   {
@@ -25,7 +27,9 @@ var urlData = (urlType == "local") ?
       JavaPlatformUrl: "https://platform.shianlife.cn/",
       JavaGoodsUrl: "https://goods.shianlife.cn/",
       JavaCemeteryUrl: "https://t-cemetery-api.shianlife.cn/",
-      javaOrderCenterUrl: 'https://order.shianlife.cn/'
+      javaOrderCenterUrl: 'https://order.shianlife.cn/',
+	  qiniuFilePathPrefix: "http://oq6rkq859.bkt.clouddn.com/",
+	  uploadFileNamePrefix: "guwen_wechatSmallApp"
     };
 App({
   onLaunch: function () {
