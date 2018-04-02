@@ -4,6 +4,7 @@ var fileUploadUtil = require("../../../utils/http/RequestForFile.js");
 var platformHttp = require("../../../utils/http/RequestForPlatform.js");
 var storageKey = require("../../../utils/storage/StorageKey.js");
 var formValideTool = require('../../../utils/formValidateTool.js');
+var utilTool = require('../../../utils/util.js');
 var content;
 Page({
 	/**
@@ -14,8 +15,8 @@ Page({
 		genderArray: [
 			{ index: 0, txt: '-未选择-', code: 'unselect', isCheck: true },
 			{ index: 1, txt: '男', code: 'male', isCheck: false },
-			{ index: 2, txt: '女', code: 'female', isCheck: false },
-			{ index: 3, txt: '保密', code: 'secret', isCheck: false }
+			{ index: 2, txt: '女', code: 'female', isCheck: false }//,
+			// { index: 3, txt: '保密', code: 'secret', isCheck: false }
 		],
 		genderIndex: 0,
 		genderCode: null,
@@ -373,19 +374,6 @@ Page({
 		platformHttp.storeUserInfoForExtraByUserId(formDataObj, callBack);
 	}
 });
-/**
- * 图片路径前缀
- */
-function imgUrlPrefixHandle(imgUrl) {
-	var fileRemotePrefix = getApp().globalData.qiniuFilePathPrefix;
-	if (imgUrl == null || imgUrl.length == 0) {
-		return null;
-	}
-	if (imgUrl.indexOf("http://") == -1) {
-		imgUrl = fileRemotePrefix.concat(imgUrl);
-	}
-	return imgUrl;
-}
 
 /**
  * 用户信息-基础
@@ -450,12 +438,12 @@ function queryUserInfoForExtraHandle(userExtraData) {
 // 图片前缀
 		cardAuth = userExtraData.identityCardAuth;
 		positiveImgUrl = userExtraData.identityCardFacadePic;
-		positiveImgTemp = imgUrlPrefixHandle(positiveImgUrl);
+		positiveImgTemp = utilTool.imgUrlPrefixSpell(positiveImgUrl);
 		sideImgUrl = userExtraData.identityCardObversePic;
-		sideImgTemp = imgUrlPrefixHandle(sideImgUrl);
+		sideImgTemp = utilTool.imgUrlPrefixSpell(sideImgUrl);
 
 		if (userExtraData.dreamerAuthImgUrl != null) {
-			dreamerImgUrl = imgUrlPrefixHandle(userExtraData.dreamerAuthImgUrl);
+			dreamerImgUrl = utilTool.imgUrlPrefixSpell(userExtraData.dreamerAuthImgUrl);
 		}
 	}
 	// 性别-集元素下标

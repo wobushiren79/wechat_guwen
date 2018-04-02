@@ -18,7 +18,7 @@ Page({
 	  var userName = options.userName;
 	  var cardNo = options.cardNo;
 	  var numberSpell = cardNo.substr(0, 4);
-	  for (var i = 0; i < 12; i++) {
+	  for (var i = 0; i < cardNo.length - 6; i++) {
 		  numberSpell += "*";
 	  }
 	  numberSpell += cardNo.substr(cardNo.length - 2, cardNo.length - 1);

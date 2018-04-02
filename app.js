@@ -1,6 +1,6 @@
-var urlType = "local";
-// var urlType = "remote"
-// var urlType = 'xiaofang'
+var urlType = "remote";
+//   urlType = "local";
+// urlType = 'xiaofang'
 var urlData = (urlType == "local") ?
   {
     goodsPHPUrl: "https://goodsmgr.e-funeral.cn/",
@@ -28,7 +28,7 @@ var urlData = (urlType == "local") ?
       JavaGoodsUrl: "https://goods.shianlife.cn/",
       JavaCemeteryUrl: "https://t-cemetery-api.shianlife.cn/",
       javaOrderCenterUrl: 'https://order.shianlife.cn/',
-	  qiniuFilePathPrefix: "http://oq6rkq859.bkt.clouddn.com/",
+	  qiniuFilePathPrefix: "https://oq6rkq859.bkt.clouddn.com/",
 	  uploadFileNamePrefix: "guwen_wechatSmallApp"
     };
 App({
