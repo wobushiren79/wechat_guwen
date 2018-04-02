@@ -1,0 +1,19 @@
+<!--pages/platform/user_info_idcard/user_info_idcard.wxml-->
+<view class='page'>
+	<view class='info'>
+		<view class='info-status'>
+			<image mode='aspectFit' class='info-img' src='/images/succeed.png'></image>
+		</view>
+		<view class='info-prompt'>
+			<text class='info-prompt-title'>个人实名认证成功！</text>
+			<text class='info-prompt-title-small'>您提交的身份证资料已通过人工审核</text>
+		</view>
+		<view class='info-idcard'>
+			<text class='info-idcard-username'>{{idCardUserName}}</text>
+			<text class='info-idcard-no'>身份证号：{{idCardNo}}</text>
+		</view>
+	</view>
+	<view class='info-operate'>
+		<button class='info-back' bindtap='idCardBack'>返回</button>
+	</view>
+</view>

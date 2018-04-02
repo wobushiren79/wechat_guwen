@@ -1,0 +1,43 @@
+/* pages/platform/user_info_dreamer/user_info_dreamer.wxss */
+.page{
+	width: 100%;
+	float: left; 
+}
+.page{
+	position: fixed; 
+	height: 100%;
+	background-color: #ffffff;
+}
+.info{
+	width: 96%;
+	margin-left: 2%;
+}
+.info-prompt{
+	width: 100%;
+	margin-top: 50rpx;
+}
+.info-prompt-title{
+	width: 100%;
+	text-align: center;
+	font-weight: bold;
+	display: inline-block;
+}
+.info-status{
+	margin-top: 5%;
+}
+.info-img{
+	width: 96%;
+	margin-left: 2%;
+	display: inline-block;
+}
+/* 信息-返回 */
+.info-operate{	
+	width: 100%;
+	position: absolute; 
+	bottom: 0; 
+}
+.info-back{
+	margin: 2% 1%;
+	color: #fff;
+	background-color: #48cfad;
+}

@@ -1,0 +1,71 @@
+/* pages/platform/user_info_idcard/user_info_idcard.wxss */
+.page{
+	width: 100%;
+	float: left; 
+}
+.page{
+	position: fixed; 
+	height: 100%;
+	background-color: #ffffff;
+}
+.info{
+	width: 80%;
+	margin-left: 10%;
+}
+.info-status{	
+	margin-top: 10%;
+}
+.info-img{	
+	width: 96%;
+	height: 200rpx;
+	margin-left: 2%;
+	display: inline-block;
+}
+.info-prompt{
+	margin-top: 50rpx;
+}
+.info-prompt-title{
+	width: 100%;
+	text-align: center;
+	font-weight: bold;
+	display: inline-block;
+}
+.info-prompt-title-small{
+	width: 100%;
+	text-align: center;
+	font-size: 30rpx;
+	color: #cfcfcf;
+	display: inline-block;
+}
+/* 信息-身份证 */
+.info-idcard{
+	width: 80%;
+	border-radius: 10rpx;
+	border: 2rpx solid #cfcfcf;
+	background-color: #eeeeec;
+	margin-top: 50rpx;
+	margin-left: 10%;
+}
+.info-idcard-username{
+	width: 100%;
+	text-align: center;
+	margin-top: 20rpx;
+	display: inline-block;
+}
+.info-idcard-no{
+	width: 100%;
+	text-align: center;
+	margin-bottom: 20rpx;
+	display: inline-block;
+}
+/* 信息-返回 */
+.info-operate{	
+	width: 100%;
+	position: absolute; 
+	bottom: 0; 
+}
+.info-back{
+	margin: 2% 1%;
+	color: #fff;
+	background-color: #48cfad;
+}
